@@ -143,7 +143,6 @@ export const products = [
     mobileSeries: 'RF Series',
     desc: 'Main description point',
     descClass: 'left-141 top-121 text-left',
-    backdrop: 'gradient',
     image: {
       src: a('product-rf.png'),
       box: { l: -51, t: 58, w: 660.666, h: 589.562 },

@@ -51,13 +51,19 @@ export default function Products() {
 
       {/* Desktop cards */}
       <div className="hidden gap-24 xl:flex">
-        {products.map((product, i) => (
+        {products.map((product) => (
           <a key={product.series} href="#products" className="group relative h-640 w-557 shrink-0 overflow-hidden rounded-12">
-            <div className={`absolute inset-0 overflow-hidden rounded-12 ${i === 0 ? 'opacity-50' : 'opacity-45'}`}>
+            {/* Resting backdrop: the plain card from Figma. */}
+            <img
+              src="/assets/product-bg.png"
+              alt=""
+              loading="lazy"
+              className="absolute inset-0 size-full rounded-12 object-cover opacity-45"
+            />
+            {/* Hover backdrop: the highlighted first card from Figma, faded in on hover or keyboard focus. */}
+            <div className="absolute inset-0 overflow-hidden rounded-12 opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-50 group-focus-visible:opacity-50">
               <img src="/assets/product-bg.png" alt="" loading="lazy" className="absolute inset-0 size-full object-cover" />
-              {product.backdrop === 'gradient' && (
-                <span className="absolute inset-0 bg-[linear-gradient(180deg,#bcc0c3_0%,rgba(221,225,229,0)_26.63%,rgba(221,225,229,0.41)_80.36%,#bcc0c3_100%)]" />
-              )}
+              <span className="absolute inset-0 bg-[linear-gradient(180deg,#bcc0c3_0%,rgba(221,225,229,0)_26.63%,rgba(221,225,229,0.41)_80.36%,#bcc0c3_100%)]" />
             </div>
             <h3 className="absolute top-20 left-1/2 -translate-x-1/2 text-36 leading-[calc(var(--spacing)*137.7)] whitespace-nowrap uppercase">
               <Name product={product} series={product.series} />
