@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Naxatra Labs designs and manufactures advanced electric motors and controllers in India for OEMs and mobility companies worldwide."
+    />
+    <title>Naxatra Labs | Advanced Motors &amp; Controllers Made in India</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400&family=Inter:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      // Scale the whole layout from the Figma artboards: 1920px wide on desktop, 402px on mobile.
+      // 1 design px = 1/16 rem, so sizing the root font keeps every section proportional.
+      (function () {
+        var root = document.documentElement;
+        function fit() {
+          var w = root.clientWidth;
+          var size = window.innerWidth >= 1280 ? Math.min(w / 120, 16) : Math.min(w / 25.125, 18);
+          root.style.fontSize = size + 'px';
+        }
+        fit();
+        window.addEventListener('resize', fit);
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
