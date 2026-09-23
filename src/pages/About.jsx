@@ -22,12 +22,12 @@ export default function About() {
       <Goal />
       <Founders />
       {/* Shared with the home page; only the vertical rhythm differs on this artboard. */}
-      <Journey spacing="py-80 xl:py-100" />
+      <Journey spacing="py-100 xl:py-100" />
       <Recognition />
       <Vision />
       <Investors />
-      <Ideas spacing="gap-28 py-80 xl:gap-100 xl:pt-96 xl:pb-93" />
-      <Testimonials spacing="gap-60 py-80 xl:gap-100 xl:pt-164 xl:pb-177" />
+      <Ideas spacing="gap-28 py-100 xl:gap-100 xl:pt-96 xl:pb-93" />
+      <Testimonials spacing="gap-60 py-100 xl:gap-100 xl:pt-164 xl:pb-177" />
     </main>
   )
 }
