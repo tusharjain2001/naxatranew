@@ -132,7 +132,7 @@ export const deployment = {
   images: [
     { src: a('deploy-drone.png'), alt: 'Agricultural spraying drone over a paddy field' },
     { src: a('deploy-repair.png'), alt: 'Technician servicing an electric motorcycle drivetrain' },
-    { src: a('deploy-charging.png'), alt: 'Electric car being charged', imageClass: '-scale-x-100' },
+    { src: a('deploy-charging.png'), alt: 'Electric car being charged' },
   ],
 }
 
