@@ -1,10 +1,10 @@
 const a = (file) => `/assets/${file}`
 
 export const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'Products', href: '#products' },
-  { label: 'Industry', href: '#industry', hasMenu: true },
-  { label: 'About', href: '#about' },
+  { label: 'Home', href: '/' },
+  { label: 'Products', href: '/#products' },
+  { label: 'Industry', href: '/#industry', hasMenu: true },
+  { label: 'About', href: '/about' },
 ]
 
 export const industryMenu = {
@@ -245,7 +245,14 @@ export const footer = {
     { title: 'Corporate Office', lines: ['Sector 44, Gurugram,', 'Haryana 122003'] },
     { title: 'Manufacturing Facility', lines: ['Paldi-Kankaj, Dakroi Ahmedabad,', 'Gujarat 382425'] },
   ],
-  quickLinks: ['Home', 'Products', 'About Us', 'Blogs And Insights', 'Career', 'Contact Us'],
+  quickLinks: [
+    { label: 'Home', href: '/' },
+    { label: 'Products', href: '/#products' },
+    { label: 'About Us', href: '/about' },
+    { label: 'Blogs And Insights', href: '/#ideas' },
+    { label: 'Career', href: '/careers' },
+    { label: 'Contact Us', href: '/contact' },
+  ],
   contact: [
     { label: '+91 9266030266', href: 'tel:+919266030266' },
     { label: 'Enquiry@Naxatralabs.Com', href: 'mailto:enquiry@naxatralabs.com' },

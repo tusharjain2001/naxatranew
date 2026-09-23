@@ -39,7 +39,7 @@ function Photo({ item }) {
   )
 }
 
-export default function Journey({ className = '' }) {
+export default function Journey({ spacing = 'py-100 xl:pt-265 xl:pb-0' }) {
   const [active, setActive] = useState(1)
   const trackRef = useRef(null)
   const last = journey.length - 1
@@ -61,7 +61,7 @@ export default function Journey({ className = '' }) {
   }
 
   return (
-    <section className={`w-full bg-white py-100 xl:pt-265 xl:pb-0 ${className}`}>
+    <section className={`w-full bg-white ${spacing}`}>
       <div className="mx-auto flex max-w-1920 flex-col gap-60 xl:gap-64">
         <SectionHeader
           title="Our Journey So Far"

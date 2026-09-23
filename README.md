@@ -1,6 +1,6 @@
 # Naxatra Labs website
 
-React 19 + Vite + Tailwind CSS v4 build of the Naxatra Labs 2026 Figma file. Only the home page exists so far.
+React 19 + Vite + Tailwind CSS v4 build of the Naxatra Labs 2026 Figma file. Four pages exist so far: Home (`/`), About Us (`/about`), Careers (`/careers`) and Contact Us (`/contact`).
 
 ```bash
 npm install
@@ -18,21 +18,33 @@ The design ships two artboards: 1920px desktop and 402px mobile. The code uses t
 - **`xl:` classes are the desktop artboard.** Unprefixed classes are the mobile artboard.
 - **Some cards use `em` units.** The application cards, testimonials and journey timeline set a font size equal to one design pixel. The mobile versions of those cards are scaled copies of the desktop ones, so one set of numbers drives both.
 
-Design tokens such as colours, type sizes and radii live in `src/index.css`. All page copy and image paths live in `src/data/home.js`.
+Design tokens such as colours, type sizes and radii live in `src/index.css`. Page copy and image paths live in `src/data/home.js`, `about.js`, `careers.js` and `contact.js`.
 
 ## Structure
 
 ```
 src/
-  data/home.js            content for every section
+  App.jsx                 picks the page from the URL path (no router needed for two pages)
+  pages/                  Home, About, Careers and Contact, each a list of sections
+  data/                   content for every section, one file per page
   components/layout/      Navbar (Industry dropdown, mobile menu), Footer
-  components/ui/          Button, ArrowUpRight, SliderArrows, Dots, SectionHeader
+  components/ui/          Button, ArrowUpRight, SliderArrows, Dots, SectionHeader, PageHero, FormFields, PersonCard
   hooks/useScrollTrack.js arrows and dots for horizontal carousels
-  sections/               one file per home page section
-public/assets/            images and SVGs exported from Figma (m/ holds mobile-only exports)
+  sections/               one file per home page section; Journey, Ideas and Testimonials are shared
+  sections/about/         sections only used on the About page
+  sections/careers/       sections only used on the Careers page
+  sections/contact/       sections only used on the Contact page
+public/assets/            images and SVGs exported from Figma (m/ mobile-only, about/, careers/ and contact/ per page)
 ```
 
 ## Open items
+
+- **Hosting:** `/about`, `/careers` and `/contact` are served by the same `index.html`. `vite dev` and `vite preview` handle that already; on the live host, rewrite unknown paths to `/index.html`.
+- **About, Careers and Contact on mobile:** Figma only has desktop artboards for these pages, so their mobile layouts follow the home page's mobile patterns.
+- **Careers content:** job summaries (shown when a card is expanded) and job description files are empty in `src/data/careers.js`; experience reads `x years` as in Figma. The position count comes from the number of jobs listed.
+- **Forms:** the careers application and the contact enquiry validate required fields but do not submit anywhere yet.
+- **Contact form fields:** the Figma artboard reuses the careers fields (role, resume, LinkedIn). They are built as designed; their labels live in `enquiry.fields` in `src/data/contact.js`.
+- **LinkedIn badges:** founders and investors show the LinkedIn icon from Figma, but no profile URLs were provided, so they are not links yet.
 
 - **Fonts:** the design uses Helvetica Neue in Light, Regular, Medium and Bold. It renders correctly on macOS and iOS. Windows and Android have no Helvetica Neue, so they fall back to Arial, which has no light weight. To match everywhere, add licensed Helvetica Neue web fonts with `@font-face` in `src/index.css`.
 - **Factory video:** Figma marks the manufacturing image as a video placeholder. Set `manufacturing.videoSrc` in `src/data/home.js` and the play button will start playback.

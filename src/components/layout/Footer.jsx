@@ -87,9 +87,9 @@ export default function Footer() {
               <h3 className="font-bold">Quick Links</h3>
               <ul className="font-light">
                 {footer.quickLinks.map((link) => (
-                  <li key={link}>
-                    <a href="#home" className="transition-colors hover:text-white">
-                      {link}
+                  <li key={link.label}>
+                    <a href={link.href} className="transition-colors hover:text-white">
+                      {link.label}
                     </a>
                   </li>
                 ))}
@@ -116,7 +116,7 @@ export default function Footer() {
           <ul className="absolute top-625 left-[calc(var(--spacing)*1596.78)] flex gap-[calc(var(--spacing)*63)] text-18 leading-[calc(var(--spacing)*51.73)] whitespace-nowrap text-white">
             {footer.legal.map((item) => (
               <li key={item}>
-                <a href="#home" className="transition-opacity hover:opacity-70">
+                <a href="/" className="transition-opacity hover:opacity-70">
                   {item}
                 </a>
               </li>
@@ -150,8 +150,8 @@ export default function Footer() {
             <h3 className="text-12 font-bold">Quick Links</h3>
             <ul className="text-11 font-light">
               {footer.quickLinks.map((link) => (
-                <li key={link}>
-                  <a href="#home">{link}</a>
+                <li key={link.label}>
+                  <a href={link.href}>{link.label}</a>
                 </li>
               ))}
             </ul>
@@ -172,7 +172,7 @@ export default function Footer() {
         <ul className="flex gap-10 text-10 leading-[calc(var(--spacing)*35.06)] text-white">
           {footer.legal.map((item) => (
             <li key={item}>
-              <a href="#home">{item}</a>
+              <a href="/">{item}</a>
             </li>
           ))}
         </ul>

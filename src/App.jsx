@@ -1,39 +1,26 @@
+import { useEffect } from 'react'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
-import Hero from './sections/Hero'
-import Commitment from './sections/Commitment'
-import Applications from './sections/Applications'
-import Manufacturing from './sections/Manufacturing'
-import Deployment from './sections/Deployment'
-import Products from './sections/Products'
-import Testimonials from './sections/Testimonials'
-import Journey from './sections/Journey'
-import Ideas from './sections/Ideas'
+import Home from './pages/Home'
+import About from './pages/About'
+import Careers from './pages/Careers'
+import Contact from './pages/Contact'
+import { currentPath } from './lib/currentPath'
+
+const pages = { '/': Home, '/about': About, '/careers': Careers, '/contact': Contact }
 
 export default function App() {
+  const Page = pages[currentPath()] ?? Home
+
+  // Links such as /#products arrive from another page before the section exists; scroll once it renders.
+  useEffect(() => {
+    if (window.location.hash) document.querySelector(window.location.hash)?.scrollIntoView()
+  }, [])
+
   return (
     <>
       <Navbar />
-      {/* The mobile artboard moves "Our Journey" up to follow "Engineered Here"; flex order handles both. */}
-      <main className="flex flex-col">
-        <Hero />
-        <Commitment />
-        <Applications />
-        <Manufacturing />
-        <Deployment />
-        <div className="order-2">
-          <Products />
-        </div>
-        <div className="order-2">
-          <Testimonials />
-        </div>
-        <div className="order-1 xl:order-2">
-          <Journey />
-        </div>
-        <div className="order-3">
-          <Ideas />
-        </div>
-      </main>
+      <Page />
       <Footer />
     </>
   )

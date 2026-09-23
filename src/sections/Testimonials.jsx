@@ -33,11 +33,11 @@ function TestimonialCard({ item }) {
   )
 }
 
-export default function Testimonials() {
+export default function Testimonials({ spacing = 'gap-60 py-100 xl:gap-100 xl:pt-293 xl:pb-0' }) {
   const [trackRef, track] = useScrollTrack()
 
   return (
-    <section className="mx-auto flex w-full max-w-1920 flex-col gap-60 py-100 xl:gap-100 xl:pt-293 xl:pb-0">
+    <section className={`mx-auto flex w-full max-w-1920 flex-col ${spacing}`}>
       <SectionHeader
         title="What Innovators Say About Us?"
         subtitle="These Are Our Client Testimonials..."

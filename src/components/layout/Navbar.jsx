@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { industryMenu, navLinks } from '../../data/home'
 import Button from '../ui/Button'
+import { currentPath } from '../../lib/currentPath'
 
 function IndustryMenu({ onNavigate }) {
   return (
@@ -9,7 +10,7 @@ function IndustryMenu({ onNavigate }) {
         {industryMenu.images.map((item) => (
           <a
             key={item.label}
-            href="#industry"
+            href="/#industry"
             onClick={onNavigate}
             aria-label={item.label}
             className="group relative block h-84 overflow-hidden rounded-4"
@@ -25,7 +26,7 @@ function IndustryMenu({ onNavigate }) {
         {industryMenu.links.map((item) => (
           <li key={item.label}>
             <a
-              href="#industry"
+              href="/#industry"
               onClick={onNavigate}
               className="flex w-248 items-center justify-center gap-4 rounded-4 border border-silver bg-[rgba(217,217,217,0.15)] p-16 transition-colors duration-200 hover:border-primary hover:bg-primary/10"
             >
@@ -67,7 +68,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 bg-white">
       {/* Desktop, 1920px artboard */}
       <div className="mx-auto hidden h-80 max-w-1920 items-center justify-between px-100 xl:flex">
-        <a href="#home" aria-label="Naxatra Labs home" className="block">
+        <a href="/" aria-label="Naxatra Labs home" className="block">
           <img src="/assets/logo.svg" alt="Naxatra Labs" className="h-20 w-194" />
         </a>
         <nav className="flex items-center">
@@ -106,6 +107,7 @@ export default function Navbar() {
               <a
                 key={link.label}
                 href={link.href}
+                aria-current={link.href === currentPath() ? 'page' : undefined}
                 className={`flex items-center justify-center py-12 text-16 leading-16 font-light tracking-nav text-black uppercase transition-colors hover:text-primary ${
                   link.label === 'Products' ? 'w-160 px-10' : 'px-32'
                 }`}
@@ -114,7 +116,7 @@ export default function Navbar() {
               </a>
             ),
           )}
-          <Button href="#contact" className="h-44 px-24! py-0!">
+          <Button href="/contact" className="h-44 px-24! py-0!">
             Contact Us
           </Button>
         </nav>
@@ -122,7 +124,7 @@ export default function Navbar() {
 
       {/* Mobile, 402px artboard */}
       <div className="flex h-56 items-center justify-between p-16 xl:hidden">
-        <a href="#home" aria-label="Naxatra Labs home">
+        <a href="/" aria-label="Naxatra Labs home">
           <img src="/assets/logo.svg" alt="Naxatra Labs" className="h-[calc(var(--spacing)*14.73)] w-143" />
         </a>
         <button
@@ -163,7 +165,7 @@ export default function Navbar() {
                   {industryMenu.links.map((item) => (
                     <a
                       key={item.label}
-                      href="#industry"
+                      href="/#industry"
                       onClick={() => setMobileOpen(false)}
                       className="flex items-center gap-8 rounded-4 border border-silver bg-[rgba(217,217,217,0.15)] p-8 text-12 uppercase"
                     >
@@ -178,7 +180,7 @@ export default function Navbar() {
             </div>
           ))}
         </nav>
-        <Button href="#contact" size="sm" className="mt-24" onClick={() => setMobileOpen(false)}>
+        <Button href="/contact" size="sm" className="mt-24" onClick={() => setMobileOpen(false)}>
           Contact Us
         </Button>
       </div>

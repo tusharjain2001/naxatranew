@@ -12,11 +12,11 @@ function ReadMore({ className = '' }) {
   )
 }
 
-export default function Ideas() {
+export default function Ideas({ spacing = 'gap-28 py-100 xl:gap-64 xl:pt-378 xl:pb-[calc(var(--spacing)*184.6)]' }) {
   const [trackRef, track] = useScrollTrack()
 
   return (
-    <section id="ideas" className="mx-auto flex w-full max-w-1920 flex-col gap-28 py-100 xl:gap-64 xl:pt-378 xl:pb-[calc(var(--spacing)*184.6)]">
+    <section id="ideas" className={`mx-auto flex w-full max-w-1920 flex-col ${spacing}`}>
       <SectionHeader title="Ideas. Innovation. Impact" subtitle="And Many More To Come..." mobileLeading="leading-20" track={track} className="xl:px-98" />
 
       <div className="flex flex-col items-center gap-28">
