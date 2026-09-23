@@ -5,9 +5,10 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Careers from './pages/Careers'
 import Contact from './pages/Contact'
+import Blogs from './pages/Blogs'
 import { currentPath } from './lib/currentPath'
 
-const pages = { '/': Home, '/about': About, '/careers': Careers, '/contact': Contact }
+const pages = { '/': Home, '/about': About, '/careers': Careers, '/contact': Contact, '/blogs': Blogs }
 
 export default function App() {
   const Page = pages[currentPath()] ?? Home

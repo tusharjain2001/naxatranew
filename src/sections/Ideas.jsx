@@ -5,7 +5,7 @@ import useScrollTrack from '../hooks/useScrollTrack'
 
 function ReadMore({ className = '' }) {
   return (
-    <a href="#ideas" className={`group inline-flex items-center gap-13 font-light text-primary ${className}`}>
+    <a href="/blogs" className={`group inline-flex items-center gap-13 font-light text-primary ${className}`}>
       <span className="underline underline-offset-2">Read More</span>
       <img src="/assets/read-more-arrow.svg" alt="" className="h-11.25 w-11.75 transition-transform duration-200 group-hover:translate-x-4" />
     </a>

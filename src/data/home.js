@@ -249,7 +249,7 @@ export const footer = {
     { label: 'Home', href: '/' },
     { label: 'Products', href: '/#products' },
     { label: 'About Us', href: '/about' },
-    { label: 'Blogs And Insights', href: '/#ideas' },
+    { label: 'Blogs And Insights', href: '/blogs' },
     { label: 'Career', href: '/careers' },
     { label: 'Contact Us', href: '/contact' },
   ],

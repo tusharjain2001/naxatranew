@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { enquiry } from '../../data/contact'
 import Button from '../../components/ui/Button'
 import { Field, FileField } from '../../components/ui/FormFields'
+import TabBar from '../../components/ui/TabBar'
 
 // Not connected to a backend yet: submitting validates the fields and stops there.
 export default function EnquiryForm() {
@@ -9,26 +10,7 @@ export default function EnquiryForm() {
 
   return (
     <section className="mx-auto flex w-full max-w-1920 flex-col gap-40 px-16 py-80 xl:gap-60 xl:px-100 xl:py-200">
-      <div role="tablist" aria-label="Enquiry type" className="grid grid-cols-2 gap-8 xl:flex xl:gap-24">
-        {enquiry.topics.map((item) => {
-          const active = item === topic
-          return (
-            <button
-              key={item}
-              type="button"
-              role="tab"
-              aria-selected={active}
-              aria-controls="enquiry-form"
-              onClick={() => setTopic(item)}
-              className={`cursor-pointer rounded-4 border p-12 text-center text-16 leading-20 whitespace-nowrap capitalize transition-colors duration-200 xl:flex-1 xl:p-16 xl:text-24 xl:leading-32 ${
-                active ? 'border-primary bg-[rgba(0,101,225,0.1)] font-medium text-primary' : 'border-silver text-black hover:border-primary/50'
-              }`}
-            >
-              {item}
-            </button>
-          )
-        })}
-      </div>
+      <TabBar tabs={enquiry.topics} active={topic} onChange={setTopic} label="Enquiry type" controls="enquiry-form" />
 
       <form id="enquiry-form" role="tabpanel" aria-label={topic} onSubmit={(e) => e.preventDefault()} className="flex flex-col items-end gap-40 xl:gap-70">
         <input type="hidden" name="topic" value={topic} />
