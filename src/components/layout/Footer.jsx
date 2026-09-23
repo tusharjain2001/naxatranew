@@ -124,7 +124,7 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <div className="mx-auto hidden h-[calc(var(--spacing)*108.54)] max-w-1920 items-center justify-between border-b border-silver pr-29 pl-[calc(var(--spacing)*38.71)] xl:flex">
+      <div className="mx-auto hidden h-62 max-w-1920 items-center justify-between border-b border-silver pr-29 pl-[calc(var(--spacing)*38.71)] xl:flex">
         <Copyright className="text-23" />
         <SocialIcons className="h-[calc(var(--spacing)*36.77)] w-[calc(var(--spacing)*317.42)]" />
       </div>

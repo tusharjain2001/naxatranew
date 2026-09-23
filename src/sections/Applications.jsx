@@ -55,9 +55,9 @@ function ApplicationCard({ item }) {
 
 export default function Applications() {
   return (
-    <section id="industry" className="mx-auto flex w-full max-w-1920 flex-col items-center gap-48 py-100 xl:gap-93 xl:pt-329 xl:pb-0">
+    <section id="industry" className="mx-auto flex w-full max-w-1920 flex-col items-center gap-48 py-100 xl:gap-101 xl:pt-269 xl:pb-0">
       <div className="flex flex-col items-center gap-16 px-16 text-center xl:w-1279 xl:gap-20 xl:px-0">
-        <h2 className="text-32 leading-36 tracking-display capitalize xl:text-72 xl:leading-80">
+        <h2 className="text-32 leading-36 tracking-display capitalize xl:text-64 xl:leading-72">
           Powering A Wide Range Of Applications
         </h2>
         <p className="w-334 text-14 leading-16 font-light text-grey-dark xl:w-full xl:text-32 xl:leading-normal xl:font-normal xl:tracking-display xl:text-grey">

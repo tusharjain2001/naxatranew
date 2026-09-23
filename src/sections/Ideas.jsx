@@ -16,13 +16,13 @@ export default function Ideas() {
   const [trackRef, track] = useScrollTrack()
 
   return (
-    <section id="ideas" className="mx-auto flex w-full max-w-1920 flex-col gap-28 py-100 xl:gap-64 xl:pt-177 xl:pb-200">
-      <SectionHeader title="Ideas. Innovation. Impact" subtitle="And Many More To Come..." mobileLeading="leading-20" track={track} />
+    <section id="ideas" className="mx-auto flex w-full max-w-1920 flex-col gap-28 py-100 xl:gap-64 xl:pt-378 xl:pb-[calc(var(--spacing)*184.6)]">
+      <SectionHeader title="Ideas. Innovation. Impact" subtitle="And Many More To Come..." mobileLeading="leading-20" track={track} className="xl:px-98" />
 
       <div className="flex flex-col items-center gap-28">
         <div
           ref={trackRef}
-          className="no-scrollbar relative flex w-full snap-x snap-mandatory scroll-px-16 gap-16 overflow-x-auto px-16 xl:grid xl:snap-none xl:grid-cols-3 xl:gap-[calc(var(--spacing)*30.66)] xl:overflow-visible xl:px-100"
+          className="no-scrollbar relative flex w-full snap-x snap-mandatory scroll-px-16 gap-16 overflow-x-auto px-16 xl:grid xl:snap-none xl:grid-cols-3 xl:gap-[calc(var(--spacing)*30.66)] xl:overflow-visible xl:px-98"
         >
           {ideas.map((item) => (
             <article

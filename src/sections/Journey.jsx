@@ -61,7 +61,7 @@ export default function Journey({ className = '' }) {
   }
 
   return (
-    <section className={`w-full bg-white py-100 xl:pt-178 xl:pb-0 ${className}`}>
+    <section className={`w-full bg-white py-100 xl:pt-265 xl:pb-0 ${className}`}>
       <div className="mx-auto flex max-w-1920 flex-col gap-60 xl:gap-64">
         <SectionHeader
           title="Our Journey So Far"

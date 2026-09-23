@@ -18,9 +18,9 @@ function TestimonialCard({ item }) {
           </span>
         </span>
       </div>
-      <img src="/assets/quote.svg" alt="" className="h-[48em] w-[56em]" />
+      <img src="/assets/quote.svg" alt="" className="h-[48em] w-[56em] xl:h-[40em] xl:w-[47em]" />
       <blockquote className="w-[391em]">
-        <p style={{ fontSize: '24em', lineHeight: 1.333 }}>{item.quote}</p>
+        <p className="text-[length:24em] leading-[1.333] xl:text-[length:20em] xl:leading-[1.4]">{item.quote}</p>
       </blockquote>
       <img src="/assets/testimonial-line.svg" alt="" className="h-[max(1em,1px)] w-[135em]" />
       <figcaption className="w-[391em]">
@@ -37,11 +37,12 @@ export default function Testimonials() {
   const [trackRef, track] = useScrollTrack()
 
   return (
-    <section className="mx-auto flex w-full max-w-1920 flex-col gap-60 py-100 xl:gap-100 xl:pt-206 xl:pb-0">
+    <section className="mx-auto flex w-full max-w-1920 flex-col gap-60 py-100 xl:gap-100 xl:pt-293 xl:pb-0">
       <SectionHeader
         title="What Innovators Say About Us?"
         subtitle="These Are Our Client Testimonials..."
         mobileLeading="leading-32"
+        desktopGap="xl:gap-11"
         track={track}
       />
       <div className="flex flex-col items-center gap-28">

@@ -2,10 +2,14 @@ import { commitment } from '../data/home'
 
 export default function Commitment() {
   return (
-    <section id="about" className="mx-auto w-full max-w-1920 py-100 xl:px-100 xl:pt-144 xl:pb-0">
+    <section id="about" className="mx-auto w-full max-w-1920 py-100 xl:px-100 xl:pt-142 xl:pb-0">
       <div className="flex flex-col gap-16 px-16 pb-60 xl:flex-row xl:items-center xl:justify-between xl:gap-0 xl:p-0">
         <div className="flex flex-col gap-16 xl:w-1040 xl:gap-32">
-          <h2 className="text-32 leading-36 tracking-display capitalize xl:text-72 xl:leading-80">{commitment.title}</h2>
+          <h2 className="text-32 leading-36 tracking-display capitalize xl:text-64 xl:leading-72">
+            {/* Figma sets the last phrase as its own paragraph on desktop. */}
+            {commitment.title.replace(' Drives Every Decision We Make', '')}
+            <br className="hidden xl:block" /> Drives Every Decision We Make
+          </h2>
           <p className="w-334 text-14 leading-16 font-light text-grey-dark xl:flex xl:capitalize xl:h-87 xl:w-800 xl:items-center xl:text-24 xl:leading-32 xl:font-normal xl:text-grey">
             {commitment.body}
           </p>
@@ -25,14 +29,14 @@ export default function Commitment() {
         </div>
       </div>
 
-      <dl className="flex flex-wrap gap-20 px-16 capitalize xl:mt-231 xl:flex-nowrap xl:justify-between xl:gap-0 xl:px-0">
+      <dl className="flex flex-wrap gap-20 px-16 capitalize xl:mt-172 xl:flex-nowrap xl:justify-between xl:gap-0 xl:px-0">
         {commitment.stats.map((stat) => (
           <div
             key={stat.value}
             className="flex h-70 w-172 flex-col justify-between xl:h-140 xl:w-433"
           >
-            <dd className="order-first flex h-49 shrink-0 items-center text-44 leading-normal xl:h-98 xl:text-100">{stat.value}</dd>
-            <dt className="text-12 leading-16 text-grey xl:text-28 xl:leading-36">{stat.label}</dt>
+            <dd className="order-first flex h-49 shrink-0 items-center text-44 leading-normal xl:h-98 xl:text-88">{stat.value}</dd>
+            <dt className="text-12 leading-16 text-grey xl:text-24 xl:leading-36">{stat.label}</dt>
           </div>
         ))}
       </dl>

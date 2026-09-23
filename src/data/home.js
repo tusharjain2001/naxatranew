@@ -22,35 +22,35 @@ export const industryMenu = {
   ],
 }
 
-// `top` is the headline offset from the top of the image area on the 1920px artboard.
+// `top` is the headline offset from the top of the 880px image area on the 1920px artboard.
 export const heroSlides = [
   {
     id: 'precision',
     image: a('hero-agri.png'),
     title: ['Precision motor systems'],
     subtitle: ['Designed and manufactured in India for manufacturers,', 'OEMs and mobility companies worldwide.'],
-    subtitleGap: 'gap-14',
-    top: 106,
+    subtitleGap: 'gap-18',
+    top: 142,
   },
   {
     id: 'making',
     image: a('hero-vehicles.png'),
     title: ['The Making of', 'What Moves'],
     overlay: 'vehicles',
-    top: 75,
+    top: 111,
   },
   {
     id: 'designed',
     image: a('hero-sweeper.png'),
     title: ['Designed.', 'Developed.', 'Driven.'],
-    top: 124,
+    top: 160,
   },
   {
     id: 'drone',
     image: a('hero-drone.png'),
     imageClass: '-scale-x-100 object-top',
     title: ['The Making of', 'What Moves'],
-    top: 75,
+    top: 111,
   },
   {
     id: 'made-in-india',
@@ -61,7 +61,9 @@ export const heroSlides = [
     subtitle: ['Designed. Developed. Driven.'],
     subtitleGap: 'gap-48',
     overlay: 'bridge',
-    top: 115,
+    titleSize: 'text-80 leading-88',
+    left: 100,
+    top: 120,
   },
 ]
 
@@ -129,8 +131,8 @@ export const deployment = {
   tabs: ['Design', 'Performance', 'Technology'],
   images: [
     { src: a('deploy-drone.png'), alt: 'Agricultural spraying drone over a paddy field' },
-    { src: a('deploy-repair.jpg'), alt: 'Technician servicing an electric motorcycle drivetrain' },
-    { src: a('deploy-charging.jpg'), alt: 'Electric car being charged', imageClass: '-scale-x-100' },
+    { src: a('deploy-repair.png'), alt: 'Technician servicing an electric motorcycle drivetrain' },
+    { src: a('deploy-charging.png'), alt: 'Electric car being charged', imageClass: '-scale-x-100' },
   ],
 }
 
@@ -144,7 +146,7 @@ export const products = [
     backdrop: 'gradient',
     image: {
       src: a('product-rf.png'),
-      box: { l: -51, t: 120, w: 660.666, h: 589.562 },
+      box: { l: -51, t: 58, w: 660.666, h: 589.562 },
       inner: { w: 576.236, h: 485.439, rotate: -168.62 },
       crop: { w: 102.94, h: 68.73, l: 0.7, t: 12.77 },
     },
@@ -163,7 +165,7 @@ export const products = [
     descClass: 'left-141 top-131 text-center',
     image: {
       src: a('product-af58.png'),
-      box: { l: -60, t: 89, w: 635.949, h: 640.945 },
+      box: { l: -60, t: 58, w: 635.949, h: 640.945 },
       inner: { w: 498.9, h: 404.6, rotate: 47.15 },
       fit: 'object-cover',
     },
@@ -182,7 +184,7 @@ export const products = [
     descClass: 'left-141 top-121 text-left',
     image: {
       src: a('product-pt500.png'),
-      box: { l: -59.3, t: 120, w: 686.76, h: 694.593 },
+      box: { l: -59.3, t: 89, w: 686.76, h: 694.593 },
       inner: { w: 530.2, h: 448.9, rotate: 48.91 },
       fit: 'object-fill',
     },

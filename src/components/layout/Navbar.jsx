@@ -66,9 +66,9 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 bg-white">
       {/* Desktop, 1920px artboard */}
-      <div className="mx-auto hidden h-116 max-w-1920 items-start justify-between px-100 pt-32 xl:flex">
-        <a href="#home" aria-label="Naxatra Labs home" className="mt-12 block">
-          <img src="/assets/logo.svg" alt="Naxatra Labs" className="h-28 w-272" />
+      <div className="mx-auto hidden h-80 max-w-1920 items-center justify-between px-100 xl:flex">
+        <a href="#home" aria-label="Naxatra Labs home" className="block">
+          <img src="/assets/logo.svg" alt="Naxatra Labs" className="h-20 w-194" />
         </a>
         <nav className="flex items-center">
           {navLinks.map((link) =>
@@ -85,7 +85,7 @@ export default function Navbar() {
                   aria-expanded={menuOpen}
                   aria-haspopup="true"
                   onClick={() => setMenuOpen((v) => !v)}
-                  className="flex w-160 cursor-pointer items-center justify-center gap-8 px-10 py-12 text-16 leading-normal font-light tracking-nav text-black uppercase transition-colors hover:text-primary"
+                  className="flex w-160 cursor-pointer items-center justify-center gap-8 px-10 py-12 text-16 leading-16 font-light tracking-nav text-black uppercase transition-colors hover:text-primary"
                 >
                   {link.label}
                   <img
@@ -95,7 +95,7 @@ export default function Navbar() {
                   />
                 </button>
                 <div
-                  className={`absolute top-full -left-440 z-10 w-880 pt-49.5 transition-all duration-200 ${
+                  className={`absolute top-full -left-440 z-10 w-880 pt-25 transition-all duration-200 ${
                     menuOpen ? 'visible translate-y-0 opacity-100' : 'invisible -translate-y-8 opacity-0'
                   }`}
                 >
@@ -106,7 +106,7 @@ export default function Navbar() {
               <a
                 key={link.label}
                 href={link.href}
-                className={`flex items-center justify-center py-12 text-16 leading-normal font-light tracking-nav text-black uppercase transition-colors hover:text-primary ${
+                className={`flex items-center justify-center py-12 text-16 leading-16 font-light tracking-nav text-black uppercase transition-colors hover:text-primary ${
                   link.label === 'Products' ? 'w-160 px-10' : 'px-32'
                 }`}
               >
@@ -114,7 +114,9 @@ export default function Navbar() {
               </a>
             ),
           )}
-          <Button href="#contact">Contact Us</Button>
+          <Button href="#contact" className="h-44 px-24! py-0!">
+            Contact Us
+          </Button>
         </nav>
       </div>
 

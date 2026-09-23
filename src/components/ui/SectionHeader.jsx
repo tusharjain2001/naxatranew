@@ -7,13 +7,14 @@ export default function SectionHeader({
   subtitle,
   mobileSubtitle,
   mobileLeading = 'leading-24',
+  desktopGap = 'xl:gap-16',
   track,
   desktopArrows = false,
   className = '',
 }) {
   return (
-    <div className={`flex items-center gap-10 px-16 xl:justify-between xl:gap-0 xl:px-100 ${className}`}>
-      <div className="flex min-w-0 flex-1 flex-col gap-10 capitalize xl:w-1410 xl:flex-none xl:gap-16">
+    <div className={`flex items-center gap-10 px-16 xl:justify-between xl:gap-0 ${className || 'xl:px-100'}`}>
+      <div className={`flex min-w-0 flex-1 flex-col gap-10 capitalize xl:w-1410 xl:flex-none ${desktopGap}`}>
         <h2 className="text-32 leading-36 tracking-display xl:text-64 xl:leading-80">
           {mobileTitle ? (
             <>

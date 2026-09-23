@@ -7,7 +7,7 @@ export default function Manufacturing() {
   const hasVideo = Boolean(manufacturing.videoSrc)
 
   return (
-    <section className="mx-auto flex w-full max-w-1920 flex-col items-center gap-48 py-100 xl:gap-100 xl:px-100 xl:pt-229 xl:pb-0">
+    <section className="mx-auto flex w-full max-w-1920 flex-col items-center gap-48 py-100 xl:gap-40 xl:px-100 xl:pt-326 xl:pb-0">
       <div className="flex flex-col items-center gap-16 px-16 xl:gap-24 xl:px-0">
         <h2 className="text-center text-32 leading-36 tracking-display capitalize xl:text-64 xl:leading-80">
           {manufacturing.title}
@@ -20,8 +20,8 @@ export default function Manufacturing() {
         </Button>
       </div>
 
-      <div className="w-full px-16 xl:px-0">
-        <div className="relative aspect-[370/179.79] w-full overflow-hidden rounded-3 bg-black xl:aspect-[1720.43/835.79] xl:rounded-16">
+      <div className="w-full px-16 xl:w-[calc(var(--spacing)*1457.39)] xl:px-0">
+        <div className="relative aspect-[370/179.79] w-full overflow-hidden rounded-3 bg-black xl:aspect-[1457.39/708] xl:rounded-16">
           {playing ? (
             <video src={manufacturing.videoSrc} poster={manufacturing.image} controls autoPlay className="size-full object-cover" />
           ) : (
@@ -38,7 +38,7 @@ export default function Manufacturing() {
                   type="button"
                   aria-label="Play factory video"
                   onClick={() => setPlaying(true)}
-                  className="absolute top-1/2 left-1/2 size-22 -translate-1/2 cursor-pointer transition-transform duration-300 hover:scale-110 xl:size-[calc(var(--spacing)*102.66)]"
+                  className="absolute top-1/2 left-1/2 size-22 -translate-1/2 cursor-pointer transition-transform duration-300 hover:scale-110 xl:size-87"
                 >
                   <img src="/assets/play.svg" alt="" className="size-full" />
                 </button>
@@ -46,7 +46,7 @@ export default function Manufacturing() {
                 <img
                   src="/assets/play.svg"
                   alt=""
-                  className="absolute top-1/2 left-1/2 size-22 -translate-1/2 xl:size-[calc(var(--spacing)*102.66)]"
+                  className="absolute top-1/2 left-1/2 size-22 -translate-1/2 xl:size-87"
                 />
               )}
             </>

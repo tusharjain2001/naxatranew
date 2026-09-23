@@ -10,15 +10,15 @@ export default function Deployment() {
   const ordered = deployment.images.map((_, i) => ({ ...deployment.images[(i + active) % 3], pos: positions[(i + active) % 3] }))
 
   return (
-    <section className="flex w-full flex-col items-center gap-48 overflow-hidden py-100 xl:gap-0 xl:pt-209 xl:pb-0">
-      <div className="flex w-full flex-col items-center gap-10 px-15.25 text-center capitalize xl:translate-x-29 xl:gap-24 xl:px-0">
+    <section className="flex w-full flex-col items-center gap-48 overflow-hidden py-100 xl:gap-0 xl:pt-263 xl:pb-0">
+      <div className="flex w-full flex-col items-center gap-10 px-15.25 text-center capitalize xl:translate-x-3 xl:gap-24 xl:px-0">
         <h2 className="w-337 text-32 leading-[calc(var(--spacing)*33.42)] tracking-display xl:w-1340 xl:text-64 xl:leading-80">
           {deployment.title}
         </h2>
         <p className="flex h-[calc(var(--spacing)*23.87)] items-center text-14 leading-[calc(var(--spacing)*18.15)] text-grey xl:h-32 xl:w-800 xl:text-24 xl:leading-32">{deployment.subtitle}</p>
       </div>
 
-      <div role="tablist" aria-label="Deployment focus" className="flex w-full items-center justify-center gap-8 px-9.5 xl:mt-64 xl:w-auto xl:translate-x-29 xl:gap-24 xl:px-0">
+      <div role="tablist" aria-label="Deployment focus" className="flex w-full items-center justify-center gap-8 px-9.5 xl:mt-64 xl:w-auto xl:translate-x-3 xl:gap-24 xl:px-0">
         {deployment.tabs.map((tab, i) => {
           const isActive = i === active
           return (
@@ -38,7 +38,7 @@ export default function Deployment() {
         })}
       </div>
 
-      <div className="flex items-center gap-8 xl:mt-66 xl:translate-x-29 xl:gap-29">
+      <div className="flex items-center gap-8 xl:mt-66 xl:translate-x-3 xl:gap-32">
         {ordered.map((img, i) => (
           <div key={i} className={`relative h-160 w-200 shrink-0 overflow-hidden rounded-3 xl:h-400 xl:rounded-12 ${slots[i]}`}>
             <img

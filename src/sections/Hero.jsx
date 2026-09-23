@@ -9,13 +9,13 @@ function Overlay({ type }) {
   if (type === 'bridge')
     return (
       <>
-        <span className="absolute inset-0 hidden bg-[linear-gradient(145.63deg,rgba(13,53,116,0.5)_16.18%,rgba(13,53,116,0)_45.48%)] xl:block" />
+        <span className="absolute inset-0 hidden bg-[linear-gradient(148.16deg,rgba(13,53,116,0.5)_16.18%,rgba(13,53,116,0)_45.48%)] xl:block" />
         <span className="absolute inset-0 bg-linear-to-b from-[#2a689e] to-[rgba(24,99,218,0)] to-61% xl:hidden" />
       </>
     )
   if (type === 'vehicles')
     return (
-      <span className="absolute inset-y-0 left-0 w-[66%] bg-[linear-gradient(92.22deg,#000_1.42%,rgba(183,183,183,0)_98.58%)] opacity-30" />
+      <span className="absolute inset-0 bg-[linear-gradient(93.75deg,#000_1.42%,rgba(183,183,183,0)_98.58%)] opacity-30" />
     )
   return null
 }
@@ -38,7 +38,7 @@ export default function Hero() {
       id="home"
       aria-roledescription="carousel"
       aria-label="Highlights"
-      className="relative h-744 overflow-hidden bg-black xl:h-964"
+      className="relative h-744 overflow-hidden bg-black xl:h-880"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -71,12 +71,12 @@ export default function Hero() {
             <div className="relative mx-auto h-full max-w-1920">
               {/* Desktop copy */}
               <div
-                className={`absolute left-103 hidden w-1422 flex-col text-white xl:flex ${slide.subtitleGap ?? ''} transition-all delay-200 duration-700 ${
+                className={`absolute hidden w-1422 flex-col text-white xl:flex ${slide.subtitleGap ?? ''} transition-all delay-200 duration-700 ${
                   isActive ? 'translate-y-0 opacity-100' : 'translate-y-24 opacity-0'
                 }`}
-                style={{ top: `${slide.top / 16}rem` }}
+                style={{ top: `${slide.top / 16}rem`, left: `${(slide.left ?? 103) / 16}rem` }}
               >
-                <h2 className="w-1391 text-96 leading-100 font-normal tracking-display">
+                <h2 className={`w-1391 font-normal tracking-display ${slide.titleSize ?? 'text-88 leading-96'}`}>
                   {slide.title.map((line) => (
                     <span key={line} className="block">
                       {line}
@@ -115,7 +115,7 @@ export default function Hero() {
                 size="hero"
                 href="#products"
                 tabIndex={isActive ? 0 : -1}
-                className="absolute top-702 left-103 hidden xl:inline-flex"
+                className="absolute top-661 left-103 hidden xl:inline-flex"
               >
                 Explore Now
               </Button>
@@ -132,7 +132,7 @@ export default function Hero() {
         </div>
 
         {/* Progress bars */}
-        <div className="pointer-events-auto absolute top-710 left-1/2 flex -translate-x-1/2 items-center gap-5 xl:top-894 xl:gap-8">
+        <div className="pointer-events-auto absolute top-710 left-1/2 flex -translate-x-1/2 items-center gap-5 xl:top-760 xl:gap-8">
           {heroSlides.map((slide, i) => (
             <button
               key={slide.id}
