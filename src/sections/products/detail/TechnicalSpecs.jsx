@@ -36,7 +36,7 @@ export default function TechnicalSpecs({ variant, sketch }) {
 
         {/* Datasheet */}
         <div className="mx-auto flex max-w-676 flex-col items-center gap-24 text-center">
-          <p className="text-20 xl:text-32">{variant.datasheetNote}</p>
+          <p className="text-20 xl:whitespace-nowrap xl:text-32">{variant.datasheetNote}</p>
           <Button as="a" href={variant.datasheet} download variant="primary" size="sm" className="xl:hidden">
             Download data-sheet
           </Button>

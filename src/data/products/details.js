@@ -123,7 +123,7 @@ export const detailBySlug = {
   rf22: mkDetail('rf22', 'Product/ RF Series/ RF 22', [
     mkVariant('RF 22/42', { hero: RF22 + 'hero.png', thumb: STD_THUMB, note: SAME_DIE, voltage: '48 V / 72 V', power: '2.2 kW', torque: '9.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '6.5 Kg' }),
     mkVariant('RF 22/60', { hero: RF22 + 'hero.png', thumb: STD_THUMB, note: SAME_DIE, voltage: '48 V / 72 V', power: '2.2 kW', torque: '9.5 Nm', peakSpeed: '5000 RPM', efficiency: '>92%', mass: '6.5 Kg' }),
-    mkVariant('RF 22/86', { hero: RF22 + 'hero-86.png', thumb: STD_THUMB, note: DISTINCT_HOUSING, voltage: '48 V / 72 V', power: '2.2 kW', torque: '9.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '6.5 Kg' }),
+    mkVariant('RF 22/86', { hero: RF22 + 'hero-86.png', thumb: RF22 + 'thumb-86.png', note: DISTINCT_HOUSING, voltage: '48 V / 72 V', power: '2.2 kW', torque: '9.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '6.5 Kg' }),
   ], { vim: STD_VIM, gallery: [RF22 + 'hero.png', RF22 + 'hero.png'], sketch: [RF22 + 'sketch-1.png', RF22 + 'sketch-2.png'] }),
   // RF 33 (Figma board 14378-3788): /60, /86, /90. Figma gives each variant its OWN render: /60 the
   // standard finned motor, /86 the finned-housing render (same "Final 1 2" art as RF 22/86), /90 the
@@ -137,15 +137,15 @@ export const detailBySlug = {
   // panel (one row) and bottom-left gallery, unlike AF 58 / PT-500. showPanel forces that RF-series layout.
   // Hero reuses clean RF15 render; own sketch.
   rf55: mkDetail('rf55', 'Product/ RF Series/ RF 55', [
-    mkVariant('RF 55/86', { hero: RF55 + 'hero.png', thumb: STD_THUMB, note: DISTINCT_HOUSING, applications: APPS6, voltage: '48 V / 72 V', power: '5.5 kW', torque: '10.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '10.5 Kg' }),
-  ], { showPanel: true, vim: STD_VIM, gallery: [RF55 + 'hero.png', RF55 + 'hero.png'], sketch: [RF55 + 'sketch.png'] }),
+    mkVariant('RF 55/86', { hero: RF55 + 'hero.png', thumb: RF55 + 'thumb.png', note: DISTINCT_HOUSING, applications: APPS6, voltage: '48 V / 72 V', power: '5.5 kW', torque: '10.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '10.5 Kg' }),
+  ], { showPanel: true, vim: [RF55 + 'vim-1.png', RF55 + 'vim-2.png'], gallery: [RF55 + 'hero.png', RF55 + 'hero.png'], sketch: [RF55 + 'sketch.png'], heroClass: 'xl:top-98 xl:left-260 xl:h-770 xl:w-778' }),
   // RF 66 (Figma board 14393-7232): /70 and /90 — distinct real specs. RF 66 has its OWN render (the
   // squat finned cylinder, Figma "014455d6" node 14393:6358, exported transparent) shared by both
   // variants. Apps are the six-item RF 55/66 list. /90 uses its own sketch node (14393:6490).
   rf66: mkDetail('rf66', 'Product/ RF Series/ RF 66', [
     mkVariant('RF 66/70', { hero: RF66 + 'hero.png', thumb: RF66 + 'thumb.png', note: SAME_DIE, applications: APPS6, voltage: '48 V / 72 V', power: '12.5 kW', torque: '14 Nm', peakSpeed: '6500 RPM', efficiency: '>92%', mass: '13.6 Kg' }),
     mkVariant('RF 66/90', { hero: RF66 + 'hero.png', thumb: RF66 + 'thumb.png', sketch: [RF66 + 'sketch-90.png'], note: SAME_DIE, applications: APPS6, voltage: '48 V / 72 V', power: '14 kW', torque: '16 Nm', peakSpeed: '6500 RPM', efficiency: '>93%', mass: '14.5 Kg' }),
-  ], { vim: [RF66 + 'vim-1.png', RF66 + 'vim-2.png'], gallery: [RF66 + 'hero.png', RF66 + 'hero.png'], sketch: [RF66 + 'sketch.png'] }),
+  ], { vim: [RF66 + 'vim-1.png', RF66 + 'vim-2.png'], gallery: [RF66 + 'hero.png', RF66 + 'hero.png'], sketch: [RF66 + 'sketch.png'], heroClass: 'xl:top-205 xl:left-302 xl:h-579 xl:w-564' }),
   // Antarix AF 58 axial-flux motor (Figma node 14394-2056). Hero Torque box shows PEAK (60 Nm); the
   // technical table shows Rated Torque (25 Nm). Single-variant, so no Choose-Variant panel.
   af58: mkDetail('af58', 'Product/ AF Series/ AF 58', [
@@ -176,7 +176,7 @@ export const detailBySlug = {
         { label: 'Other Industrial Tools', image: PTA('other-tools.png') },
       ],
     }),
-  ], { vim: [PT + 'vim-1.png', PT + 'vim-2.png'], gallery: [PT + 'hero.png', PT + 'hero.png'], sketch: [PT + 'sketch.png'], heroClass: 'xl:top-110 xl:left-690 xl:h-795 xl:w-795' }),
+  ], { vim: [PT + 'vim-1.png', PT + 'vim-2.png'], gallery: [PT + 'hero.png', PT + 'hero.png'], sketch: [PT + 'sketch.png'], heroClass: 'xl:top-149 xl:left-806 xl:h-684 xl:w-684' }),
 }
 
 export const productDetail = (slug) => detailBySlug[slug]
