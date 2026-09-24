@@ -45,12 +45,12 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
   return (
     <section className="relative w-full overflow-hidden bg-[#fafafa]">
       <div className="relative mx-auto flex max-w-1920 flex-col gap-24 px-16 py-40 xl:block xl:h-880 xl:px-0 xl:py-0">
-        {/* Hero render (desktop: centred behind the copy) */}
+        {/* Hero render (desktop: centred behind the copy; per-detail position via detail.heroClass) */}
         <img
           key={variant.id + '-hero'}
           src={variant.hero}
           alt={family.name}
-          className="mx-auto h-260 w-full animate-[fade-in_0.3s_ease-out] object-contain xl:absolute xl:top-150 xl:left-260 xl:mx-0 xl:h-560 xl:w-720"
+          className={`mx-auto h-260 w-full animate-[fade-in_0.3s_ease-out] object-contain xl:absolute xl:mx-0 ${detail.heroClass ?? 'xl:top-150 xl:left-260 xl:h-560 xl:w-720'}`}
         />
 
         {/* Heading block */}

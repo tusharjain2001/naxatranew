@@ -13,6 +13,8 @@ const RF = '/assets/products/rf15/'
 const A = (f) => `${RF}apps/${f}`
 const PT = '/assets/products/pt500/'
 const PTA = (f) => `${PT}apps/${f}`
+const AF = '/assets/products/af58/'
+const AFA = (f) => `${AF}apps/${f}`
 const listing = (f) => `/assets/products/listing/${f}`
 
 // Shared application tiles (only RF15's tile renders were provided; reused across families).
@@ -43,7 +45,8 @@ function mkVariant(code, o) {
     specBoxes: [
       { label: 'Voltage', value: o.voltage },
       { label: 'Power', value: o.power },
-      { label: 'Torque', value: o.torque },
+      // hero box may show peak torque while the table shows rated (e.g. AF 58: box 60 Nm / rated 25 Nm)
+      { label: 'Torque', value: o.boxTorque ?? o.torque },
     ],
     table: [
       { label: 'Voltage', value: o.voltage },
@@ -82,7 +85,9 @@ function mkVariant(code, o) {
 }
 
 function mkDetail(slug, breadcrumb, variants, opts = {}) {
-  return { slug, breadcrumb, gallery: opts.gallery ?? gallery, sketch: opts.sketch ?? sketch, variants }
+  // heroClass overrides the desktop hero-render position/size (default suits RF-family cylindrical motors;
+  // the AF 58 disc motor sits further right per its artboard). gallery/sketch default to the RF15 assets.
+  return { slug, breadcrumb, gallery: opts.gallery ?? gallery, sketch: opts.sketch ?? sketch, heroClass: opts.heroClass, variants }
 }
 
 export const detailBySlug = {
@@ -102,19 +107,21 @@ export const detailBySlug = {
   rf66: mkDetail('rf66', 'Product/ RF Series/ RF 66', [
     mkVariant('RF 66/90', { hero: listing('card-rf66.png'), voltage: '96 V', power: '12 kW', torque: '45 Nm', peakPower: '24 kW', peakTorque: '150 Nm', peakSpeed: '4500 RPM', efficiency: '>94%', mass: '19 Kg' }),
   ]),
+  // Antarix AF 58 axial-flux motor (Figma node 14394-2056). Hero Torque box shows PEAK (60 Nm); the
+  // technical table shows Rated Torque (25 Nm). Single-variant, so no Choose-Variant panel.
   af58: mkDetail('af58', 'Product/ AF Series/ AF 58', [
     mkVariant('AF 58/40', {
-      hero: listing('card-af58.png'), motorType: 'Axial Flux PMSM',
-      voltage: '72 V', power: '5.8 kW', torque: '25 Nm', peakPower: '10.5 kW', peakTorque: '60 Nm',
+      displayName: 'AF 58', hero: AF + 'hero.png', motorType: 'Axial Flux PMSM',
+      voltage: '72 V', power: '5.8 kW', torque: '25 Nm', boxTorque: '60 Nm', peakPower: '10.5 kW', peakTorque: '60 Nm',
       peakSpeed: '4400 RPM', efficiency: '94%', cooling: 'Forced Air cooled', mass: '11 Kg',
       applications: [
-        { label: 'High-Performance 2W', image: A('scooter.png') },
-        { label: 'Performance 3W', image: A('erickshaw.png') },
-        { label: 'Specialty EV', image: A('bikes.png') },
+        { label: 'High Performance 2W', image: AFA('highperf-2w.png') },
+        { label: 'Performance 3W', image: AFA('performance-3w.png') },
+        { label: 'Specialty EV Application', image: AFA('specialty-ev.png') },
       ],
       features: ['Advanced cooling channels for better thermal performance', 'Compact 3.4 Litre packaging', 'High Efficiency > 91%'],
     }),
-  ]),
+  ], { gallery: [AF + 'hero.png', AF + 'hero.png'], sketch: [AF + 'sketch.png'], heroClass: 'xl:top-166 xl:left-655 xl:h-699 xl:w-862' }),
   // PT-500 power-tool motor (Figma node 14394-3023). Real spec sheet: 18 V, 0.05 kW, 0.32 Nm, 17500 RPM.
   // NOTE (flagged): the Figma technical table labels the last two rows "Efficiency = 0.5 kW" and
   // "Mass = 0.5 Nm" — the units are mismatched (efficiency isn't kW, mass isn't Nm). Rendered exactly as
