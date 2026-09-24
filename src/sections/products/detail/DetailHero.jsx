@@ -21,7 +21,7 @@ function VariantRow({ variant, selected, onSelect }) {
     <button type="button" onClick={onSelect} aria-pressed={selected} className="flex w-full items-center gap-12 text-left">
       <span className={`relative grid h-160 flex-1 place-items-center overflow-hidden bg-[#f9f9f9] p-12 xl:h-192 xl:w-307 xl:flex-none ${selected ? 'border border-black' : ''}`}>
         {selected && <span className="pointer-events-none absolute inset-0 border-2 border-white" />}
-        <img src={variant.hero} alt="" className="absolute inset-0 size-full object-contain p-12" />
+        <img src={variant.thumb ?? variant.hero} alt="" className="absolute inset-0 size-full object-contain p-12" />
         {selected && (
           <svg viewBox="0 0 24 24" aria-hidden className="absolute top-9 right-8 size-32 text-black">
             <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1.5" />
@@ -153,9 +153,11 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
           ))}
         </div>
 
-        {/* Thumbnail gallery + View In Motion — placement per layout (see galleryPos above) */}
+        {/* Thumbnail gallery + View In Motion — placement per layout (see galleryPos above). Desktop uses
+            detail.vim (the two distinct View-In-Motion renders baked at their own Figma orientations); mobile
+            keeps detail.gallery untouched. */}
         <div className={`flex gap-6 xl:absolute ${galleryPos}`}>
-          {detail.gallery.map((src, i) => (
+          {(detail.vim ?? detail.gallery).map((src, i) => (
             <span key={src + i} className={`grid place-items-center bg-[#f1f1f1] ${tileSize}`}>
               <img src={src} alt="" className="max-h-[86%] max-w-[86%] object-contain" />
             </span>

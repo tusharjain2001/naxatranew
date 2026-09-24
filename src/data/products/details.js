@@ -54,6 +54,7 @@ function mkVariant(code, o) {
     displayName: o.displayName ?? null, // single-variant families show this instead of "<code> Variant"
     note: o.note ?? 'This motor variant shares the same die, offered in distinct voltage options.',
     hero: o.hero,
+    thumb: o.thumb ?? null, // DESKTOP variant-panel thumbnail (Figma bakes it at a different orientation than the hero)
     sketch: o.sketch ?? null, // per-variant technical sketch override (else falls back to detail.sketch)
     specBoxes: [
       { label: 'Voltage', value: o.voltage },
@@ -100,16 +101,16 @@ function mkVariant(code, o) {
 function mkDetail(slug, breadcrumb, variants, opts = {}) {
   // heroClass overrides the desktop hero-render position/size (default suits RF-family cylindrical motors;
   // the AF 58 disc motor sits further right per its artboard). gallery/sketch default to the RF15 assets.
-  return { slug, breadcrumb, gallery: opts.gallery ?? gallery, sketch: opts.sketch ?? sketch, heroClass: opts.heroClass, showPanel: opts.showPanel, variants }
+  return { slug, breadcrumb, gallery: opts.gallery ?? gallery, vim: opts.vim ?? null, sketch: opts.sketch ?? sketch, heroClass: opts.heroClass, showPanel: opts.showPanel, variants }
 }
 
 export const detailBySlug = {
   // RF 15 (Figma board 14394-2054): /42 and /60. Figma shows them identical except efficiency
   // (/42 >94%, /60 >92%) — flagged for Tushar as likely placeholder duplication.
   rf15: mkDetail('rf15', 'Product/ RF Series/ RF 15', [
-    mkVariant('RF 15/42', { hero: RF + 'hero.png', note: SAME_DIE, voltage: '48 V / 72 V', power: '1.5 kW', torque: '6.5 Nm', peakPower: '3 kW', peakTorque: '18 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '6.5 Kg' }),
-    mkVariant('RF 15/60', { hero: RF + 'hero.png', note: SAME_DIE, voltage: '48 V / 72 V', power: '1.5 kW', torque: '6.5 Nm', peakSpeed: '5000 RPM', efficiency: '>92%', mass: '6.5 Kg' }),
-  ]),
+    mkVariant('RF 15/42', { hero: RF + 'hero.png', thumb: RF + 'thumb.png', note: SAME_DIE, voltage: '48 V / 72 V', power: '1.5 kW', torque: '6.5 Nm', peakPower: '3 kW', peakTorque: '18 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '6.5 Kg' }),
+    mkVariant('RF 15/60', { hero: RF + 'hero.png', thumb: RF + 'thumb.png', note: SAME_DIE, voltage: '48 V / 72 V', power: '1.5 kW', torque: '6.5 Nm', peakSpeed: '5000 RPM', efficiency: '>92%', mass: '6.5 Kg' }),
+  ], { vim: [RF + 'vim-1.png', RF + 'vim-2.png'] }),
   // RF 22 (Figma board 14394-2055): three variants /42, /60, /86. Figma shows near-identical specs
   // across all three (only efficiency differs) — flagged for Tushar as likely placeholder duplication.
   // /86 uses its OWN distinct-housing render (Figma node 14342:11384, exported with the studio-backdrop
