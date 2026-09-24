@@ -142,7 +142,7 @@ export default function MotorListing() {
 
   return (
     <section id="motor-listing" className="mx-auto flex w-full max-w-1920 scroll-mt-80 flex-col gap-40 px-16 py-60 xl:gap-60 xl:px-100 xl:py-100">
-      <h2 className="text-32 leading-36 tracking-display capitalize xl:text-64 xl:leading-80">Browse Our Motor Solutions</h2>
+      <h2 className="text-32 leading-36 tracking-display capitalize xl:text-64 xl:leading-[96px]">Browse Our Motor Solutions</h2>
 
       <div className="flex flex-col gap-40 xl:flex-row xl:gap-60">
         <FilterPanel ranges={ranges} setRanges={setRanges} checked={checked} toggleApp={toggleApp} clearAll={clearAll} />
@@ -165,7 +165,7 @@ export default function MotorListing() {
           </div>
 
           {families.length ? (
-            <div className="grid w-full grid-cols-1 gap-24 sm:grid-cols-2 xl:grid-cols-3 xl:gap-28">
+            <div className="grid w-full grid-cols-1 gap-24 sm:grid-cols-2 xl:grid-cols-3 xl:gap-32">
               {families.map((f) => (
                 <FamilyCard key={f.slug} family={f} className="h-full w-full" />
               ))}

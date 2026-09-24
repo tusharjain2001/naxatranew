@@ -38,17 +38,18 @@ export default function FamilyCard({ family, className = 'w-full' }) {
           className="absolute left-1/2 top-1/2 max-w-none -translate-x-1/2 -translate-y-1/2 object-contain transition-transform duration-500 group-hover:scale-105"
         />
       </span>
-      {/* Content */}
-      <div className="flex flex-1 flex-col gap-8 p-[6.5%] pt-14 xl:gap-14 xl:pt-20">
+      {/* Content — Figma card content (node 14314:20585) is 253px tall with gap-27 between blocks
+          and ~34px line-height on the name/tagline/label, giving the ~500px card. */}
+      <div className="flex flex-1 flex-col gap-8 p-[6.5%] pt-14 xl:gap-22 xl:pt-20">
         <div className="flex flex-col gap-2 xl:gap-3">
-          <span className="text-20 leading-none capitalize xl:text-40">{family.cardName ?? family.name}</span>
-          <span className="text-11 font-light capitalize text-black xl:text-16">{family.tagline}</span>
+          <span className="text-20 leading-none capitalize xl:text-40 xl:leading-[44px]">{family.cardName ?? family.name}</span>
+          <span className="text-11 font-light capitalize text-black xl:text-16 xl:leading-[30px]">{family.tagline}</span>
         </div>
         <div className="flex flex-col gap-5 xl:gap-6">
-          <span className="text-11 font-light capitalize xl:text-16">Industries</span>
+          <span className="text-11 font-light capitalize xl:text-16 xl:leading-[30px]">Industries</span>
           <IndustryChips keys={family.industries} />
         </div>
-        <span className="mt-auto text-13 text-primary capitalize underline underline-offset-2 group-hover:no-underline xl:text-20">View Product →</span>
+        <span className="mt-auto text-13 text-primary capitalize underline underline-offset-2 group-hover:no-underline xl:text-20 xl:leading-[35px]">View Product →</span>
       </div>
     </a>
   )
