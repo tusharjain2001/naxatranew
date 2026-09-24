@@ -40,7 +40,9 @@ const APPS = [
 const APPS6 = [APPS[0], APPS[2], APPS[3], APPS[4], APPS[6], APPS[5]]
 
 const sketch = [RF + 'sketch-front.png', RF + 'sketch-side.png']
-const gallery = [RF + 'hero.png', RF + 'hero-cutaway.png']
+// The two View-In-Motion thumbnails on the RF-family artboards are the family's own hero render shown
+// twice (Figma nodes are the same "49bc91be" motor), so the gallery reuses the exact hero export.
+const gallery = [RF + 'hero.png', RF + 'hero.png']
 
 // Build one variant. `voltage/power/torque` are the 3 hero spec boxes; the rest fill the technical table
 // and the VIEW SPECIFICATIONS modal.
