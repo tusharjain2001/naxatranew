@@ -32,7 +32,7 @@ export const seriesTabs = ['RF', 'AF', 'PT']
 
 // Grid order on the /products listing, top to bottom, left to right.
 export const productFamilies = [
-  { slug: 'rf15', name: 'Antarix RF15', series: 'RF', brand: 'Antarix', tagline: 'Compact | Efficient | Versatile', card: { image: L('card-rf-a.png') }, industries: ['cleaning', 'agriculture', '2-wheeler'], spec: { voltage: 72, power: 5, torque: 45 } },
+  { slug: 'rf15', name: 'Antarix RF 15', series: 'RF', brand: 'Antarix', tagline: 'Compact | Efficient | Versatile', card: { image: L('card-rf-a.png') }, industries: ['cleaning', 'agriculture', '2-wheeler'], spec: { voltage: 72, power: 1.5, torque: 6.5 } },
   { slug: 'rf22', name: 'Antarix RF 22', series: 'RF', brand: 'Antarix', tagline: 'Compact | Efficient | Versatile', card: { image: L('card-rf-a.png') }, industries: ['2-wheeler', 'agriculture', '3-wheeler'], spec: { voltage: 72, power: 2.2, torque: 9.5 } },
   { slug: 'rf33', name: 'Antarix RF 33', series: 'RF', brand: 'Antarix', tagline: 'Compact | Efficient | Versatile', card: { image: L('card-rf-b.png') }, industries: ['cleaning', 'agriculture', '2-wheeler'], spec: { voltage: 72, power: 3.3, torque: 10.5 } },
   { slug: 'rf55', name: 'Antarix RF 55', series: 'RF', brand: 'Antarix', tagline: 'Compact | Efficient | Versatile', card: { image: L('card-rf-b.png') }, industries: ['2-wheeler', 'agriculture', '3-wheeler'], spec: { voltage: 72, power: 5.5, torque: 10.5 } },

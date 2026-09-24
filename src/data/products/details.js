@@ -98,9 +98,11 @@ function mkDetail(slug, breadcrumb, variants, opts = {}) {
 }
 
 export const detailBySlug = {
+  // RF 15 (Figma board 14394-2054): /42 and /60. Figma shows them identical except efficiency
+  // (/42 >94%, /60 >92%) — flagged for Tushar as likely placeholder duplication.
   rf15: mkDetail('rf15', 'Product/ RF Series/ RF 15', [
-    mkVariant('RF 15/42', { hero: RF + 'hero.png', voltage: '48 V / 72 V', power: '1.5 kW', torque: '6.5 Nm', peakPower: '3 kW', peakTorque: '18 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '6.5 Kg', note: 'This motor variant has the same die with two distinct voltage options.' }),
-    mkVariant('RF 15/60', { hero: RF + 'hero.png', voltage: '48 V / 96 V', power: '2.2 kW', torque: '9 Nm', peakPower: '4.5 kW', peakTorque: '24 Nm', peakSpeed: '5200 RPM', efficiency: '>94%', mass: '6.8 Kg', note: 'This motor variant has the same die with two distinct voltage options.' }),
+    mkVariant('RF 15/42', { hero: RF + 'hero.png', note: SAME_DIE, voltage: '48 V / 72 V', power: '1.5 kW', torque: '6.5 Nm', peakPower: '3 kW', peakTorque: '18 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '6.5 Kg' }),
+    mkVariant('RF 15/60', { hero: RF + 'hero.png', note: SAME_DIE, voltage: '48 V / 72 V', power: '1.5 kW', torque: '6.5 Nm', peakSpeed: '5000 RPM', efficiency: '>92%', mass: '6.5 Kg' }),
   ]),
   // RF 22 (Figma board 14394-2055): three variants /42, /60, /86. Figma shows near-identical specs
   // across all three (only efficiency differs) — flagged for Tushar as likely placeholder duplication.
