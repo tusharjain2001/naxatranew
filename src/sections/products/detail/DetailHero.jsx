@@ -147,7 +147,7 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
         </div>
 
         {/* Spec boxes */}
-        <div key={variant.id + '-specs'} className="grid animate-[fade-in_0.3s_ease-out] gap-12 xl:absolute xl:top-468 xl:left-100 xl:flex xl:w-260 xl:flex-col xl:gap-16">
+        <div key={variant.id + '-specs'} className="grid animate-[fade-in_0.3s_ease-out] gap-12 xl:absolute xl:top-468 xl:left-100 xl:flex xl:w-226 xl:flex-col xl:gap-16">
           {variant.specBoxes.map((s) => (
             <SpecBox key={s.label} label={s.label} value={s.value} />
           ))}
@@ -172,7 +172,7 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
         {/* Choose the Variant — fixed top per row count (see panelTop), matching each artboard. */}
         {showPanel && (
           <div className={`flex flex-col gap-24 bg-white xl:absolute xl:left-1079 xl:w-740 xl:px-32 xl:py-24 ${panelTop}`}>
-            <h2 className="text-24">Choose the Variant</h2>
+            <h2 className="text-24 capitalize">Choose the Variant</h2>
             <div className="flex flex-col gap-24">
               {detail.variants.map((v) => (
                 <VariantRow key={v.id} variant={v} selected={v.id === variant.id} onSelect={() => onSelectVariant(v.id)} />

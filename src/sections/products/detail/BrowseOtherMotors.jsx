@@ -13,9 +13,9 @@ export default function BrowseOtherMotors({ currentSlug }) {
 
   return (
     <section className="w-full bg-[#fafafa]">
-      <div className="mx-auto flex max-w-1920 flex-col gap-24 px-16 py-60 xl:gap-40 xl:px-100 xl:py-100">
+      <div className="mx-auto flex max-w-1920 flex-col gap-24 px-16 py-60 xl:gap-24 xl:px-100 xl:py-156">
         <div className="flex items-center justify-between gap-10">
-          <h2 className="text-24 leading-none tracking-display capitalize xl:text-36">Browse Our Other Motors</h2>
+          <h2 className="text-24 leading-none tracking-display capitalize xl:text-36 xl:leading-[78px]">Browse Our Other Motors</h2>
           <SliderArrows onPrev={() => scroll(-1)} onNext={() => scroll(1)} className="shrink-0" />
         </div>
 
