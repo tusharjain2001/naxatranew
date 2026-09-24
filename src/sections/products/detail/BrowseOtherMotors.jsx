@@ -19,9 +19,10 @@ export default function BrowseOtherMotors({ currentSlug }) {
           <SliderArrows onPrev={() => scroll(-1)} onNext={() => scroll(1)} className="shrink-0" />
         </div>
 
-        <div ref={track} className="no-scrollbar flex snap-x gap-24 overflow-x-auto pb-2 xl:gap-27">
+        {/* mobile: compact ~172px cards (2 visible side by side); desktop: 415px cards */}
+        <div ref={track} className="no-scrollbar flex snap-x gap-12 overflow-x-auto pb-2 xl:gap-27">
           {others.map((f) => (
-            <FamilyCard key={f.slug} family={f} className="h-440 w-300 shrink-0 snap-start xl:h-500 xl:w-415" />
+            <FamilyCard key={f.slug} family={f} className="w-172 shrink-0 snap-start self-stretch xl:w-415" />
           ))}
         </div>
       </div>

@@ -36,6 +36,9 @@ const APPS = [
   { label: 'E-Rickshaw', image: A('erickshaw.png') },
 ]
 
+// RF 55 / RF 66 artboards list only these six applications (no Bikes / E-Rickshaw), in this order.
+const APPS6 = [APPS[0], APPS[2], APPS[3], APPS[4], APPS[6], APPS[5]]
+
 const sketch = [RF + 'sketch-front.png', RF + 'sketch-side.png']
 const gallery = [RF + 'hero.png', RF + 'hero-cutaway.png']
 
@@ -114,25 +117,26 @@ export const detailBySlug = {
     mkVariant('RF 22/60', { hero: RF22 + 'hero.png', note: SAME_DIE, voltage: '48 V / 72 V', power: '2.2 kW', torque: '9.5 Nm', peakSpeed: '5000 RPM', efficiency: '>92%', mass: '6.5 Kg' }),
     mkVariant('RF 22/86', { hero: RF22 + 'hero-86.png', note: DISTINCT_HOUSING, voltage: '48 V / 72 V', power: '2.2 kW', torque: '9.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '6.5 Kg' }),
   ], { gallery: [RF22 + 'hero.png', RF22 + 'hero.png'], sketch: [RF22 + 'sketch-1.png', RF22 + 'sketch-2.png'] }),
-  // RF 33 (Figma board 14378-3788): /60, /86, /90. /60 & /86 identical in Figma (placeholder dup);
-  // /90 differs (6500 RPM, 13.6 Kg). Hero render reuses the clean RF15 render; own sketch.
+  // RF 33 (Figma board 14378-3788): /60, /86, /90. Figma gives each variant its OWN render: /60 the
+  // standard finned motor, /86 the finned-housing render (same "Final 1 2" art as RF 22/86), /90 the
+  // squat cylinder (same "014455d6" art as RF 66). /60 & /86 share specs; /90 differs (6500 RPM, 13.6 Kg).
   rf33: mkDetail('rf33', 'Product/ RF Series/ RF 33', [
     mkVariant('RF 33/60', { hero: RF33 + 'hero.png', note: SAME_DIE, voltage: '48 V / 72 V', power: '3.3 kW', torque: '10.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '7.7 Kg' }),
-    mkVariant('RF 33/86', { hero: RF33 + 'hero.png', note: SAME_DIE, voltage: '48 V / 72 V', power: '3.3 kW', torque: '10.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '7.7 Kg' }),
-    mkVariant('RF 33/90', { hero: RF33 + 'hero.png', note: DISTINCT_HOUSING, voltage: '48 V / 72 V', power: '3.3 kW', torque: '10.5 Nm', peakSpeed: '6500 RPM', efficiency: '>94%', mass: '13.6 Kg' }),
+    mkVariant('RF 33/86', { hero: RF33 + 'hero-86.png', note: DISTINCT_HOUSING, voltage: '48 V / 72 V', power: '3.3 kW', torque: '10.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '7.7 Kg' }),
+    mkVariant('RF 33/90', { hero: RF33 + 'hero-90.png', note: DISTINCT_HOUSING, voltage: '48 V / 72 V', power: '3.3 kW', torque: '10.5 Nm', peakSpeed: '6500 RPM', efficiency: '>94%', mass: '13.6 Kg' }),
   ], { gallery: [RF33 + 'hero.png', RF33 + 'hero.png'], sketch: [RF33 + 'sketch-1.png', RF33 + 'sketch-2.png'] }),
   // RF 55 (Figma board 14389-4682): single variant /86 — but the artboard KEEPS the Choose-The-Variant
   // panel (one row) and bottom-left gallery, unlike AF 58 / PT-500. showPanel forces that RF-series layout.
   // Hero reuses clean RF15 render; own sketch.
   rf55: mkDetail('rf55', 'Product/ RF Series/ RF 55', [
-    mkVariant('RF 55/86', { hero: RF55 + 'hero.png', note: DISTINCT_HOUSING, voltage: '48 V / 72 V', power: '5.5 kW', torque: '10.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '10.5 Kg' }),
+    mkVariant('RF 55/86', { hero: RF55 + 'hero.png', note: DISTINCT_HOUSING, applications: APPS6, voltage: '48 V / 72 V', power: '5.5 kW', torque: '10.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '10.5 Kg' }),
   ], { showPanel: true, gallery: [RF55 + 'hero.png', RF55 + 'hero.png'], sketch: [RF55 + 'sketch.png'] }),
-  // RF 66 (Figma board 14393-7232): /70 and /90 — these carry distinct real specs. Hero reuses clean
-  // RF15 render; /70 uses the board sketch, /90 uses its OWN sketch node (14393:6490) — which is the
-  // same drawing as /70 in Figma (designer reused it), wired per-variant for correct provenance.
+  // RF 66 (Figma board 14393-7232): /70 and /90 — distinct real specs. RF 66 has its OWN render (the
+  // squat finned cylinder, Figma "014455d6" node 14393:6358, exported transparent) shared by both
+  // variants. Apps are the six-item RF 55/66 list. /90 uses its own sketch node (14393:6490).
   rf66: mkDetail('rf66', 'Product/ RF Series/ RF 66', [
-    mkVariant('RF 66/70', { hero: RF66 + 'hero.png', note: SAME_DIE, voltage: '48 V / 72 V', power: '12.5 kW', torque: '14 Nm', peakSpeed: '6500 RPM', efficiency: '>92%', mass: '13.6 Kg' }),
-    mkVariant('RF 66/90', { hero: RF66 + 'hero.png', sketch: [RF66 + 'sketch-90.png'], note: SAME_DIE, voltage: '48 V / 72 V', power: '14 kW', torque: '16 Nm', peakSpeed: '6500 RPM', efficiency: '>93%', mass: '14.5 Kg' }),
+    mkVariant('RF 66/70', { hero: RF66 + 'hero.png', note: SAME_DIE, applications: APPS6, voltage: '48 V / 72 V', power: '12.5 kW', torque: '14 Nm', peakSpeed: '6500 RPM', efficiency: '>92%', mass: '13.6 Kg' }),
+    mkVariant('RF 66/90', { hero: RF66 + 'hero.png', sketch: [RF66 + 'sketch-90.png'], note: SAME_DIE, applications: APPS6, voltage: '48 V / 72 V', power: '14 kW', torque: '16 Nm', peakSpeed: '6500 RPM', efficiency: '>93%', mass: '14.5 Kg' }),
   ], { gallery: [RF66 + 'hero.png', RF66 + 'hero.png'], sketch: [RF66 + 'sketch.png'] }),
   // Antarix AF 58 axial-flux motor (Figma node 14394-2056). Hero Torque box shows PEAK (60 Nm); the
   // technical table shows Rated Torque (25 Nm). Single-variant, so no Choose-Variant panel.

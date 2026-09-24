@@ -152,7 +152,7 @@ export default function MotorListing() {
           {families.length ? (
             <div className="grid w-full grid-cols-1 gap-24 sm:grid-cols-2 xl:grid-cols-3 xl:gap-28">
               {families.map((f) => (
-                <FamilyCard key={f.slug} family={f} />
+                <FamilyCard key={f.slug} family={f} className="h-full w-full" />
               ))}
             </div>
           ) : (

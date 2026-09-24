@@ -65,6 +65,9 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
   // has a single variant but the artboard still shows the panel (one row). AF 58 / PT-500 hide it and put
   // the gallery top-right instead. Gallery placement follows the same switch.
   const showPanel = detail.showPanel ?? multi
+  // The artboards place the panel at a fixed top per row count (its bottom stays ~812 in the 880 hero):
+  // 3 rows -> top-63, 2 rows -> top-183, 1 row -> top-447 (verified on RF 22/33, RF 15/66, RF 55).
+  const panelTop = { 1: 'xl:top-447', 2: 'xl:top-183', 3: 'xl:top-63' }[detail.variants.length] ?? 'xl:top-183'
   const galleryPos = showPanel ? 'xl:top-709 xl:left-405' : 'xl:top-337 xl:left-1647 xl:flex-col xl:gap-8'
   const tileSize = showPanel ? 'xl:h-102 xl:w-138' : 'xl:h-128 xl:w-172'
   const vimText = showPanel ? 'text-14 xl:text-18' : 'text-14 xl:absolute xl:top-1/2 xl:left-15 xl:-translate-y-1/2 xl:text-22'
@@ -164,10 +167,9 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
           </span>
         </div>
 
-        {/* Choose the Variant — bottom-anchored (bottom edge ~812 of the 880 hero) so the panel grows
-            upward with more rows, matching the artboards (3 rows top-63, 2 rows top-183, 1 row top-447). */}
+        {/* Choose the Variant — fixed top per row count (see panelTop), matching each artboard. */}
         {showPanel && (
-          <div className="flex flex-col gap-24 bg-white xl:absolute xl:bottom-68 xl:left-1079 xl:w-740 xl:px-32 xl:py-24">
+          <div className={`flex flex-col gap-24 bg-white xl:absolute xl:left-1079 xl:w-740 xl:px-32 xl:py-24 ${panelTop}`}>
             <h2 className="text-24">Choose the Variant</h2>
             <div className="flex flex-col gap-24">
               {detail.variants.map((v) => (
