@@ -19,18 +19,20 @@ function Field({ label: text, required, className = '', children }) {
 }
 
 // Not connected to a backend yet: submitting validates the required fields and stops there.
-export default function SpecForm({ applications }) {
+// `title` (two lines) and `text` default to the shared spec-form copy but can be overridden, e.g. the
+// Products pages reuse this as "Need Help Finding The Right Motor?".
+export default function SpecForm({ applications, title = specForm.title, text = specForm.text }) {
   const [application, setApplication] = useState('')
   return (
     <section id="spec" className="w-full scroll-mt-56 px-16 py-60 xl:scroll-mt-80 xl:px-100 xl:py-120">
       <div className="mx-auto flex flex-col gap-[calc(var(--spacing)*35.62)] xl:w-fit xl:flex-row xl:items-start xl:gap-[calc(var(--spacing)*155.28)]">
         <div className="flex flex-col gap-[calc(var(--spacing)*10.686)] xl:w-578 xl:gap-28 xl:pt-33">
           <h2 className="w-313 text-32 leading-[calc(var(--spacing)*35.62)] capitalize xl:w-auto xl:text-64 xl:leading-72">
-            {specForm.title[0]}
+            {title[0]}
             <br />
-            {specForm.title[1]}
+            {title[1]}
           </h2>
-          <p className="w-261 text-14 leading-[calc(var(--spacing)*17.81)] xl:w-544 xl:text-32 xl:leading-40">{specForm.text}</p>
+          <p className="w-261 text-14 leading-[calc(var(--spacing)*17.81)] xl:w-544 xl:text-32 xl:leading-40">{text}</p>
           <a href={`mailto:${specForm.email}`} className="group flex w-fit items-center gap-4 xl:gap-10">
             <img src={sharedAssets.mail} alt="" className="h-[calc(var(--spacing)*8.257)] w-[calc(var(--spacing)*11.219)] xl:h-[calc(var(--spacing)*16.413)] xl:w-[calc(var(--spacing)*22.29)]" />
             <span className="text-12 font-medium text-primary underline underline-offset-2 group-hover:no-underline xl:text-[length:calc(var(--spacing)*24.767)]">{specForm.email}</span>
