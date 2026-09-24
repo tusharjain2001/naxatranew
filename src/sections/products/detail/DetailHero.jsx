@@ -36,6 +36,12 @@ function VariantRow({ variant, selected, onSelect }) {
 
 export default function DetailHero({ family, detail, variant, onSelectVariant, onOpenSpec }) {
   const multi = detail.variants.length > 1
+  // Gallery + View In Motion placement differs by layout: multi-variant families keep it bottom-left
+  // (the Choose-The-Variant panel occupies the right); single-variant families (e.g. PT-500) show it as
+  // a vertical column on the top-right where that space is free — matching each artboard.
+  const galleryPos = multi ? 'xl:top-709 xl:left-405' : 'xl:top-337 xl:left-1647 xl:flex-col xl:gap-8'
+  const tileSize = multi ? 'xl:h-102 xl:w-138' : 'xl:h-128 xl:w-172'
+  const vimText = multi ? 'text-14 xl:text-18' : 'text-14 xl:absolute xl:top-1/2 xl:left-15 xl:-translate-y-1/2 xl:text-22'
   return (
     <section className="relative w-full overflow-hidden bg-[#fafafa]">
       <div className="relative mx-auto flex max-w-1920 flex-col gap-24 px-16 py-40 xl:block xl:h-880 xl:px-0 xl:py-0">
@@ -57,7 +63,7 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
           </nav>
           <h1 className="text-40 leading-none xl:text-80 xl:leading-88">{family.name}</h1>
           <p key={variant.id + '-sub'} className="animate-[fade-in_0.3s_ease-out] text-18 font-light xl:text-32">
-            {family.tagline} - {variant.label ?? variant.code} Variant
+            {family.tagline} - {!multi && variant.displayName ? variant.displayName : `${variant.label ?? variant.code} Variant`}
           </p>
           <div className="py-8 xl:py-40">
             <Button as="button" type="button" onClick={onOpenSpec} variant="outline" size="sm" className="cursor-pointer xl:hidden">
@@ -76,15 +82,15 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
           ))}
         </div>
 
-        {/* Thumbnail gallery + View In Motion */}
-        <div className="flex gap-6 xl:absolute xl:top-709 xl:left-405">
-          {detail.gallery.map((src) => (
-            <span key={src} className="grid h-90 w-120 place-items-center bg-[#f1f1f1] xl:h-102 xl:w-138">
+        {/* Thumbnail gallery + View In Motion — placement per layout (see galleryPos above) */}
+        <div className={`flex gap-6 xl:absolute ${galleryPos}`}>
+          {detail.gallery.map((src, i) => (
+            <span key={src + i} className={`grid h-90 w-120 place-items-center bg-[#f1f1f1] ${tileSize}`}>
               <img src={src} alt="" className="max-h-[86%] max-w-[86%] object-contain" />
             </span>
           ))}
-          <span className="grid h-90 w-120 place-items-center bg-[#f1f1f1] xl:h-102 xl:w-138">
-            <button type="button" className="text-14 capitalize underline underline-offset-2 hover:no-underline xl:text-18" title="Video coming soon">
+          <span className={`relative grid h-90 w-120 place-items-center bg-[#f1f1f1] ${tileSize}`}>
+            <button type="button" className={`capitalize underline underline-offset-2 hover:no-underline ${vimText}`} title="Video coming soon">
               view in motion
             </button>
           </span>

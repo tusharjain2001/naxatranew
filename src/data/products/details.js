@@ -11,6 +11,8 @@
 // Choose-The-Variant swap; single-variant families hide that panel.
 const RF = '/assets/products/rf15/'
 const A = (f) => `${RF}apps/${f}`
+const PT = '/assets/products/pt500/'
+const PTA = (f) => `${PT}apps/${f}`
 const listing = (f) => `/assets/products/listing/${f}`
 
 // Shared application tiles (only RF15's tile renders were provided; reused across families).
@@ -35,6 +37,7 @@ function mkVariant(code, o) {
     id: code.split('/')[1],
     code,
     label: code.replace(/\s+/g, ''), // "RF 15/42" -> "RF15/42" (subtitle form)
+    displayName: o.displayName ?? null, // single-variant families show this instead of "<code> Variant"
     note: o.note ?? 'This motor variant shares the same die, offered in distinct voltage options.',
     hero: o.hero,
     specBoxes: [
@@ -51,7 +54,7 @@ function mkVariant(code, o) {
       { label: 'Mass', value: o.mass },
     ],
     datasheet: '/assets/products/datasheet-placeholder.pdf',
-    datasheetNote: `Get more detailed specification in our ${code} specsheet.`,
+    datasheetNote: `Get more detailed specification in our ${o.displayName ?? code} specsheet.`,
     applications: o.applications ?? APPS,
     // VIEW SPECIFICATIONS modal — detailed spec sheet.
     spec: [
@@ -78,8 +81,8 @@ function mkVariant(code, o) {
   }
 }
 
-function mkDetail(slug, breadcrumb, variants) {
-  return { slug, breadcrumb, gallery, sketch, variants }
+function mkDetail(slug, breadcrumb, variants, opts = {}) {
+  return { slug, breadcrumb, gallery: opts.gallery ?? gallery, sketch: opts.sketch ?? sketch, variants }
 }
 
 export const detailBySlug = {
@@ -112,9 +115,22 @@ export const detailBySlug = {
       features: ['Advanced cooling channels for better thermal performance', 'Compact 3.4 Litre packaging', 'High Efficiency > 91%'],
     }),
   ]),
+  // PT-500 power-tool motor (Figma node 14394-3023). Real spec sheet: 18 V, 0.05 kW, 0.32 Nm, 17500 RPM.
+  // NOTE (flagged): the Figma technical table labels the last two rows "Efficiency = 0.5 kW" and
+  // "Mass = 0.5 Nm" — the units are mismatched (efficiency isn't kW, mass isn't Nm). Rendered exactly as
+  // designed; Tushar to confirm the real efficiency % and mass. Single-variant, so no Choose-Variant panel.
   pt500: mkDetail('pt500', 'Product/ PT Series/ PT 500', [
-    mkVariant('PT 500/00', { hero: listing('card-pt500.png'), motorType: 'Power Tool BLDC', voltage: '96 V', power: '20 kW', torque: '80 Nm', peakPower: '40 kW', peakTorque: '200 Nm', peakSpeed: '4000 RPM', efficiency: '>93%', mass: '24 Kg', applications: [{ label: 'Grinder', image: A('forklift.png') }, { label: 'Electric Drill', image: A('powerweeder.png') }] }),
-  ]),
+    mkVariant('PT 500/00', {
+      displayName: 'PT-500', hero: PT + 'hero.png', motorType: 'Power Tool BLDC',
+      voltage: '18 V', power: '0.05 kW', torque: '0.32 Nm', peakPower: '0.5 kW', peakTorque: '0.5 Nm',
+      peakSpeed: '17500 RPM', efficiency: '0.5 kW', mass: '0.5 Nm',
+      applications: [
+        { label: 'Grinder', image: PTA('grinder.png') },
+        { label: 'Electric Drill', image: PTA('drill.png') },
+        { label: 'Other Industrial Tools', image: PTA('other-tools.png') },
+      ],
+    }),
+  ], { gallery: [PT + 'hero.png', PT + 'hero.png'], sketch: [PT + 'sketch.png'] }),
 }
 
 export const productDetail = (slug) => detailBySlug[slug]

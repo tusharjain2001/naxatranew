@@ -15,7 +15,7 @@ export default function TechnicalSpecs({ variant, sketch }) {
         <div key={variant.id + '-tech'} className="flex animate-[fade-in_0.3s_ease-out] flex-col gap-16 xl:flex-row xl:gap-26">
           <div className="flex flex-col gap-24 border border-black/25 bg-white px-16 py-20 xl:px-32 xl:py-24">
             <h2 className="text-28 tracking-display xl:text-40">Technical Sketch</h2>
-            <div className="grid grid-cols-2 items-center gap-8 xl:w-1172">
+            <div className={`grid items-center gap-8 xl:w-1172 ${sketch.length > 1 ? 'grid-cols-2' : 'grid-cols-1'}`}>
               {sketch.map((src) => (
                 <img key={src} src={src} alt="Technical drawing" className="h-auto w-full object-contain opacity-90" />
               ))}
@@ -47,7 +47,7 @@ export default function TechnicalSpecs({ variant, sketch }) {
         {/* Applications */}
         <div className="flex flex-col gap-24 border border-black/25 bg-white px-16 py-24 xl:px-48 xl:py-36">
           <div className="flex items-center justify-between gap-10">
-            <h3 className="text-24 tracking-display capitalize xl:text-36">{variant.code} Motor Applications</h3>
+            <h3 className="text-24 tracking-display capitalize xl:text-36">{variant.displayName ?? variant.code} Motor Applications</h3>
             <SliderArrows onPrev={() => scroll(-1)} onNext={() => scroll(1)} className="shrink-0" />
           </div>
           <div ref={track} className="no-scrollbar flex gap-16 overflow-x-auto pb-2">
