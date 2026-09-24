@@ -39,7 +39,7 @@ export default function FamilyCard({ family, className = 'w-full' }) {
       {/* Content */}
       <div className="flex flex-1 flex-col gap-8 p-[6.5%] pt-14 xl:gap-14 xl:pt-20">
         <div className="flex flex-col gap-2 xl:gap-3">
-          <span className="text-20 leading-none capitalize xl:text-40">{family.name}</span>
+          <span className="text-20 leading-none capitalize xl:text-40">{family.cardName ?? family.name}</span>
           <span className="text-11 font-light capitalize text-black xl:text-16">{family.tagline}</span>
         </div>
         <div className="flex flex-col gap-5 xl:gap-6">

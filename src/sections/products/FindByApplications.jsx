@@ -31,16 +31,14 @@ export default function FindByApplications() {
 
         {/* Thumbnails + relevant motors */}
         <div className="flex min-w-0 flex-1 flex-col gap-32 xl:gap-40">
+          {/* Tiles show the OTHER applications — the selected one appears only in the big card (per artboard). */}
           <div ref={track} className="no-scrollbar flex snap-x gap-16 overflow-x-auto pb-2 xl:gap-28">
-            {findByApplications.map((a, i) => (
+            {findByApplications.map((a, i) => ({ a, i })).filter(({ i }) => i !== active).map(({ a, i }) => (
               <button
                 key={a.key}
                 type="button"
                 onClick={() => setActive(i)}
-                aria-pressed={i === active}
-                className={`relative aspect-square w-150 shrink-0 snap-start overflow-hidden rounded-[4.8px] border bg-white transition-colors xl:w-240 ${
-                  i === active ? 'border-primary' : 'border-black/25 hover:border-primary/50'
-                }`}
+                className="relative aspect-square w-150 shrink-0 snap-start overflow-hidden rounded-[4.8px] border border-black/25 bg-white transition-colors hover:border-primary/50 xl:w-240"
               >
                 <img src={a.image} alt="" className="absolute inset-x-0 top-[14%] mx-auto h-[52%] object-contain" />
                 <span className="absolute bottom-14 left-14 text-14 capitalize text-grey xl:bottom-24 xl:left-19 xl:text-24">{a.name}</span>

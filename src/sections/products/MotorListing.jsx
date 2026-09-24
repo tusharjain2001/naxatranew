@@ -111,6 +111,7 @@ function SeriesRadios({ value, onChange }) {
 
 export default function MotorListing() {
   const [series, setSeries] = useState(null)
+  const [seriesOpen, setSeriesOpen] = useState(true)
   const [ranges, setRanges] = useState(emptyRanges)
   const [checked, setChecked] = useState(() => new Set())
 
@@ -147,7 +148,21 @@ export default function MotorListing() {
         <FilterPanel ranges={ranges} setRanges={setRanges} checked={checked} toggleApp={toggleApp} clearAll={clearAll} />
 
         <div className="flex min-w-0 flex-1 flex-col items-stretch gap-24 xl:items-end">
-          <SeriesRadios value={series} onChange={setSeries} />
+          {/* Series dropdown (top-right) with the RF/AF/PT radios on the row below it, per the artboard. */}
+          <div className="flex w-full flex-col items-stretch gap-16 xl:items-end">
+            <button
+              type="button"
+              onClick={() => setSeriesOpen((o) => !o)}
+              aria-expanded={seriesOpen}
+              className="flex items-center justify-between gap-16 self-end rounded-[4px] border border-black/25 px-16 py-8 text-16 font-light xl:text-20"
+            >
+              Series
+              <svg viewBox="0 0 12 8" aria-hidden className={`w-12 transition-transform ${seriesOpen ? 'rotate-180' : ''}`}>
+                <path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            {seriesOpen && <SeriesRadios value={series} onChange={setSeries} />}
+          </div>
 
           {families.length ? (
             <div className="grid w-full grid-cols-1 gap-24 sm:grid-cols-2 xl:grid-cols-3 xl:gap-28">

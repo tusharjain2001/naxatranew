@@ -18,7 +18,7 @@ export default function Products() {
       <ProductsHero />
       <MotorListing />
       <FindByApplications />
-      <SpecForm applications={motorApplications} title={['Need Help', 'Finding The Right Motor?']} text="Share your application and duty cycle - we'll recommend the right motor and controller in 3 working days." />
+      <SpecForm applications={motorApplications} title={['Need Help', 'Finding The Right Motor?']} text="Our team can help you choose or customise a solution for your application." />
     </main>
   )
 }
