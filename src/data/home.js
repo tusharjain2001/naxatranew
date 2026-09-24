@@ -18,6 +18,7 @@ export const industryMenu = {
       icon: a('icon-cleaning.svg'),
       activeIcon: a('nav/icon-cleaning-active.svg'),
       iconClass: 'size-48',
+      mobileIconClass: 'size-24',
     },
     {
       label: 'Agriculture',
@@ -26,6 +27,7 @@ export const industryMenu = {
       icon: a('icon-agriculture.svg'),
       activeIcon: a('nav/icon-agriculture-active.svg'),
       iconClass: 'size-48',
+      mobileIconClass: 'size-24',
     },
     {
       label: '2 wheeler',
@@ -34,6 +36,7 @@ export const industryMenu = {
       icon: a('icon-scooter.svg'),
       activeIcon: a('nav/icon-scooter-active.svg'),
       iconClass: 'h-23 w-32 -scale-x-100',
+      mobileIconClass: 'h-[calc(var(--spacing)*11.54)] w-16 -scale-x-100',
     },
     {
       label: '3 wheeler',
@@ -42,6 +45,7 @@ export const industryMenu = {
       icon: a('icon-3wheeler.svg'),
       activeIcon: a('nav/icon-3wheeler-active.svg'),
       iconClass: 'h-28 w-32',
+      mobileIconClass: 'h-14 w-16',
     },
   ],
 }
