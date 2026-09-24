@@ -7,18 +7,42 @@ export const navLinks = [
   { label: 'About', href: '/about' },
 ]
 
+// The dropdown shows the selected industry's photo beside a 2×2 grid; `activeIcon` is the blue variant.
 export const industryMenu = {
-  images: [
-    { src: a('menu-cleaning.png'), label: 'Cleaning', tint: true, href: '/industry/cleaning' },
-    { src: a('menu-agriculture.png'), label: 'Agriculture', href: '/industry/agriculture' },
-    { src: a('menu-2wheeler.png'), label: '2 wheeler', href: '/industry/2-wheeler' },
-    { src: a('menu-3wheeler.png'), label: '3 wheeler', href: '/industry/3-wheeler' },
-  ],
   links: [
-    { label: 'Cleaning', icon: a('icon-cleaning.svg'), iconClass: 'size-48', href: '/industry/cleaning' },
-    { label: 'Agriculture', icon: a('icon-agriculture.svg'), iconClass: 'size-48', href: '/industry/agriculture' },
-    { label: '2 wheeler', icon: a('icon-scooter.svg'), iconClass: 'h-23 w-32 -scale-x-100', href: '/industry/2-wheeler' },
-    { label: '3 wheeler', icon: a('icon-3wheeler.svg'), iconClass: 'h-28 w-32', href: '/industry/3-wheeler' },
+    {
+      label: 'Cleaning',
+      href: '/industry/cleaning',
+      image: a('nav/cleaning.jpg'),
+      tint: true,
+      icon: a('icon-cleaning.svg'),
+      activeIcon: a('nav/icon-cleaning-active.svg'),
+      iconClass: 'size-48',
+    },
+    {
+      label: 'Agriculture',
+      href: '/industry/agriculture',
+      image: a('nav/agriculture.jpg'),
+      icon: a('icon-agriculture.svg'),
+      activeIcon: a('nav/icon-agriculture-active.svg'),
+      iconClass: 'size-48',
+    },
+    {
+      label: '2 wheeler',
+      href: '/industry/2-wheeler',
+      image: a('nav/2-wheeler.jpg'),
+      icon: a('icon-scooter.svg'),
+      activeIcon: a('nav/icon-scooter-active.svg'),
+      iconClass: 'h-23 w-32 -scale-x-100',
+    },
+    {
+      label: '3 wheeler',
+      href: '/industry/3-wheeler',
+      image: a('nav/3-wheeler.jpg'),
+      icon: a('icon-3wheeler.svg'),
+      activeIcon: a('nav/icon-3wheeler-active.svg'),
+      iconClass: 'h-28 w-32',
+    },
   ],
 }
 

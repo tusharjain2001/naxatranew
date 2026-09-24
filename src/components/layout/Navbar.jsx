@@ -3,40 +3,56 @@ import { industryMenu, navLinks } from '../../data/home'
 import Button from '../ui/Button'
 import { currentPath } from '../../lib/currentPath'
 
+// The industry page you're on is filled blue and its photo shows on the left; hovering another
+// industry previews it the same way. Off the industry pages the photo defaults to Cleaning.
 function IndustryMenu({ onNavigate }) {
+  const { links } = industryMenu
+  const current = links.findIndex((item) => item.href === currentPath())
+  const [hovered, setHovered] = useState(-1)
+  const selected = hovered >= 0 ? hovered : current
+
   return (
     <div className="flex items-start gap-24 rounded-4 border border-primary-soft bg-white p-32 drop-shadow-[0_0_calc(var(--spacing)*6)_rgba(0,0,0,0.25)]">
-      <div className="grid grid-cols-[repeat(2,calc(var(--spacing)*136))] gap-8">
-        {industryMenu.images.map((item) => (
-          <a
+      <div className="relative h-176 w-280 shrink-0 overflow-hidden rounded-4">
+        {links.map((item, i) => (
+          <div
             key={item.label}
-            href={item.href}
-            onClick={onNavigate}
-            aria-label={item.label}
-            className="group relative block h-84 overflow-hidden rounded-4"
+            aria-hidden
+            className={`absolute inset-0 transition-opacity duration-300 ${i === Math.max(selected, 0) ? 'opacity-100' : 'opacity-0'}`}
           >
-            <img src={item.src} alt="" className="size-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <img src={item.image} alt="" className="size-full object-cover" />
             {item.tint && (
               <span className="absolute inset-0 bg-linear-to-b from-[rgba(11,78,183,0.6)] to-[rgba(24,99,218,0)] to-64%" />
             )}
-          </a>
+          </div>
         ))}
       </div>
-      <ul className="grid grid-cols-2 gap-16">
-        {industryMenu.links.map((item) => (
-          <li key={item.label}>
-            <a
-              href={item.href}
-              onClick={onNavigate}
-              className="flex w-248 items-center justify-center gap-4 rounded-4 border border-silver bg-[rgba(217,217,217,0.15)] p-16 transition-colors duration-200 hover:border-primary hover:bg-primary/10"
-            >
-              <span className="flex size-48 shrink-0 items-center justify-center">
-                <img src={item.icon} alt="" className={item.iconClass} />
-              </span>
-              <span className="flex h-48 w-148 items-center text-20 text-black uppercase">{item.label}</span>
-            </a>
-          </li>
-        ))}
+      <ul className="grid grid-cols-2 gap-16" onMouseLeave={() => setHovered(-1)}>
+        {links.map((item, i) => {
+          const active = i === selected
+          return (
+            <li key={item.label}>
+              <a
+                href={item.href}
+                onClick={onNavigate}
+                onMouseEnter={() => setHovered(i)}
+                onFocus={() => setHovered(i)}
+                aria-current={i === current ? 'page' : undefined}
+                className={`relative flex h-80 w-248 items-center justify-center gap-4 rounded-4 border p-16 transition-colors duration-200 ${
+                  active ? 'border-primary bg-primary/10' : 'border-silver bg-[rgba(217,217,217,0.15)]'
+                }`}
+              >
+                <span className="flex size-48 shrink-0 items-center justify-center">
+                  <img src={active ? item.activeIcon : item.icon} alt="" className={item.iconClass} />
+                </span>
+                <span className="flex h-48 w-148 items-center text-20 text-black uppercase">{item.label}</span>
+                {active && (
+                  <img src="/assets/nav/chevron-blue.svg" alt="" className="absolute top-32 left-218 h-12 w-[calc(var(--spacing)*7.389)]" />
+                )}
+              </a>
+            </li>
+          )
+        })}
       </ul>
     </div>
   )
@@ -162,19 +178,25 @@ export default function Navbar() {
               </a>
               {link.hasMenu && (
                 <div className="grid grid-cols-2 gap-8 pb-16">
-                  {industryMenu.links.map((item) => (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      onClick={() => setMobileOpen(false)}
-                      className="flex items-center gap-8 rounded-4 border border-silver bg-[rgba(217,217,217,0.15)] p-8 text-12 uppercase"
-                    >
-                      <span className="flex size-24 shrink-0 items-center justify-center">
-                        <img src={item.icon} alt="" className="max-h-24 max-w-24" />
-                      </span>
-                      {item.label}
-                    </a>
-                  ))}
+                  {industryMenu.links.map((item) => {
+                    const active = item.href === currentPath()
+                    return (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        onClick={() => setMobileOpen(false)}
+                        aria-current={active ? 'page' : undefined}
+                        className={`flex items-center gap-8 rounded-4 border p-8 text-12 uppercase ${
+                          active ? 'border-primary bg-primary/10' : 'border-silver bg-[rgba(217,217,217,0.15)]'
+                        }`}
+                      >
+                        <span className="flex size-24 shrink-0 items-center justify-center">
+                          <img src={active ? item.activeIcon : item.icon} alt="" className="max-h-24 max-w-24" />
+                        </span>
+                        {item.label}
+                      </a>
+                    )
+                  })}
                 </div>
               )}
             </div>
