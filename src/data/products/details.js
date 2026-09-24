@@ -15,7 +15,12 @@ const PT = '/assets/products/pt500/'
 const PTA = (f) => `${PT}apps/${f}`
 const AF = '/assets/products/af58/'
 const AFA = (f) => `${AF}apps/${f}`
+const RF22 = '/assets/products/rf22/'
 const listing = (f) => `/assets/products/listing/${f}`
+
+// The RF-family variant notes, verbatim from the artboards.
+const SAME_DIE = 'This motor variant has the same die with two distinct voltage options.'
+const DISTINCT_HOUSING = 'This motor variant has a distinct housing with two distinct voltage options.'
 
 // Shared application tiles (only RF15's tile renders were provided; reused across families).
 const APPS = [
@@ -95,9 +100,15 @@ export const detailBySlug = {
     mkVariant('RF 15/42', { hero: RF + 'hero.png', voltage: '48 V / 72 V', power: '1.5 kW', torque: '6.5 Nm', peakPower: '3 kW', peakTorque: '18 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '6.5 Kg', note: 'This motor variant has the same die with two distinct voltage options.' }),
     mkVariant('RF 15/60', { hero: RF + 'hero.png', voltage: '48 V / 96 V', power: '2.2 kW', torque: '9 Nm', peakPower: '4.5 kW', peakTorque: '24 Nm', peakSpeed: '5200 RPM', efficiency: '>94%', mass: '6.8 Kg', note: 'This motor variant has the same die with two distinct voltage options.' }),
   ]),
+  // RF 22 (Figma board 14394-2055): three variants /42, /60, /86. Figma shows near-identical specs
+  // across all three (only efficiency differs) — flagged for Tushar as likely placeholder duplication.
+  // Hero render reuses the clean RF15 transparent render (RF22's own Figma render ships with a baked
+  // grey background); RF22's own technical sketch is used.
   rf22: mkDetail('rf22', 'Product/ RF Series/ RF 22', [
-    mkVariant('RF 22/42', { hero: listing('card-rf-a.png'), voltage: '48 V / 72 V', power: '3 kW', torque: '12 Nm', peakPower: '6 kW', peakTorque: '34 Nm', peakSpeed: '5200 RPM', efficiency: '>94%', mass: '8 Kg' }),
-  ]),
+    mkVariant('RF 22/42', { hero: RF22 + 'hero.png', note: SAME_DIE, voltage: '48 V / 72 V', power: '2.2 kW', torque: '9.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '6.5 Kg' }),
+    mkVariant('RF 22/60', { hero: RF22 + 'hero.png', note: SAME_DIE, voltage: '48 V / 72 V', power: '2.2 kW', torque: '9.5 Nm', peakSpeed: '5000 RPM', efficiency: '>92%', mass: '6.5 Kg' }),
+    mkVariant('RF 22/86', { hero: RF22 + 'hero.png', note: DISTINCT_HOUSING, voltage: '48 V / 72 V', power: '2.2 kW', torque: '9.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '6.5 Kg' }),
+  ], { gallery: [RF22 + 'hero.png', RF22 + 'hero.png'], sketch: [RF22 + 'sketch-1.png', RF22 + 'sketch-2.png'] }),
   rf33: mkDetail('rf33', 'Product/ RF Series/ RF 33', [
     mkVariant('RF 33/60', { hero: listing('card-rf-b.png'), voltage: '72 V / 96 V', power: '5 kW', torque: '20 Nm', peakPower: '10 kW', peakTorque: '55 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '11 Kg' }),
   ]),
