@@ -1,6 +1,6 @@
 # Naxatra Labs website
 
-React 19 + Vite + Tailwind CSS v4 build of the Naxatra Labs 2026 Figma file. Five pages exist so far: Home (`/`), About Us (`/about`), Careers (`/careers`), Contact Us (`/contact`) and Blogs (`/blogs`).
+React 19 + Vite + Tailwind CSS v4 build of the Naxatra Labs 2026 Figma file. Pages: Home (`/`), About Us (`/about`), Careers (`/careers`), Contact Us (`/contact`), Blogs (`/blogs`) and four industry pages opened from the navbar's Industry menu: `/industry/cleaning`, `/industry/agriculture`, `/industry/2-wheeler` and `/industry/3-wheeler`.
 
 ```bash
 npm install
@@ -25,7 +25,7 @@ Design tokens such as colours, type sizes and radii live in `src/index.css`. Pag
 ```
 src/
   App.jsx                 picks the page from the URL path (no router needed for two pages)
-  pages/                  Home, About, Careers, Contact and Blogs, each a list of sections
+  pages/                  Home, About, Careers, Contact, Blogs and Industry (one template for all four industry pages)
   data/                   content for every section, one file per page
   components/layout/      Navbar (Industry dropdown, mobile menu), Footer
   components/ui/          Button, ArrowUpRight, SliderArrows, Dots, SectionHeader, PageHero, FormFields, PersonCard, TabBar
@@ -35,16 +35,18 @@ src/
   sections/careers/       sections only used on the Careers page
   sections/contact/       sections only used on the Contact page
   sections/blogs/         sections only used on the Blogs page
-public/assets/            images and SVGs exported from Figma (m/ mobile-only, about/, careers/, contact/ and blogs/ per page)
+  sections/industry/      sections of the industry template; each page's data in src/data/industry/ lists which it uses
+public/assets/            images and SVGs exported from Figma (m/ mobile-only, about/, careers/, contact/, blogs/ and industry/ per page)
 ```
 
 ## Open items
 
-- **Hosting:** `/about`, `/careers`, `/contact` and `/blogs` are served by the same `index.html`. `vite dev` and `vite preview` handle that already; on the live host, rewrite unknown paths to `/index.html`.
+- **Hosting:** `/about`, `/careers`, `/contact`, `/blogs` and `/industry/*` are served by the same `index.html`. `vite dev` and `vite preview` handle that already; on the live host, rewrite unknown paths to `/index.html`.
 - **About, Careers, Contact and Blogs on mobile:** Figma only has desktop artboards for these pages, so their mobile layouts follow the home page's mobile patterns.
 - **Careers content:** job summaries (shown when a card is expanded) and job description files are empty in `src/data/careers.js`; experience reads `x years` as in Figma. The position count comes from the number of jobs listed.
 - **Blog posts:** posts live in `articles.posts` in `src/data/blogs.js`; there are no article pages yet, so posts are not links. The featured fundraise image is a single export of the Figma poster.
-- **Forms:** the careers application and the contact enquiry validate required fields but do not submit anywhere yet.
+- **Industry artwork:** the vehicle tiles, the drive-train render and the three-wheeler axle render are composed from Figma's separate layers into single transparent PNGs; the annotated drive diagrams and the challenge cards are exported from Figma as they appear.
+- **Forms:** the careers application, the contact enquiry and the industry spec form validate required fields but do not submit anywhere yet.
 - **Contact form fields:** the Figma artboard reuses the careers fields (role, resume, LinkedIn). They are built as designed; their labels live in `enquiry.fields` in `src/data/contact.js`.
 - **LinkedIn badges:** founders and investors show the LinkedIn icon from Figma, but no profile URLs were provided, so they are not links yet.
 

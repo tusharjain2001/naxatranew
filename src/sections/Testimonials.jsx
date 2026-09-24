@@ -33,7 +33,7 @@ function TestimonialCard({ item }) {
   )
 }
 
-export default function Testimonials({ spacing = 'gap-60 py-100 xl:gap-100 xl:pt-293 xl:pb-0' }) {
+export default function Testimonials({ spacing = 'gap-60 py-100 xl:gap-100 xl:pt-293 xl:pb-0', desktopArrows = false }) {
   const [trackRef, track] = useScrollTrack()
 
   return (
@@ -44,6 +44,7 @@ export default function Testimonials({ spacing = 'gap-60 py-100 xl:gap-100 xl:pt
         mobileLeading="leading-32"
         desktopGap="xl:gap-11"
         track={track}
+        desktopArrows={desktopArrows}
       />
       <div className="flex flex-col items-center gap-28">
         <div

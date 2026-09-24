@@ -10,7 +10,7 @@ function IndustryMenu({ onNavigate }) {
         {industryMenu.images.map((item) => (
           <a
             key={item.label}
-            href="/#industry"
+            href={item.href}
             onClick={onNavigate}
             aria-label={item.label}
             className="group relative block h-84 overflow-hidden rounded-4"
@@ -26,7 +26,7 @@ function IndustryMenu({ onNavigate }) {
         {industryMenu.links.map((item) => (
           <li key={item.label}>
             <a
-              href="/#industry"
+              href={item.href}
               onClick={onNavigate}
               className="flex w-248 items-center justify-center gap-4 rounded-4 border border-silver bg-[rgba(217,217,217,0.15)] p-16 transition-colors duration-200 hover:border-primary hover:bg-primary/10"
             >
@@ -165,7 +165,7 @@ export default function Navbar() {
                   {industryMenu.links.map((item) => (
                     <a
                       key={item.label}
-                      href="/#industry"
+                      href={item.href}
                       onClick={() => setMobileOpen(false)}
                       className="flex items-center gap-8 rounded-4 border border-silver bg-[rgba(217,217,217,0.15)] p-8 text-12 uppercase"
                     >
