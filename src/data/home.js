@@ -2,7 +2,7 @@ const a = (file) => `/assets/${file}`
 
 export const navLinks = [
   { label: 'Home', href: '/' },
-  { label: 'Products', href: '/#products' },
+  { label: 'Products', href: '/products' },
   { label: 'Industry', href: '/#industry', hasMenu: true },
   { label: 'About', href: '/about' },
 ]
@@ -275,7 +275,7 @@ export const footer = {
   ],
   quickLinks: [
     { label: 'Home', href: '/' },
-    { label: 'Products', href: '/#products' },
+    { label: 'Products', href: '/products' },
     { label: 'About Us', href: '/about' },
     { label: 'Blogs And Insights', href: '/blogs' },
     { label: 'Career', href: '/careers' },

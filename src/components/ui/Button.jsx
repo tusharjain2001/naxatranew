@@ -4,11 +4,15 @@ const variants = {
   primary: 'bg-primary text-white hover:bg-[#1150b8]',
   outline: 'border-black text-black hover:bg-black hover:text-white',
   white: 'bg-white text-black hover:bg-silver',
+  // White-outlined button for dark heroes (Products landing + family detail).
+  outlineWhite: 'border-white text-white hover:bg-white hover:text-black',
 }
 
-const arrows = { primary: 'white', outline: 'black-sm', white: 'black' }
+const arrows = { primary: 'white', outline: 'black-sm', white: 'black', outlineWhite: 'white' }
 // The large size uses Figma's longer 18px arrow.
-const largeArrows = { primary: 'white-lg', outline: 'black', white: 'black' }
+const largeArrows = { primary: 'white-lg', outline: 'black', white: 'black', outlineWhite: 'white' }
+
+const outlined = (variant) => variant === 'outline' || variant === 'outlineWhite'
 
 const sizes = {
   md: 'gap-12 rounded-4 text-20 leading-20',
@@ -29,7 +33,7 @@ const small = (size) => size === 'sm' || size === 'xs'
 export default function Button({ as: Tag = 'a', variant = 'primary', size = 'md', className = '', children, ...props }) {
   // Let callers own `display` when they hide the button at some breakpoint.
   const display = /(^|\s)hidden(\s|$)/.test(className) ? '' : 'inline-flex'
-  const pad = padding[variant === 'outline' ? 'outline' : 'solid'][size]
+  const pad = padding[outlined(variant) ? 'outline' : 'solid'][size]
   return (
     <Tag
       className={`group ${display} shrink-0 items-center justify-center font-medium whitespace-nowrap uppercase transition-colors duration-200 ${variants[variant]} ${sizes[size]} ${pad} ${className}`}
@@ -39,7 +43,7 @@ export default function Button({ as: Tag = 'a', variant = 'primary', size = 'md'
       <ArrowUpRight
         tone={(size === 'lg' ? largeArrows : arrows)[variant]}
         className={`transition-transform duration-200 group-hover:translate-x-2 group-hover:-translate-y-2 ${
-          variant === 'outline' ? 'group-hover:invert' : ''
+          outlined(variant) ? 'group-hover:invert' : ''
         } ${small(size) ? 'size-6.5 [&>img]:scale-[0.58]' : 'size-11.25'}`}
       />
     </Tag>
