@@ -152,7 +152,7 @@ export const detailBySlug = {
       ],
       features: ['Advanced cooling channels for better thermal performance', 'Compact 3.4 Litre packaging', 'High Efficiency > 91%'],
     }),
-  ], { gallery: [AF + 'hero.png', AF + 'hero.png'], sketch: [AF + 'sketch.png'], heroClass: 'xl:top-166 xl:left-655 xl:h-699 xl:w-862' }),
+  ], { gallery: [AF + 'vim-1.png', AF + 'vim-2.png'], sketch: [AF + 'sketch.png'], heroClass: 'xl:top-166 xl:left-655 xl:h-699 xl:w-862' }),
   // PT-500 power-tool motor (Figma node 14394-3023). Real spec sheet: 18 V, 0.05 kW, 0.32 Nm, 17500 RPM.
   // NOTE (flagged): the Figma technical table labels the last two rows "Efficiency = 0.5 kW" and
   // "Mass = 0.5 Nm" — the units are mismatched (efficiency isn't kW, mass isn't Nm). Rendered exactly as
