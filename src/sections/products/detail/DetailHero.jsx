@@ -16,7 +16,7 @@ function SpecBox({ label, value }) {
 function VariantRow({ variant, selected, onSelect }) {
   return (
     <button type="button" onClick={onSelect} aria-pressed={selected} className="flex w-full items-center gap-12 text-left">
-      <span className={`relative grid h-160 flex-1 place-items-center overflow-hidden bg-[#f9f9f9] p-12 xl:h-240 ${selected ? 'border border-black' : ''}`}>
+      <span className={`relative grid h-160 flex-1 place-items-center overflow-hidden bg-[#f9f9f9] p-12 xl:h-192 xl:w-307 xl:flex-none ${selected ? 'border border-black' : ''}`}>
         {selected && <span className="pointer-events-none absolute inset-0 border-2 border-white" />}
         <img src={variant.hero} alt="" className="max-h-full max-w-full object-contain" />
         {selected && (
@@ -36,12 +36,13 @@ function VariantRow({ variant, selected, onSelect }) {
 
 export default function DetailHero({ family, detail, variant, onSelectVariant, onOpenSpec }) {
   const multi = detail.variants.length > 1
-  // Gallery + View In Motion placement differs by layout: multi-variant families keep it bottom-left
-  // (the Choose-The-Variant panel occupies the right); single-variant families (e.g. PT-500) show it as
-  // a vertical column on the top-right where that space is free — matching each artboard.
-  const galleryPos = multi ? 'xl:top-709 xl:left-405' : 'xl:top-337 xl:left-1647 xl:flex-col xl:gap-8'
-  const tileSize = multi ? 'xl:h-102 xl:w-138' : 'xl:h-128 xl:w-172'
-  const vimText = multi ? 'text-14 xl:text-18' : 'text-14 xl:absolute xl:top-1/2 xl:left-15 xl:-translate-y-1/2 xl:text-22'
+  // The Choose-The-Variant panel shows whenever a page uses the RF-series layout — including RF 55, which
+  // has a single variant but the artboard still shows the panel (one row). AF 58 / PT-500 hide it and put
+  // the gallery top-right instead. Gallery placement follows the same switch.
+  const showPanel = detail.showPanel ?? multi
+  const galleryPos = showPanel ? 'xl:top-709 xl:left-405' : 'xl:top-337 xl:left-1647 xl:flex-col xl:gap-8'
+  const tileSize = showPanel ? 'xl:h-102 xl:w-138' : 'xl:h-128 xl:w-172'
+  const vimText = showPanel ? 'text-14 xl:text-18' : 'text-14 xl:absolute xl:top-1/2 xl:left-15 xl:-translate-y-1/2 xl:text-22'
   return (
     <section className="relative w-full overflow-hidden bg-[#fafafa]">
       <div className="relative mx-auto flex max-w-1920 flex-col gap-24 px-16 py-40 xl:block xl:h-880 xl:px-0 xl:py-0">
@@ -96,9 +97,10 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
           </span>
         </div>
 
-        {/* Choose the Variant */}
-        {multi && (
-          <div className="flex flex-col gap-24 bg-white p-16 xl:absolute xl:top-183 xl:left-1079 xl:w-740 xl:px-32 xl:py-24">
+        {/* Choose the Variant — bottom-anchored (bottom edge ~812 of the 880 hero) so the panel grows
+            upward with more rows, matching the artboards (3 rows top-63, 2 rows top-183, 1 row top-447). */}
+        {showPanel && (
+          <div className="flex flex-col gap-24 bg-white p-16 xl:absolute xl:bottom-68 xl:left-1079 xl:w-740 xl:px-32 xl:py-24">
             <h2 className="text-24">Choose the Variant</h2>
             <div className="flex flex-col gap-24">
               {detail.variants.map((v) => (

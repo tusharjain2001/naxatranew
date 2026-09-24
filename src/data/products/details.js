@@ -49,6 +49,7 @@ function mkVariant(code, o) {
     displayName: o.displayName ?? null, // single-variant families show this instead of "<code> Variant"
     note: o.note ?? 'This motor variant shares the same die, offered in distinct voltage options.',
     hero: o.hero,
+    sketch: o.sketch ?? null, // per-variant technical sketch override (else falls back to detail.sketch)
     specBoxes: [
       { label: 'Voltage', value: o.voltage },
       { label: 'Power', value: o.power },
@@ -94,7 +95,7 @@ function mkVariant(code, o) {
 function mkDetail(slug, breadcrumb, variants, opts = {}) {
   // heroClass overrides the desktop hero-render position/size (default suits RF-family cylindrical motors;
   // the AF 58 disc motor sits further right per its artboard). gallery/sketch default to the RF15 assets.
-  return { slug, breadcrumb, gallery: opts.gallery ?? gallery, sketch: opts.sketch ?? sketch, heroClass: opts.heroClass, variants }
+  return { slug, breadcrumb, gallery: opts.gallery ?? gallery, sketch: opts.sketch ?? sketch, heroClass: opts.heroClass, showPanel: opts.showPanel, variants }
 }
 
 export const detailBySlug = {
@@ -106,12 +107,12 @@ export const detailBySlug = {
   ]),
   // RF 22 (Figma board 14394-2055): three variants /42, /60, /86. Figma shows near-identical specs
   // across all three (only efficiency differs) — flagged for Tushar as likely placeholder duplication.
-  // Hero render reuses the clean RF15 transparent render (RF22's own Figma render ships with a baked
-  // grey background); RF22's own technical sketch is used.
+  // /86 uses its OWN distinct-housing render (Figma node 14342:11384, exported with the studio-backdrop
+  // layer excluded → clean cut-out); /42 & /60 share the standard render. Own technical sketch used.
   rf22: mkDetail('rf22', 'Product/ RF Series/ RF 22', [
     mkVariant('RF 22/42', { hero: RF22 + 'hero.png', note: SAME_DIE, voltage: '48 V / 72 V', power: '2.2 kW', torque: '9.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '6.5 Kg' }),
     mkVariant('RF 22/60', { hero: RF22 + 'hero.png', note: SAME_DIE, voltage: '48 V / 72 V', power: '2.2 kW', torque: '9.5 Nm', peakSpeed: '5000 RPM', efficiency: '>92%', mass: '6.5 Kg' }),
-    mkVariant('RF 22/86', { hero: RF22 + 'hero.png', note: DISTINCT_HOUSING, voltage: '48 V / 72 V', power: '2.2 kW', torque: '9.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '6.5 Kg' }),
+    mkVariant('RF 22/86', { hero: RF22 + 'hero-86.png', note: DISTINCT_HOUSING, voltage: '48 V / 72 V', power: '2.2 kW', torque: '9.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '6.5 Kg' }),
   ], { gallery: [RF22 + 'hero.png', RF22 + 'hero.png'], sketch: [RF22 + 'sketch-1.png', RF22 + 'sketch-2.png'] }),
   // RF 33 (Figma board 14378-3788): /60, /86, /90. /60 & /86 identical in Figma (placeholder dup);
   // /90 differs (6500 RPM, 13.6 Kg). Hero render reuses the clean RF15 render; own sketch.
@@ -120,15 +121,18 @@ export const detailBySlug = {
     mkVariant('RF 33/86', { hero: RF33 + 'hero.png', note: SAME_DIE, voltage: '48 V / 72 V', power: '3.3 kW', torque: '10.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '7.7 Kg' }),
     mkVariant('RF 33/90', { hero: RF33 + 'hero.png', note: DISTINCT_HOUSING, voltage: '48 V / 72 V', power: '3.3 kW', torque: '10.5 Nm', peakSpeed: '6500 RPM', efficiency: '>94%', mass: '13.6 Kg' }),
   ], { gallery: [RF33 + 'hero.png', RF33 + 'hero.png'], sketch: [RF33 + 'sketch-1.png', RF33 + 'sketch-2.png'] }),
-  // RF 55 (Figma board 14389-4682): single variant /86. Hero reuses clean RF15 render; own sketch.
+  // RF 55 (Figma board 14389-4682): single variant /86 — but the artboard KEEPS the Choose-The-Variant
+  // panel (one row) and bottom-left gallery, unlike AF 58 / PT-500. showPanel forces that RF-series layout.
+  // Hero reuses clean RF15 render; own sketch.
   rf55: mkDetail('rf55', 'Product/ RF Series/ RF 55', [
-    mkVariant('RF 55/86', { hero: RF55 + 'hero.png', voltage: '48 V / 72 V', power: '5.5 kW', torque: '10.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '10.5 Kg' }),
-  ], { gallery: [RF55 + 'hero.png', RF55 + 'hero.png'], sketch: [RF55 + 'sketch.png'] }),
+    mkVariant('RF 55/86', { hero: RF55 + 'hero.png', note: DISTINCT_HOUSING, voltage: '48 V / 72 V', power: '5.5 kW', torque: '10.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '10.5 Kg' }),
+  ], { showPanel: true, gallery: [RF55 + 'hero.png', RF55 + 'hero.png'], sketch: [RF55 + 'sketch.png'] }),
   // RF 66 (Figma board 14393-7232): /70 and /90 — these carry distinct real specs. Hero reuses clean
-  // RF15 render; own sketch (the /70 drawing, shared across both variants).
+  // RF15 render; /70 uses the board sketch, /90 uses its OWN sketch node (14393:6490) — which is the
+  // same drawing as /70 in Figma (designer reused it), wired per-variant for correct provenance.
   rf66: mkDetail('rf66', 'Product/ RF Series/ RF 66', [
     mkVariant('RF 66/70', { hero: RF66 + 'hero.png', note: SAME_DIE, voltage: '48 V / 72 V', power: '12.5 kW', torque: '14 Nm', peakSpeed: '6500 RPM', efficiency: '>92%', mass: '13.6 Kg' }),
-    mkVariant('RF 66/90', { hero: RF66 + 'hero.png', note: SAME_DIE, voltage: '48 V / 72 V', power: '14 kW', torque: '16 Nm', peakSpeed: '6500 RPM', efficiency: '>93%', mass: '14.5 Kg' }),
+    mkVariant('RF 66/90', { hero: RF66 + 'hero.png', sketch: [RF66 + 'sketch-90.png'], note: SAME_DIE, voltage: '48 V / 72 V', power: '14 kW', torque: '16 Nm', peakSpeed: '6500 RPM', efficiency: '>93%', mass: '14.5 Kg' }),
   ], { gallery: [RF66 + 'hero.png', RF66 + 'hero.png'], sketch: [RF66 + 'sketch.png'] }),
   // Antarix AF 58 axial-flux motor (Figma node 14394-2056). Hero Torque box shows PEAK (60 Nm); the
   // technical table shows Rated Torque (25 Nm). Single-variant, so no Choose-Variant panel.
@@ -160,7 +164,7 @@ export const detailBySlug = {
         { label: 'Other Industrial Tools', image: PTA('other-tools.png') },
       ],
     }),
-  ], { gallery: [PT + 'hero.png', PT + 'hero.png'], sketch: [PT + 'sketch.png'] }),
+  ], { gallery: [PT + 'hero.png', PT + 'hero.png'], sketch: [PT + 'sketch.png'], heroClass: 'xl:top-110 xl:left-690 xl:h-795 xl:w-795' }),
 }
 
 export const productDetail = (slug) => detailBySlug[slug]
