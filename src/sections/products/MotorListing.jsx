@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
-import { productFamilies, productPath, industries, applicationFilters, seriesTabs } from '../../data/products'
+import { productFamilies, applicationFilters, seriesTabs } from '../../data/products'
+import FamilyCard from './FamilyCard'
 
 // Map each sub-application (checkbox) back to its category so a checked box filters families by industry.
 const optionCategory = {}
@@ -107,51 +108,6 @@ function SeriesRadios({ value, onChange }) {
   )
 }
 
-function IndustryChips({ keys }) {
-  return (
-    <div className="flex flex-wrap gap-10">
-      {keys.map((key) => {
-        const ind = industries[key]
-        if (!ind) return null
-        return (
-          <span key={key} className="flex items-center gap-8 border-[0.4px] border-black/10 bg-black/5 p-7">
-            <span className="grid size-20 place-items-center bg-white">
-              <img src={ind.icon} alt="" className="size-14 object-contain" />
-            </span>
-            <span className="text-13 font-light capitalize">{ind.label}</span>
-          </span>
-        )
-      })}
-    </div>
-  )
-}
-
-function FamilyCard({ family }) {
-  return (
-    <a href={productPath(family.slug)} className="group relative block h-440 w-full overflow-hidden border-[0.85px] border-black/10 bg-black/[0.02] xl:h-500 xl:w-415">
-      {/* White plate + render */}
-      <span className="absolute top-20 left-1/2 h-190 w-[86%] -translate-x-1/2 bg-white xl:top-26 xl:left-26 xl:h-197 xl:w-360 xl:translate-x-0" />
-      <img
-        src={family.card.image}
-        alt={family.name}
-        loading="lazy"
-        className="pointer-events-none absolute top-14 left-1/2 h-215 w-[92%] -translate-x-1/2 object-contain transition-transform duration-500 group-hover:scale-[1.04] xl:top-6 xl:left-26 xl:h-235 xl:w-360 xl:translate-x-0"
-      />
-      {/* Content */}
-      <div className="absolute top-215 left-20 flex w-[88%] flex-col gap-14 xl:top-247 xl:left-26 xl:w-360">
-        <div className="flex flex-col gap-3">
-          <span className="text-28 leading-none capitalize xl:text-40">{family.name}</span>
-          <span className="text-14 font-light capitalize text-black xl:text-16">{family.tagline}</span>
-        </div>
-        <div className="flex flex-col gap-6">
-          <span className="text-14 font-light capitalize xl:text-16">Industries</span>
-          <IndustryChips keys={family.industries} />
-        </div>
-        <span className="text-18 text-primary capitalize underline underline-offset-2 group-hover:no-underline xl:text-20">View Product →</span>
-      </div>
-    </a>
-  )
-}
 
 export default function MotorListing() {
   const [series, setSeries] = useState(null)

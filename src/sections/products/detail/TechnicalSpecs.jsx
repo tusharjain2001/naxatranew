@@ -22,12 +22,13 @@ export default function TechnicalSpecs({ variant, sketch }) {
             </div>
           </div>
 
-          <div className="flex flex-1 flex-col gap-14 xl:gap-15">
+          {/* mobile: 3-col × 2-row grid (per the mobile artboard); desktop: full-height stacked column */}
+          <div className="grid grid-cols-3 gap-8 xl:flex xl:flex-1 xl:flex-col xl:gap-15">
             {variant.table.map((row) => (
-              <div key={row.label} className="flex flex-1 flex-col justify-center gap-4 border-[0.5px] border-black/25 bg-white px-20 pt-10 pb-3">
-                <span className="text-16 font-light capitalize xl:text-20">{row.label}</span>
+              <div key={row.label} className="flex flex-col justify-center gap-4 border-[0.5px] border-black/25 bg-white px-10 pt-10 pb-3 xl:flex-1 xl:px-20">
+                <span className="text-12 font-light capitalize xl:text-20">{row.label}</span>
                 <span className="h-px w-full bg-black/25" />
-                <span className="text-28 xl:text-36">{row.value}</span>
+                <span className="text-15 xl:text-36">{row.value}</span>
               </div>
             ))}
           </div>
@@ -48,15 +49,16 @@ export default function TechnicalSpecs({ variant, sketch }) {
         <div className="flex flex-col gap-24 border border-black/25 bg-white px-16 py-24 xl:px-48 xl:py-36">
           <div className="flex items-center justify-between gap-10">
             <h3 className="text-24 tracking-display capitalize xl:text-36">{variant.displayName ?? variant.code} Motor Applications</h3>
-            <SliderArrows onPrev={() => scroll(-1)} onNext={() => scroll(1)} className="shrink-0" />
+            <SliderArrows onPrev={() => scroll(-1)} onNext={() => scroll(1)} className="hidden shrink-0 xl:flex" />
           </div>
-          <div ref={track} className="no-scrollbar flex gap-16 overflow-x-auto pb-2">
+          {/* mobile: 3-col grid (per the mobile artboard); desktop: horizontal carousel */}
+          <div ref={track} className="no-scrollbar grid grid-cols-3 gap-12 xl:flex xl:gap-16 xl:overflow-x-auto xl:pb-2">
             {variant.applications.map((app, i) => (
-              <div key={app.label + i} className="flex w-140 shrink-0 flex-col items-center gap-3 xl:w-182">
-                <span className="grid h-140 w-full place-items-center bg-[#f9f9f9] p-16 xl:h-182">
+              <div key={app.label + i} className="flex w-full flex-col items-center gap-3 xl:w-182 xl:shrink-0">
+                <span className="grid h-106 w-full place-items-center bg-[#f9f9f9] p-12 xl:h-182 xl:p-16">
                   <img src={app.image} alt="" className="max-h-full max-w-full object-contain" />
                 </span>
-                <span className="text-16 xl:text-22">{app.label}</span>
+                <span className="text-14 xl:text-22">{app.label}</span>
               </div>
             ))}
           </div>
