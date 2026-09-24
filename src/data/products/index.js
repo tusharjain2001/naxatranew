@@ -8,6 +8,9 @@
 // placeholder ordering — the listing artboard shows only industry chips, not per-family numbers.
 // Real figures come from Tushar's datasheets; the filter is fully functional against these.
 const L = (file) => `/assets/products/listing/${file}`
+// Each listing card render is the family's default-variant motor, downscaled from the same per-family
+// renders used on the detail pages (RF 15/22/33/55 standard finned, RF 66 squat, AF 58 disc, PT-500
+// cutaway) so the photo matches the artboard while keeping the listing lightweight.
 
 // Industry chip metadata (icon + label), keyed by the slug used in family.industries.
 export const industries = {
@@ -32,10 +35,10 @@ export const seriesTabs = ['RF', 'AF', 'PT']
 
 // Grid order on the /products listing, top to bottom, left to right.
 export const productFamilies = [
-  { slug: 'rf15', name: 'Antarix RF 15', series: 'RF', brand: 'Antarix', tagline: 'Compact | Efficient | Versatile', card: { image: L('card-rf-a.png') }, industries: ['cleaning', 'agriculture', '2-wheeler'], spec: { voltage: 72, power: 1.5, torque: 6.5 } },
-  { slug: 'rf22', name: 'Antarix RF 22', series: 'RF', brand: 'Antarix', tagline: 'Compact | Efficient | Versatile', card: { image: L('card-rf-a.png') }, industries: ['2-wheeler', 'agriculture', '3-wheeler'], spec: { voltage: 72, power: 2.2, torque: 9.5 } },
-  { slug: 'rf33', name: 'Antarix RF 33', series: 'RF', brand: 'Antarix', tagline: 'Compact | Efficient | Versatile', card: { image: L('card-rf-b.png') }, industries: ['cleaning', 'agriculture', '2-wheeler'], spec: { voltage: 72, power: 3.3, torque: 10.5 } },
-  { slug: 'rf55', name: 'Antarix RF 55', series: 'RF', brand: 'Antarix', tagline: 'Compact | Efficient | Versatile', card: { image: L('card-rf-b.png') }, industries: ['2-wheeler', 'agriculture', '3-wheeler'], spec: { voltage: 72, power: 5.5, torque: 10.5 } },
+  { slug: 'rf15', name: 'Antarix RF 15', series: 'RF', brand: 'Antarix', tagline: 'Compact | Efficient | Versatile', card: { image: L('card-standard.png') }, industries: ['cleaning', 'agriculture', '2-wheeler'], spec: { voltage: 72, power: 1.5, torque: 6.5 } },
+  { slug: 'rf22', name: 'Antarix RF 22', series: 'RF', brand: 'Antarix', tagline: 'Compact | Efficient | Versatile', card: { image: L('card-standard.png') }, industries: ['2-wheeler', 'agriculture', '3-wheeler'], spec: { voltage: 72, power: 2.2, torque: 9.5 } },
+  { slug: 'rf33', name: 'Antarix RF 33', series: 'RF', brand: 'Antarix', tagline: 'Compact | Efficient | Versatile', card: { image: L('card-standard.png') }, industries: ['cleaning', 'agriculture', '2-wheeler'], spec: { voltage: 72, power: 3.3, torque: 10.5 } },
+  { slug: 'rf55', name: 'Antarix RF 55', series: 'RF', brand: 'Antarix', tagline: 'Compact | Efficient | Versatile', card: { image: L('card-standard.png') }, industries: ['2-wheeler', 'agriculture', '3-wheeler'], spec: { voltage: 72, power: 5.5, torque: 10.5 } },
   { slug: 'rf66', name: 'Antarix RF 66', series: 'RF', brand: 'Antarix', tagline: 'Compact | Efficient | Versatile', card: { image: L('card-rf66.png') }, industries: ['2-wheeler', 'agriculture', '3-wheeler'], spec: { voltage: 72, power: 14, torque: 16 } },
   { slug: 'af58', name: 'Antarix AF 58', series: 'AF', brand: 'Antarix', tagline: 'Compact | Efficient | Versatile', card: { image: L('card-af58.png') }, industries: ['2-wheeler', '3-wheeler'], spec: { voltage: 72, power: 5.8, torque: 60 } },
   { slug: 'pt500', name: 'PT - 500', series: 'PT', brand: 'PT', tagline: 'Compact | Efficient | Versatile', card: { image: L('card-pt500.png') }, industries: ['industrial-tools'], spec: { voltage: 18, power: 0.05, torque: 0.5 } },
