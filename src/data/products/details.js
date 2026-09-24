@@ -40,7 +40,9 @@ const APPS = [
 const APPS6 = [APPS[0], APPS[2], APPS[3], APPS[4], APPS[6], APPS[5]]
 
 const sketch = [RF + 'sketch-front.png', RF + 'sketch-side.png']
-const gallery = [RF + 'hero.png', RF + 'hero-cutaway.png']
+// The two View-In-Motion thumbnails on the RF-family artboards are the family's own hero render shown
+// twice (Figma nodes are the same "49bc91be" motor), so the gallery reuses the exact hero export.
+const gallery = [RF + 'hero.png', RF + 'hero.png']
 
 // Build one variant. `voltage/power/torque` are the 3 hero spec boxes; the rest fill the technical table
 // and the VIEW SPECIFICATIONS modal.
@@ -152,7 +154,7 @@ export const detailBySlug = {
       ],
       features: ['Advanced cooling channels for better thermal performance', 'Compact 3.4 Litre packaging', 'High Efficiency > 91%'],
     }),
-  ], { gallery: [AF + 'hero.png', AF + 'hero.png'], sketch: [AF + 'sketch.png'], heroClass: 'xl:top-166 xl:left-655 xl:h-699 xl:w-862' }),
+  ], { gallery: [AF + 'vim-1.png', AF + 'vim-2.png'], sketch: [AF + 'sketch.png'], heroClass: 'xl:top-166 xl:left-655 xl:h-699 xl:w-862' }),
   // PT-500 power-tool motor (Figma node 14394-3023). Real spec sheet: 18 V, 0.05 kW, 0.32 Nm, 17500 RPM.
   // NOTE (flagged): the Figma technical table labels the last two rows "Efficiency = 0.5 kW" and
   // "Mass = 0.5 Nm" — the units are mismatched (efficiency isn't kW, mass isn't Nm). Rendered exactly as
