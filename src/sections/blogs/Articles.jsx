@@ -5,13 +5,6 @@ import TabBar from '../../components/ui/TabBar'
 const formatDate = (iso) =>
   new Date(`${iso}T00:00:00`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).toUpperCase()
 
-const filters = {
-  All: (posts) => posts,
-  Latest: (posts) => [...posts].sort((a, b) => b.date.localeCompare(a.date)),
-  Events: (posts) => posts.filter((p) => p.category === 'event'),
-  Blogs: (posts) => posts.filter((p) => p.category === 'blog'),
-}
-
 function Featured({ post }) {
   return (
     <article className="flex flex-col gap-20 xl:w-978 xl:shrink-0 xl:gap-60">
@@ -58,16 +51,17 @@ function SidePost({ post }) {
 
 export default function Articles() {
   const [tab, setTab] = useState(articles.tabs[0])
-  const [featured, ...others] = filters[tab](articles.posts)
+  // The tabs only mark a selection; every tab lists the same posts.
+  const [featured, ...others] = articles.posts
 
   return (
     <section className="mx-auto flex w-full max-w-1920 flex-col gap-32 px-16 py-80 xl:gap-100 xl:px-100 xl:py-200">
       <h2 className="text-32 leading-36 tracking-display capitalize xl:text-64 xl:leading-80">{articles.title}</h2>
 
       <div className="flex flex-col gap-24 xl:gap-60">
-        <TabBar tabs={articles.tabs} active={tab} onChange={setTab} label="Filter articles" controls="articles" />
+        <TabBar tabs={articles.tabs} active={tab} onChange={setTab} label="Article categories" controls="articles" />
 
-        <div id="articles" role="tabpanel" aria-label={`${tab} articles`} className="flex flex-col gap-40 xl:flex-row xl:items-start xl:gap-25">
+        <div id="articles" role="tabpanel" aria-label="Articles" className="flex flex-col gap-40 xl:flex-row xl:items-start xl:gap-25">
           {featured ? <Featured post={featured} /> : <p className="text-16 text-grey xl:text-24">No articles here yet.</p>}
           {others.length > 0 && (
             <aside className="flex flex-col gap-24 xl:min-w-0 xl:flex-1 xl:gap-32 xl:py-24 xl:pl-16">
