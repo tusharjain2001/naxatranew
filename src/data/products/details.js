@@ -117,7 +117,8 @@ export const detailBySlug = {
   rf15: mkDetail('rf15', 'Product/ RF Series/ RF 15', [
     mkVariant('RF 15/42', { hero: RF + 'hero.png', thumb: STD_THUMB, note: SAME_DIE, voltage: '48 V / 72 V', power: '1.5 kW', torque: '6.5 Nm', peakPower: '3 kW', peakTorque: '18 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '6.5 Kg' }),
     mkVariant('RF 15/60', { hero: RF + 'hero.png', thumb: STD_THUMB, note: SAME_DIE, voltage: '48 V / 72 V', power: '1.5 kW', torque: '6.5 Nm', peakSpeed: '5000 RPM', efficiency: '>92%', mass: '6.5 Kg' }),
-  ], { vim: STD_VIM }),
+  // Hero render sized and placed to the RF 15/42 artboard (node 14626-22478).
+  ], { vim: STD_VIM, heroClass: 'xl:top-168 xl:left-229 xl:h-603 xl:w-775' }),
   // RF 22 (Figma board 14394-2055): three variants /42, /60, /86. Figma shows near-identical specs
   // across all three (only efficiency differs) — flagged for Tushar as likely placeholder duplication.
   // /86 uses its OWN distinct-housing render (Figma node 14342:11384, exported with the studio-backdrop

@@ -1,13 +1,8 @@
-import { useRef } from 'react'
 import Button from '../../../components/ui/Button'
-import SliderArrows from '../../../components/ui/SliderArrows'
 
 // Technical Sketch (line drawings) + the spec table, the datasheet CTA, then the "<variant> Motor
 // Applications" carousel. All of it swaps when the parent changes the selected variant.
 export default function TechnicalSpecs({ variant, sketch }) {
-  const track = useRef(null)
-  const scroll = (dir) => track.current?.scrollBy({ left: dir * 200, behavior: 'smooth' })
-
   return (
     <section className="w-full bg-[#fafafa]">
       <div className="mx-auto flex max-w-1920 flex-col gap-40 px-16 py-60 xl:gap-46 xl:px-100 xl:py-100">
@@ -49,10 +44,9 @@ export default function TechnicalSpecs({ variant, sketch }) {
         <div className="flex flex-col gap-24 border border-black/25 bg-white px-16 py-24 xl:mt-53 xl:px-48 xl:py-36">
           <div className="flex items-center justify-between gap-10">
             <h3 className="text-24 tracking-display capitalize xl:text-36 xl:leading-[78px]">{variant.displayName ?? variant.code} Motor Applications</h3>
-            <SliderArrows onPrev={() => scroll(-1)} onNext={() => scroll(1)} className="hidden shrink-0 xl:flex" />
           </div>
           {/* mobile: 3-col grid (per the mobile artboard); desktop: horizontal carousel */}
-          <div ref={track} className="no-scrollbar grid grid-cols-3 gap-12 xl:flex xl:gap-16 xl:overflow-x-auto xl:pb-2">
+          <div className="no-scrollbar grid grid-cols-3 gap-12 xl:flex xl:gap-16 xl:overflow-x-auto xl:pb-2">
             {variant.applications.map((app, i) => (
               <div key={app.label + i} className="flex w-full flex-col items-center gap-3 xl:min-h-228 xl:w-182 xl:shrink-0">
                 <span className="grid h-106 w-full place-items-center bg-[#f9f9f9] p-12 xl:h-182 xl:p-16">

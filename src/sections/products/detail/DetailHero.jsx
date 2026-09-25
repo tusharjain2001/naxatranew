@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Button from '../../../components/ui/Button'
 
 // Breadcrumb -> title -> subtitle ("- <variant> Variant") -> VIEW SPECIFICATIONS -> 3 spec boxes,
@@ -7,21 +8,22 @@ import Button from '../../../components/ui/Button'
 // title -> render+gallery -> horizontal variant thumbnails, with the spec figures in the technical grid.
 function SpecBox({ label, value }) {
   return (
-    <div className="flex flex-col gap-6 border-[0.5px] border-black/25 bg-white px-20 pt-10 pb-3">
-      <span className="text-16 font-light capitalize xl:text-20">{label}</span>
-      <span className="h-px w-full bg-black/25" />
-      <span className="text-28 xl:text-36">{value}</span>
+    <div className="flex flex-col gap-6 border-[0.5px] border-black/25 bg-white px-20 pt-10 pb-3 xl:h-[calc(var(--spacing)*104.442)] xl:gap-0 xl:px-[calc(var(--spacing)*20.879)] xl:pt-19 xl:pb-0">
+      <span className="text-16 font-light capitalize xl:text-20 xl:leading-[calc(var(--spacing)*20.379)]">{label}</span>
+      <span className="h-px w-full bg-black/25 xl:mt-5" />
+      <span className="text-28 xl:mt-4 xl:text-36 xl:leading-46">{value}</span>
     </div>
   )
 }
 
 // Desktop variant row: thumbnail (left) + code/note (right), stacked vertically in the panel.
-function VariantRow({ variant, selected, onSelect }) {
+// `wide` is the two-row panel of the RF 15/42 artboard: 240px-tall thumbnails that fill the row beside a 280px note.
+function VariantRow({ variant, selected, onSelect, wide }) {
   return (
     <button type="button" onClick={onSelect} aria-pressed={selected} className="flex w-full items-center gap-12 text-left">
-      <span className={`relative grid h-160 flex-1 place-items-center overflow-hidden bg-[#f9f9f9] p-12 xl:h-192 xl:w-307 xl:flex-none ${selected ? 'border border-black' : ''}`}>
-        {selected && <span className="pointer-events-none absolute inset-0 border-2 border-white" />}
-        <img src={variant.thumb ?? variant.hero} alt="" className="absolute inset-0 size-full object-contain p-12" />
+      <span className={`relative grid h-160 flex-1 place-items-center overflow-hidden bg-[#f9f9f9] p-12 ${wide ? 'xl:h-240 xl:rounded-4' : 'xl:h-192 xl:w-307 xl:flex-none'} ${selected ? 'border border-black' : ''}`}>
+        {selected && <span className={`pointer-events-none absolute inset-0 border-2 border-white ${wide ? 'xl:rounded-[3px]' : ''}`} />}
+        <img src={variant.thumb ?? variant.hero} alt="" className={`absolute inset-0 size-full object-contain p-12 ${wide ? 'xl:p-48' : ''}`} />
         {selected && (
           <svg viewBox="0 0 24 24" aria-hidden className="absolute top-9 right-8 size-32 text-black">
             <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1.5" />
@@ -67,10 +69,19 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
   const showPanel = detail.showPanel ?? multi
   // The artboards place the panel at a fixed top per row count (its bottom stays ~812 in the 880 hero):
   // 3 rows -> top-63, 2 rows -> top-183, 1 row -> top-447 (verified on RF 22/33, RF 15/66, RF 55).
+  const wideRows = detail.variants.length === 2
   const panelTop = { 1: 'xl:top-447', 2: 'xl:top-183', 3: 'xl:top-63' }[detail.variants.length] ?? 'xl:top-183'
   const galleryPos = showPanel ? 'xl:top-709 xl:left-405' : 'xl:top-337 xl:left-1647 xl:flex-col xl:gap-8'
   const tileSize = showPanel ? 'xl:h-102 xl:w-138' : 'xl:h-128 xl:w-172'
   const vimText = showPanel ? 'text-14 xl:text-18' : 'text-14 xl:absolute xl:top-1/2 xl:left-15 xl:-translate-y-1/2 xl:text-22'
+  // Clicking a gallery tile shows that image in place of the hero render (click it again to go back).
+  // The pick is tied to the variant it was made on, so switching variants returns to that variant's render.
+  const [shot, setShot] = useState(null)
+  // Tracked by position, not by src, since a gallery can repeat the same image.
+  const picked = shot?.variant === variant.id ? shot : null
+  const isPicked = (i) => picked?.i === i
+  const pick = (src, i) => setShot(isPicked(i) ? null : { variant: variant.id, src, i })
+  const mainSrc = picked?.src ?? variant.hero
   const subtitle = `${family.tagline} - ${!multi && variant.displayName ? variant.displayName : `${variant.label ?? variant.code} Variant`}`
   return (
     <section className="relative w-full overflow-hidden bg-[#fafafa]">
@@ -94,9 +105,16 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
         <div className="flex items-center gap-12">
           <div className="flex w-84 shrink-0 flex-col gap-8">
             {detail.gallery.map((src, i) => (
-              <span key={src + i} className="grid h-72 place-items-center bg-[#f1f1f1]">
+              <button
+                key={src + i}
+                type="button"
+                onClick={() => pick(src, i)}
+                aria-pressed={isPicked(i)}
+                aria-label={`Show view ${i + 1}`}
+                className={`grid h-72 cursor-pointer place-items-center border bg-[#f1f1f1] ${isPicked(i) ? 'border-black' : 'border-transparent'}`}
+              >
                 <img src={src} alt="" className="max-h-[80%] max-w-[80%] object-contain" />
-              </span>
+              </button>
             ))}
             <span className="grid h-56 place-items-center bg-[#f1f1f1]">
               <button type="button" className="text-12 capitalize underline underline-offset-2 hover:no-underline" title="Video coming soon">
@@ -104,7 +122,7 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
               </button>
             </span>
           </div>
-          <img key={variant.id + '-mhero'} src={variant.hero} alt={family.name} className="h-300 min-w-0 flex-1 animate-[fade-in_0.3s_ease-out] object-contain" />
+          <img key={mainSrc + '-mhero'} src={mainSrc} alt={family.name} className="h-300 min-w-0 flex-1 animate-[fade-in_0.3s_ease-out] object-contain" />
         </div>
 
         {showPanel && (
@@ -123,8 +141,8 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
       <div className="relative mx-auto hidden max-w-1920 xl:block xl:h-880">
         {/* Hero render (centred behind the copy; per-detail position via detail.heroClass) */}
         <img
-          key={variant.id + '-hero'}
-          src={variant.hero}
+          key={mainSrc + '-hero'}
+          src={mainSrc}
           alt={family.name}
           className={`animate-[fade-in_0.3s_ease-out] object-contain xl:absolute ${detail.heroClass ?? 'xl:top-150 xl:left-260 xl:h-560 xl:w-720'}`}
         />
@@ -147,7 +165,7 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
         </div>
 
         {/* Spec boxes */}
-        <div key={variant.id + '-specs'} className="grid animate-[fade-in_0.3s_ease-out] gap-12 xl:absolute xl:top-468 xl:left-100 xl:flex xl:w-226 xl:flex-col xl:gap-16">
+        <div key={variant.id + '-specs'} className="grid animate-[fade-in_0.3s_ease-out] gap-12 xl:absolute xl:top-468 xl:left-100 xl:flex xl:w-[calc(var(--spacing)*226.758)] xl:flex-col xl:gap-[calc(var(--spacing)*15.284)]">
           {variant.specBoxes.map((s) => (
             <SpecBox key={s.label} label={s.label} value={s.value} />
           ))}
@@ -158,9 +176,16 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
             keeps detail.gallery untouched. */}
         <div className={`flex gap-6 xl:absolute ${galleryPos}`}>
           {(detail.vim ?? detail.gallery).map((src, i) => (
-            <span key={src + i} className={`grid place-items-center bg-[#f1f1f1] ${tileSize}`}>
+            <button
+              key={src + i}
+              type="button"
+              onClick={() => pick(src, i)}
+              aria-pressed={isPicked(i)}
+              aria-label={`Show view ${i + 1}`}
+              className={`grid cursor-pointer place-items-center border bg-[#f1f1f1] ${isPicked(i) ? 'border-black' : 'border-transparent'} ${tileSize}`}
+            >
               <img src={src} alt="" className="max-h-[86%] max-w-[86%] object-contain" />
-            </span>
+            </button>
           ))}
           <span className={`relative grid place-items-center bg-[#f1f1f1] ${tileSize}`}>
             <button type="button" className={`capitalize underline underline-offset-2 hover:no-underline ${vimText}`} title="Video coming soon">
@@ -172,10 +197,10 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
         {/* Choose the Variant — fixed top per row count (see panelTop), matching each artboard. */}
         {showPanel && (
           <div className={`flex flex-col gap-24 bg-white xl:absolute xl:left-1079 xl:w-740 xl:px-32 xl:py-24 ${panelTop}`}>
-            <h2 className="text-24 capitalize">Choose the Variant</h2>
+            <h2 className={`text-24 capitalize ${wideRows ? 'xl:leading-52 xl:tracking-display' : ''}`}>Choose the Variant</h2>
             <div className="flex flex-col gap-24">
               {detail.variants.map((v) => (
-                <VariantRow key={v.id} variant={v} selected={v.id === variant.id} onSelect={() => onSelectVariant(v.id)} />
+                <VariantRow key={v.id} variant={v} wide={wideRows} selected={v.id === variant.id} onSelect={() => onSelectVariant(v.id)} />
               ))}
             </div>
           </div>
