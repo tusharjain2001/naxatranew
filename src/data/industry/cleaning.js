@@ -45,6 +45,23 @@ export default {
         label: 'Ride-on sweeper with steering',
         tile: a('tile-2.png'),
         panel: a('panel-sweeper.png'),
+        // The phone artboard re-lays the diagram for its 360×264 box, so it is rebuilt from parts (design px).
+        mobileDiagram: {
+          image: { src: a('m/sweeper.png'), l: 64.48, t: 68.73, w: 186.301, h: 148.381 },
+          shadow: { src: a('m/shadow.svg'), l: 51.2, t: 167.59, w: 222.46, h: 70.17 },
+          lines: [
+            { src: a('m/line-steering.svg'), l: 81.07, t: 28.4, w: 39.03, h: 96.44 },
+            { src: a('m/line-sweeper.svg'), l: 136.06, t: 56.3, w: 57.19, h: 142.94 },
+            { src: a('m/line-traction.svg'), l: 200.06, t: 195.03, w: 27.44, h: 39.44 },
+            { src: a('m/line-hydraulic.svg'), l: 92.07, t: 185.03, w: 19.86, h: 42.44 },
+          ],
+          labels: [
+            { text: 'Steering Motor & Controller', l: 100.29, t: 23.47, w: 163.99 },
+            { text: 'Sweeper Rotation Motor', l: 197.68, t: 50.81, w: 127.28 },
+            { text: 'Hydraulic Motor & Controller', l: 7.5, t: 218.47, w: 84, align: 'right' },
+            { text: 'Traction Motor, Controller & Gearbox', l: 232.5, t: 226.47, w: 107.56 },
+          ],
+        },
         parts: ['Steering Motor & Controller', 'Sweeper Rotation Motor', 'Hydraulic Motor & Controller', 'Traction Motor, Controller & Gearbox'],
         text: 'We offer a complete solution for this high-maneuverability machine motors, controllers, and gearboxes for steering, traction, hydraulics, and sweeper components.',
         supplies: ['Steering', 'Traction', 'Hydraulic', 'Sweeper'],
@@ -76,12 +93,13 @@ export default {
     ],
   },
 
-  cta: { image: '/assets/industry/shared/cta.png' },
+  // The phone render is the artboard's motor, controller and gearbox composed on black, with a smaller button.
+  cta: { image: '/assets/industry/shared/cta.png', mobileImage: a('m/cta.jpg'), mobileButton: 'cta' },
 
   features: {
     title: ['Antarix RF Series', 'Optimised for Cleaning Equipment'],
     items: [
-      { title: '48V / 72V / 96V', text: 'Available', icon: a('feat-voltage.svg') },
+      { title: '48V / 72V / 96V', text: 'Available', icon: a('feat-voltage.svg'), mobileIcon: a('feat-voltage-m.svg') },
       { title: 'IP67 Rated', text: 'Full Submersion Validated', icon: a('feat-ip67.svg') },
       { title: 'H-class insulation', text: 'Continuous High-Temp Operation', icon: a('feat-hclass.svg') },
       { title: '3-year', mobileTitle: '3 year', text: 'Motor Warranty on Every Unit', icon: a('feat-warranty.svg') },

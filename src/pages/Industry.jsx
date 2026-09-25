@@ -13,7 +13,9 @@ import Testimonials from '../sections/Testimonials'
 const sections = {
   challenges: (page) => <Challenges data={page.challenges} />,
   applications: (page) => <Applications data={page.applications} />,
-  cta: (page) => <DifferentApplication image={page.cta.image} imageClass={page.cta.imageClass} />,
+  cta: (page) => (
+    <DifferentApplication image={page.cta.image} imageClass={page.cta.imageClass} mobileImage={page.cta.mobileImage} mobileButton={page.cta.mobileButton} />
+  ),
   advantages: (page) => <Advantages data={page.advantages} />,
   features: (page) => <Features data={page.features} />,
   process: () => <Process />,

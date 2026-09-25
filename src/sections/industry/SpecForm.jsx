@@ -4,7 +4,7 @@ import Button from '../../components/ui/Button'
 
 const label = 'text-12 leading-[calc(var(--spacing)*11.937)] text-grey xl:text-20 xl:leading-[calc(var(--spacing)*26.81)]'
 const box =
-  'w-full rounded-[calc(var(--spacing)*1.492)] border-[calc(var(--spacing)*0.373)] border-silver bg-field px-[calc(var(--spacing)*7.83)] text-12 text-black outline-none transition-colors placeholder:text-grey/40 focus:border-primary xl:rounded-[calc(var(--spacing)*3.351)] xl:border-[calc(var(--spacing)*0.838)] xl:px-[calc(var(--spacing)*17.59)] xl:text-20'
+  'w-full rounded-[calc(var(--spacing)*1.492)] border-[calc(var(--spacing)*0.373)] border-silver bg-field px-[calc(var(--spacing)*7.83)] text-black outline-none transition-colors placeholder:text-grey/40 focus:border-primary xl:rounded-[calc(var(--spacing)*3.351)] xl:border-[calc(var(--spacing)*0.838)] xl:px-[calc(var(--spacing)*17.59)] xl:text-20'
 
 function Field({ label: text, required, className = '', children }) {
   return (
@@ -58,15 +58,15 @@ export default function SpecForm({ applications, title = specForm.title, text = 
         >
           <div className="flex flex-col gap-16 xl:flex-row xl:gap-20">
             <Field label="Full Name (Required)" required className="xl:w-[calc(var(--spacing)*387.071)]">
-              <input required name="name" autoComplete="name" placeholder="Enter Full Name" className={`h-26 xl:h-[calc(var(--spacing)*59.485)] ${box}`} />
+              <input required name="name" autoComplete="name" placeholder="Enter Full Name" className={`h-26 text-10 xl:h-[calc(var(--spacing)*59.485)] ${box}`} />
             </Field>
             <Field label="Email ID (Required)" required className="xl:w-[calc(var(--spacing)*356.91)]">
-              <input required type="email" name="email" autoComplete="email" placeholder="Enter Email ID" className={`h-26 xl:h-[calc(var(--spacing)*59.485)] ${box}`} />
+              <input required type="email" name="email" autoComplete="email" placeholder="Enter Email ID" className={`h-26 text-10 xl:h-[calc(var(--spacing)*59.485)] ${box}`} />
             </Field>
           </div>
           <div className="flex flex-col gap-16 xl:flex-row xl:gap-20">
             <Field label="Company Name (Required)" required className="xl:w-[calc(var(--spacing)*387.071)]">
-              <input required name="company" autoComplete="organization" placeholder="Enter Company Name" className={`h-26 xl:h-[calc(var(--spacing)*59.485)] ${box}`} />
+              <input required name="company" autoComplete="organization" placeholder="Enter Company Name" className={`h-26 text-10 xl:h-[calc(var(--spacing)*59.485)] ${box}`} />
             </Field>
             <Field label="Application Type" className="xl:w-[calc(var(--spacing)*356.91)]">
               <span className="relative block">
@@ -74,7 +74,7 @@ export default function SpecForm({ applications, title = specForm.title, text = 
                   name="application"
                   value={application}
                   onChange={(e) => setApplication(e.target.value)}
-                  className={`h-26 cursor-pointer appearance-none pr-24 xl:h-[calc(var(--spacing)*59.485)] xl:pr-44 ${box} ${application ? '' : 'text-grey/40'}`}
+                  className={`h-26 cursor-pointer appearance-none pr-24 text-10 xl:h-[calc(var(--spacing)*59.485)] xl:pr-44 ${box} ${application ? '' : 'text-grey/40'}`}
                 >
                   <option value="" disabled>
                     Choose your application type
@@ -96,10 +96,10 @@ export default function SpecForm({ applications, title = specForm.title, text = 
             <textarea
               name="message"
               placeholder="Write your message here..."
-              className={`h-[calc(var(--spacing)*52.225)] resize-none py-[calc(var(--spacing)*6.34)] xl:h-[calc(var(--spacing)*117.294)] xl:py-[calc(var(--spacing)*14.24)] ${box}`}
+              className={`h-[calc(var(--spacing)*52.225)] resize-none text-12 py-[calc(var(--spacing)*6.34)] xl:h-[calc(var(--spacing)*117.294)] xl:py-[calc(var(--spacing)*14.24)] ${box}`}
             />
           </Field>
-          <Button as="button" type="submit" size="sm" className="cursor-pointer xl:hidden">
+          <Button as="button" type="submit" size="spec" className="cursor-pointer xl:hidden">
             {specForm.cta}
           </Button>
           <Button as="button" type="submit" className="hidden cursor-pointer xl:inline-flex">

@@ -22,16 +22,19 @@ const sizes = {
   xs: 'gap-7 rounded-2 text-11-5 leading-11.5',
   // Phone careers artboard: the job-card buttons and the smaller form submit.
   job: 'h-30 gap-[calc(var(--spacing)*4.248)] rounded-[calc(var(--spacing)*1.699)] text-12 leading-[calc(var(--spacing)*8.495)]',
+  // Phone industry artboards: the "Running a different application?" button and the spec-form submit.
+  cta: 'gap-[calc(var(--spacing)*5.712)] rounded-[calc(var(--spacing)*1.904)] text-[length:calc(var(--spacing)*9.52)] leading-[calc(var(--spacing)*9.52)]',
+  spec: 'h-30 gap-[calc(var(--spacing)*6.657)] rounded-[calc(var(--spacing)*2.663)] text-12 leading-16',
   form: 'gap-[calc(var(--spacing)*6.505)] rounded-[calc(var(--spacing)*2.602)] text-[length:calc(var(--spacing)*9.771)] leading-[calc(var(--spacing)*13.01)]',
 }
 
 // Figma strokes sit inside the box, so outlined buttons lose the border width from their padding.
 const padding = {
-  solid: { md: 'px-32 py-16', hero: 'px-32 py-16', lg: 'px-32 py-16', sm: 'px-19.25 py-9.5', xs: 'px-18.5 py-9.25', job: 'px-[calc(var(--spacing)*10.209)]', form: 'px-[calc(var(--spacing)*15.634)] py-[calc(var(--spacing)*7.817)]' },
-  outline: { md: 'border-2 px-30 py-14', hero: 'border-2 px-30 py-14', lg: 'border px-31 py-15', sm: 'border px-18.25 py-8.5', xs: 'border px-17.5 py-8.25', job: 'border-[0.5px] px-[calc(var(--spacing)*9.709)]', form: 'border px-[calc(var(--spacing)*14.634)] py-[calc(var(--spacing)*6.817)]' },
+  solid: { md: 'px-32 py-16', hero: 'px-32 py-16', lg: 'px-32 py-16', sm: 'px-19.25 py-9.5', xs: 'px-18.5 py-9.25', job: 'px-[calc(var(--spacing)*10.209)]', cta: 'px-[calc(var(--spacing)*15.232)] py-[calc(var(--spacing)*7.616)]', spec: 'px-8', form: 'px-[calc(var(--spacing)*15.634)] py-[calc(var(--spacing)*7.817)]' },
+  outline: { md: 'border-2 px-30 py-14', hero: 'border-2 px-30 py-14', lg: 'border px-31 py-15', sm: 'border px-18.25 py-8.5', xs: 'border px-17.5 py-8.25', job: 'border-[0.5px] px-[calc(var(--spacing)*9.709)]', cta: 'border px-[calc(var(--spacing)*14.232)] py-[calc(var(--spacing)*6.616)]', spec: 'border px-7', form: 'border px-[calc(var(--spacing)*14.634)] py-[calc(var(--spacing)*6.817)]' },
 }
 
-const small = (size) => ['sm', 'xs', 'job', 'form'].includes(size)
+const small = (size) => ['sm', 'xs', 'job', 'form', 'cta', 'spec'].includes(size)
 
 export default function Button({ as: Tag = 'a', variant = 'primary', size = 'md', className = '', children, ...props }) {
   // Let callers own `display` when they hide the button at some breakpoint.

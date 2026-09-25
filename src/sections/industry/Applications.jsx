@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { sharedAssets } from '../../data/industry/shared'
 
 // Tiles are sized in `em`: 1 design px on desktop, 0.4167 on mobile (a 259px tile becomes 108px).
+// The phone label sits higher, so the vehicle is lifted and shrunk to clear it, as on the artboard.
 function Tile({ item, selected, onSelect, id, panelId }) {
   return (
     <button
@@ -18,7 +19,7 @@ function Tile({ item, selected, onSelect, id, panelId }) {
       <img
         src={item.tile}
         alt=""
-        className="pointer-events-none absolute top-0 left-0 w-full transition-transform duration-300 group-hover:scale-[1.03]"
+        className="pointer-events-none absolute -top-8 left-[2.5%] w-[95%] transition-transform duration-300 group-hover:scale-[1.03] xl:top-0 xl:left-0 xl:w-full"
       />
       {selected && (
         <>
@@ -43,6 +44,35 @@ function Supplies({ items }) {
         </li>
       ))}
     </ul>
+  )
+}
+
+// Phone-only drive diagram laid out from parts on the 360×264 artboard box, so the labels stay sharp.
+const box = ({ l, t, w, h }) => ({
+  left: `calc(var(--spacing)*${l})`,
+  top: `calc(var(--spacing)*${t})`,
+  width: `calc(var(--spacing)*${w})`,
+  ...(h && { height: `calc(var(--spacing)*${h})` }),
+})
+
+function MobileDiagram({ diagram }) {
+  return (
+    <div aria-hidden className="absolute inset-0 animate-[fade-in_0.4s_ease-out] xl:hidden">
+      <img src={diagram.shadow.src} alt="" className="absolute max-w-none" style={box(diagram.shadow)} />
+      <img src={diagram.image.src} alt="" className="absolute max-w-none" style={box(diagram.image)} />
+      {diagram.lines.map((line) => (
+        <img key={line.src} src={line.src} alt="" className="absolute max-w-none" style={box(line)} />
+      ))}
+      {diagram.labels.map((label) => (
+        <p
+          key={label.text}
+          className={`absolute text-[length:calc(var(--spacing)*10.756)] leading-[calc(var(--spacing)*14.341)] font-light text-black ${label.align === 'right' ? 'text-right' : ''}`}
+          style={box(label)}
+        >
+          {label.text}
+        </p>
+      ))}
+    </div>
   )
 }
 
@@ -77,18 +107,19 @@ export default function Applications({ data }) {
           aria-labelledby={`application-tab-${index}`}
           className="flex w-full flex-col items-center gap-24 rounded-[calc(var(--spacing)*3.321)] border-[calc(var(--spacing)*0.553)] border-silver bg-white px-12 py-[calc(var(--spacing)*6.642)] xl:h-600 xl:flex-row xl:gap-32 xl:rounded-12 xl:border-2 xl:p-24"
         >
-          <div className="relative h-264 w-full shrink-0 overflow-hidden rounded-4 bg-[#f2f2f2] xl:h-552 xl:w-auto xl:flex-1 xl:rounded-12 xl:bg-transparent">
+          <div className="relative h-264 w-360 shrink-0 overflow-hidden rounded-4 bg-[#f2f2f2] xl:h-552 xl:w-auto xl:flex-1 xl:rounded-12 xl:bg-transparent">
             <img
               key={item.panel}
               src={item.panel}
               alt={`${item.label} drive system: ${item.parts.join(', ')}`}
-              className="absolute inset-0 size-full animate-[fade-in_0.4s_ease-out] object-contain xl:object-cover"
+              className={`absolute inset-0 size-full animate-[fade-in_0.4s_ease-out] object-contain xl:object-cover ${item.mobileDiagram ? 'hidden xl:block' : ''}`}
             />
+            {item.mobileDiagram && <MobileDiagram key={item.label} diagram={item.mobileDiagram} />}
           </div>
 
-          <div key={item.label} className="flex w-full animate-[fade-in_0.4s_ease-out] flex-col gap-[calc(var(--spacing)*13.284)] p-16 xl:min-w-0 xl:flex-1 xl:gap-48 xl:p-0">
+          <div key={item.label} className="flex w-[calc(var(--spacing)*367.521)] animate-[fade-in_0.4s_ease-out] flex-col gap-[calc(var(--spacing)*13.284)] p-16 xl:w-auto xl:min-w-0 xl:flex-1 xl:gap-48 xl:p-0">
             <div className="flex flex-col gap-8 xl:gap-16">
-              <p className="text-12 leading-28 font-light text-grey-dark uppercase xl:text-20">Your Application</p>
+              <p className="text-12 leading-21 font-light text-grey-dark uppercase xl:text-20 xl:leading-28">Your Application</p>
               <h3 className="text-28 leading-[calc(var(--spacing)*35.6)] tracking-display capitalize xl:text-40 xl:leading-48 xl:tracking-[-0.03em] xl:normal-case">{item.label}</h3>
               <p className="text-14 leading-20 font-light text-grey xl:text-20 xl:leading-28 xl:text-black">{item.text}</p>
             </div>
