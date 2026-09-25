@@ -114,7 +114,8 @@ function MobileMenu({ open, onClose }) {
                           onClick={onClose}
                           aria-current={active ? 'page' : undefined}
                           className={`flex items-center gap-8 rounded-[calc(var(--spacing)*1.582)] border-[calc(var(--spacing)*0.395)] h-32 px-8 text-12 leading-20 text-black uppercase ${
-                            active ? 'border-primary bg-primary/10' : 'border-silver bg-[rgba(217,217,217,0.15)]'
+                            // Screens draw Figma's 0.4px stroke as a full pixel, so the grey is lightened to look the same.
+                            active ? 'border-primary bg-primary/10' : 'border-silver/60 bg-[rgba(217,217,217,0.15)]'
                           }`}
                         >
                           <span className="flex size-24 shrink-0 items-center justify-center">
