@@ -1,10 +1,10 @@
 import { useState } from 'react'
 
 // Form controls shared by the Careers and Contact forms, sized to the Figma input boxes.
-export const labelText = 'font-arial text-14 leading-20 text-grey xl:text-28 xl:leading-[calc(var(--spacing)*45.965)]'
+export const labelText = 'font-arial text-[length:calc(var(--spacing)*13.68)] leading-[calc(var(--spacing)*22.457)] text-grey xl:text-28 xl:leading-[calc(var(--spacing)*45.965)]'
 const box =
-  'w-full rounded-5-7 border-[calc(var(--spacing)*1.436)] border-silver bg-field px-16 font-arial text-16 text-black outline-none transition-colors placeholder:font-sans placeholder:text-grey/40 focus:border-primary xl:text-28'
-const fieldBox = `h-52 xl:h-102 xl:px-32 ${box}`
+  'w-full rounded-3 border border-silver bg-field xl:rounded-5-7 xl:border-[calc(var(--spacing)*1.436)] px-16 font-arial text-16 text-black outline-none transition-colors placeholder:font-sans placeholder:text-grey/40 focus:border-primary xl:text-28'
+const fieldBox = `h-[calc(var(--spacing)*49.834)] xl:h-102 xl:px-32 ${box}`
 
 // `markClass` recolours the asterisk; the contact form's company field has a plain one.
 export function Required({ className = 'text-[red]' }) {
@@ -13,7 +13,7 @@ export function Required({ className = 'text-[red]' }) {
 
 function Labelled({ label, required, markClass, className, children }) {
   return (
-    <label className={`flex min-w-0 flex-col gap-6 xl:gap-[calc(var(--spacing)*5.746)] ${className}`}>
+    <label className={`flex min-w-0 flex-col gap-[calc(var(--spacing)*2.807)] xl:gap-[calc(var(--spacing)*5.746)] ${className}`}>
       <span className={`whitespace-nowrap ${labelText}`}>
         {label}
         {required && <Required className={markClass} />}
@@ -40,7 +40,7 @@ export function SelectField({ label, name, placeholder, options, className = '' 
           name={name}
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          className={`h-52 cursor-pointer appearance-none pr-44 xl:h-102 xl:pr-80 xl:pl-32 ${box} ${value ? '' : 'text-grey/40'}`}
+          className={`h-[calc(var(--spacing)*49.834)] cursor-pointer appearance-none pr-44 xl:h-102 xl:pr-80 xl:pl-32 ${box} ${value ? '' : 'text-grey/40'}`}
         >
           <option value="" disabled>
             {placeholder}
@@ -72,12 +72,12 @@ export function TextAreaField({ label, className = '', ...textarea }) {
 export function FileField({ id, name, label, accept, className = '' }) {
   const [fileName, setFileName] = useState('')
   return (
-    <div className={`flex flex-col gap-6 xl:gap-[calc(var(--spacing)*5.746)] ${className}`}>
+    <div className={`flex flex-col gap-[calc(var(--spacing)*2.807)] xl:gap-[calc(var(--spacing)*5.746)] ${className}`}>
       <span id={`${id}-label`} className={`whitespace-nowrap ${labelText}`}>
         {label}
         <Required />
       </span>
-      <div className="flex items-center gap-12 xl:gap-[calc(var(--spacing)*17.237)]">
+      <div className="flex items-center gap-[calc(var(--spacing)*8.421)] xl:gap-[calc(var(--spacing)*17.237)]">
         <input
           id={id}
           name={name}
@@ -90,7 +90,7 @@ export function FileField({ id, name, label, accept, className = '' }) {
         />
         <label
           htmlFor={id}
-          className="shrink-0 cursor-pointer rounded-5-7 border-[calc(var(--spacing)*1.436)] border-[#9d9d9d] bg-silver p-8 font-arial text-16 leading-20 whitespace-nowrap text-black transition-colors peer-focus-visible:outline-2 peer-focus-visible:outline-primary hover:bg-[#cfcfcf] xl:p-[calc(var(--spacing)*14.364)] xl:text-28 xl:leading-[calc(var(--spacing)*45.965)]"
+          className="shrink-0 cursor-pointer rounded-[calc(var(--spacing)*2.807)] border-[calc(var(--spacing)*0.702)] border-[#9d9d9d] bg-silver p-[calc(var(--spacing)*7.018)] font-arial text-[length:calc(var(--spacing)*13.68)] leading-[calc(var(--spacing)*22.457)] whitespace-nowrap xl:rounded-5-7 xl:border-[calc(var(--spacing)*1.436)] text-black transition-colors peer-focus-visible:outline-2 peer-focus-visible:outline-primary hover:bg-[#cfcfcf] xl:p-[calc(var(--spacing)*14.364)] xl:text-28 xl:leading-[calc(var(--spacing)*45.965)]"
         >
           Choose File
         </label>

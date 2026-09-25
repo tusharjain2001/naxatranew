@@ -32,13 +32,13 @@ function SortMenu({ value, onChange }) {
         aria-haspopup="listbox"
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
-        className="flex cursor-pointer items-center gap-8 rounded-4 border border-black/12 bg-[#fafafa] px-12 py-8 text-14 leading-16 font-light transition-colors hover:border-black/30 xl:gap-12 xl:px-24 xl:py-16 xl:text-24 xl:leading-24"
+        className="flex h-30 cursor-pointer items-center gap-[calc(var(--spacing)*4.248)] rounded-[calc(var(--spacing)*1.699)] border-[0.5px] border-black/12 bg-[#fafafa] px-[calc(var(--spacing)*10.209)] text-12 leading-[calc(var(--spacing)*8.495)] font-light uppercase transition-colors hover:border-black/30 xl:h-auto xl:gap-12 xl:rounded-4 xl:border xl:px-24 xl:py-16 xl:text-24 xl:leading-24 xl:normal-case"
       >
         Sort By
         <img
           src="/assets/careers/chevron-down.svg"
           alt=""
-          className={`size-12 transition-transform duration-200 xl:size-[calc(var(--spacing)*17.837)] ${open ? 'rotate-180' : ''}`}
+          className={`size-[calc(var(--spacing)*7.657)] transition-transform duration-200 xl:size-[calc(var(--spacing)*17.837)] ${open ? 'rotate-180' : ''}`}
         />
       </button>
       <ul
@@ -77,12 +77,12 @@ function JobCard({ job, onApply }) {
     : { href: '#apply', 'aria-disabled': true, title: 'Job description coming soon', onClick: (e) => e.preventDefault() }
 
   return (
-    <article className="flex flex-col gap-24 rounded-12 bg-job p-20 xl:gap-55 xl:p-80">
-      <div className="flex items-start justify-between gap-16 xl:items-center">
-        <div className="flex max-w-1164 min-w-0 flex-1 flex-col gap-8 xl:gap-16">
-          <h3 className="text-20 leading-24 tracking-display capitalize xl:text-48 xl:leading-60">{job.title}</h3>
-          <p className="text-12 leading-16 font-light text-grey uppercase xl:text-28 xl:leading-40">
-            {job.location} | {job.type} | Experience: {job.experience}
+    <article className="flex flex-col gap-24 rounded-[calc(var(--spacing)*3.828)] bg-job px-25 py-[calc(var(--spacing)*25.522)] xl:gap-55 xl:rounded-12 xl:p-80">
+      <div className="flex items-start justify-between gap-[calc(var(--spacing)*5.104)] xl:items-center xl:gap-16">
+        <div className="flex max-w-1164 min-w-0 flex-1 flex-col gap-5 xl:gap-16">
+          <h3 className="text-18 leading-[calc(var(--spacing)*19.142)] tracking-display capitalize xl:text-48 xl:leading-60">{job.title}</h3>
+          <p className="text-12 leading-18 font-light text-grey uppercase xl:text-28 xl:leading-40">
+            {job.location} | {job.type} |<br className="xl:hidden" /> Experience: {job.experience}
           </p>
         </div>
         <button
@@ -91,7 +91,7 @@ function JobCard({ job, onApply }) {
           aria-controls={panelId}
           aria-label={`${open ? 'Hide' : 'Show'} details for ${job.title}`}
           onClick={() => setOpen((v) => !v)}
-          className="size-32 shrink-0 cursor-pointer transition-transform duration-300 hover:scale-110 xl:size-57"
+          className="size-[calc(var(--spacing)*25.479)] shrink-0 cursor-pointer transition-transform duration-300 hover:scale-110 xl:size-57"
         >
           <img src="/assets/careers/plus.svg" alt="" className={`size-full transition-transform duration-300 ${open ? 'rotate-45' : ''}`} />
         </button>
@@ -109,14 +109,14 @@ function JobCard({ job, onApply }) {
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-12 xl:gap-24">
-          <Button href="#apply" size="sm" onClick={() => onApply(job.title)} className="xl:hidden">
+        <div className="flex gap-[calc(var(--spacing)*7.657)] xl:flex-wrap xl:gap-24">
+          <Button href="#apply" size="job" onClick={() => onApply(job.title)} className="xl:hidden">
             Apply now
           </Button>
           <Button href="#apply" size="lg" onClick={() => onApply(job.title)} className="hidden xl:inline-flex">
             Apply now
           </Button>
-          <Button variant="outline" size="sm" {...jdProps} className="xl:hidden">
+          <Button variant="outline" size="job" {...jdProps} className="xl:hidden">
             Download job description
           </Button>
           <Button variant="outline" size="lg" {...jdProps} className="hidden xl:inline-flex">
@@ -133,21 +133,21 @@ export default function Openings({ onApply }) {
   const jobs = [...openings.jobs].sort(sorters[sort])
 
   return (
-    <section className="mx-auto flex w-full max-w-1920 flex-col gap-48 px-16 py-80 xl:gap-100 xl:px-100 xl:py-200">
-      <div className="flex flex-col gap-8 xl:gap-16">
-        <h2 className="text-32 leading-36 tracking-display xl:w-1240 xl:text-64 xl:leading-80">{openings.title}</h2>
-        <p className="text-16 leading-20 font-light text-grey xl:text-32 xl:leading-40">{openings.subtitle}</p>
+    <section className="mx-auto flex w-full max-w-1920 flex-col gap-60 px-14 py-100 xl:gap-100 xl:px-100 xl:py-200">
+      <div className="flex flex-col gap-8 px-2 xl:gap-16 xl:px-0">
+        <h2 className="text-32 leading-[calc(var(--spacing)*35.6)] tracking-display xl:w-1240 xl:text-64 xl:leading-80">{openings.title}</h2>
+        <p className="text-14 leading-17 font-light text-grey-dark xl:text-32 xl:leading-40 xl:text-grey">{openings.subtitle}</p>
       </div>
 
       <div className="flex flex-col gap-24 xl:gap-43">
-        <div className="flex items-center justify-between gap-16 xl:justify-start xl:gap-84">
-          <h3 className="text-24 leading-32 tracking-display capitalize xl:w-1448 xl:text-40 xl:leading-80">
+        <div className="flex items-center justify-between gap-[calc(var(--spacing)*26.798)] xl:justify-start xl:gap-84">
+          <h3 className="text-20 leading-[calc(var(--spacing)*25.522)] tracking-display capitalize xl:w-1448 xl:text-40 xl:leading-80">
             {openings.jobs.length} open positions
           </h3>
           <SortMenu value={sort} onChange={setSort} />
         </div>
 
-        <div className="flex flex-col gap-16 xl:gap-53">
+        <div className="flex flex-col gap-[calc(var(--spacing)*16.908)] xl:gap-53">
           {jobs.map((job) => (
             <JobCard key={job.title} job={job} onApply={onApply} />
           ))}

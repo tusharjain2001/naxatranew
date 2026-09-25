@@ -6,6 +6,8 @@ export const careersHero = {
   background: a('hero-bg.png'),
   // Cut-out of the team, layered above the blue wash so only the sky is tinted.
   team: a('hero-team.png'),
+  // The phone artboard's photo, wash and team cut-out, composed into one image.
+  mobileImage: a('m/hero.jpg'),
 }
 
 export const openings = {

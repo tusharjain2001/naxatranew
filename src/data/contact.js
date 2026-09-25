@@ -6,6 +6,8 @@ export const contactHero = {
   background: a('hero-bg.png'),
   // Cut-out of the vehicles, drone and robot arm, layered above the blue wash.
   foreground: a('hero-front.png'),
+  // The phone artboard frames one photo on the delivery vehicle and field robot.
+  mobileImage: a('m/hero.jpg'),
 }
 
 export const enquiry = {

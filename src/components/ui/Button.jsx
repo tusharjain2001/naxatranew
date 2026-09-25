@@ -20,15 +20,18 @@ const sizes = {
   lg: 'gap-13.25 rounded-4 text-20 leading-[calc(var(--spacing)*26.63)]',
   sm: 'gap-7 rounded-2 text-12 leading-12',
   xs: 'gap-7 rounded-2 text-11-5 leading-11.5',
+  // Phone careers artboard: the job-card buttons and the smaller form submit.
+  job: 'h-30 gap-[calc(var(--spacing)*4.248)] rounded-[calc(var(--spacing)*1.699)] text-12 leading-[calc(var(--spacing)*8.495)]',
+  form: 'gap-[calc(var(--spacing)*6.505)] rounded-[calc(var(--spacing)*2.602)] text-[length:calc(var(--spacing)*9.771)] leading-[calc(var(--spacing)*13.01)]',
 }
 
 // Figma strokes sit inside the box, so outlined buttons lose the border width from their padding.
 const padding = {
-  solid: { md: 'px-32 py-16', hero: 'px-32 py-16', lg: 'px-32 py-16', sm: 'px-19.25 py-9.5', xs: 'px-18.5 py-9.25' },
-  outline: { md: 'border-2 px-30 py-14', hero: 'border-2 px-30 py-14', lg: 'border px-31 py-15', sm: 'border px-18.25 py-8.5', xs: 'border px-17.5 py-8.25' },
+  solid: { md: 'px-32 py-16', hero: 'px-32 py-16', lg: 'px-32 py-16', sm: 'px-19.25 py-9.5', xs: 'px-18.5 py-9.25', job: 'px-[calc(var(--spacing)*10.209)]', form: 'px-[calc(var(--spacing)*15.634)] py-[calc(var(--spacing)*7.817)]' },
+  outline: { md: 'border-2 px-30 py-14', hero: 'border-2 px-30 py-14', lg: 'border px-31 py-15', sm: 'border px-18.25 py-8.5', xs: 'border px-17.5 py-8.25', job: 'border-[0.5px] px-[calc(var(--spacing)*9.709)]', form: 'border px-[calc(var(--spacing)*14.634)] py-[calc(var(--spacing)*6.817)]' },
 }
 
-const small = (size) => size === 'sm' || size === 'xs'
+const small = (size) => ['sm', 'xs', 'job', 'form'].includes(size)
 
 export default function Button({ as: Tag = 'a', variant = 'primary', size = 'md', className = '', children, ...props }) {
   // Let callers own `display` when they hide the button at some breakpoint.
