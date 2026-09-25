@@ -41,7 +41,7 @@ public/assets/            images and SVGs exported from Figma (m/ mobile-only, a
 
 ## Open items
 
-- **Hosting:** `/about`, `/careers`, `/contact`, `/blogs`, `/industry/*`, `/privacy-policy` and `/terms-of-use` are served by the same `index.html`. `vite dev` and `vite preview` handle that already; on the live host, rewrite unknown paths to `/index.html`.
+- **Hosting:** `/about`, `/careers`, `/contact`, `/blogs`, `/industry/*`, `/privacy-policy` and `/terms-of-use` are served by the same `index.html`. `vite dev` and `vite preview` handle that already; on the live host, rewrite unknown paths to `/index.html` (Netlify: `public/_redirects`, copied into `dist/` on build; Vercel: `vercel.json`).
 - **About, Careers, Contact and Blogs on mobile:** Figma only has desktop artboards for these pages, so their mobile layouts follow the home page's mobile patterns.
 - **Careers content:** job summaries (shown when a card is expanded) and job description files are empty in `src/data/careers.js`; experience reads `x years` as in Figma. The position count comes from the number of jobs listed.
 - **Blog posts:** posts live in `articles.posts` in `src/data/blogs.js`; there are no article pages yet, so posts are not links. The featured fundraise image is a single export of the Figma poster.
