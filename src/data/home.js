@@ -290,6 +290,9 @@ export const footer = {
     title: 'Join The Newsletter',
     text: ['Get articles on the innovative projects', 'Lockheed Martin scientists and engineers', 'are working on right now.'],
   },
-  legal: ['Privacy Policy', 'Terms of Use'],
+  legal: [
+    { label: 'Privacy Policy', href: '/privacy-policy' },
+    { label: 'Terms of Use', href: '/terms-of-use' },
+  ],
   copyright: '© 2024 Naxatra Labs. All Rights Reserved.',
 }

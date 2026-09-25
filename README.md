@@ -1,6 +1,6 @@
 # Naxatra Labs website
 
-React 19 + Vite + Tailwind CSS v4 build of the Naxatra Labs 2026 Figma file. Pages: Home (`/`), About Us (`/about`), Careers (`/careers`), Contact Us (`/contact`), Blogs (`/blogs`) and four industry pages opened from the navbar's Industry menu: `/industry/cleaning`, `/industry/agriculture`, `/industry/2-wheeler` and `/industry/3-wheeler`.
+React 19 + Vite + Tailwind CSS v4 build of the Naxatra Labs 2026 Figma file. Pages: Home (`/`), About Us (`/about`), Careers (`/careers`), Contact Us (`/contact`), Blogs (`/blogs`) and four industry pages opened from the navbar's Industry menu: `/industry/cleaning`, `/industry/agriculture`, `/industry/2-wheeler` and `/industry/3-wheeler`. The footer links to Privacy Policy (`/privacy-policy`) and Terms of Use (`/terms-of-use`), whose text lives in `src/data/legal.js`.
 
 ```bash
 npm install
@@ -41,7 +41,7 @@ public/assets/            images and SVGs exported from Figma (m/ mobile-only, a
 
 ## Open items
 
-- **Hosting:** `/about`, `/careers`, `/contact`, `/blogs` and `/industry/*` are served by the same `index.html`. `vite dev` and `vite preview` handle that already; on the live host, rewrite unknown paths to `/index.html`.
+- **Hosting:** `/about`, `/careers`, `/contact`, `/blogs`, `/industry/*`, `/privacy-policy` and `/terms-of-use` are served by the same `index.html`. `vite dev` and `vite preview` handle that already; on the live host, rewrite unknown paths to `/index.html`.
 - **About, Careers, Contact and Blogs on mobile:** Figma only has desktop artboards for these pages, so their mobile layouts follow the home page's mobile patterns.
 - **Careers content:** job summaries (shown when a card is expanded) and job description files are empty in `src/data/careers.js`; experience reads `x years` as in Figma. The position count comes from the number of jobs listed.
 - **Blog posts:** posts live in `articles.posts` in `src/data/blogs.js`; there are no article pages yet, so posts are not links. The featured fundraise image is a single export of the Figma poster.

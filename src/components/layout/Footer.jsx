@@ -1,12 +1,24 @@
 import { footer } from '../../data/home'
 import Button from '../ui/Button'
 
-// Figma supplies the social row as a single image, so it is cropped exactly as on the artboard.
-function SocialIcons({ className }) {
+const socials = [
+  { label: 'Facebook', icon: '/assets/social/facebook.svg' },
+  { label: 'X', icon: '/assets/social/x.svg' },
+  { label: 'YouTube', icon: '/assets/social/youtube.svg' },
+  { label: 'LinkedIn', icon: '/assets/social/linkedin.svg' },
+  { label: 'Instagram', icon: '/assets/social/instagram.svg' },
+]
+
+// 24px icons 40px apart on desktop; the phone row keeps the same spacing at its smaller size.
+function SocialIcons({ className, iconClass }) {
   return (
-    <div role="img" aria-label="Facebook, X, YouTube, LinkedIn and Instagram" className={`relative overflow-hidden ${className}`}>
-      <img src="/assets/social-icons.png" alt="" className="absolute top-0 left-[-0.11%] h-[163.16%] w-[100.22%]" />
-    </div>
+    <ul className={`flex items-center ${className}`}>
+      {socials.map((item) => (
+        <li key={item.label}>
+          <img src={item.icon} alt={item.label} className={`block ${iconClass}`} />
+        </li>
+      ))}
+    </ul>
   )
 }
 
@@ -115,9 +127,9 @@ export default function Footer() {
 
           <ul className="absolute top-625 left-[calc(var(--spacing)*1596.78)] flex gap-[calc(var(--spacing)*63)] text-18 leading-[calc(var(--spacing)*51.73)] whitespace-nowrap text-white">
             {footer.legal.map((item) => (
-              <li key={item}>
-                <a href="/" className="transition-opacity hover:opacity-70">
-                  {item}
+              <li key={item.label}>
+                <a href={item.href} className="transition-opacity hover:opacity-70">
+                  {item.label}
                 </a>
               </li>
             ))}
@@ -126,7 +138,7 @@ export default function Footer() {
       </div>
       <div className="mx-auto hidden h-62 max-w-1920 items-center justify-between border-b border-silver pr-29 pl-[calc(var(--spacing)*38.71)] xl:flex">
         <Copyright className="text-23" />
-        <SocialIcons className="h-[calc(var(--spacing)*36.77)] w-[calc(var(--spacing)*317.42)]" />
+        <SocialIcons className="mr-21 gap-40" iconClass="size-24" />
       </div>
 
       {/* Mobile, 402px artboard */}
@@ -171,14 +183,14 @@ export default function Footer() {
         <Newsletter mobile />
         <ul className="flex gap-10 text-10 leading-[calc(var(--spacing)*35.06)] text-white">
           {footer.legal.map((item) => (
-            <li key={item}>
-              <a href="/">{item}</a>
+            <li key={item.label}>
+              <a href={item.href}>{item.label}</a>
             </li>
           ))}
         </ul>
       </div>
       <div className="flex flex-col items-center gap-15 bg-white py-16 xl:hidden">
-        <SocialIcons className="h-23 w-194" />
+        <SocialIcons className="gap-24" iconClass="size-18" />
         <Copyright className="text-center text-16" />
       </div>
     </footer>
