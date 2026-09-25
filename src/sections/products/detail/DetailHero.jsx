@@ -86,44 +86,79 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
   return (
     <section className="relative w-full overflow-hidden bg-[#fafafa]">
       {/* ---------- MOBILE (< xl) ---------- */}
-      <div className="flex flex-col gap-16 px-16 py-24 xl:hidden">
+      <div className={`flex flex-col px-16 pt-24 xl:hidden ${showPanel ? 'gap-16 pb-24' : (detail.mobile.heroPad ?? 'pb-75')}`}>
         <div className="flex flex-col gap-8">
-          <nav className="text-12 font-light text-grey" aria-label="Breadcrumb">
+          <nav className="text-12 leading-[calc(var(--spacing)*28.8)] font-light text-grey" aria-label="Breadcrumb">
             <a href="/products" className="hover:text-primary">{detail.breadcrumb.split('/')[0]}</a>
             <span>{detail.breadcrumb.slice(detail.breadcrumb.indexOf('/'))}</span>
           </nav>
-          <h1 className="text-40 leading-none">{family.name}</h1>
-          <p key={variant.id + '-msub'} className="animate-[fade-in_0.3s_ease-out] text-14 font-light">{subtitle}</p>
-          <div className="pt-8">
-            <Button as="button" type="button" onClick={onOpenSpec} variant="outline" size="sm" className="cursor-pointer">
+          <h1 className="text-40 leading-[calc(var(--spacing)*39.6)]">{family.name}</h1>
+          <p key={variant.id + '-msub'} className="animate-[fade-in_0.3s_ease-out] text-[length:calc(var(--spacing)*14.4)] leading-[calc(var(--spacing)*21.6)] font-light">{subtitle}</p>
+          <div className="py-12">
+            <Button as="button" type="button" onClick={onOpenSpec} variant="outline" size="spec" className="cursor-pointer">
               View Specifications
             </Button>
           </div>
         </div>
 
+        {/* Single-variant pages (AF 58 / PT 500 phone artboard): full-width render with the gallery row centred under it. */}
+        {!showPanel && (
+          <>
+            <div className="relative mt-20 h-293">
+              <img
+                key={mainSrc + '-mhero1'}
+                src={mainSrc}
+                alt={family.name}
+                className={`absolute max-w-none animate-[fade-in_0.3s_ease-out] object-contain ${detail.mobile.hero ?? 'top-0 -left-6 h-293 w-361'}`}
+              />
+            </div>
+            <div className="mt-70 flex gap-[calc(var(--spacing)*3.915)] self-center">
+              {detail.gallery.map((src, i) => (
+                <button
+                  key={src + i}
+                  type="button"
+                  onClick={() => pick(src, i)}
+                  aria-pressed={isPicked(i)}
+                  aria-label={`Show view ${i + 1}`}
+                  className={`grid h-67 w-90 cursor-pointer place-items-center border bg-[#f1f1f1] ${isPicked(i) ? 'border-black' : 'border-transparent'}`}
+                >
+                  <img src={src} alt="" className="max-h-[91%] max-w-[84%] object-contain" />
+                </button>
+              ))}
+              <span className="grid h-67 w-90 place-items-center bg-[#f1f1f1]">
+                <button type="button" className="text-[length:calc(var(--spacing)*11.746)] leading-[calc(var(--spacing)*15.662)] font-light capitalize underline underline-offset-2 hover:no-underline" title="Video coming soon">
+                  view in motion
+                </button>
+              </span>
+            </div>
+          </>
+        )}
+
         {/* render (right) + gallery column (left) */}
-        <div className="flex items-center gap-12">
-          <div className="flex w-84 shrink-0 flex-col gap-8">
-            {detail.gallery.map((src, i) => (
-              <button
-                key={src + i}
-                type="button"
-                onClick={() => pick(src, i)}
-                aria-pressed={isPicked(i)}
-                aria-label={`Show view ${i + 1}`}
-                className={`grid h-72 cursor-pointer place-items-center border bg-[#f1f1f1] ${isPicked(i) ? 'border-black' : 'border-transparent'}`}
-              >
-                <img src={src} alt="" className="max-h-[80%] max-w-[80%] object-contain" />
-              </button>
-            ))}
-            <span className="grid h-56 place-items-center bg-[#f1f1f1]">
-              <button type="button" className="text-12 capitalize underline underline-offset-2 hover:no-underline" title="Video coming soon">
-                view in motion
-              </button>
-            </span>
+        {showPanel && (
+          <div className="flex items-center gap-12">
+            <div className="flex w-84 shrink-0 flex-col gap-8">
+              {detail.gallery.map((src, i) => (
+                <button
+                  key={src + i}
+                  type="button"
+                  onClick={() => pick(src, i)}
+                  aria-pressed={isPicked(i)}
+                  aria-label={`Show view ${i + 1}`}
+                  className={`grid h-72 cursor-pointer place-items-center border bg-[#f1f1f1] ${isPicked(i) ? 'border-black' : 'border-transparent'}`}
+                >
+                  <img src={src} alt="" className="max-h-[80%] max-w-[80%] object-contain" />
+                </button>
+              ))}
+              <span className="grid h-56 place-items-center bg-[#f1f1f1]">
+                <button type="button" className="text-12 capitalize underline underline-offset-2 hover:no-underline" title="Video coming soon">
+                  view in motion
+                </button>
+              </span>
+            </div>
+            <img key={mainSrc + '-mhero'} src={mainSrc} alt={family.name} className="h-300 min-w-0 flex-1 animate-[fade-in_0.3s_ease-out] object-contain" />
           </div>
-          <img key={mainSrc + '-mhero'} src={mainSrc} alt={family.name} className="h-300 min-w-0 flex-1 animate-[fade-in_0.3s_ease-out] object-contain" />
-        </div>
+        )}
 
         {showPanel && (
           <div className="flex flex-col gap-16 rounded bg-white p-12">

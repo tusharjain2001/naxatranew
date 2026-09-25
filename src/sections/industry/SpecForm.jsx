@@ -24,7 +24,8 @@ function Field({ label: text, required, className = '', children }) {
 // `wide` widens the copy column so the products/listing "Need Help Finding The Right Motor?" heading
 // renders on 2 lines and the body on 2 lines (Figma node 14394:1963 text column), matching the artboard.
 // The form column stays put; only the heading/body widths grow (they overflow into the layout gap).
-export default function SpecForm({ applications, title = specForm.title, text = specForm.text, wide = false }) {
+// `flowText` lets the two body lines run together on phones (full 370 width), keeping the desktop break.
+export default function SpecForm({ applications, title = specForm.title, text = specForm.text, wide = false, flowText = false }) {
   const [application, setApplication] = useState('')
   return (
     <section id="spec" className="w-full scroll-mt-56 px-16 py-60 xl:scroll-mt-80 xl:px-100 xl:py-120">
@@ -35,11 +36,12 @@ export default function SpecForm({ applications, title = specForm.title, text = 
             <br />
             {title[1]}
           </h2>
-          <p className={`w-261 text-14 leading-[calc(var(--spacing)*17.81)] xl:text-32 xl:leading-40 ${wide ? 'xl:w-640' : 'xl:w-544'}`}>
+          <p className={`${flowText ? 'w-370' : 'w-261'} text-14 leading-[calc(var(--spacing)*17.81)] xl:text-32 xl:leading-40 ${wide ? 'xl:w-640' : 'xl:w-544'}`}>
             {Array.isArray(text) ? (
               <>
                 {text[0]}
-                <br />
+                {flowText ? ' ' : ''}
+                <br className={flowText ? 'hidden xl:inline' : ''} />
                 {text[1]}
               </>
             ) : (

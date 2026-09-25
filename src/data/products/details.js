@@ -76,7 +76,7 @@ function mkVariant(code, o) {
       { label: 'Peak Speed', value: o.peakSpeed },
       { label: 'Efficiency', value: o.efficiency },
       { label: 'Mass', value: o.mass },
-    ],
+    ].map((row, i) => ({ ...row, mobileLabel: o.mobileTableLabels?.[i] })), // phone artboard can relabel a row
     datasheet: '/assets/products/datasheet-placeholder.pdf',
     datasheetNote: `Get more detailed specification in our ${o.displayName ?? code} specsheet.`,
     applications: o.applications ?? APPS,
@@ -108,7 +108,9 @@ function mkVariant(code, o) {
 function mkDetail(slug, breadcrumb, variants, opts = {}) {
   // heroClass overrides the desktop hero-render position/size (default suits RF-family cylindrical motors;
   // the AF 58 disc motor sits further right per its artboard). gallery/sketch default to the RF15 assets.
-  return { slug, breadcrumb, gallery: opts.gallery ?? gallery, vim: opts.vim ?? null, sketch: opts.sketch ?? sketch, heroClass: opts.heroClass, showPanel: opts.showPanel, variants }
+  // `mobile` tunes the single-variant phone layout per artboard: hero render box, hero bottom padding,
+  // sketch height, applications-box height and the tech section's bottom padding.
+  return { slug, breadcrumb, gallery: opts.gallery ?? gallery, vim: opts.vim ?? null, sketch: opts.sketch ?? sketch, heroClass: opts.heroClass, showPanel: opts.showPanel, mobile: opts.mobile ?? {}, variants }
 }
 
 export const detailBySlug = {
@@ -173,13 +175,22 @@ export const detailBySlug = {
       displayName: 'PT-500', hero: PT + 'hero.png', motorType: 'Power Tool BLDC',
       voltage: '18 V', power: '0.05 kW', torque: '0.32 Nm', peakPower: '0.5 kW', peakTorque: '0.5 Nm',
       peakSpeed: '17500 RPM', efficiency: '0.5 kW', mass: '0.5 Nm',
+      // The phone artboard (14394-3492) labels the last two rows correctly for their units.
+      mobileTableLabels: { 4: 'Peak Power', 5: 'Peak Torque' },
       applications: [
         { label: 'Grinder', image: PTA('grinder.png') },
         { label: 'Electric Drill', image: PTA('drill.png') },
         { label: 'Other Industrial Tools', image: PTA('other-tools.png') },
       ],
     }),
-  ], { vim: [PT + 'vim-1.png', PT + 'vim-2.png'], gallery: [PT + 'hero.png', PT + 'hero.png'], sketch: [PT + 'sketch.png'], heroClass: 'xl:top-149 xl:left-806 xl:h-684 xl:w-684' }),
+  ], {
+    vim: [PT + 'vim-1.png', PT + 'vim-2.png'],
+    gallery: [PT + 'hero-t.png', PT + 'hero-t.png'],
+    sketch: [PT + 'sketch.png'],
+    heroClass: 'xl:top-149 xl:left-806 xl:h-684 xl:w-684',
+    // Phone artboard 14394-3492: bigger render, section 50px shorter, shorter sketch and applications box.
+    mobile: { hero: '-top-21 -left-33 h-352 w-433', heroPad: 'pb-25', sketch: 'h-167', apps: 'min-h-0', techPad: 'pb-60' },
+  }),
 }
 
 export const productDetail = (slug) => detailBySlug[slug]

@@ -27,9 +27,9 @@ export default function ProductDetail({ family }) {
   return (
     <main className="flex flex-col">
       <DetailHero family={family} detail={detail} variant={variant} onSelectVariant={setVariantId} onOpenSpec={() => setSpecOpen(true)} />
-      <TechnicalSpecs variant={variant} sketch={variant.sketch ?? detail.sketch} />
+      <TechnicalSpecs variant={variant} sketch={variant.sketch ?? detail.sketch} mobile={detail.mobile} />
       <BrowseOtherMotors currentSlug={family.slug} />
-      <SpecForm applications={motorApplications} wide title={['Need Help Finding', 'The Right Motor?']} text={['Our team can help you choose or', 'customise a solution for your application.']} />
+      <SpecForm applications={motorApplications} wide flowText title={['Need Help Finding', 'The Right Motor?']} text={['Our team can help you choose or', 'customise a solution for your application.']} />
       <SpecModal open={specOpen} onClose={() => setSpecOpen(false)} family={family} variant={variant} />
     </main>
   )

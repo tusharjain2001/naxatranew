@@ -1,6 +1,8 @@
 const sets = {
   desktop: { prev: '/assets/journey-prev.svg', next: '/assets/journey-next.svg', size: 'size-50', gap: 'gap-8' },
   mobile: { prev: '/assets/m/prev.svg', next: '/assets/m/next.svg', size: 'size-[calc(var(--spacing)*38.89)]', gap: 'gap-6.25' },
+  // Phone "Browse Our Other Motors" header: the mobile arrows at 32px.
+  small: { prev: '/assets/m/prev.svg', next: '/assets/m/next.svg', size: 'size-32', gap: 'gap-[calc(var(--spacing)*5.12)]' },
   hero: { prev: '/assets/m/hero-prev.svg', next: '/assets/m/hero-next.svg', size: 'size-32' },
 }
 
