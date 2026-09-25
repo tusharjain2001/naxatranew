@@ -21,7 +21,7 @@ export const articles = {
       title: 'Fund raise',
       date: '2026-05-11',
       category: 'blog',
-      excerpt,
+      excerpt: 'Naxatra Labs raises $3M in a Pre-Series A round to accelerate motor and controller innovation for electric mobility.',
       image: a('post-fundraise.png'),
       alt: 'Naxatra Labs raises $3M pre-Series A led by Rainmatter, with participation from angel investors',
     },

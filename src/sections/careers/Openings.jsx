@@ -135,7 +135,7 @@ export default function Openings({ onApply }) {
   return (
     <section className="mx-auto flex w-full max-w-1920 flex-col gap-48 px-16 py-80 xl:gap-100 xl:px-100 xl:py-200">
       <div className="flex flex-col gap-8 xl:gap-16">
-        <h2 className="text-32 leading-36 tracking-display capitalize xl:w-982 xl:text-64 xl:leading-80">{openings.title}</h2>
+        <h2 className="text-32 leading-36 tracking-display xl:w-1240 xl:text-64 xl:leading-80">{openings.title}</h2>
         <p className="text-16 leading-20 font-light text-grey xl:text-32 xl:leading-40">{openings.subtitle}</p>
       </div>
 

@@ -53,51 +53,47 @@ export const industryMenu = {
 // `top` is the headline offset from the top of the 880px image area on the 1920px artboard.
 export const heroSlides = [
   {
-    id: 'precision',
+    id: 'agriculture',
     image: a('hero-agri.png'),
-    title: ['Precision motor systems'],
-    subtitle: ['Designed and manufactured in India for manufacturers,', 'OEMs and mobility companies worldwide.'],
-    subtitleGap: 'gap-18',
+    title: ['Powering Agriculture’s Next', 'Generation'],
     top: 142,
   },
   {
-    id: 'making',
+    id: 'mobility',
     image: a('hero-vehicles.png'),
-    title: ['The Making of', 'What Moves'],
+    title: ['Engineering Electric Mobility,', 'End To End.'],
     overlay: 'vehicles',
     top: 111,
   },
   {
-    id: 'designed',
+    id: 'cleaning',
     image: a('hero-sweeper.png'),
-    title: ['Designed.', 'Developed.', 'Driven.'],
+    title: ['Powerful Motors For', 'Spotless Results.'],
     top: 160,
   },
   {
     id: 'drone',
     image: a('hero-drone.png'),
     imageClass: '-scale-x-100 object-top',
-    title: ['The Making of', 'What Moves'],
+    title: ['Precision Motors,', 'Engineered To Fly.'],
     top: 111,
   },
   {
     id: 'made-in-india',
     image: a('hero-bridge.png'),
     mobileImage: a('m/hero-bridge.png'),
-    title: ['Advanced Motors & Controllers', 'All Made In India'],
-    mobileTitle: ['Advanced Motors & Controllers', 'All Made in India'],
+    title: ['Built In India.', 'Driving What’s Next.'],
     subtitle: ['Designed. Developed. Driven.'],
     subtitleGap: 'gap-48',
     overlay: 'bridge',
-    titleSize: 'text-80 leading-88',
-    left: 100,
-    top: 120,
+    titleClass: 'h-181',
+    top: 151,
   },
 ]
 
 export const commitment = {
   title: 'Our Commitment To Innovation, Precision, And Sustainability Drives Every Decision We Make',
-  body: "At Naxatra Labs, we understand that every application has unique requirements. They're engineered to fit your needs. We customize every detail to ensure optimal performance and efficiency.",
+  body: 'At Naxatra Labs, we engineer motors and controllers around your application, not the other way around. Every product is tailored, tested, and optimized for real-world performance and efficiency.',
   location: 'AHMEDABAD, INDIA',
   image: a('commitment-motor.png'),
   stats: [
@@ -155,7 +151,7 @@ export const manufacturing = {
 
 export const deployment = {
   title: 'Engineered Here, Deployed Everywhere',
-  subtitle: 'High-Performance Electric Motor For Global Applications.',
+  subtitle: 'High-Performance Electric Motors For Global Applications.',
   tabs: ['Design', 'Performance', 'Technology'],
   images: [
     { src: a('deploy-drone.png'), alt: 'Agricultural spraying drone over a paddy field' },
@@ -168,6 +164,8 @@ export const products = [
   {
     brand: 'Antarix',
     series: 'RF Series',
+    // The RF card opens the full product listing; the others open their motor's page.
+    href: '/products',
     mobileSeries: 'RF Series',
     desc: 'Main description point',
     descClass: 'left-141 top-121 text-left',
@@ -187,6 +185,7 @@ export const products = [
   {
     brand: 'Antarix',
     series: 'AF58',
+    href: '/products/af58',
     mobileSeries: 'AF Series',
     desc: 'Main description point',
     descClass: 'left-141 top-131 text-center',
@@ -206,6 +205,7 @@ export const products = [
   {
     brand: 'PT',
     series: '500',
+    href: '/products/pt500',
     mobileSeries: '500',
     desc: 'Main description point',
     descClass: 'left-141 top-121 text-left',

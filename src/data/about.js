@@ -79,8 +79,7 @@ export const founders = {
 export const recognition = {
   title: 'Taking Indian Engineering to the World',
   subtitle: 'Global recognition for technology built with purpose.',
-  statement:
-    'We’ve built Naxatra from India into a globally recognised technology company, taking homegrown motor innovation beyond borders and into international markets.',
+  statement: 'From India to the World, we’re taking homegrown motor innovation into international markets.',
   stat: { value: '10', unit: '%', label: 'Higher Average Efficiency' },
   // Grid order, left to right and top to bottom. `statement` spans two columns, `stat` is a tile.
   // Mobile moves the stat tile after gallery-8, so it and the final photo go last there.

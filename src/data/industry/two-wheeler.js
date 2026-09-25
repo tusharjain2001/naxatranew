@@ -1,8 +1,5 @@
 const a = (file) => `/assets/industry/2w/${file}`
 
-const offer =
-  'We offer a comprehensive solution for a high-maneuverability moving appliance, including a motor, controller, and gearbox for steering, traction, hydraulic systems, and sweeper components.'
-
 export default {
   slug: '2-wheeler',
   name: '2 Wheeler',
@@ -16,7 +13,7 @@ export default {
     desktopTitle: ['Engineered in India. Built To', 'Power 2 Wheeler Electric', 'Mobility'],
     titleClass: 'capitalize xl:w-1097 xl:whitespace-nowrap',
     textTop: 'xl:top-107',
-    subtitle: ['Motor Advanced electric powertrain technology engineered for scooters, motorcycles, passenger mobility, and cargo transport.'],
+    subtitle: ['Advanced Electric Motor & Powertrain Technology, Engineered For Scooters, Motorcycles, Passenger Mobility, And Cargo Transport.'],
     subtitleClass: 'xl:w-452',
     image: a('hero.png'),
     alt: 'Electric motorcycles and scooters parked on a coastal highway',
@@ -24,7 +21,7 @@ export default {
 
   challenges: {
     title: 'The key Consumer challenges in mobility',
-    heading: '2-Wheelers mobility vehicles',
+    heading: '2-Wheelers Mobility Vehicles',
     text: 'Precision-built motors and controllers designed for performance, efficiency, and reliability.',
     layout: { flow: true },
     cards: [
@@ -39,9 +36,9 @@ export default {
     title: 'Which 2 Wheeler application are you building for?',
     defaultIndex: 1,
     items: [
-      { label: '2W Scooters', tile: a('tile-1.png'), panel: a('panel-scooter.png'), parts: ['RF series Motor & Controller'], text: offer, supplies: ['Traction - RF Series Motor & Controller'] },
-      { label: '2W Bikes', tile: a('tile-2.png'), panel: a('panel-bike.png'), parts: ['RF 22/55 series Motor & Controller'], text: offer, supplies: ['Traction - RF 22/ RF 55 Motor & Controller'] },
-      { label: 'Moped', tile: a('tile-3.png'), panel: a('panel-moped.png'), parts: ['RF series Motor & Controller'], text: offer, supplies: ['Traction - RF Series Motor & Controller'] },
+      { label: '2W Scooters', tile: a('tile-1.png'), panel: a('panel-scooter.png'), parts: ['RF series Motor & Controller'], text: 'Smooth, efficient traction for electric scooters, powered by our RF-series motor and controller for reliable everyday performance.', supplies: ['Traction - RF Series Motor & Controller'] },
+      { label: '2W Bikes', tile: a('tile-2.png'), panel: a('panel-bike.png'), parts: ['RF 22/55 series Motor & Controller'], text: 'High-performance traction for electric bikes- RF-series motor and controller, built for power, range, and reliability', supplies: ['Traction - RF 22/ RF 55 Motor & Controller'] },
+      { label: 'Moped', tile: a('tile-3.png'), panel: a('panel-moped.png'), parts: ['RF series Motor & Controller'], text: 'Dependable traction for electric mopeds, RF-series motor and controller, engineered for efficient, everyday commuting.', supplies: ['Traction - RF Series Motor & Controller'] },
     ],
   },
 

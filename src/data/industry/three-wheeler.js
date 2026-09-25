@@ -2,9 +2,6 @@ const a = (file) => `/assets/industry/3w/${file}`
 // The outcome cards reuse the 2-wheeler icons, which are the same artwork.
 const icon = (file) => `/assets/industry/2w/${file}`
 
-const offer =
-  'We offer a comprehensive solution for a high-maneuverability moving appliance, including a motor, controller, and gearbox for steering, traction, hydraulic systems, and sweeper components.'
-
 export default {
   slug: '3-wheeler',
   name: '3 Wheeler',
@@ -17,7 +14,7 @@ export default {
     desktopTitle: ['Engineered in India. Built To', 'Power 3 Wheeler Electric', 'Mobility'],
     titleClass: 'capitalize xl:w-1097 xl:whitespace-nowrap',
     textTop: 'xl:top-82',
-    subtitle: ['Motor Advanced electric powertrain technology engineered for EV Autos, Loader and Tricycle.'],
+    subtitle: ['Advanced Electric Motor & Powertrain Technology- Engineered For EV Autos, Loaders, And Tricycles.'],
     subtitleClass: 'xl:w-450',
     image: a('hero.png'),
     imageClass: 'xl:object-bottom',
@@ -44,17 +41,17 @@ export default {
     title: 'Which 3 Wheeler application are you building for?',
     defaultIndex: 1,
     items: [
-      { label: 'E-rickshaw', tile: a('tile-1.png'), panel: a('panel-erickshaw.png'), parts: ['Traction Motor, Controller & Axle'], text: offer, supplies: ['Traction - Motor, Controller & Axle (30/32inch)'] },
+      { label: 'E-rickshaw', tile: a('tile-1.png'), panel: a('panel-erickshaw.png'), parts: ['Traction Motor, Controller & Axle'], text: 'Built for high-density urban transit, a traction motor, controller, and axle engineered for frequent stop-start driving, passenger comfort, and long daily duty cycles.', supplies: ['Traction - Motor, Controller & Axle (30/32inch)'] },
       {
         label: 'Loader Passenger',
         tile: a('tile-2.png'),
         panel: a('panel-passenger.png'),
         parts: ['Traction Motor, Controller, Gearbox & Independent Axle', 'Traction Motor, Controller & Rigid Axle'],
-        text: offer,
+        text: 'Built for reliable passenger and cargo mobility. We supply traction motors, controllers, and gearboxes in both independent and rigid axle configurations, engineered for stable, load-ready performance.',
         supplies: ['Traction - Motor, Controller, Gearbox & Independent Axle', 'Traction - Motor, Controller & Rigid Axle'],
       },
-      { label: 'Loader Cargo', tile: a('tile-3.png'), panel: a('panel-cargo.png'), parts: ['Traction Motor, Controller & Rigid Axle'], text: offer, supplies: ['Traction - Motor, Controller & Rigid Axle'] },
-      { label: 'Tricycle', tile: a('tile-4.png'), panel: a('panel-tricycle.png'), parts: ['Traction Motor, Controller & Rigid Axle'], text: offer, supplies: ['Traction - Motor, Controller & Rigid Axle'] },
+      { label: 'Loader Cargo', tile: a('tile-3.png'), panel: a('panel-cargo.png'), parts: ['Traction Motor, Controller & Rigid Axle'], text: 'Engineered for heavy-duty goods transport. A traction motor, controller, and rigid axle built to handle sustained load carrying, frequent starts, and rough last-mile routes.', supplies: ['Traction - Motor, Controller & Rigid Axle'] },
+      { label: 'Tricycle', tile: a('tile-4.png'), panel: a('panel-tricycle.png'), parts: ['Traction Motor, Controller & Rigid Axle'], text: 'Compact and dependable for everyday mobility. A traction motor, controller, and rigid axle designed for stable, efficient rides across short-to-medium distances.', supplies: ['Traction - Motor, Controller & Rigid Axle'] },
     ],
   },
 

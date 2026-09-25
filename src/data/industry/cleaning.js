@@ -1,8 +1,5 @@
 const a = (file) => `/assets/industry/cleaning/${file}`
 
-const offer =
-  'We offer a comprehensive solution for a high-maneuverability moving appliance, including a motor, controller, and gearbox for steering, traction, hydraulic systems, and sweeper components.'
-
 export default {
   slug: 'cleaning',
   name: 'Cleaning',
@@ -41,7 +38,7 @@ export default {
         tile: a('tile-1.png'),
         panel: a('panel-scrubber.png'),
         parts: ['Steering Motor & Controller', 'Hydraulic/Brush drive', 'Traction Motor, Controller & Gearbox'],
-        text: offer,
+        text: 'Engineered for continuous-duty floor scrubbing. Our drive system covers steering control, hydraulic brush drive, and a traction motor, controller, and gearbox for precise, stable maneuvering across large floor areas.',
         supplies: ['Steering', 'Traction', 'Hydraulic'],
       },
       {
@@ -49,7 +46,7 @@ export default {
         tile: a('tile-2.png'),
         panel: a('panel-sweeper.png'),
         parts: ['Steering Motor & Controller', 'Sweeper Rotation Motor', 'Hydraulic Motor & Controller', 'Traction Motor, Controller & Gearbox'],
-        text: offer,
+        text: 'We offer a complete solution for this high-maneuverability machine motors, controllers, and gearboxes for steering, traction, hydraulics, and sweeper components.',
         supplies: ['Steering', 'Traction', 'Hydraulic', 'Sweeper'],
       },
       {
@@ -57,7 +54,7 @@ export default {
         tile: a('tile-3.png'),
         panel: a('panel-leaf.png'),
         parts: ['Vacuum Motor & Controller', 'Traction Motor, Controller & Axle'],
-        text: offer,
+        text: 'Built for efficient outdoor debris collection. We supply the vacuum motor and controller for suction power, along with a traction motor, controller, and axle for smooth, reliable maneuvering across open ground.',
         supplies: ['Vacuum', 'Traction'],
       },
       {
@@ -65,7 +62,7 @@ export default {
         tile: a('tile-4.png'),
         panel: a('panel-walk.png'),
         parts: ['Traction Motor, Controller & Gearbox', 'Hydraulic/Brush drive'],
-        text: offer,
+        text: 'Compact and easy to operate- our drive system powers the hydraulic brush drive for consistent scrubbing pressure, along with a traction motor, controller, and gearbox for smooth, controlled walk-behind movement.',
         supplies: ['Hydraulic', 'Traction'],
       },
       {
@@ -73,7 +70,7 @@ export default {
         tile: a('tile-5.png'),
         panel: a('panel-truck.png'),
         parts: ['6 Cubic Truck-Mounted Sweeper Solution', 'Hydraulic System Solution', 'Traction Motor & Controller', 'Vacuum Motor & Controller Solution'],
-        text: offer,
+        text: 'Built for large-scale municipal and industrial sweeping. Our drive system covers vacuum, hydraulic, and sweeper functions, plus a dedicated traction motor and controller, delivering reliable performance across heavy-duty, high-capacity truck-mounted units.',
         supplies: ['Hydraulic', 'Vacuum', 'Sweeper', 'Traction'],
       },
     ],

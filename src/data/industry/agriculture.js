@@ -1,8 +1,5 @@
 const a = (file) => `/assets/industry/agri/${file}`
 
-const offer =
-  'We offer a comprehensive solution for a high-maneuverability moving appliance, including a motor, controller, and gearbox for steering, traction, hydraulic systems, and sweeper components.'
-
 export default {
   slug: 'agriculture',
   name: 'Agriculture',
@@ -49,14 +46,14 @@ export default {
     title: 'Which Agriculture application are you building for?',
     defaultIndex: 1,
     items: [
-      { label: 'Power Tiller', tile: a('tile-1.png'), panel: a('panel-tiller.png'), parts: ['RF 55/86 Motor & Controller'], text: offer, supplies: ['Traction - RF 55/86 Motor & Controller'] },
-      { label: 'Power Weeder', tile: a('tile-2.png'), panel: a('panel-weeder.png'), parts: ['RF 22/48 Motor & Controller'], text: offer, supplies: ['Traction - RF22/48 Motor & Controller'] },
+      { label: 'Power Tiller', tile: a('tile-1.png'), panel: a('panel-tiller.png'), parts: ['RF 55/86 Motor & Controller'], text: 'Built for demanding soil preparation, our RF 55/86 traction motor and controller deliver consistent, reliable power to handle tough field conditions.', supplies: ['Traction - RF 55/86 Motor & Controller'] },
+      { label: 'Power Weeder', tile: a('tile-2.png'), panel: a('panel-weeder.png'), parts: ['RF 22/48 Motor & Controller'], text: 'Built for demanding soil preparation, we supply motors and controllers for steering, traction, and hydraulic systems, engineered to handle tough field conditions with consistent, reliable power.', supplies: ['Traction - RF22/48 Motor & Controller'] },
       {
         label: 'Agri Bot',
         tile: a('tile-3.png'),
         panel: a('panel-bot.png'),
         parts: ['Traction Motor & Controller', 'Spraying Motor & Controller'],
-        text: offer,
+        text: 'A fully motorized solution for autonomous field operations- RF 22/48 spraying motor and controller for precise application, with RF 22/48 or RF 22/60 traction options depending on payload and terrain.',
         supplies: ['Spraying - RF 22/48', 'Traction - RF 22/48 & RF 22/60'],
       },
       {
@@ -64,10 +61,10 @@ export default {
         tile: a('tile-4.png'),
         panel: a('panel-tractor.png'),
         parts: ['Steering Motor & Controller', 'Hydraulic Motor & Controller', 'Traction Motor, Controller and Axle'],
-        text: offer,
+        text: 'Built for versatile farm work- RF 15/42 steering motor and controller, hydraulic power for implement control, and RF 22/48 traction with axle, engineered for reliable performance across varied field tasks.',
         supplies: ['Steering - RF 15/42', 'Hydraulic', 'Traction - RF 22/48 + Axle'],
       },
-      { label: 'Agri Sprayer', tile: a('tile-5.png'), panel: a('panel-sprayer.png'), parts: ['Spraying Motor & Controller'], text: offer, supplies: ['Spraying'] },
+      { label: 'Agri Sprayer', tile: a('tile-5.png'), panel: a('panel-sprayer.png'), parts: ['Spraying Motor & Controller'], text: 'Precision aerial application. A dedicated spraying motor and controller engineered for accurate, efficient crop coverage from the air.', supplies: ['Spraying'] },
     ],
   },
 

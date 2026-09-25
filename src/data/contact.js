@@ -12,10 +12,6 @@ export const enquiry = {
   topics: ['Motors Enquiry', 'Investment', 'Partnership', 'Others'],
   title: 'If you’re here, We need to talk',
   subtitle: 'What are you looking for?',
-  // Fields exactly as on the Figma artboard, which reuses the careers form.
-  fields: {
-    role: 'Applying for which role?',
-    file: 'Attach Resume',
-    link: 'Linkedin Link',
-  },
+  // Figma leaves the list empty; these are the application areas named on the home page.
+  applications: ['2 Wheelers', '3 Wheelers & L5', 'Cleaning', 'Agriculture', 'Drone', 'Other'],
 }

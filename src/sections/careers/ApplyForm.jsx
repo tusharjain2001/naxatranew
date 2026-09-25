@@ -20,13 +20,14 @@ export default function ApplyForm({ role, onRoleChange }) {
 
           <div className="flex flex-col gap-20 xl:gap-32">
             <div className="grid gap-20 xl:grid-cols-2 xl:gap-x-40 xl:gap-y-32">
-              <Field label="Full Name (Required)" name="name" autoComplete="name" />
-              <Field label="Email ID (Required)" name="email" type="email" autoComplete="email" />
-              <Field label="Contact Number" name="phone" type="tel" autoComplete="tel" />
+              <Field label="Full Name (Required)" name="name" autoComplete="name" placeholder="Enter Full Name" />
+              <Field label="Email ID (Required)" name="email" type="email" autoComplete="email" placeholder="Enter EmailID" />
+              <Field label="Contact Number" name="phone" type="tel" autoComplete="tel" placeholder="Enter Contact Number" />
               <Field
                 label="Applying for which role?"
                 name="role"
                 list="open-roles"
+                placeholder="Choose your role"
                 value={role}
                 onChange={(e) => onRoleChange(e.target.value)}
               />
@@ -38,7 +39,7 @@ export default function ApplyForm({ role, onRoleChange }) {
             </div>
             <div className="flex flex-col gap-20 xl:flex-row xl:gap-46">
               <FileField id="resume" name="resume" label="Attach Resume" accept=".pdf,.doc,.docx" className="xl:shrink-0" />
-              <Field label="Linkedin Link" name="linkedin" type="url" placeholder="" className="xl:flex-1" />
+              <Field label="Linkedin Link" name="linkedin" type="url" placeholder="Enter Linked In link" className="xl:flex-1" />
             </div>
           </div>
         </div>

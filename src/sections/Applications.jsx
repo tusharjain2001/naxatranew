@@ -17,7 +17,7 @@ function ApplicationCard({ item }) {
       href="#industry"
       className="group relative block h-[378.914em] w-[334.257em] shrink-0 rounded-[9.473em] bg-white transition-transform duration-300 hover:-translate-y-[6em]"
     >
-      <span className="absolute inset-0 rounded-[9.473em] border-[2.271em] border-tile-border transition-colors duration-300 group-hover:border-primary/40" />
+      <span className="absolute inset-0 rounded-[9.473em] border-[2.271em] border-tile-border transition-colors duration-300 group-hover:border-muted" />
       <span className="absolute top-[1.52em] left-[2.16em] h-[313em] w-[330em] rounded-t-[7.569em] bg-tile" />
 
       <span className="absolute top-[325em] left-[15.5em] flex h-[40em] items-center text-grey capitalize">

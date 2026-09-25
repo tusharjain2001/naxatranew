@@ -9,7 +9,7 @@ export const careersHero = {
 }
 
 export const openings = {
-  title: 'Be part of a team pushing the boundaries of motor technology.',
+  title: 'Be a part of us to build the future of motion.',
   subtitle: 'We’re actively hiring.',
   // `summary` is shown when a card is expanded and `jd` links the job description file; both await the real copy.
   jobs: [

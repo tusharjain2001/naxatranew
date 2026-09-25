@@ -47,7 +47,7 @@ public/assets/            images and SVGs exported from Figma (m/ mobile-only, a
 - **Blog posts:** posts live in `articles.posts` in `src/data/blogs.js`; there are no article pages yet, so posts are not links. The featured fundraise image is a single export of the Figma poster.
 - **Industry artwork:** the vehicle tiles, the drive-train render and the three-wheeler axle render are composed from Figma's separate layers into single transparent PNGs; the annotated drive diagrams and the challenge cards are exported from Figma as they appear.
 - **Forms:** the careers application, the contact enquiry and the industry spec form validate required fields but do not submit anywhere yet.
-- **Contact form fields:** the Figma artboard reuses the careers fields (role, resume, LinkedIn). They are built as designed; their labels live in `enquiry.fields` in `src/data/contact.js`.
+- **Contact form fields:** Name, email, company, application type and message, as on the desktop artboard. The phone artboard still shows the careers fields; the site uses the enquiry fields on both. The application list is `enquiry.applications` in `src/data/contact.js`.
 - **LinkedIn badges:** founders and investors show the LinkedIn icon from Figma, but no profile URLs were provided, so they are not links yet.
 
 - **Fonts:** the design uses Helvetica Neue in Light, Regular, Medium and Bold. It renders correctly on macOS and iOS. Windows and Android have no Helvetica Neue, so they fall back to Arial, which has no light weight. To match everywhere, add licensed Helvetica Neue web fonts with `@font-face` in `src/index.css`.

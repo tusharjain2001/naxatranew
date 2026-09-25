@@ -6,6 +6,7 @@ export default function SectionHeader({
   mobileTitle,
   subtitle,
   mobileSubtitle,
+  subtitleClass = '',
   mobileLeading = 'leading-24',
   desktopGap = 'xl:gap-16',
   track,
@@ -27,7 +28,7 @@ export default function SectionHeader({
         </h2>
         {mobileSubtitle && <p className={`text-14 text-grey xl:hidden ${mobileLeading}`}>{mobileSubtitle}</p>}
         {subtitle && (
-          <p className={`text-14 text-grey xl:block xl:text-24 xl:leading-32 ${mobileLeading} ${mobileSubtitle ? 'hidden' : ''}`}>{subtitle}</p>
+          <p className={`text-14 text-grey xl:block xl:text-24 xl:leading-32 ${mobileLeading} ${mobileSubtitle ? 'hidden' : ''} ${subtitleClass}`}>{subtitle}</p>
         )}
       </div>
       {track && (

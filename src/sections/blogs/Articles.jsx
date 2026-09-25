@@ -25,7 +25,7 @@ function Featured({ post }) {
             {formatDate(post.date)}
           </time>
         </div>
-        <p className="text-16 leading-24 tracking-display xl:text-24 xl:leading-35">{post.excerpt}</p>
+        <p className="text-16 leading-24 tracking-display xl:w-642 xl:text-24 xl:leading-35">{post.excerpt}</p>
       </div>
     </article>
   )

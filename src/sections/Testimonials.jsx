@@ -40,7 +40,9 @@ export default function Testimonials({ spacing = 'gap-60 py-100 xl:gap-100 xl:pt
     <section className={`mx-auto flex w-full max-w-1920 flex-col ${spacing}`}>
       <SectionHeader
         title="What Innovators Say About Us?"
-        subtitle="These Are Our Client Testimonials..."
+        // Sentence case, unlike the other section subtitles.
+        subtitle="A few words from our clients..."
+        subtitleClass="normal-case"
         mobileLeading="leading-32"
         desktopGap="xl:gap-11"
         track={track}

@@ -12,10 +12,10 @@ export default function Manufacturing() {
         <h2 className="text-center text-32 leading-36 tracking-display capitalize xl:text-64 xl:leading-80">
           {manufacturing.title}
         </h2>
-        <Button variant="outline" size="xs" href="#about" className="xl:hidden">
+        <Button variant="outline" size="xs" href="/about" className="xl:hidden">
           {manufacturing.cta}
         </Button>
-        <Button variant="outline" href="#about" className="hidden xl:inline-flex">
+        <Button variant="outline" href="/about" className="hidden xl:inline-flex">
           {manufacturing.cta}
         </Button>
       </div>

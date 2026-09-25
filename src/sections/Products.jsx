@@ -45,14 +45,14 @@ export default function Products() {
           Motor Changes Everything
         </h2>
         <p className="text-14 leading-16 text-grey xl:text-24 xl:leading-32">
-          Featured Products, Efficient, Compact And High-Performance Electric Motion.
+          Featured Products- Efficient, Compact, High-Performance Electric Motors.
         </p>
       </div>
 
       {/* Desktop cards */}
       <div className="hidden gap-24 xl:flex">
         {products.map((product) => (
-          <a key={product.series} href="#products" className="group relative h-640 w-557 shrink-0 overflow-hidden rounded-12">
+          <a key={product.series} href={product.href} className="group relative h-640 w-557 shrink-0 overflow-hidden rounded-12">
             {/* Resting backdrop: the plain card from Figma. */}
             <img
               src="/assets/product-bg.png"
@@ -79,7 +79,7 @@ export default function Products() {
       {/* Mobile cards */}
       <div className="flex flex-col gap-16 px-16 xl:hidden">
         {products.map((product) => (
-          <a key={product.series} href="#products" className="group relative h-160 w-full">
+          <a key={product.series} href={product.href} className="group relative h-160 w-full">
             <img src="/assets/m/product-bg2.png" alt="" loading="lazy" className="absolute inset-0 size-full rounded-4-4 object-cover opacity-40" />
             <img src="/assets/product-bg.png" alt="" loading="lazy" className="absolute inset-0 size-full rounded-4-4 object-cover opacity-45" />
             <Motor image={product.mobile} anchor="right" frameWidth={370} />

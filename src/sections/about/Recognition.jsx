@@ -5,8 +5,8 @@ const tileRadius = 'rounded-[calc(var(--spacing)*1.302)] xl:rounded-4'
 function Tile({ tile }) {
   if (tile.type === 'statement')
     return (
-      <div className={`col-span-2 flex items-center justify-center bg-[rgba(77,214,196,0.13)] py-16 xl:justify-end xl:pr-141 xl:pl-0 ${tileRadius}`}>
-        <p className="w-307 text-center text-14 leading-17 capitalize xl:w-887 xl:text-right xl:text-32 xl:leading-42">{recognition.statement}</p>
+      <div className={`col-span-2 flex items-center justify-center bg-[rgba(77,214,196,0.13)] py-16 xl:justify-start xl:pl-143 ${tileRadius}`}>
+        <p className="w-307 text-center text-14 leading-17 xl:w-785 xl:text-start xl:text-48 xl:leading-56">{recognition.statement}</p>
       </div>
     )
 

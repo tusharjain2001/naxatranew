@@ -76,7 +76,7 @@ export default function Hero() {
                 }`}
                 style={{ top: `${slide.top / 16}rem`, left: `${(slide.left ?? 103) / 16}rem` }}
               >
-                <h2 className={`w-1391 font-normal tracking-display ${slide.titleSize ?? 'text-88 leading-96'}`}>
+                <h2 className={`w-1391 text-88 leading-96 font-normal tracking-display ${slide.titleClass ?? ''}`}>
                   {slide.title.map((line) => (
                     <span key={line} className="block">
                       {line}
