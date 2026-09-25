@@ -14,10 +14,10 @@ const motor = (code, use) => {
 }
 
 export const findByApplications = [
-  { key: 'ride-on-sweeper', name: 'Ride on Sweeper', industry: 'Cleaning', image: L('app-sweeper.png'), flip: true, motors: [motor('RF 15/42', 'Steering'), motor('RF 15/42', 'Traction'), motor('RF 22/42', 'Steering'), motor('RF 22/42', 'Traction')] },
-  { key: 'l5-cargo', name: 'L5 Cargo', industry: '3 Wheelers', image: L('app-l5cargo.png'), motors: [motor('RF 55/70', 'Traction'), motor('RF 66/70', 'Traction'), motor('RF 22/60', 'Steering')] },
-  { key: 'agribot', name: 'Agribot', industry: 'Agriculture', image: L('app-agribot.png'), motors: [motor('RF 33/60', 'Traction'), motor('RF 55/70', 'Traction'), motor('RF 15/60', 'Steering')] },
-  { key: '2-wheelers', name: '2 Wheelers', industry: '2 Wheelers', image: L('app-2wheeler.png'), motors: [motor('AF 58/40', 'Hub Drive'), motor('RF 15/42', 'Mid Drive'), motor('RF 22/42', 'Mid Drive')] },
-  { key: 'e-rickshaw', name: 'E-Rickshaw', industry: '3 Wheelers', image: L('app-erickshaw.png'), motors: [motor('RF 55/70', 'Traction'), motor('RF 66/90', 'Traction'), motor('RF 22/60', 'Steering')] },
-  { key: 'power-weeder', name: 'Power Weeder', industry: 'Agriculture', image: L('app-powerweeder.png'), motors: [motor('RF 33/60', 'Traction'), motor('RF 15/42', 'Traction')] },
+  { key: 'ride-on-sweeper', name: 'Ride on Sweeper', industry: 'Cleaning', image: L('app-sweeper-trim.png'), flip: true, motors: [motor('RF 15/42', 'Steering'), motor('RF 15/42', 'Traction'), motor('RF 22/42', 'Steering'), motor('RF 22/42', 'Traction')] },
+  { key: 'l5-cargo', name: 'L5 Cargo', industry: '3 Wheelers', image: L('app-l5cargo-trim.png'), motors: [motor('RF 55/70', 'Traction'), motor('RF 66/70', 'Traction'), motor('RF 22/60', 'Steering')] },
+  { key: 'agribot', name: 'Agribot', industry: 'Agriculture', image: L('app-agribot-trim.png'), motors: [motor('RF 33/60', 'Traction'), motor('RF 55/70', 'Traction'), motor('RF 15/60', 'Steering')] },
+  { key: '2-wheelers', name: '2 Wheelers', industry: '2 Wheelers', image: L('app-2wheeler-trim.png'), motors: [motor('AF 58/40', 'Hub Drive'), motor('RF 15/42', 'Mid Drive'), motor('RF 22/42', 'Mid Drive')] },
+  { key: 'e-rickshaw', name: 'E-Rickshaw', industry: '3 Wheelers', image: L('app-erickshaw-trim.png'), motors: [motor('RF 55/70', 'Traction'), motor('RF 66/90', 'Traction'), motor('RF 22/60', 'Steering')] },
+  { key: 'power-weeder', name: 'Power Weeder', industry: 'Agriculture', image: L('app-powerweeder-trim.png'), motors: [motor('RF 33/60', 'Traction'), motor('RF 15/42', 'Traction')] },
 ]

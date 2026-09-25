@@ -23,15 +23,13 @@ export default function FindByApplications() {
       <div className="flex flex-col gap-40 xl:flex-row xl:gap-32">
         {/* Selected application feature card */}
         <div className="relative order-2 h-388 w-full shrink-0 overflow-hidden rounded-[calc(var(--spacing)*4.458)] border-[calc(var(--spacing)*0.557)] border-black/25 xl:order-none xl:size-680 xl:rounded-8 xl:border">
-          <picture key={app.key}>
-            {/* Phones fit a trimmed copy into the artboard's 265x221 vehicle area; the sweeper faces right there. */}
-            <source media="(max-width: 1279px)" srcSet={app.image.replace('.png', '-m.png')} />
-            <img
-              src={app.image}
-              alt={app.name}
-              className={`absolute top-[17.8%] left-[12.7%] h-[57%] w-[71.6%] object-contain xl:inset-x-0 xl:top-[8%] xl:left-0 xl:mx-auto xl:h-[62%] xl:w-auto xl:scale-x-100 ${app.flip ? '-scale-x-100' : ''}`}
-            />
-          </picture>
+          {/* Images are trimmed to the vehicle, so every application fills the same area at the same scale. */}
+          <img
+            key={app.key}
+            src={app.image}
+            alt={app.name}
+            className={`absolute top-[17.8%] left-[12.7%] h-[57%] w-[71.6%] object-contain xl:top-[10%] xl:left-[10%] xl:h-[60%] xl:w-[80%] ${app.flip ? '-scale-x-100' : ''}`}
+          />
           <div className="absolute inset-x-0 bottom-0 flex flex-col gap-2 px-18 pb-16 xl:p-33">
             <span className="text-[length:calc(var(--spacing)*22.288)] leading-30 capitalize xl:text-40 xl:leading-normal">{app.name}</span>
             <span className="text-14 capitalize text-black xl:text-24">Industry : {app.industry}</span>
@@ -49,7 +47,7 @@ export default function FindByApplications() {
                 onClick={() => setActive(i)}
                 className="relative aspect-square w-120 shrink-0 snap-start overflow-hidden rounded-[calc(var(--spacing)*2.4)] border-[0.3px] border-black/25 bg-white transition-colors hover:border-primary/50 xl:w-240 xl:rounded-[4.8px] xl:border"
               >
-                <img src={a.image} alt="" className="absolute inset-x-0 top-[14%] mx-auto h-[52%] object-contain" />
+                <img src={a.image} alt="" className="absolute top-[15%] left-[15%] h-[50%] w-[70%] object-contain" />
                 <span className="absolute bottom-7 left-[calc(var(--spacing)*9.6)] text-12 leading-10 capitalize text-grey xl:bottom-24 xl:left-19 xl:text-24 xl:leading-normal">{a.name}</span>
               </button>
             ))}
