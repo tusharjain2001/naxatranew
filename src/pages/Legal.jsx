@@ -20,16 +20,16 @@ export default function Legal({ page }) {
       <div className="mx-auto flex w-full max-w-1920 flex-col gap-40 px-16 py-60 xl:gap-100 xl:px-200 xl:py-200">
         {page.sections.map((section, i) => (
           <section key={section.title} className="flex flex-col gap-8 xl:gap-16">
-            <h2 className="flex gap-8 text-22 leading-28 tracking-[-0.02em] text-black capitalize xl:h-48 xl:items-center xl:gap-16 xl:text-40 xl:leading-none">
+            <h2 className="flex gap-8 text-22 leading-28 tracking-[-0.02em] text-black capitalize xl:h-48 xl:items-center xl:gap-16 xl:text-32 xl:leading-none">
               <span className="shrink-0 xl:w-56">{String(i + 1).padStart(2, '0')}.</span>
               {section.title}
             </h2>
-            <div className="text-14 leading-20 font-light text-grey xl:text-32 xl:leading-40">
+            <div className="text-14 leading-20 font-light text-grey xl:text-24 xl:leading-32">
               {section.text && <p>{section.text}</p>}
               {section.contact && (
                 <>
-                  <p className="mb-20 xl:mb-40">{section.contact.intro}</p>
-                  <address className="leading-28 not-italic xl:leading-64">
+                  <p className="mb-20 xl:mb-32">{section.contact.intro}</p>
+                  <address className="leading-28 not-italic xl:leading-32">
                     <p className="font-bold">{section.contact.company}</p>
                     {section.contact.lines.map((line) => (
                       <p key={line}>{line}</p>
