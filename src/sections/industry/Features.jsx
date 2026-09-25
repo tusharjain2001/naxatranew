@@ -10,7 +10,7 @@ export default function Features({ data }) {
         {data.items.map((item) => (
           <li
             key={item.title}
-            className={`flex items-center gap-16 border-[calc(var(--spacing)*0.95)] border-black/15 bg-[rgba(240,240,240,0.5)] p-12 xl:items-start xl:gap-24 xl:p-32 ${data.bordered ? 'xl:border' : 'xl:border-0'}`}
+            className={`flex items-center gap-16 ${item.mobileLast ? 'order-last xl:order-none' : ''} border-[calc(var(--spacing)*0.95)] border-black/15 bg-[rgba(240,240,240,0.5)] p-12 xl:items-start xl:gap-24 xl:p-32 ${data.bordered ? 'xl:border' : 'xl:border-0'}`}
           >
             <picture className="contents">
               {item.mobileIcon && <source media="(max-width: 1279px)" srcSet={item.mobileIcon} className="hidden" />}

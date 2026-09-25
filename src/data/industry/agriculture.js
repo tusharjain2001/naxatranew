@@ -14,13 +14,20 @@ export default {
     titleClass: 'capitalize xl:w-1097',
     textTop: 'xl:top-136',
     subtitle: ['Motor. Controller. Axle.', 'One complete drive solution — built for continuous-duty agri applications in the conditions that actually exist in India.'],
-    subtitleClass: 'font-light xl:w-649',
+    subtitleClass: 'xl:font-light xl:w-649',
     image: a('hero.png'),
     imageClass: 'xl:object-bottom',
     frameClass: 'xl:top-[-42px] xl:bottom-auto xl:h-964 xl:w-1970',
     washClass: 'bg-[linear-gradient(131.82deg,rgba(0,43,96,0.2)_15.953%,rgba(0,0,0,0)_68.206%)]',
     angleClass: false,
     alt: 'Electric tractors, a tiller and farm vehicles lined up at the edge of a crop field',
+    // The phone artboard has its own photo and wash, and lets the headline wrap in sentence case.
+    mobile: {
+      image: a('m/hero.jpg'),
+      wash: 'from-[#2759a9] to-[rgba(1,62,159,0)] to-[68.41%]',
+      title: 'Indian Fields don’t forgive a Weak Motor.',
+      text: 'py-80',
+    },
   },
 
   challenges: {
@@ -35,10 +42,12 @@ export default {
       row: 'xl:gap-24',
       card: 'xl:h-711 xl:w-557 xl:rounded-12',
     },
+    // The phone artboard pairs its own photos and callouts, so each card has its phone export in `mobile`.
+    mobileCard: 'h-240',
     cards: [
-      { src: a('challenge-1.png'), quote: 'We face failure during peak crop season - no margin for downtime' },
-      { src: a('challenge-2.png'), quote: 'We have to go through multi-vendor sourcing - nobody owns the system integration' },
-      { src: a('challenge-3.png'), quote: 'We see dust and water ingress in field conditions destroys motors without IP67', wide: true },
+      { src: a('challenge-1.png'), mobile: a('m/challenge-1.jpg'), quote: 'We face failure during peak crop season - no margin for downtime' },
+      { src: a('challenge-2.png'), mobile: a('m/challenge-2.jpg'), quote: 'We have to go through multi-vendor sourcing - nobody owns the system integration' },
+      { src: a('challenge-3.png'), mobile: a('m/challenge-3.jpg'), quote: 'We see dust and water ingress in field conditions destroys motors without IP67', mobileQuote: 'We have 3 vendors - motor, controller, gearbox - no unified accountability', wide: true },
     ],
   },
 
@@ -47,7 +56,7 @@ export default {
     defaultIndex: 1,
     items: [
       { label: 'Power Tiller', tile: a('tile-1.png'), panel: a('panel-tiller.png'), parts: ['RF 55/86 Motor & Controller'], text: 'Built for demanding soil preparation, our RF 55/86 traction motor and controller deliver consistent, reliable power to handle tough field conditions.', supplies: ['Traction - RF 55/86 Motor & Controller'] },
-      { label: 'Power Weeder', tile: a('tile-2.png'), panel: a('panel-weeder.png'), parts: ['RF 22/48 Motor & Controller'], text: 'Built for demanding soil preparation, we supply motors and controllers for steering, traction, and hydraulic systems, engineered to handle tough field conditions with consistent, reliable power.', supplies: ['Traction - RF22/48 Motor & Controller'] },
+      { label: 'Power Weeder', tile: a('tile-2.png'), panel: a('panel-weeder.png'), mobilePanel: a('m/panel-weeder.jpg'), parts: ['RF 22/48 Motor & Controller'], text: 'Built for demanding soil preparation, we supply motors and controllers for steering, traction, and hydraulic systems, engineered to handle tough field conditions with consistent, reliable power.', supplies: ['Traction - RF22/48 Motor & Controller'] },
       {
         label: 'Agri Bot',
         tile: a('tile-3.png'),
@@ -74,9 +83,10 @@ export default {
     title: ['Antarix RF Series', 'Optimised for Agriculture Equipment'],
     cols: 'xl:grid-cols-2',
     items: [
-      { title: '48V / 72V / 96V', text: 'Available', icon: a('feat-voltage.svg') },
+      // The phone artboard lists H-class before the warranty (`mobileLast`) and uses its own voltage icon.
+      { title: '48V / 72V / 96V', text: 'Available', icon: a('feat-voltage.svg'), mobileIcon: a('feat-voltage-m.svg') },
       { title: 'IP67 Rated', text: 'Full Submersion Validated', icon: a('feat-ip67.svg') },
-      { title: '3-year', mobileTitle: '3 year', text: 'Motor Warranty on Every Unit', icon: a('feat-warranty.svg') },
+      { title: '3-year', text: 'Motor Warranty on Every Unit', icon: a('feat-warranty.svg'), mobileLast: true },
       { title: 'H-class insulation', text: 'Continuous High-Temp Operation', icon: a('feat-hclass.svg') },
     ],
   },

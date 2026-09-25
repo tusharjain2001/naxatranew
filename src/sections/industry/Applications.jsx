@@ -108,12 +108,14 @@ export default function Applications({ data }) {
           className="flex w-full flex-col items-center gap-24 rounded-[calc(var(--spacing)*3.321)] border-[calc(var(--spacing)*0.553)] border-silver bg-white px-12 py-[calc(var(--spacing)*6.642)] xl:h-600 xl:flex-row xl:gap-32 xl:rounded-12 xl:border-2 xl:p-24"
         >
           <div className="relative h-264 w-360 shrink-0 overflow-hidden rounded-4 bg-[#f2f2f2] xl:h-552 xl:w-auto xl:flex-1 xl:rounded-12 xl:bg-transparent">
-            <img
-              key={item.panel}
-              src={item.panel}
-              alt={`${item.label} drive system: ${item.parts.join(', ')}`}
-              className={`absolute inset-0 size-full animate-[fade-in_0.4s_ease-out] object-contain xl:object-cover ${item.mobileDiagram ? 'hidden xl:block' : ''}`}
-            />
+            <picture key={item.panel}>
+              {item.mobilePanel && <source media="(max-width: 1279px)" srcSet={item.mobilePanel} />}
+              <img
+                src={item.panel}
+                alt={`${item.label} drive system: ${item.parts.join(', ')}`}
+                className={`absolute inset-0 size-full animate-[fade-in_0.4s_ease-out] object-contain xl:object-cover ${item.mobileDiagram ? 'hidden xl:block' : ''}`}
+              />
+            </picture>
             {item.mobileDiagram && <MobileDiagram key={item.label} diagram={item.mobileDiagram} />}
           </div>
 

@@ -22,6 +22,13 @@ export default {
     washClass: 'bg-linear-to-b from-[rgba(24,99,218,0.4)] to-[rgba(24,99,218,0)]',
     angleClass: 'h-603 bg-[linear-gradient(200.56deg,#1863da_18.598%,rgba(24,99,218,0)_43.806%)]',
     alt: 'Electric auto-rickshaws and loaders on a highway through green hills',
+    // The phone artboard's photo already carries its blue sky, so no wash is laid over it.
+    mobile: {
+      image: a('m-hero.jpg'),
+      wash: 'hidden',
+      title: ['Engineered in India.', 'Built To Power 3 Wheeler Electric Mobility'],
+      text: 'py-60',
+    },
   },
 
   challenges: {

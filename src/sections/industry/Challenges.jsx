@@ -8,7 +8,7 @@ function Cards({ cards, className, cardClass }) {
           {card.mobile && <source media="(max-width: 1279px)" srcSet={card.mobile} />}
           <img
             src={card.src}
-            alt={`“${card.quote}”`}
+            alt={`“${card.mobileQuote ?? card.quote}”`}
             loading="lazy"
             className={`block h-240 w-full rounded-[calc(var(--spacing)*3.945)] object-cover xl:shrink-0 ${cardClass}`}
           />
@@ -49,7 +49,7 @@ function FlowChallenges({ data }) {
         <Cards
           cards={data.cards}
           className={`grid grid-cols-2 gap-12 px-16 xl:flex xl:justify-end xl:px-0 ${f.row}`}
-          cardClass={`h-228 ${f.card}`}
+          cardClass={`${data.mobileCard ?? 'h-228'} ${f.card}`}
         />
       </div>
     </section>

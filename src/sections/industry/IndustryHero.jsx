@@ -3,15 +3,17 @@ import Button from '../../components/ui/Button'
 // Two artboard treatments:
 // - 'strip' (Cleaning): mobile shows a blue sky gradient with the photo along the bottom edge.
 // - 'cover' (2W, 3W, Agriculture): the photo fills the hero on both artboards under blue washes.
+// `hero.mobile` ({ image, wash, title, text }) gives a page its own phone photo, wash, headline and padding.
 function Photo({ hero }) {
   if (hero.variant === 'cover')
     return (
       <>
-        <div className={`absolute top-0 -right-53 h-717 w-1424 xl:top-auto xl:right-auto xl:left-1/2 xl:-translate-x-1/2 ${hero.frameClass ?? 'xl:-bottom-13 xl:h-967 xl:w-1920'}`}>
+        {hero.mobile && <img src={hero.mobile.image} alt={hero.alt} className="absolute inset-0 size-full object-cover xl:hidden" />}
+        <div className={`absolute top-0 -right-53 h-717 w-1424 xl:top-auto ${hero.mobile ? 'hidden xl:block' : ''} xl:right-auto xl:left-1/2 xl:-translate-x-1/2 ${hero.frameClass ?? 'xl:-bottom-13 xl:h-967 xl:w-1920'}`}>
           <img src={hero.image} alt={hero.alt} className={`absolute inset-0 size-full object-cover ${hero.imageClass ?? ''}`} />
           <span className={`absolute inset-0 ${hero.washClass ?? 'bg-linear-to-b from-[rgba(11,78,183,0.4)] to-[rgba(24,99,218,0)] to-[63.603%]'}`} />
         </div>
-        <span className="absolute inset-0 bg-linear-to-b from-[#2a689e] to-[rgba(24,99,218,0)] to-[82.724%] xl:hidden" />
+        <span className={`absolute inset-0 bg-linear-to-b xl:hidden ${hero.mobile?.wash ?? 'from-[#2a689e] to-[rgba(24,99,218,0)] to-[82.724%]'}`} />
         {hero.angleClass !== false && (
           <span className={`absolute inset-x-0 top-0 hidden opacity-40 xl:block ${hero.angleClass ?? 'h-502 bg-[linear-gradient(197.34deg,#1863da_18.598%,rgba(24,99,218,0)_43.806%)]'}`} />
         )}
@@ -54,12 +56,25 @@ export default function IndustryHero({ hero }) {
 
         <div
           className={`relative flex flex-col items-start gap-18 px-16 text-white xl:absolute xl:w-1919 ${hero.stacked ? 'xl:flex-col xl:items-start xl:gap-112' : 'xl:flex-row xl:items-center xl:justify-between xl:gap-0'} xl:px-100 xl:py-0 ${
-            cover ? 'py-72' : 'py-80'
+            hero.mobile?.text ?? (cover ? 'py-72' : 'py-80')
           } ${hero.textTop ?? 'xl:top-100'}`}
         >
           <h1 className={`text-36 leading-40 xl:text-88 xl:leading-96 ${hero.titleClass ?? 'xl:w-1097'}`}>
-            <Lines lines={hero.title} className={hero.desktopTitle ? 'xl:hidden' : ''} />
-            {hero.desktopTitle && <Lines lines={hero.desktopTitle} className="hidden xl:inline" />}
+            {hero.mobile?.title ? (
+              <>
+                {Array.isArray(hero.mobile.title) ? (
+                  <Lines lines={hero.mobile.title} className="normal-case xl:hidden" />
+                ) : (
+                  <span className="normal-case xl:hidden">{hero.mobile.title}</span>
+                )}
+                <Lines lines={hero.title} className="hidden xl:inline" />
+              </>
+            ) : (
+              <>
+                <Lines lines={hero.title} className={hero.desktopTitle ? 'xl:hidden' : ''} />
+                {hero.desktopTitle && <Lines lines={hero.desktopTitle} className="hidden xl:inline" />}
+              </>
+            )}
           </h1>
           <p className={`text-20 leading-28 capitalize xl:text-24 xl:leading-32 ${hero.subtitleClass ?? 'xl:w-448'}`}>
             {hero.subtitle.map((line) => (

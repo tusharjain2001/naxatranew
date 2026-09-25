@@ -9,7 +9,7 @@ const socials = [
   { label: 'Instagram', icon: '/assets/social/instagram.svg' },
 ]
 
-// 24px icons 40px apart on desktop; the phone row keeps the same spacing at its smaller size.
+// 24px icons 40px apart on desktop; the phone artboard uses 12px icons on a 41.6px pitch in a 23px row.
 function SocialIcons({ className, iconClass }) {
   return (
     <ul className={`flex items-center ${className}`}>
@@ -190,7 +190,7 @@ export default function Footer() {
         </ul>
       </div>
       <div className="flex flex-col items-center gap-15 bg-white py-16 xl:hidden">
-        <SocialIcons className="gap-24" iconClass="size-18" />
+        <SocialIcons className="h-23 gap-[calc(var(--spacing)*29.6)]" iconClass="size-12" />
         <Copyright className="text-center text-16" />
       </div>
     </footer>
