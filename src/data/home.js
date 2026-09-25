@@ -55,12 +55,15 @@ export const heroSlides = [
   {
     id: 'agriculture',
     image: a('hero-agri.png'),
+    // Phone crops are composed from the 402px artboards, each framed on its subject.
+    mobileImage: a('m/hero-agri.jpg'),
     title: ['Powering Agriculture’s Next', 'Generation'],
     top: 142,
   },
   {
     id: 'mobility',
     image: a('hero-vehicles.png'),
+    mobileImage: a('m/hero-vehicles.jpg'),
     title: ['Engineering Electric Mobility,', 'End To End.'],
     overlay: 'vehicles',
     top: 111,
@@ -68,20 +71,27 @@ export const heroSlides = [
   {
     id: 'cleaning',
     image: a('hero-sweeper.png'),
+    mobileImage: a('m/hero-sweeper.jpg'),
     title: ['Powerful Motors For', 'Spotless Results.'],
+    // The phone artboard sets this headline in a narrower box, so it breaks onto three lines.
+    mobileTitleClass: 'w-347',
     top: 160,
   },
   {
     id: 'drone',
     image: a('hero-drone.png'),
-    imageClass: '-scale-x-100 object-top',
+    // The phone crop is already mirrored.
+    mobileImage: a('m/hero-drone.jpg'),
+    imageClass: 'xl:-scale-x-100 xl:object-top',
     title: ['Precision Motors,', 'Engineered To Fly.'],
     top: 111,
   },
   {
     id: 'made-in-india',
     image: a('hero-bridge.png'),
-    mobileImage: a('m/hero-bridge.png'),
+    mobileImage: a('m/hero-bridge.jpg'),
+    // The phone artboard breaks this headline after “India.” rather than letting it wrap.
+    mobileLines: true,
     title: ['Built In India.', 'Driving What’s Next.'],
     subtitle: ['Designed. Developed. Driven.'],
     subtitleGap: 'gap-48',

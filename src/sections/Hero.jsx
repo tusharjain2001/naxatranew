@@ -15,7 +15,7 @@ function Overlay({ type }) {
     )
   if (type === 'vehicles')
     return (
-      <span className="absolute inset-0 bg-[linear-gradient(93.75deg,#000_1.42%,rgba(183,183,183,0)_98.58%)] opacity-30" />
+      <span className="absolute inset-0 hidden bg-[linear-gradient(93.75deg,#000_1.42%,rgba(183,183,183,0)_98.58%)] opacity-30 xl:block" />
     )
   return null
 }
@@ -100,12 +100,15 @@ export default function Hero() {
                   isActive ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'
                 }`}
               >
-                <h2 className="text-40 leading-48 font-normal">
-                  {(slide.mobileTitle ?? slide.title).map((line) => (
-                    <span key={line} className="block">
-                      {line}
-                    </span>
-                  ))}
+                <h2 className={`text-40 leading-48 font-normal ${slide.mobileTitleClass ?? ''}`}>
+                  {/* The phone artboards let most headlines wrap to their box instead of keeping the desktop breaks. */}
+                  {slide.mobileLines
+                    ? slide.title.map((line) => (
+                        <span key={line} className="block">
+                          {line}
+                        </span>
+                      ))
+                    : slide.title.join(' ')}
                 </h2>
                 {slide.subtitle && <p className="text-20 leading-28 capitalize">{slide.subtitle.join(' ')}</p>}
               </div>
