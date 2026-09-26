@@ -2,13 +2,14 @@ import { useState } from 'react'
 import { sharedAssets, specForm } from '../../data/industry/shared'
 import Button from '../../components/ui/Button'
 
-const label = 'text-12 leading-[calc(var(--spacing)*11.937)] text-grey xl:text-20 xl:leading-[calc(var(--spacing)*26.81)]'
+// Phone fields share the Contact form's sizing (FormFields.jsx); desktop keeps its own artboard values.
+const label = 'text-[length:calc(var(--spacing)*13.68)] leading-[calc(var(--spacing)*22.457)] text-grey max-xl:font-arial xl:text-20 xl:leading-[calc(var(--spacing)*26.81)]'
 const box =
-  'w-full rounded-[calc(var(--spacing)*1.492)] border-[calc(var(--spacing)*0.373)] border-silver bg-field px-[calc(var(--spacing)*7.83)] text-black outline-none transition-colors placeholder:text-grey/40 focus:border-primary xl:rounded-[calc(var(--spacing)*3.351)] xl:border-[calc(var(--spacing)*0.838)] xl:px-[calc(var(--spacing)*17.59)] xl:text-20'
+  'w-full rounded-3 border border-silver bg-field px-16 text-16 text-black max-xl:font-arial max-xl:placeholder:font-sans outline-none transition-colors placeholder:text-grey/40 focus:border-primary xl:rounded-[calc(var(--spacing)*3.351)] xl:border-[calc(var(--spacing)*0.838)] xl:px-[calc(var(--spacing)*17.59)] xl:text-20'
 
 function Field({ label: text, required, className = '', children }) {
   return (
-    <label className={`flex w-340 flex-col gap-8 xl:gap-[calc(var(--spacing)*3.351)] ${className}`}>
+    <label className={`flex w-340 flex-col gap-[calc(var(--spacing)*2.807)] xl:gap-[calc(var(--spacing)*3.351)] ${className}`}>
       <span className={label}>
         {text}
         {required && <span className="text-[red]"> *</span>}
@@ -56,19 +57,19 @@ export default function SpecForm({ applications, title = specForm.title, text = 
 
         <form
           onSubmit={(e) => e.preventDefault()}
-          className="flex w-fit flex-col items-start gap-16 rounded-4 border-[calc(var(--spacing)*0.891)] border-silver p-[calc(var(--spacing)*14.248)] xl:gap-25 xl:rounded-8 xl:border-2 xl:p-32"
+          className="flex w-fit flex-col items-start gap-20 rounded-4 border-[calc(var(--spacing)*0.891)] border-silver p-[calc(var(--spacing)*14.248)] xl:gap-25 xl:rounded-8 xl:border-2 xl:p-32"
         >
-          <div className="flex flex-col gap-16 xl:flex-row xl:gap-20">
+          <div className="flex flex-col gap-20 xl:flex-row xl:gap-20">
             <Field label="Full Name (Required)" required className="xl:w-[calc(var(--spacing)*387.071)]">
-              <input required name="name" autoComplete="name" placeholder="Enter Full Name" className={`h-26 text-10 xl:h-[calc(var(--spacing)*59.485)] ${box}`} />
+              <input required name="name" autoComplete="name" placeholder="Enter Full Name" className={`h-[calc(var(--spacing)*49.834)] xl:h-[calc(var(--spacing)*59.485)] ${box}`} />
             </Field>
             <Field label="Email ID (Required)" required className="xl:w-[calc(var(--spacing)*356.91)]">
-              <input required type="email" name="email" autoComplete="email" placeholder="Enter Email ID" className={`h-26 text-10 xl:h-[calc(var(--spacing)*59.485)] ${box}`} />
+              <input required type="email" name="email" autoComplete="email" placeholder="Enter Email ID" className={`h-[calc(var(--spacing)*49.834)] xl:h-[calc(var(--spacing)*59.485)] ${box}`} />
             </Field>
           </div>
-          <div className="flex flex-col gap-16 xl:flex-row xl:gap-20">
+          <div className="flex flex-col gap-20 xl:flex-row xl:gap-20">
             <Field label="Company Name (Required)" required className="xl:w-[calc(var(--spacing)*387.071)]">
-              <input required name="company" autoComplete="organization" placeholder="Enter Company Name" className={`h-26 text-10 xl:h-[calc(var(--spacing)*59.485)] ${box}`} />
+              <input required name="company" autoComplete="organization" placeholder="Enter Company Name" className={`h-[calc(var(--spacing)*49.834)] xl:h-[calc(var(--spacing)*59.485)] ${box}`} />
             </Field>
             <Field label="Application Type" className="xl:w-[calc(var(--spacing)*356.91)]">
               <span className="relative block">
@@ -76,7 +77,7 @@ export default function SpecForm({ applications, title = specForm.title, text = 
                   name="application"
                   value={application}
                   onChange={(e) => setApplication(e.target.value)}
-                  className={`h-26 cursor-pointer appearance-none pr-24 text-10 xl:h-[calc(var(--spacing)*59.485)] xl:pr-44 ${box} ${application ? '' : 'text-grey/40'}`}
+                  className={`h-[calc(var(--spacing)*49.834)] cursor-pointer appearance-none pr-44 xl:h-[calc(var(--spacing)*59.485)] xl:pr-44 ${box} ${application ? '' : 'text-grey/40'}`}
                 >
                   <option value="" disabled>
                     Choose your application type
@@ -90,7 +91,7 @@ export default function SpecForm({ applications, title = specForm.title, text = 
                     Other
                   </option>
                 </select>
-                <img src={sharedAssets.chevron} alt="" className="pointer-events-none absolute top-1/2 right-[calc(var(--spacing)*7.92)] h-4 w-8 -translate-y-1/2 xl:right-[calc(var(--spacing)*20.13)] xl:h-[calc(var(--spacing)*7.109)] xl:w-[calc(var(--spacing)*14.218)]" />
+                <img src={sharedAssets.chevron} alt="" className="pointer-events-none absolute top-1/2 right-16 h-6 w-12 -translate-y-1/2 xl:right-[calc(var(--spacing)*20.13)] xl:h-[calc(var(--spacing)*7.109)] xl:w-[calc(var(--spacing)*14.218)]" />
               </span>
             </Field>
           </div>
@@ -98,7 +99,7 @@ export default function SpecForm({ applications, title = specForm.title, text = 
             <textarea
               name="message"
               placeholder="Write your message here..."
-              className={`h-[calc(var(--spacing)*52.225)] resize-none text-12 py-[calc(var(--spacing)*6.34)] xl:h-[calc(var(--spacing)*117.294)] xl:py-[calc(var(--spacing)*14.24)] ${box}`}
+              className={`h-140 resize-none py-12 xl:h-[calc(var(--spacing)*117.294)] xl:py-[calc(var(--spacing)*14.24)] ${box}`}
             />
           </Field>
           <Button as="button" type="submit" size="spec" className="cursor-pointer xl:hidden">

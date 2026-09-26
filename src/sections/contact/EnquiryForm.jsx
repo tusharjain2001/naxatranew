@@ -34,7 +34,7 @@ export default function EnquiryForm() {
           <TextAreaField label="Any Message" name="message" placeholder="Write your message here..." className="xl:col-span-2" />
         </div>
 
-        <Button as="button" type="submit" size="sm" className="cursor-pointer xl:hidden">
+        <Button as="button" type="submit" size="spec" className="cursor-pointer xl:hidden">
           Submit Enquiry
         </Button>
         <Button as="button" type="submit" size="hero" className="hidden cursor-pointer xl:inline-flex">
