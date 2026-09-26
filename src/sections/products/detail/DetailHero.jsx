@@ -123,7 +123,7 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
               />
             </div>
             <div className="mt-70 flex gap-[calc(var(--spacing)*3.915)] self-center">
-              {detail.gallery.map((src, i) => (
+              {(variant.mvim ?? detail.gallery).map((src, i) => (
                 <button
                   key={src + i}
                   type="button"
@@ -132,7 +132,7 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
                   aria-label={`Show view ${i + 1}`}
                   className={`grid h-67 w-90 cursor-pointer place-items-center border bg-[#f1f1f1] ${isPicked(i) ? 'border-black' : 'border-transparent'}`}
                 >
-                  <img src={src} alt="" className="max-h-[91%] max-w-[84%] object-contain" />
+                  <img src={src} alt="" className={variant.mvim ? 'size-full object-contain' : 'max-h-[91%] max-w-[84%] object-contain'} />
                 </button>
               ))}
               <span className="grid h-67 w-90 place-items-center bg-[#f1f1f1]">

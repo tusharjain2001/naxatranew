@@ -168,7 +168,7 @@ export const detailBySlug = {
   // technical table shows Rated Torque (25 Nm). Single-variant, so no Choose-Variant panel.
   af58: mkDetail('af58', 'Product/ AF Series/ AF 58', [
     mkVariant('AF 58/40', {
-      displayName: 'AF 58', hero: AF + 'hero.png', motorType: 'Axial Flux PMSM',
+      displayName: 'AF 58', hero: AF + 'hero.png', vim: [AF + 'g-1.png', AF + 'g-2b.png'], mvim: [AF + 'mg-1.png', AF + 'mg-2b.png'], vimFull: [null, AF + 'back.png'], motorType: 'Axial Flux PMSM',
       voltage: '72 V', power: '5.8 kW', torque: '25 Nm', boxTorque: '60 Nm', peakPower: '10.5 kW', peakTorque: '60 Nm',
       peakSpeed: '4400 RPM', efficiency: '94%', cooling: 'Forced Air cooled', mass: '11 Kg',
       applications: [
