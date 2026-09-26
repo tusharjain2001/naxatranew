@@ -127,7 +127,7 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
                 <button
                   key={src + i}
                   type="button"
-                  onClick={() => pick(src, i)}
+                  onClick={() => pick(variant.vimFull?.[i] ?? src, i)}
                   aria-pressed={isPicked(i)}
                   aria-label={`Show view ${i + 1}`}
                   className={`grid h-67 w-90 cursor-pointer place-items-center border bg-[#f1f1f1] ${isPicked(i) ? 'border-black' : 'border-transparent'}`}
@@ -157,7 +157,7 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
                 <button
                   key={src + i}
                   type="button"
-                  onClick={() => pick(src, i)}
+                  onClick={() => pick(variant.vimFull?.[i] ?? src, i)}
                   aria-pressed={isPicked(i)}
                   aria-label={`Show view ${i + 1}`}
                   className={`grid h-[calc(var(--spacing)*53.609)] cursor-pointer place-items-center overflow-hidden border bg-[#f1f1f1] ${isPicked(i) ? 'border-black' : 'border-transparent'}`}
@@ -207,7 +207,7 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
                 <button
                   key={src + i}
                   type="button"
-                  onClick={() => pick(src, i)}
+                  onClick={() => pick(variant.vimFull?.[i] ?? src, i)}
                   aria-pressed={isPicked(i)}
                   aria-label={`Show view ${i + 1}`}
                   className={`grid h-72 cursor-pointer place-items-center border bg-[#f1f1f1] ${isPicked(i) ? 'border-black' : 'border-transparent'}`}
@@ -279,7 +279,7 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
             <button
               key={src + i}
               type="button"
-              onClick={() => pick(src, i)}
+              onClick={() => pick(variant.vimFull?.[i] ?? src, i)}
               aria-pressed={isPicked(i)}
               aria-label={`Show view ${i + 1}`}
               className={`grid cursor-pointer place-items-center border bg-[#f1f1f1] ${isPicked(i) ? 'border-black' : 'border-transparent'} ${tileSize}`}
