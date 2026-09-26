@@ -83,14 +83,15 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
   const galleryPos = showPanel ? 'xl:top-709 xl:left-405' : 'xl:top-337 xl:left-1647 xl:flex-col xl:gap-8'
   const tileSize = showPanel ? 'xl:h-102 xl:w-138' : 'xl:h-128 xl:w-172'
   const vimText = showPanel ? 'text-14 xl:text-18' : 'text-14 xl:absolute xl:top-1/2 xl:left-15 xl:-translate-y-1/2 xl:text-22'
-  // Clicking a gallery tile shows that image in place of the hero render (click it again to go back).
-  // The pick is tied to the variant it was made on, so switching variants returns to that variant's render.
+  // The first gallery tile is selected by default and stands for the hero render itself; clicking another
+  // tile shows that image in its place, and clicking the first one returns to the render. The pick is tied
+  // to the variant it was made on, so switching variants starts again from the first tile.
   const [shot, setShot] = useState(null)
   // Tracked by position, not by src, since a gallery can repeat the same image.
-  const picked = shot?.variant === variant.id ? shot : null
-  const isPicked = (i) => picked?.i === i
-  const pick = (src, i) => setShot(isPicked(i) ? null : { variant: variant.id, src, i })
-  const mainSrc = picked?.src ?? variant.hero
+  const picked = shot?.variant === variant.id ? shot : { i: 0, src: null }
+  const isPicked = (i) => picked.i === i
+  const pick = (src, i) => setShot({ variant: variant.id, src: i === 0 ? null : src, i })
+  const mainSrc = picked.src ?? variant.hero
   const subtitle = `${family.tagline} - ${!multi && variant.displayName ? variant.displayName : `${variant.label ?? variant.code} Variant`}`
   return (
     <section className="relative w-full overflow-hidden bg-[#fafafa]">
