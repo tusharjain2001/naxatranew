@@ -70,6 +70,9 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
   // The artboards place the panel at a fixed top per row count (its bottom stays ~812 in the 880 hero):
   // 3 rows -> top-63, 2 rows -> top-183, 1 row -> top-447 (verified on RF 22/33, RF 15/66, RF 55).
   const wideRows = detail.variants.length === 2
+  // RF 55's phone artboard (14378-4280): one variant, so a slim gallery column overlapped by a large
+  // render, and a single horizontal variant card; the hero is 667 tall.
+  const soloPanel = showPanel && !multi
   const panelTop = { 1: 'xl:top-447', 2: 'xl:top-183', 3: 'xl:top-63' }[detail.variants.length] ?? 'xl:top-183'
   const galleryPos = showPanel ? 'xl:top-709 xl:left-405' : 'xl:top-337 xl:left-1647 xl:flex-col xl:gap-8'
   const tileSize = showPanel ? 'xl:h-102 xl:w-138' : 'xl:h-128 xl:w-172'
@@ -86,7 +89,7 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
   return (
     <section className="relative w-full overflow-hidden bg-[#fafafa]">
       {/* ---------- MOBILE (< xl) ---------- */}
-      <div className={`flex flex-col px-16 pt-24 xl:hidden ${showPanel ? 'gap-16 pb-24' : (detail.mobile.heroPad ?? 'pb-75')}`}>
+      <div className={`flex flex-col px-16 pt-24 xl:hidden ${soloPanel ? 'relative h-667' : showPanel ? 'gap-16 pb-24' : (detail.mobile.heroPad ?? 'pb-75')}`}>
         <div className="flex flex-col gap-8">
           <nav className="text-12 leading-[calc(var(--spacing)*28.8)] font-light text-grey" aria-label="Breadcrumb">
             <a href="/products" className="hover:text-primary">{detail.breadcrumb.split('/')[0]}</a>
@@ -134,8 +137,55 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
           </>
         )}
 
+        {soloPanel && (
+          <>
+            <img
+              key={mainSrc + '-mhero2'}
+              src={mainSrc}
+              alt={family.name}
+              className="absolute top-118 left-43 h-405 w-409 max-w-none animate-[fade-in_0.3s_ease-out] object-contain"
+            />
+            <div className="absolute top-262 left-18 flex w-72 flex-col gap-[calc(var(--spacing)*3.13)]">
+              {(detail.vim ?? detail.gallery).map((src, i) => (
+                <button
+                  key={src + i}
+                  type="button"
+                  onClick={() => pick(src, i)}
+                  aria-pressed={isPicked(i)}
+                  aria-label={`Show view ${i + 1}`}
+                  className={`grid h-[calc(var(--spacing)*53.609)] cursor-pointer place-items-center overflow-hidden border bg-[#f1f1f1] ${isPicked(i) ? 'border-black' : 'border-transparent'}`}
+                >
+                  <img src={src} alt="" className="size-full scale-125 object-contain" />
+                </button>
+              ))}
+              <span className="grid h-[calc(var(--spacing)*31.562)] place-items-center bg-[#f1f1f1]">
+                <button type="button" className="text-[length:calc(var(--spacing)*9.391)] leading-[calc(var(--spacing)*12.522)] font-light capitalize underline underline-offset-2 hover:no-underline" title="Video coming soon">
+                  view in motion
+                </button>
+              </span>
+            </div>
+            <div className="absolute top-[calc(var(--spacing)*470.827)] left-16 flex w-370 flex-col gap-16 rounded-4 bg-white p-12">
+              <h2 className="text-16 leading-21 tracking-[-0.02em] capitalize">Choose the Variant</h2>
+              <button type="button" aria-pressed="true" className="flex items-center gap-8 text-left">
+                <span className="relative grid h-106 flex-1 place-items-center overflow-hidden rounded-[calc(var(--spacing)*2.173)] border-[0.5px] border-black bg-[#f9f9f9] p-[calc(var(--spacing)*6.519)]">
+                  <span className="pointer-events-none absolute inset-0 rounded-[2px] border border-white" />
+                  <img src={variant.thumb ?? variant.hero} alt="" className="h-[74%] w-[74%] object-contain" />
+                  <svg viewBox="0 0 24 24" aria-hidden className="absolute top-[calc(var(--spacing)*4.89)] right-[calc(var(--spacing)*4.25)] size-[calc(var(--spacing)*17.384)] text-black">
+                    <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                    <path d="M8 12l3 3 5-5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+                <span className="flex flex-1 flex-col gap-[calc(var(--spacing)*2.173)]">
+                  <span className="text-[length:calc(var(--spacing)*15.211)] leading-[calc(var(--spacing)*17.384)]">{variant.code}</span>
+                  <span className="text-10 leading-[calc(var(--spacing)*13.038)] font-light">{variant.note}</span>
+                </span>
+              </button>
+            </div>
+          </>
+        )}
+
         {/* render (right) + gallery column (left) */}
-        {showPanel && (
+        {showPanel && !soloPanel && (
           <div className="flex items-center gap-12">
             <div className="flex w-84 shrink-0 flex-col gap-8">
               {detail.gallery.map((src, i) => (
@@ -160,7 +210,7 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
           </div>
         )}
 
-        {showPanel && (
+        {showPanel && !soloPanel && (
           <div className="flex flex-col gap-16 rounded bg-white p-12">
             <h2 className="text-16">Choose the Variant</h2>
             <div className="flex gap-12">
