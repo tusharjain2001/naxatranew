@@ -155,7 +155,7 @@ export const detailBySlug = {
   // panel (one row) and bottom-left gallery, unlike AF 58 / PT-500. showPanel forces that RF-series layout.
   // Hero reuses clean RF15 render; own sketch.
   rf55: mkDetail('rf55', 'Product/ RF Series/ RF 55', [
-    mkVariant('RF 55/86', { hero: RF55 + 'hero-t.png', thumb: RF55 + 'thumb.png', note: DISTINCT_HOUSING, applications: APPS6_RF55, voltage: '48 V / 72 V', power: '5.5 kW', torque: '10.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '10.5 Kg' }),
+    mkVariant('RF 55/86', { hero: RF55 + 'hero-t.png', thumb: RF55 + 'thumb.png', vim: [RF55 + 'g-1.png', RF55 + 'g-2b.png'], mvim: [RF55 + 'mg-1.png', RF55 + 'mg-2b.png'], vimFull: [null, RF55 + 'back.png'], note: DISTINCT_HOUSING, applications: APPS6_RF55, voltage: '48 V / 72 V', power: '5.5 kW', torque: '10.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '10.5 Kg' }),
   ], { showPanel: true, vim: [RF55 + 'vim-1.png', RF55 + 'vim-2.png'], gallery: [RF55 + 'hero-t.png', RF55 + 'hero-t.png'], sketch: [RF55 + 'sketch.png'], heroClass: 'xl:top-98 xl:left-260 xl:h-770 xl:w-778' }),
   // RF 66 (Figma board 14393-7232): /70 and /90 — distinct real specs. RF 66 has its OWN render (the
   // squat finned cylinder, Figma "014455d6" node 14393:6358, exported transparent) shared by both
