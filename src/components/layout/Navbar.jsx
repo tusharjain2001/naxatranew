@@ -103,7 +103,7 @@ function MobileMenu({ open, onClose }) {
               {industryOpen && (
                 <ul
                   id="mobile-industry"
-                  className="flex w-214 flex-col gap-[calc(var(--spacing)*6.326)] rounded-[calc(var(--spacing)*2.892)] border-[calc(var(--spacing)*0.723)] border-[#f5f5f5] p-[calc(var(--spacing)*5.784)]"
+                  className="flex w-214 flex-col gap-8 rounded-[calc(var(--spacing)*2.892)] border-[calc(var(--spacing)*0.723)] border-[#f5f5f5] p-[calc(var(--spacing)*5.784)]"
                 >
                   {industryMenu.links.map((item) => {
                     const active = item.href === currentPath()
@@ -113,13 +113,13 @@ function MobileMenu({ open, onClose }) {
                           href={item.href}
                           onClick={onClose}
                           aria-current={active ? 'page' : undefined}
-                          className={`flex items-center gap-8 rounded-[calc(var(--spacing)*1.582)] border-[calc(var(--spacing)*0.395)] h-32 px-8 text-12 leading-20 text-black uppercase ${
+                          className={`flex items-center gap-10 rounded-[calc(var(--spacing)*1.582)] border-[calc(var(--spacing)*0.395)] h-44 px-10 text-14 leading-20 text-black uppercase ${
                             // Screens draw Figma's 0.4px stroke as a full pixel, so the grey is lightened to look the same.
                             active ? 'border-primary bg-primary/10' : 'border-silver/60 bg-[rgba(217,217,217,0.15)]'
                           }`}
                         >
-                          <span className="flex size-24 shrink-0 items-center justify-center">
-                            <img src={active ? item.activeIcon : item.icon} alt="" className={item.mobileIconClass} />
+                          <span className="flex size-28 shrink-0 items-center justify-center">
+                            <img src={active ? item.activeIcon : item.icon} alt="" className={`scale-125 ${item.mobileIconClass}`} />
                           </span>
                           {item.label}
                         </a>
