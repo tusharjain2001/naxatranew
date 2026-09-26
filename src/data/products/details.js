@@ -61,6 +61,13 @@ function mkVariant(code, o) {
     displayName: o.displayName ?? null, // single-variant families show this instead of "<code> Variant"
     note: o.note ?? 'This motor variant shares the same die, offered in distinct voltage options.',
     hero: o.hero,
+    // Per-variant hero art (RF 33): render box on desktop / phone, gallery tiles (desktop `vim`, phone
+    // `mvim`, cut from the Figma frames on transparent backgrounds) and the phone variant-card image.
+    heroClass: o.heroClass ?? null,
+    mobileHeroClass: o.mobileHeroClass ?? null,
+    vim: o.vim ?? null,
+    mvim: o.mvim ?? null,
+    mthumb: o.mthumb ?? null,
     thumb: o.thumb ?? null, // DESKTOP variant-panel thumbnail (Figma bakes it at a different orientation than the hero)
     sketch: o.sketch ?? null, // per-variant technical sketch override (else falls back to detail.sketch)
     specBoxes: [
@@ -134,16 +141,16 @@ export const detailBySlug = {
   // standard finned motor, /86 the finned-housing render (same "Final 1 2" art as RF 22/86), /90 the
   // squat cylinder (same "014455d6" art as RF 66). /60 & /86 share specs; /90 differs (6500 RPM, 13.6 Kg).
   rf33: mkDetail('rf33', 'Product/ RF Series/ RF 33', [
-    mkVariant('RF 33/60', { hero: RF33 + 'hero.png', thumb: STD_THUMB, note: SAME_DIE, voltage: '48 V / 72 V', power: '3.3 kW', torque: '10.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '7.7 Kg' }),
-    mkVariant('RF 33/86', { hero: RF33 + 'hero-86.png', thumb: RF33 + 'thumb-86.png', note: DISTINCT_HOUSING, voltage: '48 V / 72 V', power: '3.3 kW', torque: '10.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '7.7 Kg' }),
-    mkVariant('RF 33/90', { hero: RF33 + 'hero-90.png', thumb: RF33 + 'thumb-90.png', note: DISTINCT_HOUSING, voltage: '48 V / 72 V', power: '3.3 kW', torque: '10.5 Nm', peakSpeed: '6500 RPM', efficiency: '>94%', mass: '13.6 Kg' }),
+    mkVariant('RF 33/60', { hero: RF33 + 'hero.png', heroClass: 'xl:left-[calc(var(--spacing)*308.7)] xl:top-[calc(var(--spacing)*168.7)] xl:w-[calc(var(--spacing)*618)] xl:h-[calc(var(--spacing)*601.4)]', mobileHeroClass: 'left-[calc(var(--spacing)*65.9)] top-[calc(var(--spacing)*139)] w-[calc(var(--spacing)*368.6)] h-[calc(var(--spacing)*358.6)]', vim: [RF33 + 'g60-1.png', RF33 + 'g60-2.png'], mvim: [RF33 + 'mg60-1.png', RF33 + 'mg60-2.png'], mthumb: RF33 + 'mthumb-60.jpg', thumb: STD_THUMB, note: SAME_DIE, voltage: '48 V / 72 V', power: '3.3 kW', torque: '10.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '7.7 Kg' }),
+    mkVariant('RF 33/86', { hero: RF33 + 'hero-86.png', heroClass: 'xl:left-[calc(var(--spacing)*257.5)] xl:top-[calc(var(--spacing)*51.5)] xl:w-[calc(var(--spacing)*843)] xl:h-[calc(var(--spacing)*829)]', mobileHeroClass: 'left-[calc(var(--spacing)*34.7)] top-[calc(var(--spacing)*118.3)] w-[calc(var(--spacing)*410.5)] h-[calc(var(--spacing)*403.7)]', vim: [RF33 + 'g86-1.png', RF33 + 'g86-2.png'], mvim: [RF33 + 'mg86-1.png', RF33 + 'mg86-2.png'], mthumb: RF33 + 'mthumb-86.jpg', thumb: RF33 + 'thumb-86.png', note: DISTINCT_HOUSING, voltage: '48 V / 72 V', power: '3.3 kW', torque: '10.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '7.7 Kg' }),
+    mkVariant('RF 33/90', { hero: RF33 + 'hero-90.png', heroClass: 'xl:left-[calc(var(--spacing)*349.7)] xl:top-[calc(var(--spacing)*154)] xl:w-[calc(var(--spacing)*620.6)] xl:h-[calc(var(--spacing)*635.1)]', mobileHeroClass: 'left-[calc(var(--spacing)*65.4)] top-[calc(var(--spacing)*151.1)] w-[calc(var(--spacing)*318.9)] h-[calc(var(--spacing)*326.4)]', vim: [RF33 + 'g90-1.png', RF33 + 'g90-2.png'], mvim: [RF33 + 'mg90-1.png', RF33 + 'mg90-2.png'], mthumb: RF33 + 'mthumb-90.jpg', thumb: RF33 + 'thumb-90.png', note: DISTINCT_HOUSING, voltage: '48 V / 72 V', power: '3.3 kW', torque: '10.5 Nm', peakSpeed: '6500 RPM', efficiency: '>94%', mass: '13.6 Kg' }),
   ], { vim: STD_VIM, gallery: [RF33 + 'hero.png', RF33 + 'hero.png'], sketch: [RF33 + 'sketch-1.png', RF33 + 'sketch-2.png'] }),
   // RF 55 (Figma board 14389-4682): single variant /86 — but the artboard KEEPS the Choose-The-Variant
   // panel (one row) and bottom-left gallery, unlike AF 58 / PT-500. showPanel forces that RF-series layout.
   // Hero reuses clean RF15 render; own sketch.
   rf55: mkDetail('rf55', 'Product/ RF Series/ RF 55', [
-    mkVariant('RF 55/86', { hero: RF55 + 'hero.png', thumb: RF55 + 'thumb.png', note: DISTINCT_HOUSING, applications: APPS6_RF55, voltage: '48 V / 72 V', power: '5.5 kW', torque: '10.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '10.5 Kg' }),
-  ], { showPanel: true, vim: [RF55 + 'vim-1.png', RF55 + 'vim-2.png'], gallery: [RF55 + 'hero.png', RF55 + 'hero.png'], sketch: [RF55 + 'sketch.png'], heroClass: 'xl:top-98 xl:left-260 xl:h-770 xl:w-778' }),
+    mkVariant('RF 55/86', { hero: RF55 + 'hero-t.png', thumb: RF55 + 'thumb.png', note: DISTINCT_HOUSING, applications: APPS6_RF55, voltage: '48 V / 72 V', power: '5.5 kW', torque: '10.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '10.5 Kg' }),
+  ], { showPanel: true, vim: [RF55 + 'vim-1.png', RF55 + 'vim-2.png'], gallery: [RF55 + 'hero-t.png', RF55 + 'hero-t.png'], sketch: [RF55 + 'sketch.png'], heroClass: 'xl:top-98 xl:left-260 xl:h-770 xl:w-778' }),
   // RF 66 (Figma board 14393-7232): /70 and /90 — distinct real specs. RF 66 has its OWN render (the
   // squat finned cylinder, Figma "014455d6" node 14393:6358, exported transparent) shared by both
   // variants. Apps are the six-item RF 55/66 list. /90 uses its own sketch node (14393:6490).

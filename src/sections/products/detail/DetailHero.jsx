@@ -45,7 +45,8 @@ function MobileVariantCard({ variant, selected, onSelect }) {
     <button type="button" onClick={onSelect} aria-pressed={selected} className="flex flex-1 flex-col gap-8 text-left">
       <span className={`relative grid h-106 place-items-center overflow-hidden rounded-[2px] bg-[#f9f9f9] ${selected ? 'border border-black' : ''}`}>
         {selected && <span className="pointer-events-none absolute inset-0 border-2 border-white" />}
-        <img src={variant.hero} alt="" className="absolute inset-0 size-full object-contain p-8" />
+        {/* `mthumb` is the card image cut from the phone artboard (background included); else the render. */}
+        <img src={variant.mthumb ?? variant.hero} alt="" className={`absolute inset-0 size-full ${variant.mthumb ? 'object-cover' : 'object-contain p-8'}`} />
         {selected && (
           <svg viewBox="0 0 24 24" aria-hidden className="absolute top-4 right-4 size-18 text-black">
             <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1.5" />
@@ -73,6 +74,11 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
   // RF 55's phone artboard (14378-4280): one variant, so a slim gallery column overlapped by a large
   // render, and a single horizontal variant card; the hero is 667 tall.
   const soloPanel = showPanel && !multi
+  // Variants with their own phone render box (RF 33) use the same absolute layout: the render overlaps
+  // the gallery column and the panel sits at the artboard's fixed top; that hero is 717 tall.
+  const absHero = soloPanel || Boolean(variant.mobileHeroClass)
+  const mobileTiles = variant.mvim ?? detail.vim ?? detail.gallery
+  const desktopTiles = variant.vim ?? detail.vim ?? detail.gallery
   const panelTop = { 1: 'xl:top-447', 2: 'xl:top-183', 3: 'xl:top-63' }[detail.variants.length] ?? 'xl:top-183'
   const galleryPos = showPanel ? 'xl:top-709 xl:left-405' : 'xl:top-337 xl:left-1647 xl:flex-col xl:gap-8'
   const tileSize = showPanel ? 'xl:h-102 xl:w-138' : 'xl:h-128 xl:w-172'
@@ -89,8 +95,8 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
   return (
     <section className="relative w-full overflow-hidden bg-[#fafafa]">
       {/* ---------- MOBILE (< xl) ---------- */}
-      <div className={`flex flex-col px-16 pt-24 xl:hidden ${soloPanel ? 'relative h-667' : showPanel ? 'gap-16 pb-24' : (detail.mobile.heroPad ?? 'pb-75')}`}>
-        <div className="flex flex-col gap-8">
+      <div className={`flex flex-col px-16 pt-24 xl:hidden ${absHero ? `relative ${soloPanel ? 'h-667' : 'h-717'}` : showPanel ? 'gap-16 pb-24' : (detail.mobile.heroPad ?? 'pb-75')}`}>
+        <div className="relative z-10 flex flex-col gap-8">
           <nav className="text-12 leading-[calc(var(--spacing)*28.8)] font-light text-grey" aria-label="Breadcrumb">
             <a href="/products" className="hover:text-primary">{detail.breadcrumb.split('/')[0]}</a>
             <span>{detail.breadcrumb.slice(detail.breadcrumb.indexOf('/'))}</span>
@@ -137,16 +143,16 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
           </>
         )}
 
-        {soloPanel && (
+        {absHero && (
           <>
             <img
               key={mainSrc + '-mhero2'}
               src={mainSrc}
               alt={family.name}
-              className="absolute top-118 left-43 h-405 w-409 max-w-none animate-[fade-in_0.3s_ease-out] object-contain"
+              className={`absolute max-w-none animate-[fade-in_0.3s_ease-out] object-contain ${variant.mobileHeroClass ?? 'top-118 left-43 h-405 w-409'}`}
             />
             <div className="absolute top-262 left-18 flex w-72 flex-col gap-[calc(var(--spacing)*3.13)]">
-              {(detail.vim ?? detail.gallery).map((src, i) => (
+              {mobileTiles.map((src, i) => (
                 <button
                   key={src + i}
                   type="button"
@@ -155,7 +161,7 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
                   aria-label={`Show view ${i + 1}`}
                   className={`grid h-[calc(var(--spacing)*53.609)] cursor-pointer place-items-center overflow-hidden border bg-[#f1f1f1] ${isPicked(i) ? 'border-black' : 'border-transparent'}`}
                 >
-                  <img src={src} alt="" className="size-full scale-125 object-contain" />
+                  <img src={src} alt="" className={`size-full object-contain ${variant.mvim ? '' : 'scale-125'}`} />
                 </button>
               ))}
               <span className="grid h-[calc(var(--spacing)*31.562)] place-items-center bg-[#f1f1f1]">
@@ -166,26 +172,34 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
             </div>
             <div className="absolute top-[calc(var(--spacing)*470.827)] left-16 flex w-370 flex-col gap-16 rounded-4 bg-white p-12">
               <h2 className="text-16 leading-21 tracking-[-0.02em] capitalize">Choose the Variant</h2>
-              <button type="button" aria-pressed="true" className="flex items-center gap-8 text-left">
-                <span className="relative grid h-106 flex-1 place-items-center overflow-hidden rounded-[calc(var(--spacing)*2.173)] border-[0.5px] border-black bg-[#f9f9f9] p-[calc(var(--spacing)*6.519)]">
-                  <span className="pointer-events-none absolute inset-0 rounded-[2px] border border-white" />
-                  <img src={variant.thumb ?? variant.hero} alt="" className="h-[74%] w-[74%] object-contain" />
-                  <svg viewBox="0 0 24 24" aria-hidden className="absolute top-[calc(var(--spacing)*4.89)] right-[calc(var(--spacing)*4.25)] size-[calc(var(--spacing)*17.384)] text-black">
-                    <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1.5" />
-                    <path d="M8 12l3 3 5-5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </span>
-                <span className="flex flex-1 flex-col gap-[calc(var(--spacing)*2.173)]">
-                  <span className="text-[length:calc(var(--spacing)*15.211)] leading-[calc(var(--spacing)*17.384)]">{variant.code}</span>
-                  <span className="text-10 leading-[calc(var(--spacing)*13.038)] font-light">{variant.note}</span>
-                </span>
-              </button>
+              {multi ? (
+                <div className="flex gap-12">
+                  {detail.variants.map((v) => (
+                    <MobileVariantCard key={v.id} variant={v} selected={v.id === variant.id} onSelect={() => onSelectVariant(v.id)} />
+                  ))}
+                </div>
+              ) : (
+                <button type="button" aria-pressed="true" className="flex items-center gap-8 text-left">
+                  <span className="relative grid h-106 flex-1 place-items-center overflow-hidden rounded-[calc(var(--spacing)*2.173)] border-[0.5px] border-black bg-[#f9f9f9] p-[calc(var(--spacing)*6.519)]">
+                    <span className="pointer-events-none absolute inset-0 rounded-[2px] border border-white" />
+                    <img src={variant.thumb ?? variant.hero} alt="" className="h-[74%] w-[74%] object-contain" />
+                    <svg viewBox="0 0 24 24" aria-hidden className="absolute top-[calc(var(--spacing)*4.89)] right-[calc(var(--spacing)*4.25)] size-[calc(var(--spacing)*17.384)] text-black">
+                      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                      <path d="M8 12l3 3 5-5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                  <span className="flex flex-1 flex-col gap-[calc(var(--spacing)*2.173)]">
+                    <span className="text-[length:calc(var(--spacing)*15.211)] leading-[calc(var(--spacing)*17.384)]">{variant.code}</span>
+                    <span className="text-10 leading-[calc(var(--spacing)*13.038)] font-light">{variant.note}</span>
+                  </span>
+                </button>
+              )}
             </div>
           </>
         )}
 
         {/* render (right) + gallery column (left) */}
-        {showPanel && !soloPanel && (
+        {showPanel && !absHero && (
           <div className="flex items-center gap-12">
             <div className="flex w-84 shrink-0 flex-col gap-8">
               {detail.gallery.map((src, i) => (
@@ -210,7 +224,7 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
           </div>
         )}
 
-        {showPanel && !soloPanel && (
+        {showPanel && !absHero && (
           <div className="flex flex-col gap-16 rounded bg-white p-12">
             <h2 className="text-16">Choose the Variant</h2>
             <div className="flex gap-12">
@@ -229,7 +243,7 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
           key={mainSrc + '-hero'}
           src={mainSrc}
           alt={family.name}
-          className={`animate-[fade-in_0.3s_ease-out] object-contain xl:absolute ${detail.heroClass ?? 'xl:top-150 xl:left-260 xl:h-560 xl:w-720'}`}
+          className={`animate-[fade-in_0.3s_ease-out] object-contain xl:absolute ${variant.heroClass ?? detail.heroClass ?? 'xl:top-150 xl:left-260 xl:h-560 xl:w-720'}`}
         />
 
         {/* Heading block */}
@@ -260,7 +274,7 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
             detail.vim (the two distinct View-In-Motion renders baked at their own Figma orientations); mobile
             keeps detail.gallery untouched. */}
         <div className={`flex gap-6 xl:absolute ${galleryPos}`}>
-          {(detail.vim ?? detail.gallery).map((src, i) => (
+          {desktopTiles.map((src, i) => (
             <button
               key={src + i}
               type="button"
@@ -269,7 +283,7 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
               aria-label={`Show view ${i + 1}`}
               className={`grid cursor-pointer place-items-center border bg-[#f1f1f1] ${isPicked(i) ? 'border-black' : 'border-transparent'} ${tileSize}`}
             >
-              <img src={src} alt="" className="max-h-[86%] max-w-[86%] object-contain" />
+              <img src={src} alt="" className={variant.vim ? 'size-full object-contain' : 'max-h-[86%] max-w-[86%] object-contain'} />
             </button>
           ))}
           <span className={`relative grid place-items-center bg-[#f1f1f1] ${tileSize}`}>
