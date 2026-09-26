@@ -185,7 +185,7 @@ export const detailBySlug = {
   // designed; Tushar to confirm the real efficiency % and mass. Single-variant, so no Choose-Variant panel.
   pt500: mkDetail('pt500', 'Product/ PT Series/ PT 500', [
     mkVariant('PT 500/00', {
-      displayName: 'PT-500', hero: PT + 'hero.png', motorType: 'Power Tool BLDC',
+      displayName: 'PT-500', hero: PT + 'hero.png', vim: [PT + 'g-1.png', PT + 'g-2b.png'], mvim: [PT + 'mg-1.png', PT + 'mg-2b.png'], vimFull: [null, PT + 'back.png'], motorType: 'Power Tool BLDC',
       voltage: '18 V', power: '0.05 kW', torque: '0.32 Nm', peakPower: '0.5 kW', peakTorque: '0.5 Nm',
       peakSpeed: '17500 RPM', efficiency: '0.5 kW', mass: '0.5 Nm',
       // The phone artboard (14394-3492) labels the last two rows correctly for their units.
