@@ -1,4 +1,5 @@
 import { commitment } from '../data/home'
+import CountUp from '../components/ui/CountUp'
 
 export default function Commitment() {
   return (
@@ -35,7 +36,9 @@ export default function Commitment() {
             key={stat.value}
             className="flex h-70 w-172 flex-col justify-between xl:h-140 xl:w-433"
           >
-            <dd className="order-first flex h-49 shrink-0 items-center text-44 leading-normal xl:h-98 xl:text-88">{stat.value}</dd>
+            <dd className="order-first flex h-49 shrink-0 items-center text-44 leading-normal xl:h-98 xl:text-88">
+              <CountUp value={stat.value} />
+            </dd>
             <dt className="text-12 leading-16 text-grey xl:text-24 xl:leading-36">{stat.label}</dt>
           </div>
         ))}

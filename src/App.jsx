@@ -14,6 +14,7 @@ import { industryPages, industryPath } from './data/industry'
 import { productFamilies, productPath } from './data/products'
 import { legalPages } from './data/legal'
 import { currentPath } from './lib/currentPath'
+import { startReveal } from './lib/reveal'
 
 const pages = { '/': Home, '/about': About, '/careers': Careers, '/contact': Contact, '/blogs': Blogs, '/products': Products }
 const industryBySlug = Object.fromEntries(industryPages.map((page) => [industryPath(page.slug), page]))
@@ -31,6 +32,9 @@ export default function App() {
   useEffect(() => {
     if (window.location.hash) document.querySelector(window.location.hash)?.scrollIntoView()
   }, [])
+
+  // Quiet fade-up of each section's content as it scrolls into view.
+  useEffect(() => startReveal(), [])
 
   return (
     <>

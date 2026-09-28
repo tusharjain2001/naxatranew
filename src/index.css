@@ -132,6 +132,20 @@
   top: calc(var(--spacing) * --value(number) + var(--hero-extra, 0px));
 }
 
+/* Scroll-in reveal (src/lib/reveal.js adds these classes, then removes them when the fade ends). */
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition:
+    opacity 0.8s ease-out,
+    transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
 @utility no-scrollbar {
   scrollbar-width: none;
   &::-webkit-scrollbar {
