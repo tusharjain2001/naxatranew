@@ -23,7 +23,17 @@ function Overlay({ type }) {
 export default function Hero() {
   const [active, setActive] = useState(0)
   const [paused, setPaused] = useState(false)
+  // Only the first slide's photo loads with the page (it is also preloaded from index.html); the rest
+  // wait until the page has finished loading so they don't compete with it for bandwidth.
+  const [warm, setWarm] = useState(false)
   const count = heroSlides.length
+
+  useEffect(() => {
+    const on = () => setWarm(true)
+    if (document.readyState === 'complete') on()
+    else window.addEventListener('load', on, { once: true })
+    return () => window.removeEventListener('load', on)
+  }, [])
 
   const go = useCallback((i) => setActive((i + count) % count), [count])
 
@@ -54,18 +64,20 @@ export default function Hero() {
             aria-hidden={!isActive}
             className={`absolute inset-0 transition-opacity duration-1000 ease-out ${isActive ? 'z-10 opacity-100' : 'z-0 opacity-0'}`}
           >
+            {(i === 0 || isActive || warm) && (
             <picture>
               {slide.mobileImage && <source media="(max-width: 1279px)" srcSet={slide.mobileImage} />}
               <img
                 src={slide.image}
                 alt=""
                 fetchPriority={i === 0 ? 'high' : 'auto'}
-                loading={i === 0 ? 'eager' : 'lazy'}
+                decoding={i === 0 ? 'sync' : 'async'}
                 className={`absolute inset-0 size-full object-cover transition-transform duration-[7000ms] ease-out ${
                   slide.imageClass ?? ''
                 } ${isActive ? 'scale-100' : 'scale-105'}`}
               />
             </picture>
+            )}
             <Overlay type={slide.overlay} />
 
             <div className="relative mx-auto h-full max-w-1920">
@@ -96,7 +108,7 @@ export default function Hero() {
 
               {/* Mobile copy */}
               <div
-                className={`absolute inset-x-0 top-0 flex flex-col gap-18 px-16 py-100 text-white transition-all delay-200 duration-700 xl:hidden ${
+                className={`absolute inset-x-0 top-0 flex flex-col items-start gap-18 px-16 pt-80 text-white transition-all delay-200 duration-700 xl:hidden ${
                   isActive ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'
                 }`}
               >
@@ -111,6 +123,9 @@ export default function Hero() {
                     : slide.title.join(' ')}
                 </h2>
                 {slide.subtitle && <p className="text-20 leading-28 capitalize">{slide.subtitle.join(' ')}</p>}
+                <Button variant="white" size="heroM" href="#products" tabIndex={isActive ? 0 : -1}>
+                  Explore Now
+                </Button>
               </div>
 
               <Button

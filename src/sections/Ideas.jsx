@@ -12,7 +12,7 @@ function ReadMore({ className = '' }) {
   )
 }
 
-export default function Ideas({ spacing = 'gap-28 py-100 xl:gap-64 xl:pt-378 xl:pb-[calc(var(--spacing)*184.6)]' }) {
+export default function Ideas({ spacing = 'gap-28 py-56 xl:gap-64 xl:pt-74 xl:pb-[calc(var(--spacing)*70.5)]' }) {
   const [trackRef, track] = useScrollTrack()
 
   return (

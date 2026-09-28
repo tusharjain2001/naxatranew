@@ -21,7 +21,8 @@ function ApplicationCard({ item }) {
       <span className="absolute top-[1.52em] left-[2.16em] h-[313em] w-[330em] rounded-t-[7.569em] bg-tile" />
 
       <span className="absolute top-[325em] left-[15.5em] flex h-[40em] items-center text-grey capitalize">
-        <span className={`${item.font} leading-normal`} style={{ fontSize: em(32) }}>
+        {/* 32 on the scaled phone card, 24 on desktop (Figma). */}
+        <span className="text-[length:32em] leading-normal xl:text-[length:24em]">
           {item.label}
         </span>
       </span>
@@ -55,7 +56,7 @@ function ApplicationCard({ item }) {
 
 export default function Applications() {
   return (
-    <section id="industry" className="mx-auto flex w-full max-w-1920 flex-col items-center gap-48 py-100 xl:gap-101 xl:pt-269 xl:pb-0">
+    <section id="industry" className="mx-auto flex w-full max-w-1920 flex-col items-center gap-48 py-56 xl:gap-80 xl:pt-145 xl:pb-145">
       <div className="flex flex-col items-center gap-16 px-16 text-center xl:w-1279 xl:gap-20 xl:px-0">
         <h2 className="text-32 leading-36 tracking-display capitalize xl:text-64 xl:leading-72">
           Powering A Wide Range Of Applications

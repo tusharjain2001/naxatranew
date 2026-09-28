@@ -3,8 +3,8 @@ import CountUp from '../components/ui/CountUp'
 
 export default function Commitment() {
   return (
-    <section id="about" className="mx-auto w-full max-w-1920 py-100 xl:px-100 xl:pt-142 xl:pb-0">
-      <div className="flex flex-col gap-16 px-16 pb-60 xl:flex-row xl:items-center xl:justify-between xl:gap-0 xl:p-0">
+    <section id="about" className="mx-auto w-full max-w-1920 py-56 xl:px-100 xl:pt-137 xl:pb-137">
+      <div className="flex flex-col gap-16 px-16 pb-24 xl:flex-row xl:items-center xl:justify-between xl:gap-0 xl:p-0">
         <div className="flex flex-col gap-16 xl:w-1040 xl:gap-32">
           <h2 className="text-32 leading-36 tracking-display capitalize xl:text-64 xl:leading-72">
             {/* Figma sets the last phrase as its own paragraph on desktop. */}
@@ -20,7 +20,7 @@ export default function Commitment() {
             </span>
           </p>
         </div>
-        <div className="relative h-335 w-full overflow-hidden rounded-8 xl:h-466 xl:w-514 xl:shrink-0">
+        <div className="relative h-335 w-full overflow-hidden rounded-8 xl:h-440 xl:w-485 xl:shrink-0">
           <img
             src={commitment.image}
             alt="Cutaway render of a Naxatra electric motor"
@@ -30,7 +30,7 @@ export default function Commitment() {
         </div>
       </div>
 
-      <dl className="flex flex-wrap gap-20 px-16 capitalize xl:mt-172 xl:flex-nowrap xl:justify-between xl:gap-0 xl:px-0">
+      <dl className="flex flex-wrap gap-24 px-16 capitalize xl:mt-104 xl:flex-nowrap xl:justify-between xl:gap-0 xl:px-0">
         {commitment.stats.map((stat) => (
           <div
             key={stat.value}

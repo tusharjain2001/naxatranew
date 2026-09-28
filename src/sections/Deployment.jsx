@@ -2,7 +2,7 @@ import { useCallback, useLayoutEffect, useRef, useState } from 'react'
 import { deployment } from '../data/home'
 
 // Each tab owns one photo, in the same left-to-right order: Design, Performance, Technology.
-// Every photo sits in a fixed 720x400 box (288x160 on mobile) and fills it, centred.
+// Every photo sits in a fixed 720x400 box (200x160 on mobile) and fills it, centred.
 
 // The set is repeated on both sides so neighbouring photos always fill the screen edges.
 const COPIES = 3
@@ -37,8 +37,8 @@ export default function Deployment() {
   }, [centre])
 
   return (
-    <section className="flex w-full flex-col items-center gap-48 overflow-hidden py-100 xl:gap-0 xl:pt-263 xl:pb-0">
-      <div className="flex w-full flex-col items-center gap-10 px-15.25 text-center capitalize xl:translate-x-3 xl:gap-24 xl:px-0">
+    <section className="flex w-full flex-col items-center gap-48 overflow-hidden py-56 xl:gap-0 xl:pt-94 xl:pb-98">
+      <div className="flex w-full flex-col items-center gap-10 px-15.25 text-center capitalize xl:translate-x-3 xl:gap-16 xl:px-0">
         <h2 className="w-337 text-32 leading-[calc(var(--spacing)*33.42)] tracking-display xl:w-1340 xl:text-64 xl:leading-80">
           {deployment.title}
         </h2>
@@ -50,7 +50,7 @@ export default function Deployment() {
       <div
         role="tablist"
         aria-label="Deployment focus"
-        className="flex w-full items-center justify-center gap-8 px-9.5 xl:mt-64 xl:w-auto xl:translate-x-3 xl:gap-24 xl:px-0"
+        className="flex w-full items-center justify-center gap-8 px-9.5 xl:mt-48 xl:w-auto xl:translate-x-3 xl:gap-24 xl:px-0"
       >
         {deployment.tabs.map((tab, i) => {
           const isActive = i === active
@@ -73,10 +73,10 @@ export default function Deployment() {
         })}
       </div>
 
-      <div ref={viewportRef} id="deploy-strip" role="tabpanel" aria-labelledby={`deploy-tab-${active}`} className="w-full xl:mt-66">
+      <div ref={viewportRef} id="deploy-strip" role="tabpanel" aria-labelledby={`deploy-tab-${active}`} className="w-full xl:mt-48">
         <div
           ref={stripRef}
-          className="flex w-max items-center gap-8 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform xl:gap-32"
+          className="flex w-max items-center gap-8 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform xl:gap-24"
         >
           {strip.map((img, i) => {
             const index = i % count
@@ -88,7 +88,7 @@ export default function Deployment() {
                 tabIndex={-1}
                 aria-hidden={!isMiddle}
                 onClick={() => setActive(index)}
-                className="relative h-160 w-288 shrink-0 cursor-pointer overflow-hidden rounded-5 xl:h-400 xl:w-720 xl:rounded-12"
+                className="relative h-160 w-200 shrink-0 cursor-pointer overflow-hidden rounded-5 xl:h-400 xl:w-720 xl:rounded-12"
               >
                 <img
                   src={img.src}

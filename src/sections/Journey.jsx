@@ -8,7 +8,7 @@ const ITEM = 240
 const ACTIVE = 360
 const GAP = 32
 const PAD = 24
-const SPEED = 40 // artboard px per second
+const STEP_MS = 2000 // autoplay: highlight the next milestone every 2 s
 const GLIDE_MS = 600
 
 function Photo({ item }) {
@@ -41,19 +41,19 @@ function Photo({ item }) {
   )
 }
 
-export default function Journey({ spacing = 'py-100 xl:pt-265 xl:pb-0' }) {
+export default function Journey({ spacing = 'py-56 xl:pt-92 xl:pb-92' }) {
   const [active, setActive] = useState(1)
   const sectionRef = useRef(null)
   const trackRef = useRef(null)
   const listRef = useRef(null)
   const railRef = useRef(null)
-  // Drift state lives in a ref so the animation loop never restarts: `pos` is the float offset, `glide` an
-  // in-flight arrow/dot move, `hold` a pointer resting on the cards, `drag` a swipe in progress.
+  // Track state lives in a ref so the animation loop never restarts: `pos` is the float offset, `glide` an
+  // in-flight move to a milestone, `hold` a pointer resting on the cards, `drag` a swipe in progress.
   const drift = useRef({ pos: 0, glide: null, hold: false, drag: null, moved: false, inView: false })
 
-  // The timeline drifts left continuously. It moves by a GPU transform (sub-pixel smooth; scrollLeft is
-  // rounded to whole pixels, which stutters at this slow speed). The milestones are rendered twice, so
-  // when the first copy has fully passed, the offset jumps back by one copy's width and the loop is seamless.
+  // The track moves by a GPU transform (sub-pixel smooth; scrollLeft is rounded to whole pixels). The
+  // milestones are rendered twice, so when the offset passes one copy's width it jumps back by that width
+  // and stepping forward past the last milestone carries on seamlessly into the first.
   useEffect(() => {
     const track = trackRef.current
     const list = listRef.current
@@ -61,13 +61,9 @@ export default function Journey({ spacing = 'py-100 xl:pt-265 xl:pb-0' }) {
     const section = sectionRef.current
     if (!track || !list || !rail || !section) return
     const d = drift.current
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     const io = new IntersectionObserver(([entry]) => (d.inView = entry.isIntersecting), { threshold: 0.1 })
     io.observe(section)
-    let unit = parseFloat(getComputedStyle(track).fontSize)
-    const ro = new ResizeObserver(() => (unit = parseFloat(getComputedStyle(track).fontSize)))
-    ro.observe(track)
 
     const loopWidth = () => {
       const items = list.children
@@ -76,10 +72,7 @@ export default function Journey({ spacing = 'py-100 xl:pt-265 xl:pb-0' }) {
     const wrap = (x, w) => ((x % w) + w) % w
 
     let raf = 0
-    let prev = performance.now()
     const tick = (now) => {
-      const dt = Math.min(now - prev, 64) / 1000
-      prev = now
       const w = loopWidth()
       if (d.drag) {
         // Swiping: `pos` is set by the pointer handlers.
@@ -88,8 +81,6 @@ export default function Journey({ spacing = 'py-100 xl:pt-265 xl:pb-0' }) {
         const ease = 1 - Math.pow(1 - t, 3)
         d.pos = d.glide.from + (d.glide.to - d.glide.from) * ease
         if (t === 1) d.glide = null
-      } else if (!reduced && !d.hold && d.inView && !document.hidden) {
-        d.pos += SPEED * unit * dt
       }
       if (w > 0 && !d.glide) d.pos = wrap(d.pos, w)
       rail.style.transform = `translate3d(${-d.pos}px, 0, 0)`
@@ -99,11 +90,10 @@ export default function Journey({ spacing = 'py-100 xl:pt-265 xl:pb-0' }) {
     return () => {
       cancelAnimationFrame(raf)
       io.disconnect()
-      ro.disconnect()
     }
   }, [])
 
-  // Glide the track to `target` (then the drift resumes). A glide back past the start is shifted forward
+  // Glide the track to `target`. A glide back past the start is shifted forward
   // by one copy's width so it still has cards to show.
   const glideTo = (target) => {
     const d = drift.current
@@ -130,6 +120,24 @@ export default function Journey({ spacing = 'py-100 xl:pt-265 xl:pb-0' }) {
     glideTo([t - w, t, t + w].reduce((best, c) => (Math.abs(c - pos) < Math.abs(best - pos) ? c : best)))
   }
   const n = journey.length
+
+  // Autoplay: every STEP_MS the next milestone is highlighted and glides into view, looping after the last.
+  // Any change of highlight (arrows, dots, a click) restarts the wait; while the pointer rests on the cards,
+  // a swipe is in progress, or the section is off screen, it waits another round instead.
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    let id
+    const wait = () => {
+      id = setTimeout(() => {
+        const d = drift.current
+        if (d.hold || d.drag || !d.inView || document.hidden) wait()
+        else goTo((active + 1) % n)
+      }, STEP_MS)
+    }
+    wait()
+    return () => clearTimeout(id)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [active])
 
   const controls = { prev: () => goTo((active - 1 + n) % n), next: () => goTo((active + 1) % n), canPrev: true, canNext: true }
   const hold = (on) => () => (drift.current.hold = on)
@@ -196,11 +204,10 @@ export default function Journey({ spacing = 'py-100 xl:pt-265 xl:pb-0' }) {
             className="w-full touch-pan-y overflow-hidden select-none text-[length:calc(var(--spacing)*0.5174)] xl:text-[length:var(--spacing)]"
           >
             <div ref={railRef} className="relative w-max will-change-transform [&_img]:pointer-events-none">
-              <img
-                src="/assets/journey-line.svg"
-                alt=""
+              {/* Dashed rail: 12 on / 12 off at any track length (a stretched SVG would stretch the dashes). */}
+              <span
                 aria-hidden
-                className="pointer-events-none absolute left-0 h-[1em] w-full"
+                className="pointer-events-none absolute left-0 h-[1em] w-full bg-[linear-gradient(to_right,#515151_50%,transparent_50%)] bg-size-[24em_1em] bg-repeat-x"
                 style={{ top: `${PAD + 12}em` }}
               />
               <ol ref={listRef} className="relative flex items-start" style={{ gap: `${GAP}em`, padding: `${PAD}em` }}>
@@ -234,7 +241,7 @@ export default function Journey({ spacing = 'py-100 xl:pt-265 xl:pb-0' }) {
                       >
                         {item.title}
                       </h3>
-                      <p className="font-light text-grey normal-case" style={{ fontSize: '16em', lineHeight: 1.25 }}>
+                      <p className="text-12 leading-16 font-light text-grey normal-case xl:text-[length:16em] xl:leading-[1.25]">
                         {item.text}
                       </p>
                     </div>

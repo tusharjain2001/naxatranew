@@ -50,46 +50,13 @@ export const industryMenu = {
   ],
 }
 
-// `top` is the headline offset from the top of the 880px image area on the 1920px artboard.
+// Slide order follows the Figma home page (hero 1-5). `top` is the headline offset from the top of the
+// 880px image area on the 1920px artboard.
 export const heroSlides = [
   {
-    id: 'agriculture',
-    image: a('hero-agri.png'),
-    // Phone crops are composed from the 402px artboards, each framed on its subject.
-    mobileImage: a('m/hero-agri.jpg'),
-    title: ['Powering Agriculture’s Next', 'Generation'],
-    top: 142,
-  },
-  {
-    id: 'mobility',
-    image: a('hero-vehicles.png'),
-    mobileImage: a('m/hero-vehicles.jpg'),
-    title: ['Engineering Electric Mobility,', 'End To End.'],
-    overlay: 'vehicles',
-    top: 111,
-  },
-  {
-    id: 'cleaning',
-    image: a('hero-sweeper.png'),
-    mobileImage: a('m/hero-sweeper.jpg'),
-    title: ['Powerful Motors For', 'Spotless Results.'],
-    // The phone artboard sets this headline in a narrower box, so it breaks onto three lines.
-    mobileTitleClass: 'w-347',
-    top: 160,
-  },
-  {
-    id: 'drone',
-    image: a('hero-drone.png'),
-    // The phone crop is already mirrored.
-    mobileImage: a('m/hero-drone.jpg'),
-    imageClass: 'xl:-scale-x-100 xl:object-top',
-    title: ['Precision Motors,', 'Engineered To Fly.'],
-    top: 111,
-  },
-  {
     id: 'made-in-india',
-    image: a('hero-bridge.png'),
-    mobileImage: a('m/hero-bridge.jpg'),
+    image: a('hero-bridge.webp'),
+    mobileImage: a('m/hero-bridge.webp'),
     // The phone artboard breaks this headline after “India.” rather than letting it wrap.
     mobileLines: true,
     title: ['Built In India.', 'Driving What’s Next.'],
@@ -98,6 +65,40 @@ export const heroSlides = [
     overlay: 'bridge',
     titleClass: 'h-181',
     top: 151,
+  },
+  {
+    id: 'mobility',
+    image: a('hero-vehicles.webp'),
+    mobileImage: a('m/hero-vehicles.webp'),
+    title: ['Engineering Electric Mobility,', 'End To End.'],
+    overlay: 'vehicles',
+    top: 111,
+  },
+  {
+    id: 'cleaning',
+    image: a('hero-sweeper.webp'),
+    mobileImage: a('m/hero-sweeper.webp'),
+    title: ['Powerful Motors For', 'Spotless Results.'],
+    // The phone artboard sets this headline in a narrower box, so it breaks onto three lines.
+    mobileTitleClass: 'w-347',
+    top: 160,
+  },
+  {
+    id: 'agriculture',
+    image: a('hero-agri.webp'),
+    // Phone crops are composed from the 402px artboards, each framed on its subject.
+    mobileImage: a('m/hero-agri.webp'),
+    title: ['Powering Agriculture’s Next', 'Generation'],
+    top: 142,
+  },
+  {
+    id: 'drone',
+    image: a('hero-drone.webp'),
+    // The phone crop is already mirrored.
+    mobileImage: a('m/hero-drone.webp'),
+    imageClass: 'xl:-scale-x-100 xl:object-top',
+    title: ['Precision Motors,', 'Engineered To Fly.'],
+    top: 111,
   },
 ]
 

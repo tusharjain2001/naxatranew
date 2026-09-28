@@ -33,7 +33,7 @@ function TestimonialCard({ item }) {
   )
 }
 
-export default function Testimonials({ spacing = 'gap-60 py-100 xl:gap-100 xl:pt-293 xl:pb-0', desktopArrows = false }) {
+export default function Testimonials({ spacing = 'gap-60 py-56 xl:gap-48 xl:pt-90 xl:pb-90', desktopArrows = false }) {
   const [trackRef, track] = useScrollTrack()
 
   return (
