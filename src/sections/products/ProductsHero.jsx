@@ -7,7 +7,7 @@ const heroMotor = '/assets/products/listing/hero-motor.png'
 export default function ProductsHero() {
   return (
     <section className="relative w-full overflow-hidden bg-[#040403]">
-      <div className="relative mx-auto h-717 max-w-1920 xl:h-880">
+      <div className="relative mx-auto h-717 max-w-1920 xl:h-hero">
         <img
           src={heroMotor}
           alt="Antarix radial-flux motor"
@@ -20,10 +20,10 @@ export default function ProductsHero() {
             Motors Engineered For Every Application.
           </h1>
           <div className="flex flex-col gap-24 xl:contents">
-            <p className="text-20 leading-28 font-light xl:absolute xl:top-578 xl:left-100 xl:w-450 xl:-translate-y-1/2 xl:text-24 xl:leading-32 xl:capitalize">
+            <p className="text-20 leading-28 font-light xl:absolute xl:tx-578 xl:left-100 xl:w-450 xl:-translate-y-1/2 xl:text-24 xl:leading-32 xl:capitalize">
               High performance motors designed and developed in india for mobility, industrial and next-generation applications.
             </p>
-            <div className="flex gap-8 xl:absolute xl:top-661 xl:left-100 xl:gap-24">
+            <div className="flex gap-8 xl:absolute xl:tx-661 xl:left-100 xl:gap-24">
               <Button href="#motor-listing" variant="white" size="spec" className="xl:hidden">
                 Browse all products
               </Button>

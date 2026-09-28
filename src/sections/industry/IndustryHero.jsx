@@ -9,7 +9,7 @@ function Photo({ hero }) {
     return (
       <>
         {hero.mobile && <img src={hero.mobile.image} alt={hero.alt} className="absolute inset-0 size-full object-cover xl:hidden" />}
-        <div className={`absolute top-0 -right-53 h-717 w-1424 xl:top-auto ${hero.mobile ? 'hidden xl:block' : ''} xl:right-auto xl:left-1/2 xl:-translate-x-1/2 ${hero.frameClass ?? 'xl:-bottom-13 xl:h-967 xl:w-1920'}`}>
+        <div className={`absolute top-0 -right-53 h-717 w-1424 xl:top-auto ${hero.mobile ? 'hidden xl:block' : ''} xl:right-auto xl:left-1/2 xl:-translate-x-1/2 ${hero.frameClass ?? 'xl:-bottom-13 xl:hx-967 xl:w-1920'}`}>
           <img src={hero.image} alt={hero.alt} className={`absolute inset-0 size-full object-cover ${hero.imageClass ?? ''}`} />
           <span className={`absolute inset-0 ${hero.washClass ?? 'bg-linear-to-b from-[rgba(11,78,183,0.4)] to-[rgba(24,99,218,0)] to-[63.603%]'}`} />
         </div>
@@ -21,8 +21,8 @@ function Photo({ hero }) {
     )
   return (
     <>
-      <div className="absolute bottom-0 left-[calc(50%-var(--spacing)*61.5)] h-297 w-593 -translate-x-1/2 overflow-hidden xl:right-0 xl:left-auto xl:h-963 xl:w-1921 xl:translate-x-0">
-        <img src={hero.image} alt={hero.alt} className="absolute top-[-2.77%] left-[-3.09%] h-[111.25%] w-[104.65%]" />
+      <div className="absolute bottom-0 left-[calc(50%-var(--spacing)*61.5)] h-297 w-593 -translate-x-1/2 overflow-hidden xl:right-0 xl:left-auto xl:hx-963 xl:w-1921 xl:translate-x-0">
+        <img src={hero.image} alt={hero.alt} className="absolute top-[-2.77%] left-[-3.09%] h-[111.25%] w-[104.65%] xl:object-cover" />
         <span className="absolute inset-0 bg-linear-to-b from-[rgba(11,78,183,0.6)] to-[rgba(24,99,218,0)] to-[63.603%] xl:from-10% xl:to-[74.818%]" />
       </div>
       {hero.mobileStrip && <img src={hero.mobileStrip} alt="" className="absolute top-408 left-0 h-43 w-full object-cover xl:hidden" />}
@@ -47,7 +47,7 @@ export default function IndustryHero({ hero }) {
   const cover = hero.variant === 'cover'
   return (
     <section
-      className={`relative h-717 w-full overflow-hidden xl:h-880 xl:bg-none ${
+      className={`relative h-717 w-full overflow-hidden xl:h-hero xl:bg-none ${
         cover ? 'bg-[#2a689e]' : 'bg-linear-to-b from-[#2973b3] to-[#2e75cc] to-[50.07%]'
       }`}
     >
@@ -87,7 +87,7 @@ export default function IndustryHero({ hero }) {
             Learn more
           </Button>
         </div>
-        <Button href="#applications" variant="white" size="hero" className="absolute top-717 left-100 hidden xl:inline-flex">
+        <Button href="#applications" variant="white" size="hero" className="absolute tx-717 left-100 hidden xl:inline-flex">
           Learn more
         </Button>
       </div>

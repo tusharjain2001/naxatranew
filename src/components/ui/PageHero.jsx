@@ -21,7 +21,7 @@ export default function PageHero({
 }) {
   const desktopOnly = mobile ? 'hidden xl:block' : ''
   return (
-    <section className={`relative w-full overflow-hidden xl:h-880 ${mobile?.height ?? 'h-460'}`}>
+    <section className={`relative w-full overflow-hidden xl:h-hero ${mobile?.height ?? 'h-460'}`}>
       <div className="relative mx-auto h-full max-w-1920">
         {mobile && <img src={mobile.image} alt={foregroundAlt} className="absolute inset-0 size-full object-cover xl:hidden" />}
         <img src={background} alt="" className={`absolute object-cover ${desktopOnly} ${frame}`} />

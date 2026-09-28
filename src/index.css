@@ -112,6 +112,26 @@
   }
 }
 
+/*
+ * Desktop heroes are drawn on an 880-unit-tall artboard under the 80-unit navbar. On screens taller
+ * than 16:9 (e.g. 16:10 MacBooks) that left the next section peeking in below the hero, so `h-hero`
+ * grows the hero to fill the window. `--hero-extra` is the added height (capped at one artboard height
+ * for very tall windows); `hx-N` / `tx-N` add it to a child's height / top so photos keep covering the
+ * hero and bottom-row controls stay pinned to its foot. Both fall back to the plain artboard value.
+ */
+@utility h-hero {
+  --hero-extra: clamp(0px, 100svh - var(--spacing) * 960, var(--spacing) * 880);
+  height: calc(var(--spacing) * 880 + var(--hero-extra));
+}
+
+@utility hx-* {
+  height: calc(var(--spacing) * --value(number) + var(--hero-extra, 0px));
+}
+
+@utility tx-* {
+  top: calc(var(--spacing) * --value(number) + var(--hero-extra, 0px));
+}
+
 @utility no-scrollbar {
   scrollbar-width: none;
   &::-webkit-scrollbar {

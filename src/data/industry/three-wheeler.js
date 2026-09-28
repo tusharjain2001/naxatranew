@@ -18,7 +18,7 @@ export default {
     subtitleClass: 'xl:w-450',
     image: a('hero.png'),
     imageClass: 'xl:object-bottom',
-    frameClass: 'xl:-bottom-43 xl:h-967 xl:w-1920',
+    frameClass: 'xl:-bottom-43 xl:hx-967 xl:w-1920',
     washClass: 'bg-linear-to-b from-[rgba(24,99,218,0.4)] to-[rgba(24,99,218,0)]',
     angleClass: 'h-603 bg-[linear-gradient(200.56deg,#1863da_18.598%,rgba(24,99,218,0)_43.806%)]',
     alt: 'Electric auto-rickshaws and loaders on a highway through green hills',

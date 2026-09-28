@@ -2,7 +2,7 @@ import { aboutHero } from '../../data/about'
 
 export default function AboutHero() {
   return (
-    <section className="relative h-717 w-full overflow-hidden xl:h-880">
+    <section className="relative h-717 w-full overflow-hidden xl:h-hero">
       {/* Desktop: the sky photo is taller than the section and anchored to its bottom edge. Mobile has its own portrait crop. */}
       <picture>
         <source media="(max-width: 1279px)" srcSet={aboutHero.mobileBackground} />

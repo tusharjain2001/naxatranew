@@ -17,7 +17,7 @@ export default {
     subtitleClass: 'xl:font-light xl:w-649',
     image: a('hero.png'),
     imageClass: 'xl:object-bottom',
-    frameClass: 'xl:top-[-42px] xl:bottom-auto xl:h-964 xl:w-1970',
+    frameClass: 'xl:top-[-42px] xl:bottom-auto xl:hx-964 xl:w-1970',
     washClass: 'bg-[linear-gradient(131.82deg,rgba(0,43,96,0.2)_15.953%,rgba(0,0,0,0)_68.206%)]',
     angleClass: false,
     alt: 'Electric tractors, a tiller and farm vehicles lined up at the edge of a crop field',

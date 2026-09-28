@@ -38,7 +38,7 @@ export default function Hero() {
       id="home"
       aria-roledescription="carousel"
       aria-label="Highlights"
-      className="relative h-744 overflow-hidden bg-black xl:h-880"
+      className="relative h-744 overflow-hidden bg-black xl:h-hero"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -118,7 +118,7 @@ export default function Hero() {
                 size="hero"
                 href="#products"
                 tabIndex={isActive ? 0 : -1}
-                className="absolute top-661 left-103 hidden xl:inline-flex"
+                className="absolute tx-661 left-103 hidden xl:inline-flex"
               >
                 Explore Now
               </Button>
@@ -135,7 +135,7 @@ export default function Hero() {
         </div>
 
         {/* Progress bars */}
-        <div className="pointer-events-auto absolute top-710 left-1/2 flex -translate-x-1/2 items-center gap-5 xl:top-760 xl:gap-8">
+        <div className="pointer-events-auto absolute top-710 left-1/2 flex -translate-x-1/2 items-center gap-5 xl:tx-760 xl:gap-8">
           {heroSlides.map((slide, i) => (
             <button
               key={slide.id}
