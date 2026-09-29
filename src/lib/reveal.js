@@ -1,8 +1,10 @@
-// Quiet scroll-in motion: blocks fade up a little as they enter the viewport, with a short stagger for
-// rows of cards. Classes are added from here (not in JSX) so the page renders fully visible without JS,
-// and they are removed once the fade ends so each element gets its own transitions back.
+// Site-wide slide-up: every section's content slides up and fades in as it scrolls into view, with a
+// stagger for rows of cards. Classes are added from here (not in JSX) so the page renders fully visible
+// without JS, and they are removed once the slide ends so each element gets its own transitions back.
+// The distance and speed live in the `.reveal` rule in index.css.
 const MAX_STAGGER = 6
-const STAGGER_MS = 90
+const STAGGER_MS = 120
+const DURATION_MS = 1000
 
 // Walk past single-child wrappers (section > container > inner) to the block that holds the content.
 function contentRoot(el) {
@@ -44,7 +46,13 @@ function collect() {
       if (isRow(child)) items.push([...child.children].filter(usable))
       else if (usable(child)) items.push([child])
     }
-    groups.push(...items.filter((g) => g.length))
+    const found = items.filter((g) => g.length)
+    // Layouts built from absolute layers (no plain blocks to pick): the whole content block slides instead.
+    if (!found.length) {
+      const root = contentRoot(section)
+      if (root !== section && root instanceof HTMLElement && root.offsetParent !== null) found.push([root])
+    }
+    groups.push(...found)
   })
   return groups
 }
@@ -57,20 +65,33 @@ export function startReveal() {
     el.classList.remove('reveal', 'is-in')
     el.style.removeProperty('transition-delay')
   }
+  const show = (el) => {
+    el.classList.add('is-in')
+    const delay = parseFloat(el.style.transitionDelay) || 0
+    setTimeout(() => done(el), DURATION_MS + delay + 100)
+  }
 
   const observer = new IntersectionObserver(
     (entries) => {
       for (const entry of entries) {
         if (!entry.isIntersecting) continue
-        const el = entry.target
-        observer.unobserve(el)
-        el.classList.add('is-in')
-        el.addEventListener('transitionend', () => done(el), { once: true })
-        setTimeout(() => done(el), 1600)
+        observer.unobserve(entry.target)
+        show(entry.target)
       }
     },
-    { threshold: 0 },
+    // Wait until a block is a little way into the screen so the slide is actually seen.
+    { rootMargin: '0px 0px -12% 0px', threshold: 0 },
   )
+
+  // Blocks at the very foot of the page may never get 12% into the screen: reveal them at the bottom.
+  const atBottom = () => {
+    if (window.innerHeight + window.scrollY < document.documentElement.scrollHeight - 4) return
+    for (const el of document.querySelectorAll('.reveal:not(.is-in)')) {
+      observer.unobserve(el)
+      show(el)
+    }
+  }
+  window.addEventListener('scroll', atBottom, { passive: true })
 
   for (const group of collect()) {
     group.forEach((el, i) => {
@@ -79,5 +100,8 @@ export function startReveal() {
       observer.observe(el)
     })
   }
-  return () => observer.disconnect()
+  return () => {
+    observer.disconnect()
+    window.removeEventListener('scroll', atBottom)
+  }
 }

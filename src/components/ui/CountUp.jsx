@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 
 // Counts the number inside `value` ("10%", "2x", "4.5 kW") up from 0 the first time it scrolls into view.
 // The final text stays in the layout (invisible) so the width never jumps while the digits change.
-export default function CountUp({ value, duration = 1600 }) {
+export default function CountUp({ value, duration = 3000 }) {
   const match = String(value).match(/^(\D*)(\d+(?:\.\d+)?)(.*)$/)
   const ref = useRef(null)
   const [shown, setShown] = useState(match ? 0 : null)
