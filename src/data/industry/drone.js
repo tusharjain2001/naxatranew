@@ -112,6 +112,7 @@ export default {
   features: {
     title: ['Measurable outcomes of our motor & controller- optimised for Drones'],
     titleClass: 'xl:w-1588',
+    reveal: 'left',
     items: [
       { title: '+5-8% Range', text: 'From Motor Swap Alone', icon: '/assets/industry/2w/feat-range.svg' },
       { title: '2-3 week', text: 'Leadtime', icon: '/assets/industry/2w/feat-leadtime.svg' },

@@ -63,6 +63,7 @@ export default {
     title: ['Measurable outcomes of our motor & controller- optimised for electric mobility'],
     titleClass: 'xl:w-1788',
     bordered: true,
+    reveal: 'left',
     items: [
       { title: '+5-8% Range', text: 'From Motor Swap Alone', icon: a('feat-range.svg') },
       { title: '2-3 week', text: 'Leadtime', icon: a('feat-leadtime.svg') },

@@ -1,7 +1,8 @@
 // Site-wide slide-up: every section's content slides up and fades in as it scrolls into view, with a
 // stagger for rows of cards. Classes are added from here (not in JSX) so the page renders fully visible
 // without JS, and they are removed once the slide ends so each element gets its own transitions back.
-// The distance and speed live in the `.reveal` rule in index.css.
+// The distance and speed live in the `.reveal` rule in index.css. Blocks inside `data-reveal="left"` slide in
+// from the left instead (`.reveal-left`).
 const MAX_STAGGER = 6
 const STAGGER_MS = 120
 const DURATION_MS = 1000
@@ -62,7 +63,7 @@ export function startReveal() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return () => {}
 
   const done = (el) => {
-    el.classList.remove('reveal', 'is-in')
+    el.classList.remove('reveal', 'reveal-left', 'is-in')
     el.style.removeProperty('transition-delay')
   }
   const show = (el) => {
@@ -96,6 +97,7 @@ export function startReveal() {
   for (const group of collect()) {
     group.forEach((el, i) => {
       el.classList.add('reveal')
+      if (el.closest('[data-reveal="left"]')) el.classList.add('reveal-left')
       if (i) el.style.transitionDelay = `${Math.min(i, MAX_STAGGER) * STAGGER_MS}ms`
       observer.observe(el)
     })

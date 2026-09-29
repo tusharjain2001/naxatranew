@@ -100,6 +100,7 @@ export default {
 
   features: {
     title: ['Antarix RF Series', 'Optimised for Cleaning Equipment'],
+    reveal: 'left',
     items: [
       { title: '48V / 72V / 96V', text: 'Available', icon: a('feat-voltage.svg'), mobileIcon: a('feat-voltage-m.svg') },
       { title: 'IP67 Rated', text: 'Full Submersion Validated', icon: a('feat-ip67.svg') },

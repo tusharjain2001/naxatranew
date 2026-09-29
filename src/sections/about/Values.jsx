@@ -28,7 +28,7 @@ export default function Values() {
       </div>
 
       {/* Mobile lists the cards in its own order and stripes every other one; desktop is a 2×2 grid of grey cards. */}
-      <ul className="grid gap-10 xl:grid-cols-2 xl:gap-32">
+      <ul data-reveal="left" className="grid gap-10 xl:grid-cols-2 xl:gap-32">
         {values.items.map((item) => (
           <li
             key={item.title}

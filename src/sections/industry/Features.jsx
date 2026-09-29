@@ -1,4 +1,5 @@
-// Spec cards. Desktop lays them three to a row (`cols` overrides it); mobile is one column.
+// Spec cards. Desktop lays them three to a row (`cols` overrides it); mobile is one column. `reveal: 'left'`
+// slides the cards in from the left on scroll.
 export default function Features({ data }) {
   return (
     <section className={`flex w-full flex-col gap-60 pb-56 xl:gap-100 xl:py-100 ${data.section ?? ''}`}>
@@ -6,7 +7,7 @@ export default function Features({ data }) {
         <span className="block text-32 leading-35 xl:text-72 xl:leading-88">{data.title[0]}</span>
         {data.title[1] && <span className="block text-24 leading-35 xl:text-48 xl:leading-57">{data.title[1]}</span>}
       </h2>
-      <ul className={`grid gap-16 px-16 xl:gap-32 xl:px-100 ${data.cols ?? 'xl:grid-cols-3'}`}>
+      <ul data-reveal={data.reveal} className={`grid gap-16 px-16 xl:gap-32 xl:px-100 ${data.cols ?? 'xl:grid-cols-3'}`}>
         {data.items.map((item) => (
           <li
             key={item.title}

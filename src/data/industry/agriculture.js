@@ -82,6 +82,7 @@ export default {
   features: {
     title: ['Antarix RF Series', 'Optimised for Agriculture Equipment'],
     cols: 'xl:grid-cols-2',
+    reveal: 'left',
     items: [
       // The phone artboard lists H-class before the warranty (`mobileLast`) and uses its own voltage icon.
       { title: '48V / 72V / 96V', text: 'Available', icon: a('feat-voltage.svg'), mobileIcon: a('feat-voltage-m.svg') },

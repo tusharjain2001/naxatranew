@@ -141,6 +141,10 @@
     transform 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.reveal-left {
+  transform: translate3d(-120px, 0, 0);
+}
+
 .reveal.is-in {
   opacity: 1;
   transform: none;
