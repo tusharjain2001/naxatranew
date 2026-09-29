@@ -22,7 +22,7 @@ export const values = {
       text: 'We pioneer cutting-edge electric motor technology.',
       mobileOrder: 'order-1',
       mobileTint: true,
-      icon: { src: a('icon-bulb.svg') },
+      icon: { src: a('icon-bulb-b.svg') },
     },
     {
       title: 'Sustainability with purpose',
@@ -31,9 +31,9 @@ export const values = {
       icon: {
         box: 'top-[19em] left-[23.75%] right-[23.75%] aspect-square',
         layers: [
-          { src: a('sustain-1.svg'), inset: '12.5% 29.91% 3.12% 3.12%' },
-          { src: a('sustain-2.svg'), inset: '28.13% 21.88% 15.63% 21.88%' },
-          { src: a('sustain-3.svg'), inset: '3.12% 3.12% 12.5% 29.91%' },
+          { src: a('sustain-1-b.svg'), inset: '12.5% 29.91% 3.12% 3.12%' },
+          { src: a('sustain-2-b.svg'), inset: '28.13% 21.88% 15.63% 21.88%' },
+          { src: a('sustain-3-b.svg'), inset: '3.12% 3.12% 12.5% 29.91%' },
         ],
       },
     },
@@ -43,7 +43,7 @@ export const values = {
       mobileOrder: 'order-2',
       icon: {
         box: 'top-[15em] left-[18.75%] right-[20%] aspect-square',
-        layers: [{ src: a('icon-collab.svg'), inset: '4.16% 8.33% 4.17% 8.33%' }],
+        layers: [{ src: a('icon-collab-b.svg'), inset: '4.16% 8.33% 4.17% 8.33%' }],
       },
     },
     {
@@ -53,7 +53,7 @@ export const values = {
       mobileTint: true,
       icon: {
         box: 'inset-y-1/4 inset-x-[33.33%]',
-        layers: [{ src: a('icon-quality.svg'), inset: '-3.75% -5.62% -3.75% -5.63%' }],
+        layers: [{ src: a('icon-quality-b.svg'), inset: '-3.75% -5.62% -3.75% -5.63%' }],
       },
     },
   ],
@@ -82,19 +82,21 @@ export const recognition = {
   statement: 'From India to the World, we’re taking homegrown motor innovation into international markets.',
   stat: { value: '10', unit: '%', label: 'Higher Average Efficiency' },
   // Grid order, left to right and top to bottom. `statement` spans two columns, `stat` is a tile.
+  // Photos are the client's colour originals, framed to their tiles; the page shows them greyscale
+  // and brings the colour back on hover.
   // Mobile moves the stat tile after gallery-8, so it and the final photo go last there.
   tiles: [
-    { src: a('gallery-1.png') },
-    { src: a('gallery-2.png') },
-    { src: a('gallery-3.png'), fit: 'object-bottom' },
-    { src: a('gallery-4.png'), fit: 'object-bottom' },
+    { src: a('gallery-1-c.webp') },
+    { src: a('gallery-2-c.webp') },
+    { src: a('gallery-3-c.webp') },
+    { src: a('gallery-4-c.webp') },
     { type: 'statement' },
-    { src: a('gallery-5.png'), fit: 'object-bottom' },
-    { src: a('gallery-6.png'), fit: 'object-bottom' },
-    { src: a('gallery-7.png'), fit: 'object-bottom' },
+    { src: a('gallery-5-c.webp') },
+    { src: a('gallery-6-c.webp') },
+    { src: a('gallery-7-c.webp') },
     { type: 'stat' },
-    { src: a('gallery-8.png'), fit: 'object-bottom' },
-    { src: a('gallery-9.png'), fit: 'object-bottom', mobileLast: true },
+    { src: a('gallery-8-c.webp') },
+    { src: a('gallery-9-c.webp'), mobileLast: true },
   ],
 }
 

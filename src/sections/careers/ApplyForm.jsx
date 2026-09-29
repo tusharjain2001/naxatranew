@@ -9,7 +9,7 @@ export default function ApplyForm({ role, onRoleChange }) {
   return (
     <section
       id="apply"
-      className="mx-auto flex w-full max-w-1920 scroll-mt-56 flex-col px-16 py-100 xl:mb-184 xl:h-1000 xl:scroll-mt-80 xl:justify-center xl:gap-60 xl:px-100 xl:py-0"
+      className="mx-auto flex w-full max-w-1920 scroll-mt-56 flex-col px-16 py-100 xl:h-1000 xl:scroll-mt-80 xl:justify-center xl:gap-60 xl:px-100 xl:py-0"
     >
       <form onSubmit={(e) => e.preventDefault()} className="flex flex-col items-start gap-38 xl:items-end xl:gap-60">
         <div className="flex w-full flex-col gap-38 xl:gap-70">
@@ -33,7 +33,9 @@ export default function ApplyForm({ role, onRoleChange }) {
                 label="Applying for which role?"
                 name="role"
                 list="open-roles"
-                placeholder="Choose your role" inputClass={phoneBlank}
+                placeholder="Choose your role"
+                inputClass={phoneBlank}
+                chevron
                 value={role}
                 onChange={(e) => onRoleChange(e.target.value)}
               />

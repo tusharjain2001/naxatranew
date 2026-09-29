@@ -17,6 +17,14 @@ export default function BlogsHero() {
       rowClass="xl:gap-197"
       titleClass="xl:w-945 xl:shrink-0"
       subtitleClass="xl:w-439 xl:shrink-0 xl:text-right"
+      mobile={{
+        image: blogsHero.mobileImage,
+        height: 'h-716',
+        wash: 'bottom-auto h-489 xl:bottom-0 xl:h-auto',
+        text: 'gap-18 pt-80',
+        title: 'text-40 leading-48',
+        subtitle: 'w-251 text-20 leading-28',
+      }}
     />
   )
 }

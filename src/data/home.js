@@ -1,10 +1,15 @@
 const a = (file) => `/assets/${file}`
 
+// `wide` items sit in the artboard's fixed 160px slots; the rest are padded 32px each side.
+// Technology has no page of its own yet, so it opens the home page's "Engineered Here" section
+// (whose tabs are Design / Performance / Technology).
 export const navLinks = [
   { label: 'Home', href: '/' },
-  { label: 'Products', href: '/products' },
+  { label: 'Products', href: '/products', wide: true },
   { label: 'Industry', href: '/#industry', hasMenu: true },
+  { label: 'Technology', href: '/#technology', wide: true },
   { label: 'About', href: '/about' },
+  { label: 'Careers', href: '/careers', wide: true },
 ]
 
 // The dropdown shows the selected industry's photo beside a 2×2 grid; `activeIcon` is the blue variant.

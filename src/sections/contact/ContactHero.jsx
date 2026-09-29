@@ -15,7 +15,7 @@ export default function ContactHero() {
         image: contactHero.mobileImage,
         height: 'h-716',
         wash: 'bottom-auto h-489 xl:bottom-0 xl:h-auto',
-        text: 'gap-18 pt-100',
+        text: 'gap-18 pt-80',
         title: 'text-40 leading-48',
         subtitle: 'text-20 leading-28',
       }}

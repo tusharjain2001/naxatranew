@@ -80,8 +80,8 @@ function JobCard({ job, onApply }) {
     <article className="flex flex-col gap-24 rounded-[calc(var(--spacing)*3.828)] bg-job px-25 py-[calc(var(--spacing)*25.522)] xl:gap-55 xl:rounded-12 xl:p-80">
       <div className="flex items-start justify-between gap-[calc(var(--spacing)*5.104)] xl:items-center xl:gap-16">
         <div className="flex max-w-1164 min-w-0 flex-1 flex-col gap-5 xl:gap-16">
-          <h3 className="text-18 leading-[calc(var(--spacing)*19.142)] tracking-display capitalize xl:text-48 xl:leading-60">{job.title}</h3>
-          <p className="text-12 leading-18 font-light text-grey uppercase xl:text-28 xl:leading-40">
+          <h3 className="text-18 leading-[calc(var(--spacing)*19.142)] tracking-display capitalize xl:text-40 xl:leading-50">{job.title}</h3>
+          <p className="text-12 leading-18 font-light text-grey uppercase xl:text-24 xl:leading-36">
             {job.location} | {job.type} |<br className="xl:hidden" /> Experience: {job.experience}
           </p>
         </div>
@@ -93,7 +93,9 @@ function JobCard({ job, onApply }) {
           onClick={() => setOpen((v) => !v)}
           className="size-[calc(var(--spacing)*25.479)] shrink-0 cursor-pointer transition-transform duration-300 hover:scale-110 xl:size-57"
         >
-          <img src="/assets/careers/plus.svg" alt="" className={`size-full transition-transform duration-300 ${open ? 'rotate-45' : ''}`} />
+          {/* Black on the phone artboard, grey (#515151) on desktop. */}
+          <img src="/assets/careers/plus.svg" alt="" className={`size-full transition-transform duration-300 xl:hidden ${open ? 'rotate-45' : ''}`} />
+          <img src="/assets/careers/plus-grey.svg" alt="" className={`hidden size-full transition-transform duration-300 xl:block ${open ? 'rotate-45' : ''}`} />
         </button>
       </div>
 
@@ -133,7 +135,7 @@ export default function Openings({ onApply }) {
   const jobs = [...openings.jobs].sort(sorters[sort])
 
   return (
-    <section className="mx-auto flex w-full max-w-1920 flex-col gap-60 px-14 py-100 xl:gap-100 xl:px-100 xl:py-200">
+    <section className="mx-auto flex w-full max-w-1920 flex-col gap-60 px-14 py-100 xl:gap-56 xl:px-100 xl:py-100">
       <div className="flex flex-col gap-8 px-2 xl:gap-16 xl:px-0">
         <h2 className="text-32 leading-[calc(var(--spacing)*35.6)] tracking-display xl:w-1240 xl:text-64 xl:leading-80">{openings.title}</h2>
         <p className="text-14 leading-17 font-light text-grey-dark xl:text-32 xl:leading-40 xl:text-grey">{openings.subtitle}</p>

@@ -216,7 +216,7 @@ export default function Navbar() {
                 href={link.href}
                 aria-current={link.href === currentPath() ? 'page' : undefined}
                 className={`flex items-center justify-center py-12 text-16 leading-16 font-light tracking-nav text-black uppercase transition-colors hover:text-primary ${
-                  link.label === 'Products' ? 'w-160 px-10' : 'px-32'
+                  link.wide ? 'w-160 px-10' : 'px-32'
                 }`}
               >
                 {link.label}

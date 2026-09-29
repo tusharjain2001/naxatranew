@@ -37,7 +37,7 @@ export default function Deployment() {
   }, [centre])
 
   return (
-    <section className="flex w-full flex-col items-center gap-48 overflow-hidden py-56 xl:gap-0 xl:pt-94 xl:pb-98">
+    <section id="technology" className="flex w-full scroll-mt-56 flex-col items-center gap-48 overflow-hidden xl:scroll-mt-80 py-56 xl:gap-0 xl:pt-94 xl:pb-98">
       <div className="flex w-full flex-col items-center gap-10 px-15.25 text-center capitalize xl:translate-x-3 xl:gap-16 xl:px-0">
         <h2 className="w-337 text-32 leading-[calc(var(--spacing)*33.42)] tracking-display xl:w-1340 xl:text-64 xl:leading-80">
           {deployment.title}
