@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { process, sharedAssets } from '../../data/industry/shared'
 import SliderArrows from '../../components/ui/SliderArrows'
 import useScrollTrack from '../../hooks/useScrollTrack'
@@ -7,8 +8,10 @@ import useScrollTrack from '../../hooks/useScrollTrack'
 // title with the arrows only under the strip, 33px between the blocks.
 export default function Process({ centered = false }) {
   const [trackRef, track] = useScrollTrack()
-  // On desktop the row does not scroll, so the first step stays highlighted.
-  const active = track.canPrev || track.canNext ? track.index : 0
+  // Hovering a step turns it blue; otherwise the step in view (the first on desktop, where the row does
+  // not scroll) stays highlighted.
+  const [hovered, setHovered] = useState(-1)
+  const active = hovered >= 0 ? hovered : track.canPrev || track.canNext ? track.index : 0
   const arrows = { onPrev: track.prev, onNext: track.next, canPrev: track.canPrev, canNext: track.canNext }
 
   return (
@@ -25,23 +28,30 @@ export default function Process({ centered = false }) {
       </div>
 
       <div ref={trackRef} className="no-scrollbar relative -mx-16 overflow-x-auto xl:mx-0 xl:w-full xl:overflow-visible">
-        <ol className="relative flex w-max px-16 xl:w-full xl:px-64">
+        <ol className="relative flex w-max px-16 xl:w-full xl:px-64" onMouseLeave={() => setHovered(-1)}>
           <img src={sharedAssets.line} alt="" aria-hidden className="pointer-events-none absolute top-[calc(var(--spacing)*35.8)] left-0 h-px w-full" />
           {process.steps.map((step, i) => {
             const current = i === active
+            // The hovered step turns fully blue; the default highlight keeps only the blue dot and icon.
+            const lit = i === hovered
             return (
-              <li key={step.title} data-track-item className="flex w-240 shrink-0 flex-col px-8 pt-24 xl:w-auto xl:flex-1 xl:px-16">
-                <div className="flex flex-col gap-24 border-b border-silver px-16">
+              <li
+                key={step.title}
+                data-track-item
+                onMouseEnter={() => setHovered(i)}
+                className="flex w-240 shrink-0 cursor-default flex-col px-8 pt-24 xl:w-auto xl:flex-1 xl:px-16"
+              >
+                <div className={`flex flex-col gap-24 border-b px-16 transition-colors duration-300 ${lit ? 'border-primary' : 'border-silver'}`}>
                   <div className="flex flex-col gap-10">
                     <img src={current ? sharedAssets.dotBlue : sharedAssets.dotBlack} alt="" className="size-24" />
-                    <p className="flex h-24 items-center text-16 xl:h-35 xl:text-28">{step.week}</p>
+                    <p className={`flex h-24 items-center text-16 transition-colors duration-300 xl:h-35 xl:text-28 ${lit ? 'text-primary' : ''}`}>{step.week}</p>
                   </div>
                   <span className={`flex size-40 items-center justify-center rounded-4 transition-colors ${current ? 'bg-[rgba(168,200,238,0.4)]' : 'bg-[#f0f0f0]'}`}>
-                    <img src={step.icon} alt="" className={`object-contain ${step.iconBox}`} />
+                    <img src={current ? step.activeIcon : step.icon} alt="" className={`object-contain ${step.iconBox}`} />
                   </span>
-                  <h3 className="flex h-32 items-center text-20 font-medium xl:h-44 xl:text-28">{step.title}</h3>
+                  <h3 className={`flex h-32 items-center text-20 font-medium transition-colors duration-300 xl:h-44 xl:text-28 ${lit ? 'text-primary' : ''}`}>{step.title}</h3>
                 </div>
-                <p className="px-8 py-16 text-20 leading-28 xl:px-16 xl:py-32 xl:text-24 xl:leading-32">{step.text}</p>
+                <p className={`px-8 py-16 text-20 leading-28 transition-colors duration-300 xl:px-16 xl:py-32 xl:text-24 xl:leading-32 ${lit ? 'text-primary' : ''}`}>{step.text}</p>
               </li>
             )
           })}

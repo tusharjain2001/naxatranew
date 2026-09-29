@@ -11,12 +11,12 @@ export const process = {
   title: 'How we work with you',
   image: s('work.png'),
   steps: [
-    { week: 'Week 00', title: 'Discovery', text: 'Application brief, duty cycle, voltage, mounting spec', icon: s('step-discovery.svg'), iconBox: 'size-24' },
-    { week: 'Week 01', title: 'Proposal', text: 'Motor recommendation, datasheet, quote', icon: s('step-proposal.svg'), iconBox: 'h-24 w-18 -rotate-90' },
-    { week: 'Week 03', title: 'Sample', text: 'Motors delivered for your integration and bench testing', icon: s('step-sample.svg'), iconBox: 'h-22 w-26' },
-    { week: 'Week 04', title: 'Validation', text: 'Customer-site testing, firmware and tuning iteration', icon: s('step-validation.svg'), iconBox: 'h-20 w-20' },
-    { week: 'Week 06', title: 'Freeze & PPAP', text: 'Spec locked', icon: s('step-freeze.svg'), iconBox: 'size-24' },
-    { week: 'Week 07', title: 'SOP', text: 'Serial production, scheduled delivery', icon: s('step-sop.svg'), iconBox: 'h-15 w-27' },
+    { week: 'Week 00', title: 'Discovery', text: 'Application brief, duty cycle, voltage, mounting spec', icon: s('step-discovery.svg'), activeIcon: s('step-discovery-active.svg'), iconBox: 'size-24' },
+    { week: 'Week 01', title: 'Proposal', text: 'Motor recommendation, datasheet, quote', icon: s('step-proposal.svg'), activeIcon: s('step-proposal-active.svg'), iconBox: 'h-24 w-18 -rotate-90' },
+    { week: 'Week 03', title: 'Sample', text: 'Motors delivered for your integration and bench testing', icon: s('step-sample.svg'), activeIcon: s('step-sample-active.svg'), iconBox: 'h-22 w-26' },
+    { week: 'Week 04', title: 'Validation', text: 'Customer-site testing, firmware and tuning iteration', icon: s('step-validation.svg'), activeIcon: s('step-validation-active.svg'), iconBox: 'h-20 w-20' },
+    { week: 'Week 06', title: 'Freeze & PPAP', text: 'Spec locked', icon: s('step-freeze.svg'), activeIcon: s('step-freeze-active.svg'), iconBox: 'size-24' },
+    { week: 'Week 07', title: 'SOP', text: 'Serial production, scheduled delivery', icon: s('step-sop.svg'), activeIcon: s('step-sop-active.svg'), iconBox: 'h-15 w-27' },
   ],
 }
 
