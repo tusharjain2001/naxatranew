@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { sharedAssets } from '../../data/industry/shared'
+import Button from '../../components/ui/Button'
 
 // Tiles are sized in `em`: 1 design px on desktop, 0.4167 on mobile (a 259px tile becomes 108px).
 // The phone label sits higher, so the vehicle is lifted and shrunk to clear it, as on the artboard.
@@ -83,9 +84,17 @@ export default function Applications({ data }) {
 
   return (
     <section id="applications" className="flex w-full scroll-mt-56 flex-col gap-60 py-56 xl:scroll-mt-80 xl:gap-100 xl:py-100">
-      <h2 className={`mx-auto w-369 text-center text-32 leading-36 tracking-display capitalize xl:text-72 xl:leading-88 xl:tracking-normal ${data.titleClass ?? 'xl:w-1050'}`}>
-        {data.title}
-      </h2>
+      {/* Heading, a line and a "Find your motor" button that opens the Products page. */}
+      <div className="flex flex-col items-center gap-16 px-16 text-center xl:gap-32 xl:px-100">
+        <h2 className={`w-369 text-32 leading-36 tracking-display capitalize xl:leading-88 xl:tracking-normal ${data.titleClass ?? 'xl:w-1050 xl:text-72'}`}>{data.title}</h2>
+        <p className="text-14 leading-20 text-grey xl:w-950 xl:text-24 xl:leading-32">Find the right motor for your application.</p>
+        <Button href="/products" size="heroM" className="xl:hidden">
+          Find your motor
+        </Button>
+        <Button href="/products" className="hidden h-44 px-24! py-0! xl:inline-flex">
+          Find your motor
+        </Button>
+      </div>
 
       <div className="mx-auto flex w-[calc(var(--spacing)*371)] flex-col items-center gap-18 py-[calc(var(--spacing)*3.889)] xl:w-1376 xl:gap-32 xl:py-0">
         <div role="tablist" aria-label="Applications" className="flex flex-wrap justify-center gap-8 xl:flex-nowrap xl:gap-20">

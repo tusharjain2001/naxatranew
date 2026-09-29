@@ -31,7 +31,7 @@ export default {
 
   applications: {
     title: 'Which cleaning application are you building for?',
-    titleClass: 'xl:w-879',
+    titleClass: 'xl:w-809 xl:text-64',
     defaultIndex: 1,
     // `tile` is the vehicle and its ground shadow composed from the artboard; `panel` is the annotated drive diagram.
     items: [
