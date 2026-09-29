@@ -63,7 +63,8 @@ export default {
   },
 
   advantages: {
-    section: 'xl:pb-207',
+    // The stat row is 7px shorter than the artboard's, so the bottom padding takes it up.
+    section: 'xl:pb-107',
     title: 'Our key advantages for EV 2W, 3W and L5 OEMs',
     subtitle: 'Higher-Efficiency RF-series motor with matched controller',
     image: a('advantages.png'),
@@ -97,5 +98,8 @@ export default {
     ],
   },
 
-  testimonials: { desktopArrows: true, spacing: 'gap-60 py-100 xl:gap-100 xl:pt-181 xl:pb-182' },
+  process: { centered: true },
+
+  testimonials: { desktopArrows: true, spacing: 'gap-60 py-56 xl:gap-93 xl:pt-100 xl:pb-100' },
+  spec: { spacing: 'xl:py-100' },
 }

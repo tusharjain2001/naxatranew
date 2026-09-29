@@ -82,8 +82,8 @@ export default function Applications({ data }) {
   const panelId = 'application-panel'
 
   return (
-    <section id="applications" className="flex w-full scroll-mt-56 flex-col gap-60 py-100 xl:scroll-mt-80 xl:gap-100 xl:py-160">
-      <h2 className="mx-auto w-369 text-center text-32 leading-36 tracking-display capitalize xl:w-1050 xl:text-72 xl:leading-88 xl:tracking-normal">
+    <section id="applications" className="flex w-full scroll-mt-56 flex-col gap-60 py-56 xl:scroll-mt-80 xl:gap-100 xl:py-100">
+      <h2 className={`mx-auto w-369 text-center text-32 leading-36 tracking-display capitalize xl:text-72 xl:leading-88 xl:tracking-normal ${data.titleClass ?? 'xl:w-1050'}`}>
         {data.title}
       </h2>
 

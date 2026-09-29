@@ -3,14 +3,36 @@ import { sharedAssets, specForm } from '../../data/industry/shared'
 import Button from '../../components/ui/Button'
 
 // Phone fields share the Contact form's sizing (FormFields.jsx); desktop keeps its own artboard values.
-const label = 'text-[length:calc(var(--spacing)*13.68)] leading-[calc(var(--spacing)*22.457)] text-grey max-xl:font-arial xl:text-20 xl:leading-[calc(var(--spacing)*26.81)]'
-const box =
-  'w-full rounded-3 border border-silver bg-field px-16 text-16 text-black max-xl:font-arial max-xl:placeholder:font-sans outline-none transition-colors placeholder:text-grey/40 focus:border-primary xl:rounded-[calc(var(--spacing)*3.351)] xl:border-[calc(var(--spacing)*0.838)] xl:px-[calc(var(--spacing)*17.59)] xl:text-20'
+// The industry phone artboards draw a smaller form (`compact`): 12px labels over 26px boxes, 16px apart.
+const xlLabel = 'xl:text-20 xl:leading-[calc(var(--spacing)*26.81)]'
+const xlBox =
+  'bg-field text-black outline-none transition-colors placeholder:text-grey/40 focus:border-primary xl:rounded-[calc(var(--spacing)*3.351)] xl:border-[calc(var(--spacing)*0.838)] xl:px-[calc(var(--spacing)*17.59)] xl:text-20 xl:placeholder:text-20 xl:font-sans'
+const sizes = {
+  default: {
+    label: `text-[length:calc(var(--spacing)*13.68)] leading-[calc(var(--spacing)*22.457)] text-grey max-xl:font-arial ${xlLabel}`,
+    gap: 'gap-[calc(var(--spacing)*2.807)]',
+    box: `w-full rounded-3 border border-silver px-16 text-16 max-xl:font-arial max-xl:placeholder:font-sans ${xlBox}`,
+    input: 'h-[calc(var(--spacing)*49.834)]',
+    textarea: 'h-140 py-12',
+    form: 'gap-20',
+    button: 'spec',
+  },
+  compact: {
+    label: `text-12 leading-[calc(var(--spacing)*11.937)] text-grey ${xlLabel}`,
+    gap: 'gap-8',
+    // Typed text stays 16px so iOS doesn't zoom in on focus; the placeholders use the artboard's 10px.
+    box: `w-full rounded-[calc(var(--spacing)*1.492)] border-[calc(var(--spacing)*0.373)] border-silver px-[calc(var(--spacing)*7.83)] text-16 placeholder:text-10 ${xlBox}`,
+    input: 'h-26',
+    textarea: 'h-[calc(var(--spacing)*52.225)] py-[calc(var(--spacing)*6.34)] placeholder:text-12',
+    form: 'gap-16',
+    button: 'heroM',
+  },
+}
 
-function Field({ label: text, required, className = '', children }) {
+function Field({ label: text, required, className = '', size, children }) {
   return (
-    <label className={`flex w-340 flex-col gap-[calc(var(--spacing)*2.807)] xl:gap-[calc(var(--spacing)*3.351)] ${className}`}>
-      <span className={label}>
+    <label className={`flex w-340 flex-col ${size.gap} xl:gap-[calc(var(--spacing)*3.351)] ${className}`}>
+      <span className={size.label}>
         {text}
         {required && <span className="text-[red]"> *</span>}
       </span>
@@ -26,10 +48,14 @@ function Field({ label: text, required, className = '', children }) {
 // renders on 2 lines and the body on 2 lines (Figma node 14394:1963 text column), matching the artboard.
 // The form column stays put; only the heading/body widths grow (they overflow into the layout gap).
 // `flowText` lets the two body lines run together on phones (full 370 width), keeping the desktop break.
-export default function SpecForm({ applications, title = specForm.title, text = specForm.text, wide = false, flowText = false }) {
+// `spacing` overrides the desktop padding (Agriculture and 3-wheeler sit it 100px from the edges, not 120).
+export default function SpecForm({ applications, title = specForm.title, text = specForm.text, wide = false, flowText = false, spacing = 'xl:py-120', compact = false }) {
   const [application, setApplication] = useState('')
+  const size = sizes[compact ? 'compact' : 'default']
+  const box = size.box
+  const input = `${size.input} xl:h-[calc(var(--spacing)*59.485)]`
   return (
-    <section id="spec" className="w-full scroll-mt-56 px-16 py-60 xl:scroll-mt-80 xl:px-100 xl:py-120">
+    <section id="spec" className={`w-full scroll-mt-56 px-16 py-60 xl:scroll-mt-80 xl:px-100 ${spacing}`}>
       <div className={`mx-auto flex flex-col gap-[calc(var(--spacing)*35.62)] xl:w-fit xl:flex-row xl:gap-[calc(var(--spacing)*155.28)] ${wide ? 'xl:items-center' : 'xl:items-start'}`}>
         <div className={`flex flex-col gap-[calc(var(--spacing)*10.686)] xl:w-578 xl:gap-28 ${wide ? '' : 'xl:pt-33'}`}>
           <h2 className={`w-313 text-32 leading-[calc(var(--spacing)*35.62)] capitalize xl:text-64 ${wide ? 'xl:w-640 xl:leading-80' : 'xl:w-auto xl:leading-72'}`}>
@@ -57,27 +83,27 @@ export default function SpecForm({ applications, title = specForm.title, text = 
 
         <form
           onSubmit={(e) => e.preventDefault()}
-          className="flex w-fit flex-col items-start gap-20 rounded-4 border-[calc(var(--spacing)*0.891)] border-silver p-[calc(var(--spacing)*14.248)] xl:gap-25 xl:rounded-8 xl:border-2 xl:p-32"
+          className={`flex w-fit flex-col items-start ${size.form} rounded-4 border-[calc(var(--spacing)*0.891)] border-silver p-[calc(var(--spacing)*14.248)] xl:gap-25 xl:rounded-8 xl:border-2 xl:p-32`}
         >
-          <div className="flex flex-col gap-20 xl:flex-row xl:gap-20">
-            <Field label="Full Name (Required)" required className="xl:w-[calc(var(--spacing)*387.071)]">
-              <input required name="name" autoComplete="name" placeholder="Enter Full Name" className={`h-[calc(var(--spacing)*49.834)] xl:h-[calc(var(--spacing)*59.485)] ${box}`} />
+          <div className={`flex flex-col ${size.form} xl:flex-row xl:gap-20`}>
+            <Field size={size} label="Full Name (Required)" required className="xl:w-[calc(var(--spacing)*387.071)]">
+              <input required name="name" autoComplete="name" placeholder="Enter Full Name" className={`${input} ${box}`} />
             </Field>
-            <Field label="Email ID (Required)" required className="xl:w-[calc(var(--spacing)*356.91)]">
-              <input required type="email" name="email" autoComplete="email" placeholder="Enter Email ID" className={`h-[calc(var(--spacing)*49.834)] xl:h-[calc(var(--spacing)*59.485)] ${box}`} />
+            <Field size={size} label="Email ID (Required)" required className="xl:w-[calc(var(--spacing)*356.91)]">
+              <input required type="email" name="email" autoComplete="email" placeholder="Enter Email ID" className={`${input} ${box}`} />
             </Field>
           </div>
-          <div className="flex flex-col gap-20 xl:flex-row xl:gap-20">
-            <Field label="Company Name (Required)" required className="xl:w-[calc(var(--spacing)*387.071)]">
-              <input required name="company" autoComplete="organization" placeholder="Enter Company Name" className={`h-[calc(var(--spacing)*49.834)] xl:h-[calc(var(--spacing)*59.485)] ${box}`} />
+          <div className={`flex flex-col ${size.form} xl:flex-row xl:gap-20`}>
+            <Field size={size} label="Company Name (Required)" required className="xl:w-[calc(var(--spacing)*387.071)]">
+              <input required name="company" autoComplete="organization" placeholder="Enter Company Name" className={`${input} ${box}`} />
             </Field>
-            <Field label="Application Type" className="xl:w-[calc(var(--spacing)*356.91)]">
+            <Field size={size} label="Application Type" className="xl:w-[calc(var(--spacing)*356.91)]">
               <span className="relative block">
                 <select
                   name="application"
                   value={application}
                   onChange={(e) => setApplication(e.target.value)}
-                  className={`h-[calc(var(--spacing)*49.834)] cursor-pointer appearance-none pr-44 xl:h-[calc(var(--spacing)*59.485)] xl:pr-44 ${box} ${application ? '' : 'text-grey/40'}`}
+                  className={`${input} cursor-pointer appearance-none pr-44 xl:pr-44 ${compact ? 'max-xl:text-10' : ''} ${box} ${application ? '' : 'text-grey/40'}`}
                 >
                   <option value="" disabled>
                     Choose your application type
@@ -91,18 +117,18 @@ export default function SpecForm({ applications, title = specForm.title, text = 
                     Other
                   </option>
                 </select>
-                <img src={sharedAssets.chevron} alt="" className="pointer-events-none absolute top-1/2 right-16 h-6 w-12 -translate-y-1/2 xl:right-[calc(var(--spacing)*20.13)] xl:h-[calc(var(--spacing)*7.109)] xl:w-[calc(var(--spacing)*14.218)]" />
+                <img src={sharedAssets.chevron} alt="" className={`pointer-events-none absolute top-1/2 -translate-y-1/2 ${compact ? 'right-[calc(var(--spacing)*7.92)] h-4 w-8' : 'right-16 h-6 w-12'} xl:right-[calc(var(--spacing)*20.13)] xl:h-[calc(var(--spacing)*7.109)] xl:w-[calc(var(--spacing)*14.218)]`} />
               </span>
             </Field>
           </div>
-          <Field label="Any Message" className="xl:w-[calc(var(--spacing)*764.088)]">
+          <Field size={size} label="Any Message" className="xl:w-[calc(var(--spacing)*764.088)]">
             <textarea
               name="message"
               placeholder="Write your message here..."
-              className={`h-140 resize-none py-12 xl:h-[calc(var(--spacing)*117.294)] xl:py-[calc(var(--spacing)*14.24)] ${box}`}
+              className={`${size.textarea} resize-none xl:h-[calc(var(--spacing)*117.294)] xl:py-[calc(var(--spacing)*14.24)] ${box}`}
             />
           </Field>
-          <Button as="button" type="submit" size="spec" className="cursor-pointer xl:hidden">
+          <Button as="button" type="submit" size={size.button} className="cursor-pointer xl:hidden">
             {specForm.cta}
           </Button>
           <Button as="button" type="submit" className="hidden cursor-pointer xl:inline-flex">

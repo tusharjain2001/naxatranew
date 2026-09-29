@@ -12,45 +12,60 @@ export const navLinks = [
   { label: 'Careers', href: '/careers', wide: true },
 ]
 
-// The dropdown shows the selected industry's photo beside a 2×2 grid; `activeIcon` is the blue variant.
+// Menu order follows the Figma dropdown: 2 wheeler, 3 wheeler / Cleaning, Agriculture / Drone (full row).
+// With nothing hovered (and off the industry pages) the photo box shows `mosaic`, all five photos; a
+// hovered or current industry shows its own photo there. `activeIcon` is the blue variant.
 export const industryMenu = {
+  mosaic: a('nav/mosaic.webp'),
   links: [
-    {
-      label: 'Cleaning',
-      href: '/industry/cleaning',
-      image: a('nav/cleaning.jpg'),
-      tint: true,
-      icon: a('icon-cleaning.svg'),
-      activeIcon: a('nav/icon-cleaning-active.svg'),
-      iconClass: 'size-48',
-      mobileIconClass: 'size-24',
-    },
-    {
-      label: 'Agriculture',
-      href: '/industry/agriculture',
-      image: a('nav/agriculture.jpg'),
-      icon: a('icon-agriculture.svg'),
-      activeIcon: a('nav/icon-agriculture-active.svg'),
-      iconClass: 'size-48',
-      mobileIconClass: 'size-24',
-    },
     {
       label: '2 wheeler',
       href: '/industry/2-wheeler',
-      image: a('nav/2-wheeler.jpg'),
+      image: a('nav/2-wheeler.webp'),
       icon: a('icon-scooter.svg'),
       activeIcon: a('nav/icon-scooter-active.svg'),
       iconClass: 'h-23 w-32 -scale-x-100',
-      mobileIconClass: 'h-[calc(var(--spacing)*11.54)] w-16 -scale-x-100',
+      mobileIconClass: 'h-[calc(var(--spacing)*14.4)] w-20 -scale-x-100',
     },
     {
       label: '3 wheeler',
       href: '/industry/3-wheeler',
-      image: a('nav/3-wheeler.jpg'),
+      image: a('nav/3-wheeler.webp'),
       icon: a('icon-3wheeler.svg'),
       activeIcon: a('nav/icon-3wheeler-active.svg'),
       iconClass: 'h-28 w-32',
-      mobileIconClass: 'h-14 w-16',
+      mobileIconClass: 'h-[calc(var(--spacing)*17.5)] w-20',
+    },
+    {
+      label: 'Cleaning',
+      href: '/industry/cleaning',
+      image: a('nav/cleaning.webp'),
+      tint: true,
+      icon: a('icon-cleaning.svg'),
+      activeIcon: a('nav/icon-cleaning-active.svg'),
+      iconClass: 'size-48',
+      mobileIconClass: 'size-30',
+    },
+    {
+      label: 'Agriculture',
+      href: '/industry/agriculture',
+      image: a('nav/agriculture.webp'),
+      icon: a('icon-agriculture.svg'),
+      activeIcon: a('nav/icon-agriculture-active.svg'),
+      iconClass: 'size-48',
+      mobileIconClass: 'size-30',
+    },
+    {
+      label: 'Drone',
+      href: '/industry/drone',
+      wide: true,
+      image: a('nav/drone.webp'),
+      icon: a('icon-drone.svg'),
+      activeIcon: a('nav/icon-drone-active.svg'),
+      mobileIcon: a('m/icon-drone.svg'),
+      mobileActiveIcon: a('m/icon-drone-active.svg'),
+      iconClass: 'size-48',
+      mobileIconClass: 'size-30',
     },
   ],
 }

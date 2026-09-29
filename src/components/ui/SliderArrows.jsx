@@ -4,6 +4,8 @@ const sets = {
   // Phone "Browse Our Other Motors" header: the mobile arrows at 32px.
   small: { prev: '/assets/m/prev.svg', next: '/assets/m/next.svg', size: 'size-32', gap: 'gap-[calc(var(--spacing)*5.12)]' },
   hero: { prev: '/assets/m/hero-prev.svg', next: '/assets/m/hero-next.svg', size: 'size-32' },
+  // Drone applications accordion: 31px on the phone, 62.5px on desktop.
+  drone: { prev: '/assets/journey-prev.svg', next: '/assets/journey-next.svg', size: 'size-31 xl:size-[calc(var(--spacing)*62.5)]', gap: 'gap-5 xl:gap-10' },
 }
 
 export function ArrowButton({ direction, set = 'desktop', onClick, disabled, label, className = '' }) {

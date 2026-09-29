@@ -1,7 +1,7 @@
 // Spec cards. Desktop lays them three to a row (`cols` overrides it); mobile is one column.
 export default function Features({ data }) {
   return (
-    <section className={`flex w-full flex-col gap-60 pb-100 xl:gap-100 xl:py-200 ${data.section ?? ''}`}>
+    <section className={`flex w-full flex-col gap-60 pb-56 xl:gap-100 xl:py-100 ${data.section ?? ''}`}>
       <h2 className={`px-16 capitalize tracking-display xl:px-100 xl:tracking-normal ${data.titleClass ?? 'xl:w-1368'}`}>
         <span className="block text-32 leading-35 xl:text-72 xl:leading-88">{data.title[0]}</span>
         {data.title[1] && <span className="block text-24 leading-35 xl:text-48 xl:leading-57">{data.title[1]}</span>}
@@ -10,7 +10,7 @@ export default function Features({ data }) {
         {data.items.map((item) => (
           <li
             key={item.title}
-            className={`flex items-center gap-16 ${item.mobileLast ? 'order-last xl:order-none' : ''} border-[calc(var(--spacing)*0.95)] border-black/15 bg-[rgba(240,240,240,0.5)] p-12 xl:items-start xl:gap-24 xl:p-32 ${data.bordered ? 'xl:border' : 'xl:border-0'}`}
+            className={`flex items-center gap-16 ${item.mobileLast ? 'order-last xl:order-none' : ''} border-black/15 bg-[rgba(240,240,240,0.5)] p-12 xl:items-start xl:gap-24 xl:p-32 ${data.bordered ? 'xl:border' : 'xl:border-0'}`}
           >
             <picture className="contents">
               {item.mobileIcon && <source media="(max-width: 1279px)" srcSet={item.mobileIcon} className="hidden" />}

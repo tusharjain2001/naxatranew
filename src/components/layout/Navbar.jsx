@@ -4,21 +4,27 @@ import Button from '../ui/Button'
 import { currentPath } from '../../lib/currentPath'
 
 // The industry page you're on is filled blue and its photo shows on the left; hovering another
-// industry previews it the same way. Off the industry pages the photo defaults to Cleaning.
+// industry previews it the same way. Otherwise the photo box shows all five industries at once.
 function IndustryMenu({ onNavigate }) {
-  const { links } = industryMenu
+  const { links, mosaic } = industryMenu
   const current = links.findIndex((item) => item.href === currentPath())
   const [hovered, setHovered] = useState(-1)
   const selected = hovered >= 0 ? hovered : current
 
   return (
     <div className="flex items-start gap-24 rounded-4 border border-primary-soft bg-white p-32 drop-shadow-[0_0_calc(var(--spacing)*6)_rgba(0,0,0,0.25)]">
-      <div className="relative h-176 w-280 shrink-0 overflow-hidden rounded-4">
+      <div className="relative h-272 w-280 shrink-0 overflow-hidden rounded-4">
+        <img
+          src={mosaic}
+          alt=""
+          aria-hidden
+          className={`absolute inset-0 size-full transition-opacity duration-300 ${selected < 0 ? 'opacity-100' : 'opacity-0'}`}
+        />
         {links.map((item, i) => (
           <div
             key={item.label}
             aria-hidden
-            className={`absolute inset-0 transition-opacity duration-300 ${i === Math.max(selected, 0) ? 'opacity-100' : 'opacity-0'}`}
+            className={`absolute inset-0 transition-opacity duration-300 ${i === selected ? 'opacity-100' : 'opacity-0'}`}
           >
             <img src={item.image} alt="" className="size-full object-cover" />
             {item.tint && (
@@ -31,14 +37,16 @@ function IndustryMenu({ onNavigate }) {
         {links.map((item, i) => {
           const active = i === selected
           return (
-            <li key={item.label}>
+            <li key={item.label} className={item.wide ? 'col-span-2' : undefined}>
               <a
                 href={item.href}
                 onClick={onNavigate}
                 onMouseEnter={() => setHovered(i)}
                 onFocus={() => setHovered(i)}
                 aria-current={i === current ? 'page' : undefined}
-                className={`relative flex h-80 w-248 items-center justify-center gap-4 rounded-4 border p-16 transition-colors duration-200 ${
+                className={`relative flex h-80 items-center rounded-4 border p-16 transition-colors duration-200 ${
+                  item.wide ? 'w-512 gap-16' : 'w-248 justify-center gap-4'
+                } ${
                   active ? 'border-primary bg-primary/10' : 'border-silver bg-[rgba(217,217,217,0.15)]'
                 }`}
               >
@@ -47,7 +55,11 @@ function IndustryMenu({ onNavigate }) {
                 </span>
                 <span className="flex h-48 w-148 items-center text-20 text-black uppercase">{item.label}</span>
                 {active && (
-                  <img src="/assets/nav/chevron-blue.svg" alt="" className="absolute top-32 left-218 h-12 w-[calc(var(--spacing)*7.389)]" />
+                  <img
+                    src="/assets/nav/chevron-blue.svg"
+                    alt=""
+                    className={`absolute h-12 w-[calc(var(--spacing)*7.389)] ${item.wide ? 'top-34 left-477' : 'top-32 left-218'}`}
+                  />
                 )}
               </a>
             </li>
@@ -103,7 +115,7 @@ function MobileMenu({ open, onClose }) {
               {industryOpen && (
                 <ul
                   id="mobile-industry"
-                  className="flex w-214 flex-col gap-8 rounded-[calc(var(--spacing)*2.892)] border-[calc(var(--spacing)*0.723)] border-[#f5f5f5] p-[calc(var(--spacing)*5.784)]"
+                  className="flex w-214 flex-col gap-[calc(var(--spacing)*6.326)] rounded-[calc(var(--spacing)*2.892)] border-[calc(var(--spacing)*0.723)] border-[#f5f5f5] p-[calc(var(--spacing)*5.784)]"
                 >
                   {industryMenu.links.map((item) => {
                     const active = item.href === currentPath()
@@ -113,13 +125,17 @@ function MobileMenu({ open, onClose }) {
                           href={item.href}
                           onClick={onClose}
                           aria-current={active ? 'page' : undefined}
-                          className={`flex items-center gap-10 rounded-[calc(var(--spacing)*1.582)] border-[calc(var(--spacing)*0.395)] h-44 px-10 text-14 leading-20 text-black uppercase ${
+                          className={`flex items-center gap-8 rounded-[calc(var(--spacing)*1.582)] border-[calc(var(--spacing)*0.395)] px-8 py-4 text-[length:calc(var(--spacing)*15)] leading-25 text-black uppercase ${
                             // Screens draw Figma's 0.4px stroke as a full pixel, so the grey is lightened to look the same.
                             active ? 'border-primary bg-primary/10' : 'border-silver/60 bg-[rgba(217,217,217,0.15)]'
                           }`}
                         >
-                          <span className="flex size-28 shrink-0 items-center justify-center">
-                            <img src={active ? item.activeIcon : item.icon} alt="" className={`scale-125 ${item.mobileIconClass}`} />
+                          <span className="flex size-30 shrink-0 items-center justify-center">
+                            <img
+                              src={active ? (item.mobileActiveIcon ?? item.activeIcon) : (item.mobileIcon ?? item.icon)}
+                              alt=""
+                              className={item.mobileIconClass}
+                            />
                           </span>
                           {item.label}
                         </a>

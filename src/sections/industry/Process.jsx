@@ -3,24 +3,25 @@ import SliderArrows from '../../components/ui/SliderArrows'
 import useScrollTrack from '../../hooks/useScrollTrack'
 
 // Engagement timeline: six columns on desktop, a swipeable 240px-step strip with arrows on mobile.
-// The step in view is highlighted.
-export default function Process() {
+// The step in view is highlighted. `centered` is the 2- and 3-wheeler phone layout: a one-line centred
+// title with the arrows only under the strip, 33px between the blocks.
+export default function Process({ centered = false }) {
   const [trackRef, track] = useScrollTrack()
   // On desktop the row does not scroll, so the first step stays highlighted.
   const active = track.canPrev || track.canNext ? track.index : 0
   const arrows = { onPrev: track.prev, onNext: track.next, canPrev: track.canPrev, canNext: track.canNext }
 
   return (
-    <section className="flex w-full flex-col gap-60 px-16 py-100 xl:items-center xl:gap-100 xl:px-0 xl:py-200">
+    <section className={`flex w-full flex-col px-16 py-56 xl:items-center xl:gap-100 xl:px-0 xl:py-100 ${centered ? 'gap-33' : 'gap-60'}`}>
       <div className="flex items-center gap-10 xl:w-1920 xl:justify-center xl:px-100">
-        <h2 className="min-w-0 flex-1 text-32 leading-[calc(var(--spacing)*35.6)] tracking-display capitalize xl:w-1168 xl:flex-none xl:text-center xl:text-72 xl:leading-88 xl:tracking-normal">
+        <h2 className={`min-w-0 flex-1 text-32 tracking-display capitalize xl:w-1168 ${centered ? 'text-center leading-37' : 'leading-[calc(var(--spacing)*35.6)]'} xl:flex-none xl:text-center xl:text-72 xl:leading-88 xl:tracking-normal`}>
           {process.title}
         </h2>
-        <SliderArrows set="mobile" {...arrows} className="xl:hidden" />
+        {!centered && <SliderArrows set="mobile" {...arrows} className="xl:hidden" />}
       </div>
 
       <div className="w-full xl:px-64">
-        <img src={process.image} alt="Exploded technical drawing of a BLDC motor" loading="lazy" className="h-215 w-full object-cover xl:h-600 xl:rounded-8" />
+        <img src={process.image} alt="Exploded technical drawing of a BLDC motor" loading="lazy" className="h-215 w-full object-cover xl:h-400 xl:rounded-8" />
       </div>
 
       <div ref={trackRef} className="no-scrollbar relative -mx-16 overflow-x-auto xl:mx-0 xl:w-full xl:overflow-visible">

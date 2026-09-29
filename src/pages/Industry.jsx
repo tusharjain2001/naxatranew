@@ -18,14 +18,14 @@ const sections = {
   ),
   advantages: (page) => <Advantages data={page.advantages} />,
   features: (page) => <Features data={page.features} />,
-  process: () => <Process />,
+  process: (page) => <Process centered={page.process?.centered} />,
   testimonials: (page) => (
     <Testimonials
-      spacing={page.testimonials.spacing ?? 'gap-60 py-100 xl:gap-100 xl:pt-164 xl:pb-165'}
+      spacing={page.testimonials.spacing ?? 'gap-60 py-56 xl:gap-100 xl:pt-164 xl:pb-165'}
       desktopArrows={page.testimonials.desktopArrows}
     />
   ),
-  spec: (page) => <SpecForm applications={page.applications.items.map((item) => item.label)} />,
+  spec: (page) => <SpecForm applications={page.applications.items.map((item) => item.label)} spacing={page.spec?.spacing} compact />,
 }
 
 export default function Industry({ page }) {

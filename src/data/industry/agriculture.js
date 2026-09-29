@@ -35,12 +35,12 @@ export default {
     text: 'Agricultural equipment in India endures harsh conditions like dust, monsoon floods, and extreme heat over 44°C, which leads to early motor failures during crucial crop seasons. Most motors are designed for controlled environments, and sourcing motors and controllers from different vendors creates integration and warranty challenges for OEMs.',
     layout: {
       flow: true,
-      section: 'xl:px-100 xl:py-160',
-      title: 'xl:w-823 xl:text-64 xl:leading-80',
-      aside: 'xl:w-897',
-      text: 'xl:text-32 xl:leading-40',
+      section: 'xl:px-100 xl:py-100',
+      title: 'xl:w-666 xl:text-56 xl:leading-64',
+      aside: 'xl:w-738',
+      text: 'xl:text-24 xl:leading-32',
       row: 'xl:gap-24',
-      card: 'xl:h-711 xl:w-557 xl:rounded-12',
+      card: 'xl:h-640 xl:w-557 xl:rounded-12 xl:object-[50%_18.3%]',
     },
     // The phone artboard pairs its own photos and callouts, so each card has its phone export in `mobile`.
     mobileCard: 'h-240',
@@ -91,5 +91,6 @@ export default {
     ],
   },
 
-  testimonials: { desktopArrows: true, spacing: 'gap-60 py-100 xl:gap-100 xl:pt-181 xl:pb-182' },
+  testimonials: { desktopArrows: true, spacing: 'gap-60 py-56 xl:gap-93 xl:pt-100 xl:pb-100' },
+  spec: { spacing: 'xl:py-100' },
 }

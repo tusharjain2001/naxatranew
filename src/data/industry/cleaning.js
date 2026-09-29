@@ -19,7 +19,8 @@ export default {
     title: 'The electric cleaning equipment challenge for motors nobody talks about',
     text: 'Commercial and industrial cleaning machines operate in harsh conditions, with extreme temperatures and inconsistent power. Most drive systems, designed for controlled environments, often fail in real-world scenarios, causing motor issues and unplanned downtime.',
     // Desktop places the header and the card row absolutely, as on the artboard.
-    layout: { section: 'xl:h-1372', title: 'xl:top-161 xl:w-930', text: 'xl:top-269 xl:left-1199 xl:w-524', row: 'xl:top-537', card: 'xl:h-711 xl:w-557' },
+    // Cards are 640 tall on the artboard; the 711px exports are clipped the way Figma offsets them (13px up).
+    layout: { section: 'xl:h-1140', title: 'xl:top-106 xl:w-740', text: 'xl:top-202 xl:left-1125 xl:w-695', row: 'xl:top-378', card: 'xl:h-640 xl:w-557 xl:object-[50%_18.3%]' },
     // Each card is the artboard's photo, callout and arrow exported as one image; `mobile` is the phone crop.
     cards: [
       { src: a('challenge-1.png'), mobile: a('m-challenge-1.png'), quote: 'Our motor overheats on long shifts' },
@@ -30,6 +31,7 @@ export default {
 
   applications: {
     title: 'Which cleaning application are you building for?',
+    titleClass: 'xl:w-879',
     defaultIndex: 1,
     // `tile` is the vehicle and its ground shadow composed from the artboard; `panel` is the annotated drive diagram.
     items: [
@@ -108,5 +110,5 @@ export default {
     ],
   },
 
-  testimonials: { desktopArrows: false },
+  testimonials: { desktopArrows: false, spacing: 'gap-60 py-56 xl:gap-80 xl:pt-114 xl:pb-115' },
 }
