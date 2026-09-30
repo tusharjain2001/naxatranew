@@ -3,15 +3,14 @@ const a = (file) => `/assets/careers/${file}`
 export const careersHero = {
   title: ['Build What Moves', 'the World Forward'],
   subtitle: 'Join a team turning bold ideas into smarter motor technology.',
-  background: a('hero-bg.png'),
-  // Cut-out of the team, layered above the blue wash so only the sky is tinted.
-  team: a('hero-team.png'),
+  // One flattened desktop picture: the factory roof photo, the blue sky wash and the team.
+  image: a('hero.webp'),
   // The phone artboard's photo, wash and team cut-out, composed into one image.
   mobileImage: a('m/hero.jpg'),
 }
 
 export const openings = {
-  title: 'Be a part of us to build the future of motion.',
+  title: 'Be part of a team pushing the boundaries of motor technology.',
   subtitle: 'We’re actively hiring.',
   // `summary` is shown when a card is expanded and `jd` links the job description file; both await the real copy.
   jobs: [
