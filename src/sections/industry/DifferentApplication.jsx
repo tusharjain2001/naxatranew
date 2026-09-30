@@ -3,10 +3,11 @@ import Button from '../../components/ui/Button'
 
 // Full-bleed black banner. Mobile stacks the copy over the drive-train render.
 // `imageClass` lets a page's render overhang its 500×320 slot (the 3-wheeler axle does).
-// `mobileImage` swaps in a page's own phone render and `mobileButton` its phone button size.
-export default function DifferentApplication({ image, imageClass, mobileImage, mobileButton = 'xs' }) {
+// `mobileImage` swaps in a page's own phone render and `mobileButton` its phone button size; `mobileTop`
+// adds space above the banner on the phone (the drone artboard leaves ~100px).
+export default function DifferentApplication({ image, imageClass, mobileImage, mobileButton = 'xs', mobileTop = '' }) {
   return (
-    <section className="w-full pb-100 xl:py-100">
+    <section className={`w-full pb-100 xl:py-100 ${mobileTop}`}>
       <div className="mx-auto flex h-603 w-full max-w-1920 flex-col rounded-[calc(var(--spacing)*1.675)] bg-black py-54 pr-27 pl-26 xl:h-[calc(var(--spacing)*485.251)] xl:flex-row xl:items-center xl:rounded-8 xl:p-0">
         <div className="flex flex-col items-center gap-86 xl:ml-[calc(var(--spacing)*119.44)] xl:w-[calc(var(--spacing)*1681.116)] xl:flex-row xl:justify-center xl:gap-80">
           <div className="flex flex-col items-center gap-16 text-center text-white xl:items-start xl:gap-32 xl:text-start">

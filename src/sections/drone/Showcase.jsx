@@ -1,7 +1,7 @@
 import Button from '../../components/ui/Button'
 
-// Half-width dark photo card beside a text column; `reverse` puts the photo on the left. On the phone the
-// card sits above centred copy.
+// Half-width dark photo card beside a text column; `reverse` puts the photo on the left. The card names the
+// part (Motor / ESC) over its caption lines. On the phone the card sits above centred copy.
 function Row({ row }) {
   return (
     <div className="flex flex-col items-center bg-[#fdfdfd] px-13 pt-56 xl:h-880 xl:flex-row xl:items-center xl:bg-transparent xl:p-0">
@@ -14,11 +14,13 @@ function Row({ row }) {
           <source media="(max-width: 1279px)" srcSet={row.mobileImage} />
           <img src={row.image} alt={row.alt} loading="lazy" className="absolute inset-0 size-full object-cover" />
         </picture>
-        <div className={`absolute inset-x-28 flex flex-col text-white capitalize xl:inset-x-50 ${row.reverse ? 'bottom-22 xl:bottom-46' : 'bottom-19 xl:bottom-60'}`}>
-          <p className="text-[length:calc(var(--spacing)*11.1)] leading-[calc(var(--spacing)*17.9)] font-light xl:text-[length:calc(var(--spacing)*27.8)] xl:leading-[calc(var(--spacing)*44.365)]">
-            {row.label}
-          </p>
-          <p className={`text-16 leading-24 xl:text-36 xl:leading-44 ${row.reverse ? 'mt-10' : 'mt-8 xl:mt-12'}`}>
+        <div
+          className={`absolute inset-x-18 flex flex-col text-white capitalize xl:inset-x-50 ${
+            row.reverse ? 'bottom-19 gap-8 xl:bottom-62 xl:gap-[calc(var(--spacing)*17.3)]' : 'bottom-15 gap-8 xl:bottom-80 xl:gap-[calc(var(--spacing)*21.3)]'
+          }`}
+        >
+          <p className="text-16 leading-[calc(var(--spacing)*17.894)] font-bold xl:text-36 xl:leading-[calc(var(--spacing)*44.365)] xl:font-medium">{row.name}</p>
+          <p className="text-14 leading-20 xl:text-28 xl:leading-36">
             {row.caption.map((line) => (
               <span key={line} className="block">
                 {line}
@@ -54,7 +56,7 @@ export default function Showcase({ rows }) {
   return (
     <section className="flex w-full flex-col">
       {rows.map((row) => (
-        <Row key={row.label} row={row} />
+        <Row key={row.name} row={row} />
       ))}
     </section>
   )

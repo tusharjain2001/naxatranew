@@ -33,7 +33,8 @@ function TestimonialCard({ item }) {
   )
 }
 
-export default function Testimonials({ spacing = 'gap-60 py-56 xl:gap-48 xl:pt-90 xl:pb-90', desktopArrows = false }) {
+// `subtitle` and `arrowsClass` let a page follow its own artboard (the drone page has its own line and arrow spot).
+export default function Testimonials({ spacing = 'gap-60 py-56 xl:gap-48 xl:pt-90 xl:pb-90', desktopArrows = false, subtitle = 'A few words from our clients...', arrowsClass }) {
   const [trackRef, track] = useScrollTrack()
 
   return (
@@ -41,12 +42,13 @@ export default function Testimonials({ spacing = 'gap-60 py-56 xl:gap-48 xl:pt-9
       <SectionHeader
         title="What Innovators Say About Us?"
         // Sentence case, unlike the other section subtitles.
-        subtitle="A few words from our clients..."
+        subtitle={subtitle}
         subtitleClass="normal-case"
         mobileLeading="leading-32"
         desktopGap="xl:gap-11"
         track={track}
         desktopArrows={desktopArrows}
+        arrowsClass={arrowsClass}
       />
       <div className="flex flex-col items-center gap-28">
         <div

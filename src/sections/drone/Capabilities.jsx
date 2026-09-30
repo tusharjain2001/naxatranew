@@ -18,7 +18,7 @@ export default function Capabilities({ data }) {
               <h3 className="text-[length:calc(var(--spacing)*16.943)] leading-[calc(var(--spacing)*26.965)] capitalize xl:text-32 xl:leading-[calc(var(--spacing)*38.196)]">
                 {item.title}
               </h3>
-              <p className="text-[length:calc(var(--spacing)*11.295)] leading-[calc(var(--spacing)*18.355)] font-light xl:w-404 xl:text-24 xl:leading-32">
+              <p className="text-[length:calc(var(--spacing)*11.295)] leading-[calc(var(--spacing)*18.355)] font-light text-grey xl:w-404 xl:text-24 xl:leading-32">
                 {item.text}
               </p>
             </div>

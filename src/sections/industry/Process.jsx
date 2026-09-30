@@ -43,7 +43,7 @@ export default function Process({ centered = false }) {
               >
                 <div className={`flex flex-col gap-24 border-b px-16 transition-colors duration-300 ${lit ? 'border-primary' : 'border-silver'}`}>
                   <div className="flex flex-col gap-10">
-                    <img src={current ? sharedAssets.dotBlue : sharedAssets.dotBlack} alt="" className="size-24" />
+                    <img src={current ? sharedAssets.dotBlue : sharedAssets.dotBlack} alt="" className="relative size-24" />
                     <p className={`flex h-24 items-center text-16 transition-colors duration-300 xl:h-35 xl:text-28 ${lit ? 'text-primary' : ''}`}>{step.week}</p>
                   </div>
                   <span className={`flex size-40 items-center justify-center rounded-4 transition-colors ${current ? 'bg-[rgba(168,200,238,0.4)]' : 'bg-[#f0f0f0]'}`}>

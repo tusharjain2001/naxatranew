@@ -1,4 +1,5 @@
 const a = (file) => `/assets/industry/drone/${file}`
+const pulseClip = (transform) => `https://res.cloudinary.com/dccp724cq/video/upload/${transform}/v1790763913/2D_drone_white_bg_2_yxmc1w`
 
 // Drone industry page (Figma "drone page"). It has its own section set, so it is routed separately from
 // the four template industry pages; the banner, outcomes, timeline, testimonials and form are shared.
@@ -32,6 +33,8 @@ export default {
     {
       title: 'Agriculture Applications',
       mobileTitle: 'Agricultural Applications',
+      // A plain row: each card once, moved only by the arrows or a swipe (no auto-scroll, no loop).
+      autoScroll: false,
       cards: [
         { label: 'Hexacopter drone', image: a('hexacopter.webp') },
         { label: 'Quadcopter drone', image: a('quadcopter.webp') },
@@ -64,16 +67,16 @@ export default {
       text: "We don't sell a motor. We deliver a matched drive system - engineered for your specific application. Featured Products, efficient, Compact and High-Performance electric motion.",
       image: a('card-motor.webp'),
       mobileImage: a('m/card-motor.webp'),
-      label: 'IP67 sealed',
-      caption: ['Built for continuous agri duty', 'cycles Tested in dust, heat, and monsoon'],
+      name: 'Motor',
+      caption: ['Built for continuous agri duty', 'cycles Tested in dust, heat, and monsoon', 'IP67 sealed'],
       alt: 'Brushless drone motor',
     },
     {
       title: ['One platform.', 'for Every Efficient cycle.'],
       text: "We don't sell a motor. We deliver a matched drive system - engineered for your specific application. Featured Products, efficient, Compact and High-Performance electric motion.",
-      image: a('card-motor.webp'),
+      image: a('card-esc.webp'),
       mobileImage: a('m/card-esc.webp'),
-      label: 'ESC',
+      name: 'ESC',
       caption: ['Matched and tuned for variable', 'load and terrain', '48V / 72V / 96V', 'CAN / one-line comms'],
       alt: 'Electronic speed controller',
       reverse: true,
@@ -84,8 +87,11 @@ export default {
     eyebrow: 'THE PULSE BEHIND EVERY MOTION.',
     title: ['Motor and ESC,', 'engineered as one.'],
     text: 'A drone is only as reliable as its propulsion core. We design the brushless motor and its electronic speed controller together. so torque delivery, thermal behavior and throttle response are matched, not compromised.',
-    image: a('blueprint.webp'),
-    mobileImage: a('m/blueprint.webp'),
+    // Cloudinary serves the clip resized and compressed (q_auto): ~1.1 MB desktop, ~0.5 MB phone.
+    video: `${pulseClip('q_auto,w_1920')}.mp4`,
+    mobileVideo: `${pulseClip('q_auto,w_808')}.mp4`,
+    poster: `${pulseClip('so_0,q_auto,w_1920')}.jpg`,
+    mobilePoster: `${pulseClip('so_0,q_auto,w_808')}.jpg`,
   },
 
   capabilities: {
@@ -113,6 +119,7 @@ export default {
     title: ['Measurable outcomes of our motor & controller- optimised for Drones'],
     titleClass: 'xl:w-1588',
     reveal: 'left',
+    titleCase: true,
     items: [
       { title: '+5-8% Range', text: 'From Motor Swap Alone', icon: '/assets/industry/2w/feat-range.svg' },
       { title: '2-3 week', text: 'Leadtime', icon: '/assets/industry/2w/feat-leadtime.svg' },
