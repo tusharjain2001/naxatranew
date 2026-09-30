@@ -1,4 +1,5 @@
 import Button from '../../components/ui/Button'
+import ScrollDown from '../../components/ui/ScrollDown'
 
 // Products landing hero (node 14051-1428): near-black stage, a large motor render bleeding off the right,
 // title + subtitle at the left, and two CTAs. Desktop is placed to the 1920 artboard; mobile stacks.
@@ -17,7 +18,8 @@ export default function ProductsHero() {
         {/* Phone (402 artboard): title at the top, the render in the middle, copy and buttons at the foot. */}
         <div className="relative z-10 flex h-full flex-col justify-between px-20 pt-60 pb-48 text-white xl:contents">
           <h1 className="text-36 leading-36 xl:absolute xl:top-138 xl:left-100 xl:w-1097 xl:text-88 xl:leading-96">
-            Motors Engineered For Every Application.
+            Motors for a more <br className="hidden xl:block" />
+            capable world
           </h1>
           <div className="flex flex-col gap-24 xl:contents">
             <p className="text-20 leading-28 font-light xl:absolute xl:tx-578 xl:left-100 xl:w-450 xl:-translate-y-1/2 xl:text-24 xl:leading-32 xl:capitalize">
@@ -39,6 +41,7 @@ export default function ProductsHero() {
             </div>
           </div>
         </div>
+        <ScrollDown className="xl:tx-676" left="left-[calc(50%+var(--spacing)*767.5)]" />
       </div>
     </section>
   )
