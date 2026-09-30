@@ -17,6 +17,9 @@ export default {
     subtitle: ['Advanced Electric Motor & Powertrain Technology- Engineered For EV Autos, Loaders, And Tricycles.'],
     subtitleClass: 'xl:w-450',
     image: a('hero.png'),
+    // One 1920×880 picture for the desktop hero.
+    desktopImage: a('hero-desktop.webp'),
+    scrollDown: 'xl:tx-784',
     imageClass: 'xl:object-bottom',
     frameClass: 'xl:-bottom-43 xl:hx-967 xl:w-1920',
     washClass: 'bg-linear-to-b from-[rgba(24,99,218,0.4)] to-[rgba(24,99,218,0)]',

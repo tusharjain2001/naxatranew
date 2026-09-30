@@ -10,9 +10,22 @@
     />
     <title>Naxatra Labs | Advanced Motors &amp; Controllers Made in India</title>
     <script>
-      // Home page only: start fetching the first hero slide before the app script has even loaded.
-      if (location.pathname.replace(/\/+$/, '') === '') {
-        [['/assets/hero-bridge.webp', '(min-width: 1280px)'], ['/assets/m/hero-bridge.webp', '(max-width: 1279px)']].forEach(function (p) {
+      // Start fetching the page's hero photo before the app script has even loaded, so the hero is not a
+      // blank block while the script downloads. [desktop photo, phone photo] for each page.
+      (function () {
+        var heroes = {
+          '': ['/assets/hero-bridge.webp', '/assets/m/hero-bridge.webp'],
+          '/industry/2-wheeler': ['/assets/industry/2w/hero-desktop.webp', '/assets/industry/2w/hero.png'],
+          '/industry/3-wheeler': ['/assets/industry/3w/hero-desktop.webp', '/assets/industry/3w/m-hero.jpg'],
+          '/industry/cleaning': ['/assets/industry/cleaning/hero-desktop.webp', '/assets/industry/cleaning/hero.png'],
+          '/industry/agriculture': ['/assets/industry/agri/hero-desktop.webp', '/assets/industry/agri/m/hero.jpg'],
+          '/about': ['/assets/about/hero.webp', '/assets/about/m-hero-bg.png'],
+          '/careers': ['/assets/careers/hero.webp', '/assets/careers/m/hero.jpg'],
+          '/contact': ['/assets/contact/hero.webp', '/assets/contact/m/hero.jpg'],
+        };
+        var hero = heroes[location.pathname.replace(/\/+$/, '')];
+        if (!hero) return;
+        [[hero[0], '(min-width: 1280px)'], [hero[1], '(max-width: 1279px)']].forEach(function (p) {
           var l = document.createElement('link');
           l.rel = 'preload';
           l.as = 'image';
@@ -21,7 +34,7 @@
           l.setAttribute('fetchpriority', 'high');
           document.head.appendChild(l);
         });
-      }
+      })();
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

@@ -76,7 +76,7 @@ export default function IndustryHero({ hero }) {
                 ) : (
                   <span className="normal-case xl:hidden">{hero.mobile.title}</span>
                 )}
-                <Lines lines={hero.title} className="hidden xl:inline" />
+                <Lines lines={hero.desktopTitle ?? hero.title} className="hidden xl:inline" />
               </>
             ) : (
               <>

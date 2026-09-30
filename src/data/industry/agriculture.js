@@ -16,6 +16,9 @@ export default {
     subtitle: ['Motor. Controller. Axle.', 'One complete drive solution — built for continuous-duty agri applications in the conditions that actually exist in India.'],
     subtitleClass: 'xl:font-light xl:w-649',
     image: a('hero.png'),
+    // One 1920×880 picture for the desktop hero.
+    desktopImage: a('hero-desktop.webp'),
+    scrollDown: 'xl:tx-782',
     imageClass: 'xl:object-bottom',
     frameClass: 'xl:top-[-42px] xl:bottom-auto xl:hx-964 xl:w-1970',
     washClass: 'bg-[linear-gradient(131.82deg,rgba(0,43,96,0.2)_15.953%,rgba(0,0,0,0)_68.206%)]',
