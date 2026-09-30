@@ -13,6 +13,7 @@ export default {
     image: a('hero.png'),
     mobileStrip: a('m-hero-strip.png'),
     alt: 'Electric ride-on sweepers and floor scrubbers lined up on a plaza',
+    scrollDown: 'xl:tx-760',
   },
 
   challenges: {
@@ -101,6 +102,8 @@ export default {
   features: {
     title: ['Antarix RF Series', 'Optimised for Cleaning Equipment'],
     reveal: 'left',
+    // The desktop artboard sets the card titles in title case; the phone keeps capitals.
+    titleCase: 'desktop',
     items: [
       { title: '48V / 72V / 96V', text: 'Available', icon: a('feat-voltage.svg'), mobileIcon: a('feat-voltage-m.svg') },
       { title: 'IP67 Rated', text: 'Full Submersion Validated', icon: a('feat-ip67.svg') },

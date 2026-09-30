@@ -1,9 +1,11 @@
 import Button from '../../components/ui/Button'
+import ScrollDown from '../../components/ui/ScrollDown'
 
 // Two artboard treatments:
 // - 'strip' (Cleaning): mobile shows a blue sky gradient with the photo along the bottom edge.
 // - 'cover' (2W, 3W, Agriculture): the photo fills the hero on both artboards under blue washes.
 // `hero.mobile` ({ image, wash, title, text }) gives a page its own phone photo, wash, headline and padding.
+// `hero.scrollDown` places the desktop "scroll down" pill (e.g. 'xl:tx-760') on artboards that show it.
 function Photo({ hero }) {
   if (hero.variant === 'cover')
     return (
@@ -90,6 +92,7 @@ export default function IndustryHero({ hero }) {
         <Button href="#applications" variant="white" size="hero" className="absolute tx-717 left-100 hidden xl:inline-flex">
           Learn more
         </Button>
+        {hero.scrollDown && <ScrollDown className={hero.scrollDown} />}
       </div>
     </section>
   )

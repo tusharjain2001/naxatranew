@@ -1,5 +1,5 @@
 // Spec cards. Desktop lays them three to a row (`cols` overrides it); mobile is one column. `reveal: 'left'`
-// slides the cards in from the left on scroll. `titleCase` sets the card titles in title case, not capitals.
+// slides the cards in from the left on scroll. `titleCase` sets the card titles in title case, not capitals (`'desktop'`: on desktop only).
 export default function Features({ data }) {
   return (
     <section className={`flex w-full flex-col gap-60 pb-56 xl:gap-100 xl:py-100 ${data.section ?? ''}`}>
@@ -18,7 +18,7 @@ export default function Features({ data }) {
               <img src={item.icon} alt="" className="size-48 shrink-0 xl:size-80" />
             </picture>
             <div className="flex min-w-0 flex-col">
-              <h3 className={`flex h-24 items-center text-20 leading-[calc(var(--spacing)*25.224)] ${data.titleCase ? 'capitalize' : 'uppercase'} xl:h-44 xl:text-32 xl:leading-[calc(var(--spacing)*26.55)]`}>
+              <h3 className={`flex h-24 items-center text-20 leading-[calc(var(--spacing)*25.224)] ${data.titleCase === 'desktop' ? 'uppercase xl:capitalize' : data.titleCase ? 'capitalize' : 'uppercase'} xl:h-44 xl:text-32 xl:leading-[calc(var(--spacing)*26.55)]`}>
                 <span className="xl:hidden">{item.mobileTitle ?? item.title}</span>
                 <span className="hidden xl:inline">{item.title}</span>
               </h3>
