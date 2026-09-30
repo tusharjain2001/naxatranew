@@ -6,18 +6,20 @@ import ScrollDown from '../../components/ui/ScrollDown'
 //   is one full-bleed desktop picture that replaces the cropped photo there.
 // - 'cover' (2W, 3W, Agriculture): the photo fills the hero on both artboards under blue washes.
 // `hero.mobile` ({ image, wash, title, text }) gives a page its own phone photo, wash, headline and padding.
+// `hero.desktopImage` (either variant) is one flattened desktop picture used instead of the layered photo.
 // `hero.scrollDown` places the desktop "scroll down" pill (e.g. 'xl:tx-760') on artboards that show it.
 function Photo({ hero }) {
   if (hero.variant === 'cover')
     return (
       <>
         {hero.mobile && <img src={hero.mobile.image} alt={hero.alt} className="absolute inset-0 size-full object-cover xl:hidden" />}
-        <div className={`absolute top-0 -right-53 h-717 w-1424 xl:top-auto ${hero.mobile ? 'hidden xl:block' : ''} xl:right-auto xl:left-1/2 xl:-translate-x-1/2 ${hero.frameClass ?? 'xl:-bottom-13 xl:hx-967 xl:w-1920'}`}>
+        {hero.desktopImage && <img src={hero.desktopImage} alt={hero.alt} fetchPriority="high" className="absolute inset-0 hidden size-full object-cover xl:block" />}
+        <div className={`absolute top-0 -right-53 h-717 w-1424 xl:top-auto ${hero.mobile ? 'hidden xl:block' : ''} ${hero.desktopImage ? 'xl:hidden' : ''} xl:right-auto xl:left-1/2 xl:-translate-x-1/2 ${hero.frameClass ?? 'xl:-bottom-13 xl:hx-967 xl:w-1920'}`}>
           <img src={hero.image} alt={hero.alt} className={`absolute inset-0 size-full object-cover ${hero.imageClass ?? ''}`} />
           <span className={`absolute inset-0 ${hero.washClass ?? 'bg-linear-to-b from-[rgba(11,78,183,0.4)] to-[rgba(24,99,218,0)] to-[63.603%]'}`} />
         </div>
         <span className={`absolute inset-0 bg-linear-to-b xl:hidden ${hero.mobile?.wash ?? 'from-[#2a689e] to-[rgba(24,99,218,0)] to-[82.724%]'}`} />
-        {hero.angleClass !== false && (
+        {hero.angleClass !== false && !hero.desktopImage && (
           <span className={`absolute inset-x-0 top-0 hidden opacity-40 xl:block ${hero.angleClass ?? 'h-502 bg-[linear-gradient(197.34deg,#1863da_18.598%,rgba(24,99,218,0)_43.806%)]'}`} />
         )}
       </>

@@ -16,7 +16,10 @@ export default {
     subtitle: ['Advanced Electric Motor & Powertrain Technology, Engineered For Scooters, Motorcycles, Passenger Mobility, And Cargo Transport.'],
     subtitleClass: 'xl:w-452',
     image: a('hero.png'),
+    // One 1920×880 picture for the desktop hero.
+    desktopImage: a('hero-desktop.webp'),
     alt: 'Electric motorcycles and scooters parked on a coastal highway',
+    scrollDown: 'xl:tx-783',
   },
 
   challenges: {
@@ -62,7 +65,6 @@ export default {
   features: {
     title: ['Measurable outcomes of our motor & controller- optimised for electric mobility'],
     titleClass: 'xl:w-1788',
-    bordered: true,
     reveal: 'left',
     items: [
       { title: '+5-8% Range', text: 'From Motor Swap Alone', icon: a('feat-range.svg') },
