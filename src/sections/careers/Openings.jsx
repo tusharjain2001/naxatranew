@@ -137,7 +137,7 @@ export default function Openings({ onApply }) {
   return (
     <section className="mx-auto flex w-full max-w-1920 flex-col gap-60 px-14 py-100 xl:gap-56 xl:px-100 xl:py-100">
       <div className="flex flex-col gap-8 px-2 xl:gap-16 xl:px-0">
-        <h2 className="text-32 leading-[calc(var(--spacing)*35.6)] tracking-display xl:w-982 xl:text-64 xl:capitalize xl:leading-80">{openings.title}</h2>
+        <h2 className="text-32 leading-[calc(var(--spacing)*35.6)] tracking-display xl:w-1240 xl:text-64 xl:leading-80">{openings.title}</h2>
         <p className="text-14 leading-17 font-light text-grey-dark xl:text-32 xl:leading-40 xl:text-grey">{openings.subtitle}</p>
       </div>
 
