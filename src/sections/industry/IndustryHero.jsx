@@ -2,7 +2,8 @@ import Button from '../../components/ui/Button'
 import ScrollDown from '../../components/ui/ScrollDown'
 
 // Two artboard treatments:
-// - 'strip' (Cleaning): mobile shows a blue sky gradient with the photo along the bottom edge.
+// - 'strip' (Cleaning): mobile shows a blue sky gradient with the photo along the bottom edge; `desktopImage`
+//   is one full-bleed desktop picture that replaces the cropped photo there.
 // - 'cover' (2W, 3W, Agriculture): the photo fills the hero on both artboards under blue washes.
 // `hero.mobile` ({ image, wash, title, text }) gives a page its own phone photo, wash, headline and padding.
 // `hero.scrollDown` places the desktop "scroll down" pill (e.g. 'xl:tx-760') on artboards that show it.
@@ -23,9 +24,13 @@ function Photo({ hero }) {
     )
   return (
     <>
-      <div className="absolute bottom-0 left-[calc(50%-var(--spacing)*61.5)] h-297 w-593 -translate-x-1/2 overflow-hidden xl:right-0 xl:left-auto xl:hx-963 xl:w-1921 xl:translate-x-0">
+      {hero.desktopImage && <img src={hero.desktopImage} alt={hero.alt} fetchPriority="high" className="absolute inset-0 hidden size-full object-cover xl:block" />}
+      <div
+        className={`absolute bottom-0 left-[calc(50%-var(--spacing)*61.5)] h-297 w-593 -translate-x-1/2 overflow-hidden xl:right-0 xl:left-auto xl:hx-963 xl:w-1921 xl:translate-x-0 ${hero.desktopImage ? 'xl:hidden' : ''}`}
+      >
         <img src={hero.image} alt={hero.alt} className="absolute top-[-2.77%] left-[-3.09%] h-[111.25%] w-[104.65%] xl:object-cover" />
-        <span className="absolute inset-0 bg-linear-to-b from-[rgba(11,78,183,0.6)] to-[rgba(24,99,218,0)] to-[63.603%] xl:from-10% xl:to-[74.818%]" />
+        {/* Blue wash over the phone photo only; desktop shows the photo in its natural colours. */}
+        <span className="absolute inset-0 bg-linear-to-b from-[rgba(11,78,183,0.6)] to-[rgba(24,99,218,0)] to-[63.603%] xl:hidden" />
       </div>
       {hero.mobileStrip && <img src={hero.mobileStrip} alt="" className="absolute top-408 left-0 h-43 w-full object-cover xl:hidden" />}
     </>

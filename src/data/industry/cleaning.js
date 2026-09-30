@@ -12,6 +12,8 @@ export default {
     subtitle: ['Motor. Controller. Gearbox.', 'One complete drive solution - built for continuous-duty cleaning applications.'],
     image: a('hero.png'),
     mobileStrip: a('m-hero-strip.png'),
+    // One 1920×880 picture for the desktop hero.
+    desktopImage: a('hero-desktop.webp'),
     alt: 'Electric ride-on sweepers and floor scrubbers lined up on a plaza',
     scrollDown: 'xl:tx-760',
   },
