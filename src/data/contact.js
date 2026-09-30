@@ -3,9 +3,8 @@ const a = (file) => `/assets/contact/${file}`
 export const contactHero = {
   title: ['Let’s Build What', 'Moves Next'],
   subtitle: 'Have a project, partnership, or idea in mind? Let’s talk about how Naxatra can help bring it to life.',
-  background: a('hero-bg.png'),
-  // Cut-out of the vehicles, drone and robot arm, layered above the blue wash.
-  foreground: a('hero-front.png'),
+  // One flattened desktop picture: the park photo, the blue sky wash and the vehicles, drone and robot arm.
+  image: a('hero.webp'),
   // The phone artboard frames one photo on the delivery vehicle and field robot.
   mobileImage: a('m/hero.jpg'),
 }

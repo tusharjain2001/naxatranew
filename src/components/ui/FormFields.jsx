@@ -4,16 +4,19 @@ import { useState } from 'react'
 // (36px phone / 80px desktop). Typed text stays 16px on phones so iOS doesn't zoom in on focus;
 // the placeholders use the artboard's 12px.
 export const labelText = 'font-arial text-[length:calc(var(--spacing)*13.68)] leading-[calc(var(--spacing)*22.457)] text-grey xl:text-28 xl:leading-[calc(var(--spacing)*45.965)]'
-// The Contact phone artboard sets its labels smaller, with more room above the box.
+// The Contact phone artboard sets its labels smaller, with more room above the box; on desktop its labels,
+// typed text and placeholders are 24px (Careers keeps 28px). `text` is the desktop box text size.
 const tones = {
-  default: { label: labelText, gap: 'gap-[calc(var(--spacing)*2.807)]' },
+  default: { label: labelText, gap: 'gap-[calc(var(--spacing)*2.807)]', text: 'xl:text-28 xl:placeholder:text-28' },
   contact: {
-    label: 'font-arial text-14 leading-[calc(var(--spacing)*13.13)] text-grey xl:text-28 xl:leading-[calc(var(--spacing)*45.965)]',
+    label: 'font-arial text-14 leading-[calc(var(--spacing)*13.13)] text-grey xl:text-24 xl:leading-[calc(var(--spacing)*45.965)]',
     gap: 'gap-[calc(var(--spacing)*8.799)]',
+    text: 'xl:text-24 xl:placeholder:text-24',
   },
 }
+const boxText = (tone) => tones[tone ?? 'default'].text
 const box =
-  'w-full rounded-[calc(var(--spacing)*1.641)] border-[calc(var(--spacing)*0.41)] border-silver bg-field xl:rounded-5-7 xl:border-[calc(var(--spacing)*1.436)] px-[calc(var(--spacing)*8.52)] font-arial text-16 text-black outline-none transition-colors placeholder:font-sans placeholder:text-12 placeholder:text-grey/40 focus:border-primary xl:text-28 xl:placeholder:text-28'
+  'w-full rounded-[calc(var(--spacing)*1.641)] border-[calc(var(--spacing)*0.41)] border-silver bg-field xl:rounded-5-7 xl:border-[calc(var(--spacing)*1.436)] px-[calc(var(--spacing)*8.52)] font-arial text-16 text-black outline-none transition-colors placeholder:font-sans placeholder:text-12 placeholder:text-grey/40 focus:border-primary'
 const fieldHeight = 'h-36 xl:h-80'
 const chevron =
   'pointer-events-none absolute top-1/2 right-[calc(var(--spacing)*8.62)] h-[calc(var(--spacing)*4.447)] w-[calc(var(--spacing)*8.706)] -translate-y-1/2 xl:right-[calc(var(--spacing)*33.45)] xl:h-[calc(var(--spacing)*11.277)] xl:w-[calc(var(--spacing)*22.555)]'
@@ -24,7 +27,7 @@ export function Required({ className = 'text-[red]' }) {
 }
 
 function Labelled({ label, required, markClass, className, tone = 'default', children }) {
-  const t = tones[tone]
+  const t = tones[tone ?? 'default']
   return (
     <label className={`flex min-w-0 flex-col ${t.gap} xl:gap-[calc(var(--spacing)*5.746)] ${className}`}>
       <span className={`whitespace-nowrap ${t.label}`}>
@@ -38,7 +41,7 @@ function Labelled({ label, required, markClass, className, tone = 'default', chi
 
 // `chevron` draws the dropdown arrow for a free-text field that suggests values (a datalist).
 export function Field({ label, required = true, markClass, className = '', inputClass = '', tone, chevron: withChevron = false, ...input }) {
-  const field = <input required={required} className={`${fieldHeight} xl:px-32 ${box} ${withChevron ? 'pr-24 xl:pr-80' : ''} ${inputClass}`} {...input} />
+  const field = <input required={required} className={`${fieldHeight} xl:px-32 ${box} ${boxText(tone)} ${withChevron ? 'pr-24 xl:pr-80' : ''} ${inputClass}`} {...input} />
   return (
     <Labelled label={label} required={required} markClass={markClass} className={className} tone={tone}>
       {withChevron ? (
@@ -62,7 +65,7 @@ export function SelectField({ label, name, placeholder, options, className = '',
           name={name}
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          className={`${fieldHeight} cursor-pointer appearance-none pr-24 max-xl:text-12 xl:pr-80 xl:pl-32 ${box} ${value ? '' : 'text-grey/40'}`}
+          className={`${fieldHeight} cursor-pointer appearance-none pr-24 max-xl:text-12 xl:pr-80 xl:pl-32 ${box} ${boxText(tone)} ${value ? '' : 'text-grey/40'}`}
         >
           <option value="" disabled>
             {placeholder}
@@ -82,7 +85,7 @@ export function SelectField({ label, name, placeholder, options, className = '',
 export function TextAreaField({ label, className = '', tone, ...textarea }) {
   return (
     <Labelled label={label} className={className} tone={tone}>
-      <textarea className={`h-64 resize-none py-7 xl:h-200 xl:px-32 xl:pt-29 ${box}`} {...textarea} />
+      <textarea className={`h-64 resize-none py-7 xl:h-200 xl:px-32 xl:pt-29 ${box} ${boxText(tone)}`} {...textarea} />
     </Labelled>
   )
 }
