@@ -1,14 +1,17 @@
 import Button from '../../components/ui/Button'
 
-// Photo hero; the phone crops to the right-hand side of the same photo (the utility vehicle and drone).
+// Photo hero; the phone crops to the right-hand side of the same photo (the utility vehicle and drone). On
+// desktop the photo is 1936×989, overhanging the 880 frame by 109 at the top, with a "scroll down" cue below.
 export default function TechHero({ hero }) {
+  const scrollDown = (e) => e.currentTarget.closest('section').nextElementSibling?.scrollIntoView({ behavior: 'smooth' })
+
   return (
     <section className="relative h-717 w-full overflow-hidden bg-[#1b2a3a] xl:h-hero">
       <img
         src={hero.image}
         alt={hero.alt}
         fetchPriority="high"
-        className="absolute top-0 -left-967 h-full w-1404 max-w-none object-cover xl:inset-0 xl:size-full"
+        className="absolute top-0 -left-967 h-full w-1404 max-w-none object-cover xl:top-auto xl:bottom-0 xl:left-1/2 xl:hx-989 xl:w-1936 xl:-translate-x-1/2"
       />
       <div className="relative mx-auto flex max-w-1920 flex-col items-start gap-24 px-20 pt-60 text-white xl:gap-48 xl:px-100 xl:pt-100">
         <div className="flex flex-col gap-24 xl:gap-25">
@@ -22,6 +25,14 @@ export default function TechHero({ hero }) {
           Connect now
         </Button>
       </div>
+      <button
+        type="button"
+        onClick={scrollDown}
+        className="absolute left-[calc(50%+0.5px)] hidden -translate-x-1/2 cursor-pointer items-center gap-12 rounded-8 bg-white/10 px-12 py-8 text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.35)] backdrop-blur-[12px] xl:flex xl:tx-780"
+      >
+        <img src="/assets/technology/scroll-down.svg" alt="" className="size-32" />
+        <span className="h-20 w-107 text-20 leading-14 font-medium">scroll down</span>
+      </button>
     </section>
   )
 }

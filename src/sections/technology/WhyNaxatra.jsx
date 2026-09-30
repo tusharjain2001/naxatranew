@@ -17,9 +17,9 @@ export default function WhyNaxatra({ data }) {
             ) : (
               <img src={item.icon} alt="" className="size-[80em] shrink-0" />
             )}
-            <div className="flex min-w-0 flex-1 flex-col gap-[10em]">
-              <h3 className="text-[length:32em] leading-[1.19] text-black uppercase">{item.title}</h3>
-              <p className="text-[length:24em] leading-[1.406] text-grey">{item.text}</p>
+            <div className="flex min-w-0 flex-1 flex-col">
+              <h3 className="flex h-[1.375em] items-center text-[length:32em] leading-[0.83] text-black capitalize">{item.title}</h3>
+              <p className={`text-[length:24em] leading-[1.406] text-grey ${item.textClass ?? ''}`}>{item.text}</p>
             </div>
           </li>
         ))}
