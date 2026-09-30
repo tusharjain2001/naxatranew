@@ -30,7 +30,7 @@ export default function PersonCard({ person, variant = 'investor' }) {
           src={person.image}
           alt={`Portrait of ${person.name}`}
           loading="lazy"
-          className={`absolute inset-0 size-full object-cover ${person.fit ?? 'object-center'}`}
+          className={`absolute inset-0 size-full ${person.fit ?? 'object-cover'}`}
         />
         <span aria-hidden className={`absolute ${v.badge}`}>
           <img src={v.icon} alt="" className="absolute top-[-40.28%] left-[-39.19%] h-[180.56%] w-[178.38%]" />

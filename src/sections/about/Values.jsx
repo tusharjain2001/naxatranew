@@ -38,7 +38,7 @@ export default function Values() {
           >
             <ValueIcon icon={item.icon} />
             <div className="flex min-w-0 flex-1 flex-col gap-[calc(var(--spacing)*4.795)] xl:gap-0">
-              <h3 className="text-[length:calc(var(--spacing)*15.344)] leading-[calc(var(--spacing)*18.221)] uppercase xl:flex xl:h-44 xl:items-center xl:text-32 xl:leading-[calc(var(--spacing)*26.55)]">
+              <h3 className="text-[length:calc(var(--spacing)*15.344)] leading-[calc(var(--spacing)*18.221)] uppercase xl:flex xl:capitalize xl:h-44 xl:items-center xl:text-32 xl:leading-[calc(var(--spacing)*26.55)]">
                 {item.title}
               </h3>
               <p className="text-[length:calc(var(--spacing)*11.508)] leading-[calc(var(--spacing)*16.178)] text-grey xl:flex xl:h-36 xl:items-center xl:text-24 xl:leading-[calc(var(--spacing)*33.74)]">

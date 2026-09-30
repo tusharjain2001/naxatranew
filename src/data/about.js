@@ -3,8 +3,8 @@ const a = (file) => `/assets/about/${file}`
 export const aboutHero = {
   title: 'We Design, Develop and Build Smarter Motor Technology',
   subtitle: 'Discover what drives us.',
-  background: a('hero-bg.png'),
-  team: a('hero-team.png'),
+  // One flattened desktop picture: the sky photo, the blue wash and the founders.
+  image: a('hero.webp'),
   // The mobile artboard has its own portrait crop and a cut-out of the founders.
   mobileBackground: a('m-hero-bg.png'),
   mobileTeam: a('m-hero-team.png'),
@@ -70,9 +70,9 @@ export const founders = {
   title: 'Built by people who build.',
   subtitle: 'Meet the minds behind Naxatra',
   people: [
-    { name: 'Abhilash Maurya', role: 'Co-founder & CEO', image: a('founder-abhilash.png'), fit: 'object-bottom' },
-    { name: 'Piyush Verma', role: 'Co-founder & CTO', image: a('founder-piyush.png'), fit: 'object-center' },
-    { name: 'Arnav Biswas', role: 'Co-founder & COO', image: a('founder-arnav.png'), fit: 'object-top' },
+    { name: 'Abhilash Maurya', role: 'Co-founder & CEO', image: a('founder-abhilash.png'), fit: 'object-fill' },
+    { name: 'Piyush Verma', role: 'Co-founder & CTO', image: a('founder-piyush.png'), fit: 'object-cover' },
+    { name: 'Arnav Biswas', role: 'Co-founder & COO', image: a('founder-arnav.png'), fit: 'object-cover object-top' },
   ],
 }
 
