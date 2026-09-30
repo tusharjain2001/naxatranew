@@ -48,8 +48,8 @@ export default function Journey({ spacing = 'py-56 xl:pt-92 xl:pb-92' }) {
   const listRef = useRef(null)
   const railRef = useRef(null)
   // Track state lives in a ref so the animation loop never restarts: `pos` is the float offset, `glide` an
-  // in-flight move to a milestone, `hold` a pointer resting on the cards, `drag` a swipe in progress.
-  const drift = useRef({ pos: 0, glide: null, hold: false, drag: null, moved: false, inView: false })
+  // in-flight move to a milestone, `drag` a swipe in progress.
+  const drift = useRef({ pos: 0, glide: null, drag: null, moved: false, inView: false })
 
   // The track moves by a GPU transform (sub-pixel smooth; scrollLeft is rounded to whole pixels). The
   // milestones are rendered twice, so when the offset passes one copy's width it jumps back by that width
@@ -122,15 +122,15 @@ export default function Journey({ spacing = 'py-56 xl:pt-92 xl:pb-92' }) {
   const n = journey.length
 
   // Autoplay: every STEP_MS the next milestone is highlighted and glides into view, looping after the last.
-  // Any change of highlight (arrows, dots, a click) restarts the wait; while the pointer rests on the cards,
-  // a swipe is in progress, or the section is off screen, it waits another round instead.
+  // Any change of highlight (arrows, dots, a click) restarts the wait; while a swipe is in progress or the
+  // section is off screen, it waits another round instead. Hovering the cards does not pause it.
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     let id
     const wait = () => {
       id = setTimeout(() => {
         const d = drift.current
-        if (d.hold || d.drag || !d.inView || document.hidden) wait()
+        if (d.drag || !d.inView || document.hidden) wait()
         else goTo((active + 1) % n)
       }, STEP_MS)
     }
@@ -140,7 +140,6 @@ export default function Journey({ spacing = 'py-56 xl:pt-92 xl:pb-92' }) {
   }, [active])
 
   const controls = { prev: () => goTo((active - 1 + n) % n), next: () => goTo((active + 1) % n), canPrev: true, canNext: true }
-  const hold = (on) => () => (drift.current.hold = on)
 
   // Drag / swipe to move the timeline by hand (vertical page scrolling still passes through).
   const onPointerDown = (e) => {
@@ -194,8 +193,6 @@ export default function Journey({ spacing = 'py-56 xl:pt-92 xl:pb-92' }) {
         <div className="flex flex-col items-center gap-28 xl:gap-0">
           <div
             ref={trackRef}
-            onMouseEnter={hold(true)}
-            onMouseLeave={hold(false)}
             onPointerDown={onPointerDown}
             onPointerMove={onPointerMove}
             onPointerUp={onPointerUp}

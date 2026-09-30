@@ -3,7 +3,7 @@ import { heroSlides } from '../data/home'
 import Button from '../components/ui/Button'
 import { ArrowButton } from '../components/ui/SliderArrows'
 
-const AUTOPLAY_MS = 6000
+const AUTOPLAY_MS = 3000
 
 function Overlay({ type }) {
   if (type === 'bridge')
@@ -22,7 +22,6 @@ function Overlay({ type }) {
 
 export default function Hero() {
   const [active, setActive] = useState(0)
-  const [paused, setPaused] = useState(false)
   // Only the first slide's photo loads with the page (it is also preloaded from index.html); the rest
   // wait until the page has finished loading so they don't compete with it for bandwidth.
   const [warm, setWarm] = useState(false)
@@ -38,10 +37,10 @@ export default function Hero() {
   const go = useCallback((i) => setActive((i + count) % count), [count])
 
   useEffect(() => {
-    if (paused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const id = setTimeout(() => go(active + 1), AUTOPLAY_MS)
     return () => clearTimeout(id)
-  }, [active, paused, go])
+  }, [active, go])
 
   return (
     <section
@@ -49,8 +48,6 @@ export default function Hero() {
       aria-roledescription="carousel"
       aria-label="Highlights"
       className="relative h-744 overflow-hidden bg-black xl:h-hero"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
     >
       <h1 className="sr-only">Naxatra Labs: advanced motors and controllers, all made in India</h1>
       {heroSlides.map((slide, i) => {
@@ -162,9 +159,9 @@ export default function Hero() {
             >
               <span
                 className={`absolute inset-0 origin-left bg-white ${
-                  i === active ? (paused ? 'scale-x-100' : 'animate-[hero-progress_linear_forwards]') : 'scale-x-0'
+                  i === active ? 'animate-[hero-progress_linear_forwards]' : 'scale-x-0'
                 }`}
-                style={i === active && !paused ? { animationDuration: `${AUTOPLAY_MS}ms` } : undefined}
+                style={i === active ? { animationDuration: `${AUTOPLAY_MS}ms` } : undefined}
               />
             </button>
           ))}
