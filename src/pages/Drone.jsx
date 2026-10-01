@@ -35,7 +35,7 @@ export default function Drone() {
       <Features data={drone.features} />
       <Process centered />
       <Testimonials spacing="gap-60 pt-56 pb-60 xl:gap-93 xl:pt-100 xl:pb-100" desktopArrows arrowsClass="xl:mr-116 xl:self-start" />
-      <SpecForm applications={applications} spacing="pb-159 xl:py-100" open />
+      <SpecForm applications={applications} spacing="xl:py-100" />
     </main>
   )
 }

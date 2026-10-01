@@ -25,7 +25,7 @@ const sections = {
       desktopArrows={page.testimonials.desktopArrows}
     />
   ),
-  spec: (page) => <SpecForm applications={page.applications.items.map((item) => item.label)} spacing={page.spec?.spacing} compact />,
+  spec: (page) => <SpecForm applications={page.applications.items.map((item) => item.label)} spacing={page.spec?.spacing} />,
 }
 
 export default function Industry({ page }) {

@@ -22,20 +22,20 @@ export default function EnquiryForm() {
           <p className="text-14 leading-18 font-light text-grey xl:text-32 xl:leading-40">{enquiry.subtitle}</p>
         </div>
 
-        <form id="enquiry-form" role="tabpanel" aria-label={topic} onSubmit={(e) => e.preventDefault()} className="flex flex-col items-start gap-40 xl:min-w-0 xl:flex-1">
+        <form id="enquiry-form" role="tabpanel" aria-label={topic} onSubmit={(e) => e.preventDefault()} className="flex flex-col items-start gap-38 xl:min-w-0 xl:flex-1 xl:gap-40">
           <input type="hidden" name="topic" value={topic} />
-          <div className="flex w-full flex-col gap-24">
-            <p className="hidden border-b-[0.5px] border-black/50 text-24 leading-40 font-light text-grey uppercase xl:block">{enquiry.formLabels[topic]}</p>
-            <div className="grid w-full gap-[calc(var(--spacing)*17.599)] xl:grid-cols-2 xl:gap-x-40 xl:gap-y-[calc(var(--spacing)*40.219)]">
-              <Field label="Full Name (Required)" name="name" autoComplete="name" placeholder="Enter Full Name" tone="contact" />
-              <Field label="Email ID (Required)" name="email" type="email" autoComplete="email" placeholder="Enter Email ID" tone="contact" />
-              <Field label="Company Name (Required)" name="company" autoComplete="organization" placeholder="Enter Company Name" markClass="text-grey" tone="contact" />
+          <div className="flex w-full flex-col gap-[calc(var(--spacing)*17.599)] xl:gap-24">
+            <p className="flex h-20 items-center border-b-[0.5px] border-black/50 text-12 font-light text-grey uppercase xl:block xl:h-auto xl:text-24 xl:leading-40">{enquiry.formLabels[topic]}</p>
+            <div className="grid w-full gap-20 xl:grid-cols-2 xl:gap-x-40 xl:gap-y-32">
+              <Field label="Full Name" name="name" autoComplete="name" placeholder="Enter Full Name" tone="contact" />
+              <Field label="Email ID" name="email" type="email" autoComplete="email" placeholder="Enter Email ID" tone="contact" />
+              <Field label="Company Name" name="company" autoComplete="organization" placeholder="Enter Company Name" tone="contact" />
               <SelectField label="Application Type" name="application" placeholder="Choose your application type" options={enquiry.applications} tone="contact" />
               <TextAreaField label="Any Message" name="message" placeholder="Write your message here..." className="xl:col-span-2" tone="contact" />
             </div>
           </div>
 
-          <Button as="button" type="submit" size="heroM" className="cursor-pointer xl:hidden">
+          <Button as="button" type="submit" size="form" className="h-32 cursor-pointer max-xl:text-12 xl:hidden">
             Submit Enquiry
           </Button>
           <Button as="button" type="submit" size="hero" className="hidden cursor-pointer xl:inline-flex">
