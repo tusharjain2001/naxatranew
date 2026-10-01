@@ -2,11 +2,12 @@ import { useEffect, useRef } from 'react'
 
 // The client's "scroll down" Lottie (three chevrons over the words), near the foot of every hero; a click
 // glides to the next section. The animation is the client's file with its grey preview background removed
-// and trimmed to its 420×320 content box. It is drawn in `em` units: 0.3 design px on desktop and 0.2256 on
-// the phone, so it matches the Figma group (18px words on desktop, 13.8px on the phone).
-// It sits 42px (desktop) / 29px (phone) above the hero's bottom edge; `className` overrides that and `left`
-// moves it off centre. The player loads after the page, and reduced motion shows a still frame.
-export default function ScrollDown({ className = 'bottom-29 xl:bottom-42', left = 'left-1/2' }) {
+// and trimmed to its 420×320 content box. It is drawn in `em` units: 0.3 design px on desktop and 0.161 on
+// the phone, so it matches the Figma group (154px wide on desktop, 83px on the phone).
+// It sits 42px above the hero's bottom edge on desktop and 568px from the top on the phone (just under the
+// home slider's bars at 548); `className` overrides that and `left` moves it off centre.
+// The player loads after the page, and reduced motion shows a still frame.
+export default function ScrollDown({ className = 'top-568 xl:top-auto xl:bottom-42', left = 'left-1/2' }) {
   const ref = useRef(null)
 
   useEffect(() => {
@@ -36,7 +37,7 @@ export default function ScrollDown({ className = 'bottom-29 xl:bottom-42', left 
       type="button"
       onClick={onClick}
       aria-label="Scroll down"
-      className={`absolute z-10 h-[320em] w-[420em] -translate-x-1/2 cursor-pointer text-[length:calc(var(--spacing)*0.2256)] xl:text-[length:calc(var(--spacing)*0.3)] ${left} ${className}`}
+      className={`absolute z-10 h-[320em] w-[420em] -translate-x-1/2 cursor-pointer text-[length:calc(var(--spacing)*0.161)] xl:text-[length:calc(var(--spacing)*0.3)] ${left} ${className}`}
     >
       <span ref={ref} aria-hidden className="block size-full" />
     </button>

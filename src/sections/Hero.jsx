@@ -131,7 +131,7 @@ export default function Hero() {
                 size="hero"
                 href="#products"
                 tabIndex={isActive ? 0 : -1}
-                className="absolute tx-661 left-103 hidden xl:inline-flex"
+                className="absolute top-448 left-103 hidden xl:inline-flex"
               >
                 Explore Now
               </Button>
@@ -148,7 +148,7 @@ export default function Hero() {
         </div>
 
         {/* Progress bars */}
-        <div className="pointer-events-auto absolute top-610 left-1/2 flex -translate-x-1/2 items-center gap-5 xl:tx-737 xl:gap-8">
+        <div className="pointer-events-auto absolute top-548 left-1/2 flex -translate-x-1/2 items-center gap-5 xl:tx-737 xl:gap-8">
           {heroSlides.map((slide, i) => (
             <button
               key={slide.id}
@@ -168,7 +168,7 @@ export default function Hero() {
           ))}
         </div>
       </div>
-      <ScrollDown className="top-619 xl:top-auto xl:bottom-42" />
+      <ScrollDown />
     </section>
   )
 }

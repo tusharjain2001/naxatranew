@@ -82,7 +82,7 @@ export const heroSlides = [
     subtitleGap: 'gap-48',
     overlay: 'bridge',
     titleClass: 'h-181',
-    top: 151,
+    top: 120,
   },
   {
     id: 'mobility',
@@ -90,7 +90,7 @@ export const heroSlides = [
     mobileImage: a('m/hero-vehicles.webp'),
     title: ['Engineering Electric Mobility,', 'End To End.'],
     overlay: 'vehicles',
-    top: 111,
+    top: 120,
   },
   {
     id: 'cleaning',
@@ -99,7 +99,7 @@ export const heroSlides = [
     title: ['Powerful Motors For', 'Spotless Results.'],
     // The phone artboard sets this headline in a narrower box, so it breaks onto three lines.
     mobileTitleClass: 'w-347',
-    top: 160,
+    top: 120,
   },
   {
     id: 'agriculture',
@@ -107,7 +107,7 @@ export const heroSlides = [
     // Phone crops are composed from the 402px artboards, each framed on its subject.
     mobileImage: a('m/hero-agri.webp'),
     title: ['Powering Agriculture’s Next', 'Generation'],
-    top: 142,
+    top: 120,
   },
   {
     id: 'drone',
@@ -116,7 +116,7 @@ export const heroSlides = [
     mobileImage: a('m/hero-drone.webp'),
     imageClass: 'xl:-scale-x-100 xl:object-top',
     title: ['Precision Motors,', 'Engineered To Fly.'],
-    top: 111,
+    top: 120,
   },
 ]
 
