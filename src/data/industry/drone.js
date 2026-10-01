@@ -63,8 +63,10 @@ export default {
   // Alternating text / photo rows. The phone artboard shows the ESC on the second card.
   showcase: [
     {
-      title: ['One platform.', 'for Every Efficient cycle.'],
-      text: "We don't sell a motor. We deliver a matched drive system - engineered for your specific application. Featured Products, efficient, Compact and High-Performance electric motion.",
+      title: ['Drone Motors, Engineered For Every Duty Cycle.'],
+      text: 'Tested across dust, heat, and monsoon, with IP67 sealing. Built for continuous duty, so your drone stays airborne when it matters.',
+      button: { label: 'View our motors', href: '/products' },
+      mobile: { title: 'w-304', titleGap: 'gap-28', buttonGap: 'gap-45', bottom: 'pb-11' },
       image: a('card-motor.webp'),
       mobileImage: a('m/card-motor.webp'),
       name: 'Motor',
@@ -72,8 +74,10 @@ export default {
       alt: 'Brushless drone motor',
     },
     {
-      title: ['One platform.', 'for Every Efficient cycle.'],
-      text: "We don't sell a motor. We deliver a matched drive system - engineered for your specific application. Featured Products, efficient, Compact and High-Performance electric motion.",
+      title: ['ESC Controllers, Power That Adapts As You Fly.'],
+      text: 'Automatically adjusts power to load and terrain for smooth, stable flight. Supports 48V/72V/96V with CAN and one-line comms.',
+      button: { label: 'Know about us', href: '/about' },
+      mobile: { titleGap: 'gap-16', buttonGap: 'gap-50.5', bottom: 'pb-17.5' },
       image: a('card-esc.webp'),
       mobileImage: a('m/card-esc.webp'),
       name: 'ESC',
@@ -116,6 +120,8 @@ export default {
   },
 
   features: {
+    // The phone artboard leaves 78px under the last card.
+    mobileBottom: 'pb-78',
     title: ['Measurable outcomes of our motor & controller- optimised for Drones'],
     titleClass: 'xl:w-1588',
     reveal: 'left',

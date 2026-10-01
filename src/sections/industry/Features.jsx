@@ -2,7 +2,7 @@
 // slides the cards in from the left on scroll. `titleCase` sets the card titles in title case, not capitals (`'desktop'`: on desktop only).
 export default function Features({ data }) {
   return (
-    <section className={`flex w-full flex-col gap-60 pb-56 xl:gap-100 xl:py-100 ${data.section ?? ''}`}>
+    <section className={`flex w-full flex-col gap-60 xl:gap-100 xl:py-100 ${data.mobileBottom ?? 'pb-56'} ${data.section ?? ''}`}>
       <h2 className={`px-16 capitalize tracking-display xl:px-100 xl:tracking-normal ${data.titleClass ?? 'xl:w-1368'}`}>
         <span className="block text-32 leading-35 xl:text-72 xl:leading-88">{data.title[0]}</span>
         {data.title[1] && <span className="block text-24 leading-35 xl:text-48 xl:leading-57">{data.title[1]}</span>}

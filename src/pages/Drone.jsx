@@ -31,11 +31,11 @@ export default function Drone() {
       <Showcase rows={drone.showcase} />
       <Pulse data={drone.pulse} />
       <Capabilities data={drone.capabilities} />
-      <DifferentApplication image={drone.cta.image} imageClass={drone.cta.imageClass} mobileImage={drone.cta.mobileImage} mobileButton="cta" mobileTop="pt-99" />
+      <DifferentApplication image={drone.cta.image} imageClass={drone.cta.imageClass} mobileImage={drone.cta.mobileImage} mobileButton="cta" mobileTop="pt-99" mobileBottom="pb-81" />
       <Features data={drone.features} />
       <Process centered />
-      <Testimonials spacing="gap-60 py-56 xl:gap-93 xl:pt-100 xl:pb-100" desktopArrows arrowsClass="xl:mr-116 xl:self-start" />
-      <SpecForm applications={applications} spacing="xl:py-100" open />
+      <Testimonials spacing="gap-60 pt-56 pb-60 xl:gap-93 xl:pt-100 xl:pb-100" desktopArrows arrowsClass="xl:mr-116 xl:self-start" />
+      <SpecForm applications={applications} spacing="pb-159 xl:py-100" open />
     </main>
   )
 }

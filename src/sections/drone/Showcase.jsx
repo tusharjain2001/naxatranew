@@ -1,10 +1,11 @@
 import Button from '../../components/ui/Button'
 
 // Half-width dark photo card beside a text column; `reverse` puts the photo on the left. The card names the
-// part (Motor / ESC) over its caption lines. On the phone the card sits above centred copy.
+// part (Motor / ESC) over its caption lines. On the phone the card sits above centred copy; `mobile` holds
+// that row's phone spacing (title width, title-to-text gap, gap above the button, bottom padding).
 function Row({ row }) {
   return (
-    <div className="flex flex-col items-center bg-[#fdfdfd] px-13 pt-56 xl:h-880 xl:flex-row xl:items-center xl:bg-transparent xl:p-0">
+    <div className="mt-56 flex flex-col items-center bg-[#fdfdfd] px-13 xl:mt-0 xl:h-880 xl:flex-row xl:items-center xl:bg-transparent xl:p-0">
       <div
         className={`relative w-full overflow-hidden rounded-[calc(var(--spacing)*3.153)] xl:h-880 xl:w-960 xl:shrink-0 xl:rounded-12 ${
           row.reverse ? 'h-[calc(var(--spacing)*349.504)]' : 'h-[calc(var(--spacing)*354.928)] xl:order-last'
@@ -30,9 +31,13 @@ function Row({ row }) {
         </div>
       </div>
       {/* Desktop: the first row's copy sits 254px down (24px above centre), the second is centred. */}
-      <div className={`flex w-full flex-col items-center gap-32 pt-41 pb-10 text-center xl:w-auto xl:flex-1 xl:items-start xl:gap-32 xl:pb-0 xl:text-left ${row.reverse ? 'xl:pt-0 xl:pl-79' : 'xl:self-start xl:pt-254 xl:pl-100'}`}>
-        <div className="flex flex-col gap-16 xl:gap-32">
-          <h2 className="text-24 leading-32 xl:w-667 xl:text-48 xl:leading-56">
+      <div
+        className={`flex w-full flex-col items-center pt-41 text-center xl:w-auto xl:flex-1 xl:items-start xl:gap-32 xl:pb-0 xl:text-left ${row.mobile.buttonGap} ${row.mobile.bottom} ${
+          row.reverse ? 'xl:pt-0 xl:pl-79' : 'xl:self-start xl:pt-254 xl:pl-100'
+        }`}
+      >
+        <div className={`flex flex-col items-center xl:items-start xl:gap-32 ${row.mobile.titleGap}`}>
+          <h2 className={`text-24 leading-32 xl:w-667 xl:text-48 xl:leading-56 ${row.mobile.title ?? ''}`}>
             {row.title.map((line) => (
               <span key={line} className="block">
                 {line}
@@ -41,11 +46,11 @@ function Row({ row }) {
           </h2>
           <p className="text-16 leading-23 text-grey xl:w-667 xl:text-24 xl:leading-32">{row.text}</p>
         </div>
-        <Button href="/about" variant="outline" size="spec" className="h-34 px-12 xl:hidden">
-          Know about us
+        <Button href={row.button.href} variant="outline" size="spec" className="h-34 px-12 xl:hidden">
+          {row.button.label}
         </Button>
-        <Button href="/about" variant="outline" className="hidden xl:inline-flex">
-          Know about us
+        <Button href={row.button.href} variant="outline" className="hidden xl:inline-flex">
+          {row.button.label}
         </Button>
       </div>
     </div>
