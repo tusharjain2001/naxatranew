@@ -24,7 +24,7 @@ export default function TechHero({ hero }) {
           Connect now
         </Button>
       </div>
-      <ScrollDown className="xl:tx-780" />
+      <ScrollDown />
     </section>
   )
 }

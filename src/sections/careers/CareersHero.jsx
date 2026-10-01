@@ -1,6 +1,5 @@
 import { careersHero } from '../../data/careers'
 import PageHero from '../../components/ui/PageHero'
-import ScrollDown from '../../components/ui/ScrollDown'
 
 export default function CareersHero() {
   return (
@@ -18,8 +17,6 @@ export default function CareersHero() {
         title: 'text-40 leading-48',
         subtitle: 'text-20 leading-28',
       }}
-    >
-      <ScrollDown className="xl:tx-785" />
-    </PageHero>
+    />
   )
 }

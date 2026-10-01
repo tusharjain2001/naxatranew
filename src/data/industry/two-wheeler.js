@@ -19,7 +19,6 @@ export default {
     // One 1920×880 picture for the desktop hero.
     desktopImage: a('hero-desktop.webp'),
     alt: 'Electric motorcycles and scooters parked on a coastal highway',
-    scrollDown: 'xl:tx-783',
   },
 
   challenges: {

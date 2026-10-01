@@ -1,9 +1,10 @@
+import ScrollDown from './ScrollDown'
+
 // Inner-page hero: a photo, a blue wash, then a cut-out layered above the wash so only the sky is tinted.
 // `frame` places both photos (they share one box unless `foregroundFrame` is given) and `wash` sizes the
 // gradient; `washStyle` swaps in a page's own gradient.
 // A page with its own phone artboard passes `mobile` ({ image, height, wash, text, title, subtitle }): the
 // phone then shows that single composed photo, and the class strings replace the phone defaults.
-// `children` are drawn over the hero (e.g. a "scroll down" cue).
 // `image` replaces the desktop layers (photo, wash, cut-out) with one flattened picture of them.
 export default function PageHero({
   title,
@@ -21,7 +22,6 @@ export default function PageHero({
   subtitleClass = 'xl:w-602 xl:shrink-0',
   mobile,
   image,
-  children,
 }) {
   const desktopOnly = mobile ? 'hidden xl:block' : ''
   return (
@@ -60,7 +60,7 @@ export default function PageHero({
           <p className={`capitalize xl:text-32 xl:leading-42 xl:font-light ${mobile?.subtitle ?? 'text-16 leading-20 font-light'} ${subtitleClass}`}>{subtitle}</p>
         </div>
       </div>
-      {children}
+      <ScrollDown />
     </section>
   )
 }

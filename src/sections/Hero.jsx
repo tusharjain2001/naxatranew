@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { heroSlides } from '../data/home'
 import Button from '../components/ui/Button'
 import { ArrowButton } from '../components/ui/SliderArrows'
+import ScrollDown from '../components/ui/ScrollDown'
 
 const AUTOPLAY_MS = 3000
 
@@ -147,7 +148,7 @@ export default function Hero() {
         </div>
 
         {/* Progress bars */}
-        <div className="pointer-events-auto absolute top-710 left-1/2 flex -translate-x-1/2 items-center gap-5 xl:tx-760 xl:gap-8">
+        <div className="pointer-events-auto absolute top-610 left-1/2 flex -translate-x-1/2 items-center gap-5 xl:tx-737 xl:gap-8">
           {heroSlides.map((slide, i) => (
             <button
               key={slide.id}
@@ -167,6 +168,7 @@ export default function Hero() {
           ))}
         </div>
       </div>
+      <ScrollDown className="top-619 xl:top-auto xl:bottom-42" />
     </section>
   )
 }

@@ -15,7 +15,6 @@ export default {
     // One 1920×880 picture for the desktop hero.
     desktopImage: a('hero-desktop.webp'),
     alt: 'Electric ride-on sweepers and floor scrubbers lined up on a plaza',
-    scrollDown: 'xl:tx-760',
   },
 
   challenges: {

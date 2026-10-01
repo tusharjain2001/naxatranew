@@ -29,7 +29,7 @@ export default function DroneHero({ hero }) {
           </Button>
         </div>
       </div>
-      <ScrollDown className="xl:tx-748" />
+      <ScrollDown />
     </section>
   )
 }

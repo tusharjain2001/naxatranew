@@ -26,7 +26,7 @@ export default function AboutHero() {
           <p className="text-20 leading-28 capitalize xl:w-448 xl:text-32 xl:leading-32">{aboutHero.subtitle}</p>
         </div>
       </div>
-      <ScrollDown className="xl:tx-786" />
+      <ScrollDown />
     </section>
   )
 }

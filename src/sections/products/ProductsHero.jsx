@@ -15,8 +15,8 @@ export default function ProductsHero() {
           className="pointer-events-none absolute top-114 left-77 h-412 w-506 max-w-none object-cover xl:top-[-339px] xl:left-890 xl:h-1219 xl:w-1499"
         />
 
-        {/* Phone (402 artboard): title at the top, the render in the middle, copy and buttons at the foot. */}
-        <div className="relative z-10 flex h-full flex-col justify-between px-20 pt-60 pb-48 text-white xl:contents">
+        {/* Phone (402 artboard): title at the top, the render in the middle, copy and buttons at the foot, above the scroll-down cue. */}
+        <div className="relative z-10 flex h-full flex-col justify-between px-20 pt-60 pb-108 text-white xl:contents">
           <h1 className="text-36 leading-36 xl:absolute xl:top-138 xl:left-100 xl:w-1097 xl:text-88 xl:leading-96">
             Motors Engineered For Every Application.
           </h1>
@@ -40,7 +40,7 @@ export default function ProductsHero() {
             </div>
           </div>
         </div>
-        <ScrollDown className="xl:tx-676" left="left-[calc(50%+var(--spacing)*767.5)]" />
+        <ScrollDown />
       </div>
     </section>
   )
