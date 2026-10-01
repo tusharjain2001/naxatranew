@@ -12,10 +12,10 @@ export default function ApplyForm({ role, onRoleChange }) {
       className="mx-auto flex w-full max-w-1920 scroll-mt-56 flex-col gap-38 px-16 py-56 xl:scroll-mt-80 xl:flex-row xl:items-start xl:justify-between xl:gap-0 xl:px-100 xl:pt-212 xl:pb-282"
     >
       <div className="flex flex-col gap-10 xl:w-600 xl:shrink-0 xl:gap-16">
-        <h2 className="text-32 leading-[calc(var(--spacing)*35.6)] tracking-display capitalize xl:text-64 xl:leading-80">
-          {/* The phone artboard breaks the heading after "details". */}
-          {applyForm.title.split(' with ')[0]} <br className="xl:hidden" />
-          with {applyForm.title.split(' with ')[1]}
+        {/* The heading breaks after its first sentence; the 532px desktop width puts "To You." on a third line. */}
+        <h2 className="text-32 leading-[calc(var(--spacing)*35.6)] tracking-display capitalize xl:w-532 xl:text-64 xl:leading-80">
+          {applyForm.title.split('. ')[0]}. <br />
+          {applyForm.title.split('. ')[1]}
         </h2>
         <p className="hidden font-light text-grey xl:block xl:text-32 xl:leading-40">
           <span className="text-[red]">*</span> {applyForm.note}

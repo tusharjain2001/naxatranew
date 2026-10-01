@@ -55,6 +55,6 @@ export const openings = {
 }
 
 export const applyForm = {
-  title: 'Share your details with us. we will get back to you.',
+  title: 'Share your details. we will get back to you.',
   note: 'marked fields are mandatory',
 }

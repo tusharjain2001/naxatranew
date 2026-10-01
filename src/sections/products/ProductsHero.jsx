@@ -11,16 +11,16 @@ export default function ProductsHero() {
         <img
           src={heroMotor}
           alt="Antarix radial-flux motor"
-          className="pointer-events-none absolute top-114 left-77 h-412 w-506 max-w-none object-cover xl:-top-322 xl:left-960 xl:h-1219 xl:w-1499"
+          className="pointer-events-none absolute top-112 left-63 h-382 w-470 max-w-none object-cover xl:-top-322 xl:left-960 xl:h-1219 xl:w-1499"
         />
 
-        {/* Phone (402 artboard): title at the top, the render in the middle, copy and buttons at the foot. */}
-        <div className="relative z-10 flex h-full flex-col justify-between px-20 pt-60 pb-48 text-white xl:contents">
+        {/* Phone (node 14314:19559): title at the top, the render under it, copy and buttons 360px below the title. */}
+        <div className="relative z-10 flex h-full flex-col gap-360 px-20 pt-60 pb-48 text-white xl:contents">
           <h1 className="text-36 leading-36 xl:absolute xl:top-138 xl:left-100 xl:w-1097 xl:text-88 xl:leading-96">
             Motors Engineered For Every Application.
           </h1>
           <div className="flex flex-col gap-24 xl:contents">
-            <p className="text-20 leading-28 font-light xl:absolute xl:tx-578 xl:left-100 xl:w-450 xl:-translate-y-1/2 xl:text-24 xl:leading-32 xl:capitalize">
+            <p className="text-20 leading-24 font-light xl:absolute xl:tx-578 xl:left-100 xl:w-450 xl:-translate-y-1/2 xl:text-24 xl:leading-32 xl:capitalize">
               High performance motors designed and developed in india for mobility, industrial and next-generation applications.
             </p>
             <div className="flex gap-8 xl:absolute xl:tx-661 xl:left-100 xl:gap-24">

@@ -192,9 +192,16 @@ function Group({ group, open, onToggle, id }) {
   )
 }
 
-// "Industries" accordion: one group open at a time, each an endless row of application cards.
+// "Industries" accordion, each group an endless row of application cards. Every group starts open and
+// stays open or closed until the visitor toggles it (opening one doesn't close the others).
 export default function DroneApplications({ groups }) {
-  const [openIndex, setOpenIndex] = useState(0)
+  const [openSet, setOpenSet] = useState(() => new Set(groups.map((_, i) => i)))
+  const toggle = (i) =>
+    setOpenSet((prev) => {
+      const next = new Set(prev)
+      if (!next.delete(i)) next.add(i)
+      return next
+    })
   return (
     <section id="applications" className="flex w-full scroll-mt-56 flex-col gap-40 pt-48 pb-60 xl:scroll-mt-80 xl:gap-0 xl:py-0">
       {groups.map((group, i) => (
@@ -202,8 +209,8 @@ export default function DroneApplications({ groups }) {
           key={group.title}
           id={`drone-applications-${i}`}
           group={group}
-          open={i === openIndex}
-          onToggle={() => setOpenIndex(i === openIndex ? -1 : i)}
+          open={openSet.has(i)}
+          onToggle={() => toggle(i)}
         />
       ))}
     </section>
