@@ -6,7 +6,7 @@ export default function Quality({ data }) {
         <p className="text-14 leading-35 font-light tracking-display uppercase xl:text-20 xl:leading-28 xl:tracking-normal xl:text-grey-dark">{data.eyebrow}</p>
         <h2 className="text-32 leading-40 tracking-display capitalize xl:text-64 xl:leading-80">{data.title}</h2>
       </div>
-      <ul className="flex flex-col gap-16 px-16 xl:grid xl:h-633 xl:grid-cols-2 xl:grid-rows-3 xl:gap-36 xl:px-0">
+      <ul data-reveal="left" className="flex flex-col gap-16 px-16 xl:grid xl:h-633 xl:grid-cols-2 xl:grid-rows-3 xl:gap-36 xl:px-0">
         {data.items.map((item) => (
           <li key={item.title} className="flex items-center gap-16 bg-[rgba(240,240,240,0.5)] px-12 py-16 xl:gap-30 xl:rounded-8 xl:bg-panel xl:px-30 xl:py-20">
             <span className="flex h-44 w-62 shrink-0 items-center justify-center xl:h-auto xl:w-auto">

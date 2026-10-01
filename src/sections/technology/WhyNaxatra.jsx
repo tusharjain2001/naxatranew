@@ -7,7 +7,7 @@ export default function WhyNaxatra({ data }) {
         <p className="text-16 leading-28 font-light text-grey-dark uppercase xl:text-20">{data.eyebrow}</p>
         <h2 className="text-32 leading-40 tracking-display capitalize xl:text-64 xl:leading-68">{data.title}</h2>
       </div>
-      <ul className="grid gap-[14.012px] text-[length:calc(var(--spacing)*0.4379)] xl:grid-cols-2 xl:gap-32 xl:text-[length:var(--spacing)]">
+      <ul data-reveal="left" className="grid gap-[14.012px] text-[length:calc(var(--spacing)*0.4379)] xl:grid-cols-2 xl:gap-32 xl:text-[length:var(--spacing)]">
         {data.items.map((item, i) => (
           <li key={i} className="flex h-[210em] items-center gap-[40em] bg-panel p-[32em]">
             {item.tile ? (
