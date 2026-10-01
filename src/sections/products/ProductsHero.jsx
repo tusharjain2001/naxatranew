@@ -11,7 +11,7 @@ export default function ProductsHero() {
         <img
           src={heroMotor}
           alt="Antarix radial-flux motor"
-          className="pointer-events-none absolute top-114 left-77 h-412 w-506 max-w-none object-cover xl:top-[-339px] xl:left-890 xl:h-1219 xl:w-1499"
+          className="pointer-events-none absolute top-114 left-77 h-412 w-506 max-w-none object-cover xl:-top-322 xl:left-960 xl:h-1219 xl:w-1499"
         />
 
         {/* Phone (402 artboard): title at the top, the render in the middle, copy and buttons at the foot. */}
