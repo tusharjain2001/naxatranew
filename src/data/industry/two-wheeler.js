@@ -11,10 +11,11 @@ export default {
     title: ['Engineered in India.', 'Built To Power 2 Wheeler Electric Mobility'],
     // Figma breaks the desktop title differently from the phone one.
     desktopTitle: ['Engineered in India. Built To', 'Power 2 Wheeler Electric', 'Mobility'],
-    titleClass: 'capitalize xl:w-1097 xl:whitespace-nowrap',
+    // The phone headline keeps its lowercase "in"; desktop capitalises every word.
+    titleClass: 'xl:capitalize xl:w-1097 xl:whitespace-nowrap',
     textTop: 'xl:top-107',
-    subtitle: ['Advanced Electric Motor & Powertrain Technology, Engineered For Scooters, Motorcycles, Passenger Mobility, And Cargo Transport.'],
-    subtitleClass: 'xl:w-452',
+    subtitle: ['Advanced electric powertrain technology engineered for scooters, motorcycles, passenger mobility, and cargo transport.'],
+    subtitleClass: 'normal-case xl:w-452',
     image: a('hero.png'),
     // One 1920×880 picture for the desktop hero.
     desktopImage: a('hero-desktop.webp'),
@@ -23,14 +24,14 @@ export default {
 
   challenges: {
     title: 'The key Consumer challenges in mobility',
-    heading: '2-Wheelers Mobility Vehicles',
+    heading: '2-Wheelers mobility vehicles',
     text: 'Precision-built motors and controllers designed for performance, efficiency, and reliability.',
     layout: { flow: true },
     cards: [
       { src: a('challenge-1.png'), quote: 'Our motor overheats on long shifts' },
       { src: a('challenge-2.png'), quote: 'We needed better motor efficiency to increase vehicle range.' },
       { src: a('challenge-3.png'), quote: 'We need to hit PLI localization thresholds' },
-      { src: a('challenge-4.png'), quote: 'Our current vendor has 16-week lead times from overseas.' },
+      { src: a('challenge-4.png'), quote: 'Waiting on overseas shipments was slowing down our entire production.' },
     ],
   },
 
@@ -39,7 +40,7 @@ export default {
     defaultIndex: 1,
     items: [
       { label: '2W Scooters', tile: a('tile-1.png'), panel: a('panel-scooter.png'), parts: ['RF series Motor & Controller'], text: 'Smooth, efficient traction for electric scooters, powered by our RF-series motor and controller for reliable everyday performance.', supplies: ['Traction - RF Series Motor & Controller'] },
-      { label: '2W Bikes', tile: a('tile-2.png'), panel: a('panel-bike.png'), parts: ['RF 22/55 series Motor & Controller'], text: 'High-performance traction for electric bikes- RF-series motor and controller, built for power, range, and reliability', supplies: ['Traction - RF 22/ RF 55 Motor & Controller'] },
+      { label: '2W Bikes', tile: a('tile-2.png'), panel: a('panel-bike.png'), mobilePanel: a('m/panel-bike.jpg'), parts: ['RF 22/55 series Motor & Controller'], text: 'High-performance traction for electric bikes- RF-series motor and controller, built for power, range, and reliability', supplies: ['Traction - RF 22/ RF 55 Motor & Controller'] },
       { label: 'Moped', tile: a('tile-3.png'), panel: a('panel-moped.png'), parts: ['RF series Motor & Controller'], text: 'Dependable traction for electric mopeds, RF-series motor and controller, engineered for efficient, everyday commuting.', supplies: ['Traction - RF Series Motor & Controller'] },
     ],
   },
@@ -59,22 +60,25 @@ export default {
     ],
   },
 
-  cta: { image: '/assets/industry/shared/cta.png' },
+  // The phone banner reuses the Cleaning page's motor, controller and gearbox render and its smaller button.
+  cta: { image: '/assets/industry/shared/cta.png', mobileImage: '/assets/industry/cleaning/m/cta.jpg', mobileButton: 'cta', mobileTop: 'pt-77', mobileBottom: 'pb-81' },
 
   features: {
     title: ['Measurable outcomes of our motor & controller- optimised for electric mobility'],
     titleClass: 'xl:w-1788',
     reveal: 'left',
+    titleCase: true,
+    bordered: true,
     items: [
       { title: '+5-8% Range', text: 'From Motor Swap Alone', icon: a('feat-range.svg') },
       { title: '2-3 week', text: 'Leadtime', icon: a('feat-leadtime.svg') },
       { title: '>40°C ambient', text: 'Sustained Operation', icon: a('feat-ambient.svg') },
-      { title: 'PLI Qualifying', text: 'Motor', icon: a('feat-pli.svg') },
-      { title: 'Easily configurable', text: 'For Different Applications', icon: a('feat-config.svg') },
+      // The phone artboard draws PLI as a shield and words the last card differently.
+      { title: 'PLI Qualifying', text: 'Motor', icon: a('feat-pli.svg'), mobileIcon: a('feat-pli-m.svg') },
+      { title: 'Easily configurable', text: 'For Different Applications', mobileText: 'no liquid cooling maintenance', icon: a('feat-config.svg') },
     ],
   },
 
   process: { centered: true },
 
-  testimonials: { desktopArrows: true, spacing: 'gap-60 py-56 xl:gap-100 xl:pt-181 xl:pb-182' },
 }

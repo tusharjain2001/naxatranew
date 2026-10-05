@@ -57,10 +57,11 @@ export default {
     title: 'Which Agriculture application are you building for?',
     defaultIndex: 1,
     items: [
-      { label: 'Power Tiller', tile: a('tile-1.png'), panel: a('panel-tiller.png'), parts: ['RF 55/86 Motor & Controller'], text: 'Built for demanding soil preparation, our RF 55/86 traction motor and controller deliver consistent, reliable power to handle tough field conditions.', supplies: ['Traction - RF 55/86 Motor & Controller'] },
-      { label: 'Power Weeder', tile: a('tile-2.png'), panel: a('panel-weeder.png'), mobilePanel: a('m/panel-weeder.jpg'), parts: ['RF 22/48 Motor & Controller'], text: 'Built for demanding soil preparation, we supply motors and controllers for steering, traction, and hydraulic systems, engineered to handle tough field conditions with consistent, reliable power.', supplies: ['Traction - RF22/48 Motor & Controller'] },
+      { label: 'Power Tiller', mobileLabel: 'Power tiller', tile: a('tile-1.png'), panel: a('panel-tiller.png'), parts: ['RF 55/86 Motor & Controller'], text: 'Built for demanding soil preparation, our RF 55/86 traction motor and controller deliver consistent, reliable power to handle tough field conditions.', supplies: ['Traction - RF 55/86 Motor & Controller'] },
+      { label: 'Power Weeder', mobileLabel: 'Power weeder', tile: a('tile-2.png'), panel: a('panel-weeder.png'), mobilePanel: a('m/panel-weeder.jpg'), parts: ['RF 22/48 Motor & Controller'], text: 'Built for demanding soil preparation, we supply motors and controllers for steering, traction, and hydraulic systems, engineered to handle tough field conditions with consistent, reliable power.', supplies: ['Traction - RF22/48 Motor & Controller'] },
       {
         label: 'Agri Bot',
+        mobileLabel: 'Agri bot',
         tile: a('tile-3.png'),
         panel: a('panel-bot.png'),
         parts: ['Traction Motor & Controller', 'Spraying Motor & Controller'],
@@ -69,22 +70,25 @@ export default {
       },
       {
         label: 'Compact Tractor',
+        mobileLabel: 'Compact tractor',
         tile: a('tile-4.png'),
         panel: a('panel-tractor.png'),
         parts: ['Steering Motor & Controller', 'Hydraulic Motor & Controller', 'Traction Motor, Controller and Axle'],
         text: 'Built for versatile farm work- RF 15/42 steering motor and controller, hydraulic power for implement control, and RF 22/48 traction with axle, engineered for reliable performance across varied field tasks.',
         supplies: ['Steering - RF 15/42', 'Hydraulic', 'Traction - RF 22/48 + Axle'],
       },
-      { label: 'Agri Sprayer', tile: a('tile-5.png'), panel: a('panel-sprayer.png'), parts: ['Spraying Motor & Controller'], text: 'Precision aerial application. A dedicated spraying motor and controller engineered for accurate, efficient crop coverage from the air.', supplies: ['Spraying'] },
+      { label: 'Agri Sprayer', mobileLabel: 'Agri sprayer', tile: a('tile-5.png'), panel: a('panel-sprayer.png'), parts: ['Spraying Motor & Controller'], text: 'Precision aerial application. A dedicated spraying motor and controller engineered for accurate, efficient crop coverage from the air.', supplies: ['Spraying'] },
     ],
   },
 
-  cta: { image: '/assets/industry/shared/cta.png' },
+  // The phone banner sits 56px below the applications and uses the smaller button.
+  cta: { image: '/assets/industry/shared/cta.png', mobileImage: '/assets/industry/cleaning/m/cta.jpg', mobileButton: 'cta', mobileTop: 'pt-56' },
 
   features: {
     title: ['Antarix RF Series', 'Optimised for Agriculture Equipment'],
     cols: 'xl:grid-cols-2',
     reveal: 'left',
+    titleCase: true,
     items: [
       // The phone artboard lists H-class before the warranty (`mobileLast`) and uses its own voltage icon.
       { title: '48V / 72V / 96V', text: 'Available', icon: a('feat-voltage.svg'), mobileIcon: a('feat-voltage-m.svg') },
@@ -94,6 +98,5 @@ export default {
     ],
   },
 
-  testimonials: { desktopArrows: true, spacing: 'gap-60 py-56 xl:gap-93 xl:pt-100 xl:pb-100' },
   spec: { spacing: 'xl:py-100' },
 }

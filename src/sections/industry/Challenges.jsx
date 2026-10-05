@@ -33,7 +33,7 @@ function FlowChallenges({ data }) {
   return (
     <section className={`w-full py-56 ${f.section}`}>
       {/* Phone: the uppercase label leads, then the title and text, 32px above the cards. */}
-      <div className={`mx-auto flex max-w-1920 flex-col xl:gap-100 ${data.heading ? 'gap-32' : 'gap-60'}`}>
+      <div className={`mx-auto flex max-w-1920 flex-col xl:gap-100 ${data.heading ? (f.mobileGap ?? 'gap-32') : 'gap-60'}`}>
         <div className="flex flex-col gap-10 px-16 xl:flex-row xl:items-center xl:justify-between xl:gap-0 xl:px-0">
           <h2 className={`text-32 leading-[calc(var(--spacing)*35.6)] tracking-display capitalize xl:tracking-normal ${f.title}`}>
             {data.title}

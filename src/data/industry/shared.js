@@ -34,4 +34,5 @@ export const sharedAssets = {
   line: s('work-line.svg'),
   mail: s('mail.svg'),
   chevron: s('select-chevron.svg'),
+  scrollDown: s('scroll-down.svg'),
 }

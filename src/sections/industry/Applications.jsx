@@ -29,51 +29,28 @@ function Tile({ item, selected, onSelect, id, panelId }) {
         </>
       )}
       <span className="absolute inset-x-0 top-[160em] flex h-[57.6em] items-center justify-center px-[12em] text-center xl:top-[180em] xl:h-[60em]">
-        <span className="text-[length:calc(var(--spacing)*11)] leading-14 tracking-[-0.03em] text-black xl:text-20 xl:leading-24">{item.label}</span>
+        <span className="text-[length:calc(var(--spacing)*11)] leading-14 tracking-[-0.03em] text-black xl:text-20 xl:leading-24">
+          {/* The phone artboards set some labels in their own case (`mobileLabel`). */}
+          <span className="xl:hidden">{item.mobileLabel ?? item.label}</span>
+          <span className="hidden xl:inline">{item.label}</span>
+        </span>
       </span>
     </button>
   )
 }
 
-function Supplies({ items }) {
+// `stacked`: the phone lists the items one per line with no dividers (3W, whose items are long).
+function Supplies({ items, stacked }) {
   return (
-    <ul className="flex flex-wrap items-center gap-[calc(var(--spacing)*9.845)] xl:gap-16">
+    <ul className={`flex gap-[calc(var(--spacing)*9.845)] xl:flex-row xl:flex-wrap xl:items-center xl:gap-16 ${stacked ? 'flex-col items-start' : 'flex-wrap items-center'}`}>
       {items.map((item, i) => (
         <li key={item} className="flex items-center gap-[calc(var(--spacing)*9.845)] xl:gap-16">
-          {i > 0 && <span aria-hidden className="h-[calc(var(--spacing)*24.611)] w-[calc(var(--spacing)*1.231)] bg-silver xl:h-40 xl:w-2" />}
           <span className="py-[calc(var(--spacing)*4.922)] text-16 leading-[calc(var(--spacing)*19.689)] capitalize xl:py-8 xl:text-24 xl:leading-32">{item}</span>
+          {/* The divider trails each item, so a wrapped row never starts with one. */}
+          {i < items.length - 1 && <span aria-hidden className={`h-[calc(var(--spacing)*24.611)] w-[calc(var(--spacing)*1.231)] bg-silver xl:block xl:h-40 xl:w-2 ${stacked ? 'hidden' : ''}`} />}
         </li>
       ))}
     </ul>
-  )
-}
-
-// Phone-only drive diagram laid out from parts on the 360×264 artboard box, so the labels stay sharp.
-const box = ({ l, t, w, h }) => ({
-  left: `calc(var(--spacing)*${l})`,
-  top: `calc(var(--spacing)*${t})`,
-  width: `calc(var(--spacing)*${w})`,
-  ...(h && { height: `calc(var(--spacing)*${h})` }),
-})
-
-function MobileDiagram({ diagram }) {
-  return (
-    <div aria-hidden className="absolute inset-0 animate-[fade-in_0.4s_ease-out] xl:hidden">
-      <img src={diagram.shadow.src} alt="" className="absolute max-w-none" style={box(diagram.shadow)} />
-      <img src={diagram.image.src} alt="" className="absolute max-w-none" style={box(diagram.image)} />
-      {diagram.lines.map((line) => (
-        <img key={line.src} src={line.src} alt="" className="absolute max-w-none" style={box(line)} />
-      ))}
-      {diagram.labels.map((label) => (
-        <p
-          key={label.text}
-          className={`absolute text-[length:calc(var(--spacing)*10.756)] leading-[calc(var(--spacing)*14.341)] font-light text-black ${label.align === 'right' ? 'text-right' : ''}`}
-          style={box(label)}
-        >
-          {label.text}
-        </p>
-      ))}
-    </div>
   )
 }
 
@@ -84,20 +61,21 @@ export default function Applications({ data }) {
 
   return (
     <section id="applications" className="flex w-full scroll-mt-56 flex-col gap-60 py-56 xl:scroll-mt-80 xl:gap-100 xl:py-100">
-      {/* Heading, a line and a "Find your motor" button that opens the Products page. */}
+      {/* Heading, then (desktop only) a line and a "Find your motor" button that opens the Products page. */}
       <div className="flex flex-col items-center gap-16 px-16 text-center xl:gap-32 xl:px-100">
         <h2 className={`w-369 text-32 leading-36 tracking-display capitalize xl:leading-88 xl:tracking-normal ${data.titleClass ?? 'xl:w-1050 xl:text-72'}`}>{data.title}</h2>
-        <p className="text-14 leading-20 text-grey xl:w-950 xl:text-24 xl:leading-32">Find the right motor for your application.</p>
-        <Button href="/products" size="heroM" className="xl:hidden">
-          Find your motor
-        </Button>
+        <p className="hidden text-14 leading-20 text-grey xl:block xl:w-950 xl:text-24 xl:leading-32">Find the right motor for your application.</p>
         <Button href="/products" className="hidden h-44 px-24! py-0! xl:inline-flex">
           Find your motor
         </Button>
       </div>
 
       <div className="mx-auto flex w-[calc(var(--spacing)*371)] flex-col items-center gap-18 py-[calc(var(--spacing)*3.889)] xl:w-1376 xl:gap-32 xl:py-0">
-        <div role="tablist" aria-label="Applications" className="flex flex-wrap justify-center gap-8 xl:flex-nowrap xl:gap-20">
+        <div
+          role="tablist"
+          aria-label="Applications"
+          className={`gap-8 xl:flex xl:flex-nowrap xl:gap-20 ${data.mobileGrid ? 'grid grid-cols-2' : 'flex flex-wrap justify-center'}`}
+        >
           {data.items.map((it, i) => (
             <Tile
               key={it.label}
@@ -122,10 +100,9 @@ export default function Applications({ data }) {
               <img
                 src={item.panel}
                 alt={`${item.label} drive system: ${item.parts.join(', ')}`}
-                className={`absolute inset-0 size-full animate-[fade-in_0.4s_ease-out] object-contain xl:object-cover ${item.mobileDiagram ? 'hidden xl:block' : ''}`}
+                className="absolute inset-0 size-full animate-[fade-in_0.4s_ease-out] object-contain xl:object-cover"
               />
             </picture>
-            {item.mobileDiagram && <MobileDiagram key={item.label} diagram={item.mobileDiagram} />}
           </div>
 
           <div key={item.label} className="flex w-[calc(var(--spacing)*367.521)] animate-[fade-in_0.4s_ease-out] flex-col gap-[calc(var(--spacing)*13.284)] p-16 xl:w-auto xl:min-w-0 xl:flex-1 xl:gap-48 xl:p-0">
@@ -136,7 +113,7 @@ export default function Applications({ data }) {
             </div>
             <div className="flex flex-col gap-[calc(var(--spacing)*6.642)] xl:gap-24">
               <p className="text-12 leading-28 font-light text-grey-dark uppercase xl:text-20">we supply motors for</p>
-              <Supplies items={item.supplies} />
+              <Supplies items={item.supplies} stacked={data.mobileStackedSupplies} />
             </div>
           </div>
         </div>

@@ -22,7 +22,10 @@ export default function Features({ data }) {
                 <span className="xl:hidden">{item.mobileTitle ?? item.title}</span>
                 <span className="hidden xl:inline">{item.title}</span>
               </h3>
-              <p className="flex h-16 items-center text-12 text-grey xl:h-36 xl:text-24 xl:leading-[calc(var(--spacing)*33.74)]">{item.text}</p>
+              <p className="flex h-16 items-center text-12 text-grey xl:h-36 xl:text-24 xl:leading-[calc(var(--spacing)*33.74)]">
+                <span className="xl:hidden">{item.mobileText ?? item.text}</span>
+                <span className="hidden xl:inline">{item.text}</span>
+              </p>
             </div>
           </li>
         ))}

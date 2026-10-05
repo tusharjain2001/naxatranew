@@ -1,5 +1,5 @@
 import Button from '../../components/ui/Button'
-import ScrollDown from '../../components/ui/ScrollDown'
+import { sharedAssets } from '../../data/industry/shared'
 
 // Two artboard treatments:
 // - 'strip' (Cleaning): mobile shows a blue sky gradient with the photo along the bottom edge; `desktopImage`
@@ -35,6 +35,26 @@ function Photo({ hero }) {
       </div>
       {hero.mobileStrip && <img src={hero.mobileStrip} alt="" className="absolute top-408 left-0 h-43 w-full object-cover xl:hidden" />}
     </>
+  )
+}
+
+// Desktop "scroll down" pill (Figma 15421:38568): a frosted tab centred 783px down the hero; the phone has none.
+// It glides to just past the hero, clear of the sticky header.
+function ScrollPill() {
+  const onClick = (e) => {
+    const header = document.querySelector('header')?.offsetHeight ?? 0
+    const bottom = e.currentTarget.closest('section').getBoundingClientRect().bottom
+    window.scrollTo({ top: window.scrollY + bottom - header, behavior: 'smooth' })
+  }
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="absolute top-783 left-1/2 z-10 hidden -translate-x-1/2 cursor-pointer items-center gap-12 rounded-8 bg-white/10 px-12 py-8 text-20 leading-14 font-medium text-white transition-colors duration-200 hover:bg-white/20 xl:flex"
+    >
+      <img src={sharedAssets.scrollDown} alt="" className="size-32" />
+      scroll down
+    </button>
   )
 }
 
@@ -91,14 +111,14 @@ export default function IndustryHero({ hero }) {
               </span>
             ))}
           </p>
-          <Button href="#applications" variant="white" size="sm" className="xl:hidden">
+          <Button href="#applications" variant="white" size="heroM" className="xl:hidden">
             Learn more
           </Button>
         </div>
         <Button href="#applications" variant="white" size="hero" className="absolute tx-717 left-100 hidden xl:inline-flex">
           Learn more
         </Button>
-        <ScrollDown />
+        <ScrollPill />
       </div>
     </section>
   )

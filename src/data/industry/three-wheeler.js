@@ -14,8 +14,8 @@ export default {
     desktopTitle: ['Engineered in India. Built To', 'Power 3 Wheeler Electric', 'Mobility'],
     titleClass: 'capitalize xl:w-1097 xl:whitespace-nowrap',
     textTop: 'xl:top-82',
-    subtitle: ['Advanced Electric Motor & Powertrain Technology- Engineered For EV Autos, Loaders, And Tricycles.'],
-    subtitleClass: 'xl:w-450',
+    subtitle: ['Advanced electric powertrain technology engineered for EV Autos, Loader and Tricycle.'],
+    subtitleClass: 'normal-case xl:w-450',
     image: a('hero.png'),
     // One 1920×880 picture for the desktop hero.
     desktopImage: a('hero-desktop.webp'),
@@ -37,29 +37,36 @@ export default {
     title: 'The key Consumer challenges in mobility',
     heading: '3-Wheelers mobility vehicles',
     text: 'Precision-built motors and controllers designed for performance, efficiency, and reliability.',
-    layout: { flow: true },
+    // The phone artboard leaves 48px between the heading and the cards.
+    layout: { flow: true, mobileGap: 'gap-48' },
     cards: [
       { src: a('challenge-1.png'), quote: 'Our motor overheats on long shifts' },
       { src: a('challenge-2.png'), quote: 'We need more efficiency range without adding battery' },
       { src: a('challenge-3.png'), quote: 'We need to hit PLI localization thresholds' },
-      { src: a('challenge-4.png'), quote: 'Our current vendor has 16-week lead times from overseas.' },
+      { src: a('challenge-4.png'), quote: 'Waiting on overseas shipments was slowing down our entire production.' },
     ],
   },
 
   applications: {
     title: 'Which 3 Wheeler application are you building for?',
     defaultIndex: 1,
+    // The phone artboard sets the four tiles as a 2×2 grid.
+    mobileGrid: true,
+    // …and lists the long supply lines one per row, without dividers.
+    mobileStackedSupplies: true,
     items: [
       { label: 'E-rickshaw', tile: a('tile-1.png'), panel: a('panel-erickshaw.png'), parts: ['Traction Motor, Controller & Axle'], text: 'Built for high-density urban transit, a traction motor, controller, and axle engineered for frequent stop-start driving, passenger comfort, and long daily duty cycles.', supplies: ['Traction - Motor, Controller & Axle (30/32inch)'] },
       {
         label: 'Loader Passenger',
+        mobileLabel: 'Loader passenger',
         tile: a('tile-2.png'),
         panel: a('panel-passenger.png'),
-        parts: ['Traction Motor, Controller, Gearbox & Independent Axle', 'Traction Motor, Controller & Rigid Axle'],
+        mobilePanel: a('m/panel-passenger.jpg'),
+        parts: ['Independent Axle', 'Traction Motor & Controller', 'Rigid Axle'],
         text: 'Built for reliable passenger and cargo mobility. We supply traction motors, controllers, and gearboxes in both independent and rigid axle configurations, engineered for stable, load-ready performance.',
         supplies: ['Traction - Motor, Controller, Gearbox & Independent Axle', 'Traction - Motor, Controller & Rigid Axle'],
       },
-      { label: 'Loader Cargo', tile: a('tile-3.png'), panel: a('panel-cargo.png'), parts: ['Traction Motor, Controller & Rigid Axle'], text: 'Engineered for heavy-duty goods transport. A traction motor, controller, and rigid axle built to handle sustained load carrying, frequent starts, and rough last-mile routes.', supplies: ['Traction - Motor, Controller & Rigid Axle'] },
+      { label: 'Loader Cargo', mobileLabel: 'Loader cargo', tile: a('tile-3.png'), panel: a('panel-cargo.png'), parts: ['Traction Motor, Controller & Rigid Axle'], text: 'Engineered for heavy-duty goods transport. A traction motor, controller, and rigid axle built to handle sustained load carrying, frequent starts, and rough last-mile routes.', supplies: ['Traction - Motor, Controller & Rigid Axle'] },
       { label: 'Tricycle', tile: a('tile-4.png'), panel: a('panel-tricycle.png'), parts: ['Traction Motor, Controller & Rigid Axle'], text: 'Compact and dependable for everyday mobility. A traction motor, controller, and rigid axle designed for stable, efficient rides across short-to-medium distances.', supplies: ['Traction - Motor, Controller & Rigid Axle'] },
     ],
   },
@@ -83,26 +90,30 @@ export default {
 
   cta: {
     image: a('cta.png'),
-    // The axle hangs 64px left of and 67.6px below the usual 500×320 render slot.
-    imageClass:
-      '-mb-[calc(var(--spacing)*44.1)] -ml-42 h-253 w-368 xl:-mb-[calc(var(--spacing)*67.628)] xl:-ml-64 xl:h-388 xl:w-564',
+    // The desktop axle hangs 64px left of and 67.6px below the usual 500×320 render slot. The phone shows the
+    // Cleaning page's motor, controller and gearbox render instead, in the usual 326×209 slot.
+    imageClass: 'h-209 w-[calc(var(--spacing)*326.18)] xl:-mb-[calc(var(--spacing)*67.628)] xl:-ml-64 xl:h-388 xl:w-564',
+    mobileImage: '/assets/industry/cleaning/m/cta.jpg',
+    mobileButton: 'cta',
+    mobileTop: 'pt-77',
+    mobileBottom: 'pb-81',
   },
 
   features: {
     title: ['Measurable outcomes of our motor & controller- optimised for electric mobility'],
     titleClass: 'xl:w-1788',
     reveal: 'left',
+    titleCase: true,
     items: [
       { title: '+5-8% Range', text: 'From Motor Swap Alone', icon: icon('feat-range.svg') },
       { title: '2-3 week', text: 'Leadtime', icon: icon('feat-leadtime.svg') },
       { title: '>40°C ambient', text: 'Sustained Operation', icon: icon('feat-ambient.svg') },
-      { title: 'PLI Qualifying', text: 'Motor', icon: icon('feat-pli.svg') },
-      { title: 'Easily configurable', text: 'For Different Applications', icon: icon('feat-config.svg') },
+      { title: 'PLI Qualifying', text: 'Motor', icon: icon('feat-pli.svg'), mobileIcon: icon('feat-pli-m.svg') },
+      { title: 'Easily configurable', text: 'For Different Applications', mobileText: 'no liquid cooling maintenance', icon: icon('feat-config.svg') },
     ],
   },
 
   process: { centered: true },
 
-  testimonials: { desktopArrows: true, spacing: 'gap-60 py-56 xl:gap-93 xl:pt-100 xl:pb-100' },
   spec: { spacing: 'xl:py-100' },
 }
