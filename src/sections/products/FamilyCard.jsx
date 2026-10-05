@@ -24,7 +24,9 @@ function IndustryChips({ keys }) {
 
 // Flow-based card (render plate on top, content stacked below) so the same card scales cleanly from the
 // full-width listing cell down to the ~172px compact carousel card. `className` sets the outer sizing/snap.
-export default function FamilyCard({ family, className = 'w-full' }) {
+// `listing` shows the listing artboard's line under the name (e.g. "Torque upto 6.5Nm") instead of the tagline.
+export default function FamilyCard({ family, className = 'w-full', listing = false }) {
+  const line = listing ? (family.cardTagline ?? family.tagline) : (family.tagline ?? family.cardTagline)
   return (
     <a href={productPath(family.slug)} className={`group flex flex-col overflow-hidden border-[calc(var(--spacing)*0.367)] border-black/10 xl:border-[0.85px] bg-black/[0.02] ${className}`}>
       {/* Render plate. The Figma card render is a large square centred on the plate that overflows it
@@ -43,7 +45,7 @@ export default function FamilyCard({ family, className = 'w-full' }) {
       <div className="flex flex-1 flex-col gap-[calc(var(--spacing)*5.864)] p-[6.35%] pt-[calc(var(--spacing)*10.27)] xl:gap-22 xl:p-[6.5%] xl:pt-20">
         <div className="flex flex-col gap-[calc(var(--spacing)*1.466)] xl:gap-3">
           <span className="text-18 leading-[calc(var(--spacing)*17.593)] capitalize xl:text-40 xl:leading-[44px]">{family.cardName ?? family.name}</span>
-          <span className="text-[length:calc(var(--spacing)*8)] leading-[calc(var(--spacing)*12.828)] font-light capitalize text-black xl:text-16 xl:leading-[30px]">{family.tagline}</span>
+          <span className="text-[length:calc(var(--spacing)*8)] leading-[calc(var(--spacing)*12.828)] font-light capitalize text-black xl:text-16 xl:leading-[30px]">{line}</span>
         </div>
         <div className="flex flex-col gap-[calc(var(--spacing)*1.466)] xl:gap-6">
           <span className="text-[length:calc(var(--spacing)*8)] leading-[calc(var(--spacing)*12.828)] font-light capitalize xl:text-16 xl:leading-[30px]">Industries</span>

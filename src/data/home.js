@@ -10,11 +10,11 @@ export const navLinks = [
   { label: 'Careers', href: '/careers', wide: true },
 ]
 
-// Menu order follows the Figma dropdown: 2 wheeler, 3 wheeler / Cleaning, Agriculture / Drone (full row).
-// With nothing hovered (and off the industry pages) the photo box shows `mosaic`, all five photos; a
+// Menu order follows the Figma dropdown (node 15440:4948): 2 wheeler, 3 wheeler / Cleaning, Agriculture /
+// Drone, Others. With nothing hovered (and off the industry pages) the photo box shows `mosaic`, all six photos; a
 // hovered or current industry shows its own photo there. `activeIcon` is the blue variant.
 export const industryMenu = {
-  mosaic: a('nav/mosaic.webp'),
+  mosaic: a('others/nav-mosaic.webp'),
   links: [
     {
       label: '2 wheeler',
@@ -56,12 +56,20 @@ export const industryMenu = {
     {
       label: 'Drone',
       href: '/industry/drone',
-      wide: true,
       image: a('nav/drone.webp'),
       icon: a('icon-drone.svg'),
       activeIcon: a('nav/icon-drone-active.svg'),
       mobileIcon: a('m/icon-drone.svg'),
       mobileActiveIcon: a('m/icon-drone-active.svg'),
+      iconClass: 'size-48',
+      mobileIconClass: 'size-30',
+    },
+    {
+      label: 'Others',
+      href: '/industry/others',
+      image: a('others/nav-others.webp'),
+      icon: a('icon-robot.svg'),
+      activeIcon: a('nav/icon-robot-active.svg'),
       iconClass: 'size-48',
       mobileIconClass: 'size-30',
     },

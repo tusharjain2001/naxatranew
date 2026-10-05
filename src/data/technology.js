@@ -1,7 +1,7 @@
 const a = (file) => `/assets/technology/${file}`
 
 export const techHero = {
-  title: 'From Concept to Creation, driving EV innovation',
+  title: 'From Concept to Creation, engineering motion for every industry.',
   subtitle: 'Lighter, Stronger, Smarter Motors for the Future.',
   image: a('hero.webp'),
   alt: 'Electric scooter, delivery vehicle, field robot, drone and utility vehicle on a mountain road at dusk',
@@ -109,24 +109,11 @@ export const quality = {
   title: 'Quality systems you can audit',
   items: [
     { title: 'ISO 9001:2015', text: 'Certified quality management system covering design, production, QC, and customer support.', logo: a('cert-iso.webp'), logoClass: 'xl:size-90' },
-    { title: 'ARAI recognised', text: 'Automotive Research Association of India  credibility for EV and automotive applications.', logo: a('cert-arai.webp'), logoClass: 'xl:h-76 xl:w-107' },
+    // The NATRAX mark sits on white, so it is multiplied onto the grey card.
+    { title: 'naxatrax certification', text: 'NATRAX is one of the state-of-the-art automotive testing and certification centre under NATRiP, a flagship project.', logo: a('cert-natrax.webp'), logoClass: 'mix-blend-multiply xl:h-44 xl:w-105' },
     { title: 'IATF 16949 in progress', text: 'Automotive-grade QMS initiated for Tier-1 and OEM supplier readiness.', logo: a('cert-iatf.webp'), logoClass: 'xl:size-89' },
     { title: 'IP67 · H-class insulation', text: 'Full submersion rated. H-class insulation validated for sustained high-temperature operation.', logo: a('cert-ip67.webp'), logoClass: 'xl:h-99 xl:w-94' },
     { title: '3-year motor warranty', text: 'On every unit supplied, covering manufacturing and material defects not just paper coverage.', logo: a('cert-warranty.webp'), logoClass: 'xl:h-105 xl:w-104' },
     { title: '100% made in India', text: '85% localised supply chain. PLI-qualifying. Every motor designed, built, and tested in Ahmedabad.', logo: a('cert-india.webp'), logoClass: 'xl:h-[calc(var(--spacing)*49.24)] xl:w-[calc(var(--spacing)*107.66)]' },
   ],
-}
-
-export const efficiency = {
-  title: 'More Power. More Range. More Possibilities.',
-  text: 'Our advanced Antarix-AF58 powertrain delivers up to 10% higher average efficiency compared to market leaders. With improved energy optimization, it extends the operating range by 5-8%, ensuring peak performance with every ride.',
-  chart: {
-    grid: a('chart-grid.svg'),
-    curve: a('chart-curve.svg'),
-    x: [0, 5, 10, 15, 20, 25, 30],
-    y: [100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 0],
-    xLabel: 'Torque (Nm)',
-    yLabel: 'Efficiency %',
-    series: 'Antarix-AF58',
-  },
 }

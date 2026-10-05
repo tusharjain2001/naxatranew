@@ -12,13 +12,14 @@ import ProductDetail from './pages/ProductDetail'
 import Legal from './pages/Legal'
 import Drone from './pages/Drone'
 import Technology from './pages/Technology'
+import Others from './pages/Others'
 import { industryPages, industryPath } from './data/industry'
 import { productFamilies, productPath } from './data/products'
 import { legalPages } from './data/legal'
 import { currentPath } from './lib/currentPath'
 import { startReveal } from './lib/reveal'
 
-const pages = { '/': Home, '/about': About, '/careers': Careers, '/contact': Contact, '/blogs': Blogs, '/products': Products, '/industry/drone': Drone, '/technology': Technology }
+const pages = { '/': Home, '/about': About, '/careers': Careers, '/contact': Contact, '/blogs': Blogs, '/products': Products, '/industry/drone': Drone, '/industry/others': Others, '/technology': Technology }
 const industryBySlug = Object.fromEntries(industryPages.map((page) => [industryPath(page.slug), page]))
 const legalByPath = Object.fromEntries(legalPages.map((page) => [page.path, page]))
 const productBySlug = Object.fromEntries(productFamilies.map((family) => [productPath(family.slug), family]))

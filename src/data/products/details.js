@@ -19,6 +19,7 @@ const RF22 = '/assets/products/rf22/'
 const RF33 = '/assets/products/rf33/'
 const RF55 = '/assets/products/rf55/'
 const RF66 = '/assets/products/rf66/'
+const DR = '/assets/products/drone/'
 
 // The RF-family variant notes, verbatim from the artboards.
 const SAME_DIE = 'This motor variant has the same die with two distinct voltage options.'
@@ -71,25 +72,26 @@ function mkVariant(code, o) {
     vimFull: o.vimFull ?? null, // per tile, the image the main spot shows when that tile is picked (framed like `hero`)
     thumb: o.thumb ?? null, // DESKTOP variant-panel thumbnail (Figma bakes it at a different orientation than the hero)
     sketch: o.sketch ?? null, // per-variant technical sketch override (else falls back to detail.sketch)
-    specBoxes: [
+    // `specBoxes`, `table` and `spec` can be given whole when a motor is specified differently (Drone Motor).
+    specBoxes: o.specBoxes ?? [
       { label: 'Voltage', value: o.voltage },
       { label: 'Power', value: o.power },
       // hero box may show peak torque while the table shows rated (e.g. AF 58: box 60 Nm / rated 25 Nm)
       { label: 'Torque', value: o.boxTorque ?? o.torque },
     ],
-    table: [
+    table: (o.table ?? [
       { label: 'Voltage', value: o.voltage },
       { label: 'Rated Power', value: o.power },
       { label: 'Rated Torque', value: o.torque },
       { label: 'Peak Speed', value: o.peakSpeed },
       { label: 'Efficiency', value: o.efficiency },
       { label: 'Mass', value: o.mass },
-    ].map((row, i) => ({ ...row, mobileLabel: o.mobileTableLabels?.[i] })), // phone artboard can relabel a row
+    ]).map((row, i) => ({ ...row, mobileLabel: o.mobileTableLabels?.[i] })), // phone artboard can relabel a row
     datasheet: '/assets/products/datasheet-placeholder.pdf',
     datasheetNote: `Get more detailed specification in our ${o.displayName ?? code} specsheet.`,
     applications: o.applications ?? APPS,
     // VIEW SPECIFICATIONS modal — detailed spec sheet.
-    spec: [
+    spec: o.spec ?? [
       { label: 'Motor type', value: o.motorType ?? 'Radial Flux PMSM' },
       { label: 'Rated Voltage', value: o.voltage },
       { label: 'Rated Power', value: o.power },
@@ -205,5 +207,47 @@ export const detailBySlug = {
     mobile: { hero: '-top-21 -left-33 h-352 w-433', heroPad: 'pb-25', sketch: 'h-167', apps: 'min-h-0', techPad: 'pb-60' },
   }),
 }
+
+// Drone Motor (Figma node 15434:1204): one variant, no applications section, its own spec rows (rated
+// figures aren't given, so the boxes and table show the peak ones). The hero, back view and gallery tiles
+// are exported from the artboard on its #fafafa / #f1f1f1 backdrops.
+detailBySlug.drone = mkDetail('drone', 'Product/ Drone Motor', [
+  mkVariant('Drone Motor/00', {
+    displayName: 'Drone Motor',
+    hero: DR + 'hero.webp',
+    vim: [DR + 'vim-1.webp', DR + 'vim-2.webp'],
+    mvim: [DR + 'vim-1.webp', DR + 'vim-2.webp'],
+    vimFull: [null, DR + 'back.webp'],
+    specBoxes: [
+      { label: 'Voltage', value: '24 V' },
+      { label: 'Peak Power', value: '1.894 kW' },
+      { label: 'Peak Torque', value: '0.82 Nm' },
+    ],
+    table: [
+      { label: 'Voltage', value: '24 V' },
+      { label: 'Peak Power', value: '1.894 kW' },
+      { label: 'Peak Torque', value: '0.82 Nm' },
+      { label: 'Peak Speed', value: '15190 RPM' },
+      { label: 'Peak Efficiency', value: '7.4 g/W' },
+      { label: 'Mass', value: '113.1 g' },
+    ],
+    spec: [
+      { label: 'Rated Voltage', value: '24 V' },
+      { label: 'Peak Power', value: '1.894 kW' },
+      { label: 'Peak Torque', value: '0.82 Nm' },
+      { label: 'Max Speed', value: '15190 RPM' },
+      { label: 'Peak Efficiency', value: '7.4 g/W' },
+      { label: 'IP rating', value: 'IP67' },
+      { label: 'Mass', value: '113.1 g' },
+    ],
+    applications: [],
+  }),
+], {
+  gallery: [DR + 'vim-1.webp', DR + 'vim-2.webp'],
+  sketch: [DR + 'sketch.webp'],
+  heroClass: 'xl:top-179 xl:left-710 xl:h-701 xl:w-738',
+  // Phone artboard (15434:1649): render 46px into its box, gallery 100px under it, shorter sketch, no apps.
+  mobile: { hero: 'top-46 left-43 h-278 w-293', galleryGap: 'mt-100', heroPad: 'pb-25', sketch: 'h-172', techPad: 'pb-60' },
+})
 
 export const productDetail = (slug) => detailBySlug[slug]

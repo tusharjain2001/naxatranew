@@ -1,18 +1,22 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { productFamilies, applicationFilters, seriesTabs } from '../../data/products'
 import FamilyCard from './FamilyCard'
+import Button from '../../components/ui/Button'
 
 // Map each sub-application (checkbox) back to its category so a checked box filters families by industry.
 const optionCategory = {}
 applicationFilters.forEach((cat) => cat.options.forEach((opt) => (optionCategory[opt] = cat.key)))
 
+// Key Specifications sliders (Figma 15421:42167). Both artboards draw the scales differently (desktop
+// 0-72 V / 0-14 kW / 0-80 Nm, phone 0-100 each); the desktop scales fit the motors, so both use them.
 const SPECS = [
-  { key: 'voltage', label: 'Voltage (V)' },
-  { key: 'power', label: 'Continuous Power (kW)' },
-  { key: 'torque', label: 'Peak Torque (Nm)' },
+  { key: 'voltage', label: 'Voltage (V)', mobileLabel: 'Voltage (V)', unit: 'V', max: 72, step: 1 },
+  { key: 'power', label: 'Power (kW)', mobileLabel: 'Continuous Power (kW)', unit: 'kW', max: 14, step: 0.1 },
+  { key: 'torque', label: 'Torque (Nm)', mobileLabel: 'Peak Torque (Nm)', unit: 'Nm', max: 80, step: 0.5 },
 ]
 
-const emptyRanges = () => ({ voltage: ['', ''], power: ['', ''], torque: ['', ''] })
+const emptyRanges = () => Object.fromEntries(SPECS.map((spec) => [spec.key, [0, spec.max]]))
+const fmt = (v) => `${Number(v.toFixed(1))}`
 
 function Chevron({ open }) {
   return (
@@ -22,24 +26,58 @@ function Chevron({ open }) {
   )
 }
 
-// One min/max spec filter row.
-function SpecRange({ label, value, onChange }) {
-  const box = 'min-w-0 flex-1 rounded-4 border border-silver bg-white px-16 py-12 text-12 font-light text-grey outline-none transition-colors placeholder:text-grey focus:border-primary'
+// One spec filter: the scale ends above a two-handle slider and the chosen range under it. The blue bar runs
+// between the thumbs' centres (a native thumb travels 8px in from each end of the track).
+function SpecRange({ spec, label, value, onChange, labelClass, valueClass }) {
+  const [lo, hi] = value
+  const at = (v) => `calc(var(--spacing) * 8 + (100% - var(--spacing) * 16) * ${v / spec.max})`
   return (
     <div className="flex w-full flex-col gap-12">
-      <span className="text-16 xl:text-20">{label}</span>
-      <div className="flex items-center justify-between gap-8">
-        <input inputMode="numeric" placeholder="Min" value={value[0]} onChange={(e) => onChange([e.target.value, value[1]])} className={box} />
-        <span className="text-16 text-black xl:text-20">-</span>
-        <input inputMode="numeric" placeholder="Max" value={value[1]} onChange={(e) => onChange([value[0], e.target.value])} className={box} />
+      <span className={labelClass}>{label}</span>
+      <span className="flex justify-between text-12 text-grey">
+        <span>0{spec.unit}</span>
+        <span>
+          {spec.max}
+          {spec.unit}
+        </span>
+      </span>
+      <div className="relative h-6 rounded-full bg-silver">
+        <span className="absolute top-px h-4 rounded-full bg-primary" style={{ left: at(lo), width: `calc(${at(hi)} - ${at(lo)})` }} />
+        <input
+          type="range"
+          min={0}
+          max={spec.max}
+          step={spec.step}
+          value={lo}
+          onChange={(e) => onChange([Math.min(Number(e.target.value), hi), hi])}
+          aria-label={`Minimum ${label}`}
+          className="range-thumb absolute inset-0 h-6 w-full"
+          style={{ zIndex: lo > spec.max / 2 ? 2 : 1 }}
+        />
+        <input
+          type="range"
+          min={0}
+          max={spec.max}
+          step={spec.step}
+          value={hi}
+          onChange={(e) => onChange([lo, Math.max(Number(e.target.value), lo)])}
+          aria-label={`Maximum ${label}`}
+          className="range-thumb absolute inset-0 h-6 w-full"
+        />
       </div>
+      <span className={valueClass}>
+        {fmt(lo)}
+        {spec.unit} - {fmt(hi)}
+        {spec.unit}
+      </span>
     </div>
   )
 }
 
-// One collapsible Industrial-Applications category with its sub-application checkboxes (closed by default).
+// One collapsible Industrial-Applications category with its sub-application checkboxes (open by default,
+// as on the artboard).
 function AppCategory({ cat, checked, onToggle }) {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(true)
   return (
     <div className="flex w-full flex-col gap-16">
       <button type="button" onClick={() => setOpen((o) => !o)} className="flex w-full items-center justify-between border-b-[0.3px] border-[#8d8d8d] py-6 text-left" aria-expanded={open}>
@@ -70,9 +108,17 @@ function FilterPanel({ ranges, setRanges, checked, toggleApp, clearAll }) {
 
       <div className="flex w-full flex-col gap-24 pr-16">
         <span className="text-20 xl:text-24">Key Specifications</span>
-        <div className="flex w-full flex-col gap-24 xl:gap-30">
+        <div className="flex w-full flex-col gap-[calc(var(--spacing)*29.728)]">
           {SPECS.map((s) => (
-            <SpecRange key={s.key} label={s.label} value={ranges[s.key]} onChange={(v) => setRanges((r) => ({ ...r, [s.key]: v }))} />
+            <SpecRange
+              key={s.key}
+              spec={s}
+              label={s.label}
+              value={ranges[s.key]}
+              onChange={(v) => setRanges((r) => ({ ...r, [s.key]: v }))}
+              labelClass="text-20"
+              valueClass="text-18"
+            />
           ))}
         </div>
       </div>
@@ -139,8 +185,6 @@ function FilterDrawer({ open, onClose, ranges, setRanges, checked, toggleApp, cl
     }
   }, [open, onClose])
 
-  const setRange = (key, i, v) => setRanges((r) => ({ ...r, [key]: i ? [r[key][0], v] : [v, r[key][1]] }))
-  const box = 'min-w-0 flex-1 rounded-4 border border-silver bg-white px-16 py-12 text-12 font-light text-black outline-none placeholder:text-grey focus:border-primary'
   const action = 'flex h-30 w-100 cursor-pointer items-center justify-center gap-[calc(var(--spacing)*6.657)] rounded-[calc(var(--spacing)*2.663)] text-12 leading-16 font-medium uppercase'
 
   return (
@@ -173,16 +217,19 @@ function FilterDrawer({ open, onClose, ranges, setRanges, checked, toggleApp, cl
             {specsOpen && (
               <>
                 <DrawerRule />
-                {SPECS.map((spec) => (
-                  <div key={spec.key} className="flex flex-col gap-8">
-                    <span className="flex h-24 items-center text-14">{spec.label}</span>
-                    <div className="flex items-center">
-                      <input inputMode="numeric" placeholder="Min" value={ranges[spec.key][0]} onChange={(e) => setRange(spec.key, 0, e.target.value)} className={box} />
-                      <span className="w-19 text-center text-20">-</span>
-                      <input inputMode="numeric" placeholder="Max" value={ranges[spec.key][1]} onChange={(e) => setRange(spec.key, 1, e.target.value)} className={box} />
-                    </div>
-                  </div>
-                ))}
+                <div className="flex flex-col gap-[calc(var(--spacing)*29.728)]">
+                  {SPECS.map((spec) => (
+                    <SpecRange
+                      key={spec.key}
+                      spec={spec}
+                      label={spec.mobileLabel}
+                      value={ranges[spec.key]}
+                      onChange={(v) => setRanges((r) => ({ ...r, [spec.key]: v }))}
+                      labelClass="flex h-24 items-center text-14"
+                      valueClass="text-14"
+                    />
+                  ))}
+                </div>
               </>
             )}
           </div>
@@ -261,7 +308,7 @@ export default function MotorListing() {
   }
 
   const families = useMemo(() => {
-    const inRange = (val, [min, max]) => (min === '' || val >= Number(min)) && (max === '' || val <= Number(max))
+    const inRange = (val, [min, max]) => val >= min && val <= max
     const checkedCats = new Set([...checked].map((opt) => optionCategory[opt]))
     return productFamilies.filter((f) => {
       if (series && f.series !== series) return false
@@ -274,6 +321,22 @@ export default function MotorListing() {
   return (
     <section id="motor-listing" className="mx-auto flex w-full max-w-1920 scroll-mt-80 flex-col gap-40 px-16 py-60 xl:gap-60 xl:px-100 xl:py-100">
       <h2 className="text-32 leading-36 tracking-display capitalize xl:text-64 xl:leading-[96px]">Browse Our Motor Solutions</h2>
+
+      {/* Custom-solutions banner (Figma 15472:1565 / phone 15504:2170), pointing to the Others page. */}
+      <div className="flex flex-col gap-32 bg-primary/12 p-24 xl:flex-row xl:items-center xl:justify-between xl:gap-0 xl:px-64 xl:py-56">
+        <p className="text-28 leading-32 xl:w-720 xl:text-48 xl:leading-64">We offer custom solutions to meet your unique needs!!</p>
+        <div className="flex flex-col items-start gap-16">
+          <p className="text-12 leading-18 text-grey xl:w-765 xl:text-28 xl:leading-36">
+            We are currently broadening our reach into robotic actuators, marine applications, and defense, among others.
+          </p>
+          <Button href="/industry/others" size="spec" className="xl:hidden">
+            Know more
+          </Button>
+          <Button href="/industry/others" className="hidden xl:inline-flex">
+            Know more
+          </Button>
+        </div>
+      </div>
 
       <div className="flex flex-col gap-40 xl:flex-row xl:gap-60">
         <FilterPanel ranges={ranges} setRanges={setRanges} checked={checked} toggleApp={toggleApp} clearAll={clearAll} />
@@ -332,7 +395,7 @@ export default function MotorListing() {
           {families.length ? (
             <div className="grid w-full grid-cols-2 gap-x-[calc(var(--spacing)*11.729)] gap-y-[calc(var(--spacing)*11.643)] xl:grid-cols-3 xl:gap-32">
               {families.map((f) => (
-                <FamilyCard key={f.slug} family={f} className="h-full w-full" />
+                <FamilyCard key={f.slug} family={f} className="h-full w-full" listing />
               ))}
             </div>
           ) : (

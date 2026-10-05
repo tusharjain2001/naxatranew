@@ -15,7 +15,7 @@ export default function FindByApplications() {
   return (
     <section id="find-by-applications" className="mx-auto flex w-full max-w-1920 scroll-mt-80 flex-col gap-40 bg-white px-16 py-60 xl:gap-60 xl:px-100 xl:pt-103 xl:pb-157">
       <div className="flex items-center justify-between gap-10">
-        <h2 className="text-32 leading-36 tracking-display capitalize xl:text-64 xl:leading-80 xl:tracking-[-1.28px]">Find by applications</h2>
+        <h2 className="w-240 text-32 leading-36 tracking-display capitalize xl:w-auto xl:text-64 xl:leading-80 xl:tracking-[-1.28px]">Find by applications</h2>
         <SliderArrows set="mobile" onPrev={() => scroll(-1)} onNext={() => scroll(1)} className="shrink-0 xl:hidden" />
         <SliderArrows onPrev={() => scroll(-1)} onNext={() => scroll(1)} className="hidden shrink-0 xl:flex" />
       </div>

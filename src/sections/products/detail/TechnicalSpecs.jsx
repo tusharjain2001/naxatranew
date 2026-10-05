@@ -49,23 +49,25 @@ export default function TechnicalSpecs({ variant, sketch, mobile = {} }) {
           </Button>
         </div>
 
-        {/* Applications (Figma sits it ~99px below the datasheet, vs 46px above it) */}
-        <div className={`mt-16 flex flex-col ${mobile.apps ?? 'min-h-230'} gap-24 border-[0.5px] border-black/10 bg-white px-8 py-12 xl:mt-53 xl:min-h-0 xl:border xl:border-black/25 xl:px-48 xl:py-36`}>
-          <div className="flex items-center justify-between gap-10">
-            <h3 className="text-24 leading-32 capitalize xl:text-36 xl:leading-[78px] xl:tracking-display">{variant.displayName ?? variant.code} Motor Applications</h3>
+        {/* Applications (Figma sits it ~99px below the datasheet, vs 46px above it); Drone Motor has none. */}
+        {variant.applications.length > 0 && (
+          <div className={`mt-16 flex flex-col ${mobile.apps ?? 'min-h-230'} gap-24 border-[0.5px] border-black/10 bg-white px-8 py-12 xl:mt-53 xl:min-h-0 xl:border xl:border-black/25 xl:px-48 xl:py-36`}>
+            <div className="flex items-center justify-between gap-10">
+              <h3 className="text-24 leading-32 capitalize xl:text-36 xl:leading-[78px] xl:tracking-display">{variant.displayName ?? variant.code} Motor Applications</h3>
+            </div>
+            {/* mobile: 3-col grid (per the mobile artboard); desktop: horizontal carousel */}
+            <div className="no-scrollbar grid grid-cols-3 gap-12 xl:flex xl:gap-16 xl:overflow-x-auto xl:pb-2">
+              {variant.applications.map((app, i) => (
+                <div key={app.label + i} className="flex w-full flex-col items-center gap-[calc(var(--spacing)*1.688)] xl:min-h-228 xl:w-182 xl:shrink-0 xl:gap-3">
+                  <span className="relative grid h-110 w-full place-items-center bg-[#f9f9f9] p-10 xl:h-182 xl:p-16">
+                    <img src={app.image} alt="" className="max-h-full max-w-full object-contain max-xl:absolute max-xl:top-[10%] max-xl:left-[10%] max-xl:size-[80%]" />
+                  </span>
+                  <span className="text-12 leading-14 max-xl:text-center xl:text-22 xl:leading-[43px]">{app.label}</span>
+                </div>
+              ))}
+            </div>
           </div>
-          {/* mobile: 3-col grid (per the mobile artboard); desktop: horizontal carousel */}
-          <div className="no-scrollbar grid grid-cols-3 gap-12 xl:flex xl:gap-16 xl:overflow-x-auto xl:pb-2">
-            {variant.applications.map((app, i) => (
-              <div key={app.label + i} className="flex w-full flex-col items-center gap-[calc(var(--spacing)*1.688)] xl:min-h-228 xl:w-182 xl:shrink-0 xl:gap-3">
-                <span className="relative grid h-110 w-full place-items-center bg-[#f9f9f9] p-10 xl:h-182 xl:p-16">
-                  <img src={app.image} alt="" className="max-h-full max-w-full object-contain max-xl:absolute max-xl:top-[10%] max-xl:left-[10%] max-xl:size-[80%]" />
-                </span>
-                <span className="text-12 leading-14 max-xl:text-center xl:text-22 xl:leading-[43px]">{app.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+        )}
       </div>
     </section>
   )

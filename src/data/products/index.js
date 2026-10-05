@@ -19,6 +19,8 @@ export const industries = {
   '2-wheeler': { label: '2 Wheelers', icon: L('ind-2wheeler.svg') },
   '3-wheeler': { label: '3 Wheelers', icon: L('ind-3wheeler.svg') },
   'industrial-tools': { label: 'Industrial Tools', icon: L('ind-tools.svg') },
+  'electric-drill': { label: 'Electric Drill', icon: L('ind-drill.svg') },
+  drone: { label: 'Drones', icon: L('ind-drone.svg') },
 }
 
 // The "Industrial Applications" filter: each category is collapsible with sub-application checkboxes.
@@ -29,19 +31,23 @@ export const applicationFilters = [
   { key: '2-wheeler', label: '2 Wheelers', options: ['2W Scooter', '2W Bikes', 'Moped'] },
   { key: '3-wheeler', label: '3 Wheelers', options: ['E-Rickshaw', 'Loader Passenger', 'Loader Cargo', 'Tricycle'] },
   { key: 'industrial-tools', label: 'Industrial Tools', options: ['Grinder', 'Electric Drill'] },
+  { key: 'drone', label: 'Drone', options: ['Drone'] },
 ]
 
 export const seriesTabs = ['RF', 'AF', 'PT']
 
-// Grid order on the /products listing, top to bottom, left to right.
+// Grid order on the /products listing, top to bottom, left to right. `cardTagline` is the line under the name
+// on the listing cards (Figma 15421:42143); the detail page subtitle and the "Browse our other motors" cards
+// keep `tagline`. PT 500's Electric Drill chip is display-only (it is not a filter category).
 export const productFamilies = [
-  { slug: 'rf15', name: 'Antarix RF 15', series: 'RF', brand: 'Antarix', tagline: 'Compact | Efficient | Versatile', card: { image: L('card-standard.png'), scale: 76 }, industries: ['cleaning', 'agriculture', '2-wheeler'], spec: { voltage: 72, power: 1.5, torque: 6.5 } },
-  { slug: 'rf22', name: 'Antarix RF 22', series: 'RF', brand: 'Antarix', tagline: 'Compact | Efficient | Versatile', card: { image: L('card-standard.png'), scale: 76 }, industries: ['2-wheeler', 'agriculture', '3-wheeler'], spec: { voltage: 72, power: 2.2, torque: 9.5 } },
-  { slug: 'rf33', name: 'Antarix RF 33', series: 'RF', brand: 'Antarix', tagline: 'Compact | Efficient | Versatile', card: { image: L('card-529.png'), scale: 78 }, industries: ['cleaning', 'agriculture', '2-wheeler'], spec: { voltage: 72, power: 3.3, torque: 10.5 } },
-  { slug: 'rf55', name: 'Antarix RF 55', series: 'RF', brand: 'Antarix', tagline: 'Compact | Efficient | Versatile', card: { image: L('card-529.png'), scale: 78 }, industries: ['2-wheeler', 'agriculture', '3-wheeler'], spec: { voltage: 72, power: 5.5, torque: 10.5 } },
-  { slug: 'rf66', name: 'Antarix RF 66', series: 'RF', brand: 'Antarix', tagline: 'Compact | Efficient | Versatile', card: { image: L('card-rf66.png'), scale: 109 }, industries: ['2-wheeler', 'agriculture', '3-wheeler'], spec: { voltage: 72, power: 14, torque: 16 } },
-  { slug: 'af58', name: 'Antarix AF 58', cardName: 'Antarix AF58', series: 'AF', brand: 'Antarix', tagline: 'Compact | Efficient | Versatile', card: { image: L('card-af58.png'), scale: 91 }, industries: ['2-wheeler', '3-wheeler'], spec: { voltage: 72, power: 5.8, torque: 60 } },
-  { slug: 'pt500', name: 'PT - 500', cardName: 'PT 500', series: 'PT', brand: 'PT', tagline: 'Compact | Efficient | Versatile', card: { image: L('card-pt500.png'), scale: 131 }, industries: ['industrial-tools'], spec: { voltage: 18, power: 0.05, torque: 0.5 } },
+  { slug: 'rf15', name: 'Antarix RF 15', series: 'RF', brand: 'Antarix', tagline: 'Compact | Efficient | Versatile', cardTagline: 'Torque upto 6.5Nm', card: { image: L('card-standard.png'), scale: 76 }, industries: ['cleaning', 'agriculture', '2-wheeler'], spec: { voltage: 72, power: 1.5, torque: 6.5 } },
+  { slug: 'rf22', name: 'Antarix RF 22', series: 'RF', brand: 'Antarix', tagline: 'Compact | Efficient | Versatile', cardTagline: 'Torque upto 9.5Nm', card: { image: L('card-standard.png'), scale: 76 }, industries: ['2-wheeler', 'agriculture', '3-wheeler'], spec: { voltage: 72, power: 2.2, torque: 9.5 } },
+  { slug: 'rf33', name: 'Antarix RF 33', series: 'RF', brand: 'Antarix', tagline: 'Compact | Efficient | Versatile', cardTagline: 'Torque upto 6.5Nm', card: { image: L('card-529.png'), scale: 78 }, industries: ['cleaning', 'agriculture', '2-wheeler'], spec: { voltage: 72, power: 3.3, torque: 10.5 } },
+  { slug: 'rf55', name: 'Antarix RF 55', series: 'RF', brand: 'Antarix', tagline: 'Compact | Efficient | Versatile', cardTagline: 'Torque upto 17.5Nm', card: { image: L('card-529.png'), scale: 78 }, industries: ['2-wheeler', 'agriculture', '3-wheeler'], spec: { voltage: 72, power: 5.5, torque: 10.5 } },
+  { slug: 'rf66', name: 'Antarix RF 66', series: 'RF', brand: 'Antarix', tagline: 'Compact | Efficient | Versatile', cardTagline: 'Torque upto 14Nm', card: { image: L('card-rf66.png'), scale: 109 }, industries: ['2-wheeler', 'agriculture', '3-wheeler'], spec: { voltage: 72, power: 14, torque: 16 } },
+  { slug: 'af58', name: 'Antarix AF 58', cardName: 'Antarix AF58', series: 'AF', brand: 'Antarix', tagline: 'Compact | Efficient | Versatile', cardTagline: 'Torque upto 25Nm', card: { image: L('card-af58.png'), scale: 91 }, industries: ['2-wheeler', '3-wheeler'], spec: { voltage: 72, power: 5.8, torque: 60 } },
+  { slug: 'pt500', name: 'PT - 500', cardName: 'PT 500', series: 'PT', brand: 'PT', tagline: 'Compact | Efficient | Versatile', cardTagline: 'Torque upto 3.2Nm', card: { image: L('card-pt500.png'), scale: 131 }, industries: ['industrial-tools', 'electric-drill'], spec: { voltage: 18, power: 0.05, torque: 0.5 } },
+  { slug: 'drone', name: 'Drone Motor', series: null, brand: 'Drone', tagline: null, cardTagline: 'IP67 Sealing', card: { image: L('card-drone.png'), scale: 46 }, industries: ['drone'], spec: { voltage: 24, power: 1.894, torque: 0.82 } },
 ]
 
 export const productBySlug = Object.fromEntries(productFamilies.map((f) => [f.slug, f]))

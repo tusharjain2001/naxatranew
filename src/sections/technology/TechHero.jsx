@@ -14,7 +14,7 @@ export default function TechHero({ hero }) {
       />
       <div className="relative mx-auto flex max-w-1920 flex-col items-start gap-24 px-20 pt-60 text-white xl:gap-48 xl:px-100 xl:pt-100">
         <div className="flex flex-col gap-24 xl:gap-25">
-          <h1 className="text-36 leading-36 xl:w-1207 xl:text-88 xl:leading-96 xl:capitalize">{hero.title}</h1>
+          <h1 className="text-36 leading-36 capitalize xl:w-1523 xl:text-88 xl:leading-96">{hero.title}</h1>
           <p className="w-285 text-20 leading-28 font-light xl:w-736 xl:text-32 xl:leading-32 xl:font-normal xl:capitalize">{hero.subtitle}</p>
         </div>
         <Button href="/contact" variant="white" size="spec" className="xl:hidden">

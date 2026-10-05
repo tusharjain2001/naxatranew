@@ -92,7 +92,8 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
   const isPicked = (i) => picked.i === i
   const pick = (src, i) => setShot({ variant: variant.id, src: i === 0 ? null : src, i })
   const mainSrc = picked.src ?? variant.hero
-  const subtitle = `${family.tagline} - ${!multi && variant.displayName ? variant.displayName : `${variant.label ?? variant.code} Variant`}`
+  // Families without a tagline (Drone Motor) show no subtitle line.
+  const subtitle = family.tagline && `${family.tagline} - ${!multi && variant.displayName ? variant.displayName : `${variant.label ?? variant.code} Variant`}`
   return (
     <section className="relative w-full overflow-hidden bg-[#fafafa]">
       {/* ---------- MOBILE (< xl) ---------- */}
@@ -103,7 +104,7 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
             <span>{detail.breadcrumb.slice(detail.breadcrumb.indexOf('/'))}</span>
           </nav>
           <h1 className="text-40 leading-[calc(var(--spacing)*39.6)]">{family.name}</h1>
-          <p key={variant.id + '-msub'} className="animate-[fade-in_0.3s_ease-out] text-[length:calc(var(--spacing)*14.4)] leading-[calc(var(--spacing)*21.6)] font-light">{subtitle}</p>
+          {subtitle && <p key={variant.id + '-msub'} className="animate-[fade-in_0.3s_ease-out] text-[length:calc(var(--spacing)*14.4)] leading-[calc(var(--spacing)*21.6)] font-light">{subtitle}</p>}
           <div className="py-12">
             <Button as="button" type="button" onClick={onOpenSpec} variant="outline" size="spec" className="cursor-pointer">
               View Specifications
@@ -122,7 +123,7 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
                 className={`absolute max-w-none animate-[fade-in_0.3s_ease-out] object-contain ${detail.mobile.hero ?? 'top-0 -left-6 h-293 w-361'}`}
               />
             </div>
-            <div className="mt-70 flex gap-[calc(var(--spacing)*3.915)] self-center">
+            <div className={`${detail.mobile.galleryGap ?? 'mt-70'} flex gap-[calc(var(--spacing)*3.915)] self-center`}>
               {(variant.mvim ?? detail.gallery).map((src, i) => (
                 <button
                   key={src + i}
@@ -256,7 +257,7 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
             <span>{detail.breadcrumb.slice(detail.breadcrumb.indexOf('/'))}</span>
           </nav>
           <h1 className="text-40 leading-none xl:text-80 xl:leading-88">{family.name}</h1>
-          <p key={variant.id + '-sub'} className="animate-[fade-in_0.3s_ease-out] text-18 font-light xl:text-32">{subtitle}</p>
+          {subtitle && <p key={variant.id + '-sub'} className="animate-[fade-in_0.3s_ease-out] text-18 font-light xl:text-32">{subtitle}</p>}
           <div className="py-8 xl:py-40">
             <Button as="button" type="button" onClick={onOpenSpec} variant="outline" size="hero" className="hidden cursor-pointer xl:inline-flex">
               View Specifications

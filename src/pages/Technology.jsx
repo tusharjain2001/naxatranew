@@ -1,12 +1,11 @@
 import { useEffect } from 'react'
-import { efficiency, quality, techAbout, techBanner, techHero, techLayers, whyNaxatra } from '../data/technology'
+import { quality, techAbout, techBanner, techHero, techLayers, whyNaxatra } from '../data/technology'
 import TechHero from '../sections/technology/TechHero'
 import TechAbout from '../sections/technology/TechAbout'
 import WhyNaxatra from '../sections/technology/WhyNaxatra'
 import TechBanner from '../sections/technology/TechBanner'
 import TechLayers from '../sections/technology/TechLayers'
 import Quality from '../sections/technology/Quality'
-import Efficiency from '../sections/technology/Efficiency'
 
 // Technology page (Figma "technology page"), sections in artboard order.
 export default function Technology() {
@@ -22,7 +21,6 @@ export default function Technology() {
       <TechBanner data={techBanner} />
       <TechLayers data={techLayers} />
       <Quality data={quality} />
-      <Efficiency data={efficiency} />
     </main>
   )
 }

@@ -44,26 +44,44 @@ function Field({ label: text, required, className = '', size, children }) {
 // The form column stays put; only the heading/body widths grow (they overflow into the layout gap).
 // `flowText` lets the two body lines run together on phones (full 370 width), keeping the desktop break.
 // `spacing` overrides the desktop padding (Agriculture and 3-wheeler sit it 100px from the edges, not 120).
-export default function SpecForm({ applications, title = specForm.title, text = specForm.text, wide = false, flowText = false, spacing = 'xl:py-120' }) {
+// `centered` is the Products listing's desktop layout (node 15421:66253): the heading, text and email centred
+// on one line each, 80px above a 1192px form with two equal columns.
+export default function SpecForm({ applications, title = specForm.title, text = specForm.text, wide = false, flowText = false, centered = false, spacing = 'xl:py-120' }) {
   const [application, setApplication] = useState('')
   const size = sizes.card
   const box = size.box
   const input = `${size.input} xl:h-[calc(var(--spacing)*59.485)]`
+  const half = centered ? 'xl:min-w-0 xl:flex-1' : ''
+  const nameWidth = centered ? half : 'xl:w-[calc(var(--spacing)*387.071)]'
+  const emailWidth = centered ? half : 'xl:w-[calc(var(--spacing)*356.91)]'
+  const layout = centered
+    ? { wrap: 'xl:flex-col xl:items-center xl:gap-80', copy: 'xl:items-center xl:gap-24 xl:text-center', title: 'xl:w-auto xl:leading-80', text: 'xl:w-auto', form: 'xl:w-1192', row: 'xl:w-full', message: 'xl:w-full' }
+    : {
+        wrap: `xl:flex-row xl:gap-[calc(var(--spacing)*155.28)] ${wide ? 'xl:items-center' : 'xl:items-start'}`,
+        copy: `xl:w-578 xl:gap-28 ${wide ? '' : 'xl:pt-33'}`,
+        title: wide ? 'xl:w-640 xl:leading-80' : 'xl:w-auto xl:leading-72',
+        text: wide ? 'xl:w-640' : 'xl:w-544',
+        form: 'xl:w-fit',
+        row: 'xl:w-auto',
+        message: 'xl:w-[calc(var(--spacing)*764.088)]',
+      }
   return (
     <section id="spec" className={`w-full scroll-mt-56 px-16 xl:scroll-mt-80 xl:px-100 py-60 ${spacing}`}>
-      <div className={`mx-auto flex flex-col gap-[calc(var(--spacing)*35.62)] xl:w-fit xl:flex-row xl:gap-[calc(var(--spacing)*155.28)] ${wide ? 'xl:items-center' : 'xl:items-start'}`}>
-        <div className={`flex flex-col gap-[calc(var(--spacing)*10.686)] xl:w-578 xl:gap-28 ${wide ? '' : 'xl:pt-33'}`}>
-          <h2 className={`w-313 text-32 leading-[calc(var(--spacing)*35.62)] capitalize xl:text-64 ${wide ? 'xl:w-640 xl:leading-80' : 'xl:w-auto xl:leading-72'}`}>
+      <div className={`mx-auto flex flex-col gap-[calc(var(--spacing)*35.62)] xl:w-fit ${layout.wrap}`}>
+        <div className={`flex flex-col gap-[calc(var(--spacing)*10.686)] ${layout.copy}`}>
+          <h2 className={`w-313 text-32 leading-[calc(var(--spacing)*35.62)] capitalize xl:text-64 ${layout.title}`}>
             {title[0]}
-            <br />
+            {centered && ' '}
+            <br className={centered ? 'xl:hidden' : ''} />
             {title[1]}
           </h2>
-          <p className={`${flowText ? 'w-370' : 'w-261'} leading-[calc(var(--spacing)*17.81)] text-14 xl:text-32 xl:leading-40 ${wide ? 'xl:w-640' : 'xl:w-544'}`}>
+          <p className={`${flowText ? 'w-370' : 'w-261'} leading-[calc(var(--spacing)*17.81)] text-14 xl:text-32 xl:leading-40 ${layout.text}`}>
             {Array.isArray(text) ? (
               <>
                 {text[0]}
                 {flowText ? ' ' : ''}
-                <br className={flowText ? 'hidden xl:inline' : ''} />
+                <br className={flowText ? `hidden ${centered ? '' : 'xl:inline'}` : centered ? 'xl:hidden' : ''} />
+                {!flowText && centered && <span className="hidden xl:inline"> </span>}
                 {text[1]}
               </>
             ) : (
@@ -82,22 +100,22 @@ export default function SpecForm({ applications, title = specForm.title, text = 
 
         <form
           onSubmit={(e) => e.preventDefault()}
-          className={`flex w-fit flex-col items-start rounded-4 border-[calc(var(--spacing)*0.891)] border-silver px-14 py-20 ${size.form} xl:gap-25 xl:rounded-8 xl:border-2 xl:p-32`}
+          className={`flex w-fit flex-col items-start rounded-4 border-[calc(var(--spacing)*0.891)] border-silver px-14 py-20 ${size.form} xl:gap-25 xl:rounded-8 xl:border-2 xl:p-32 ${layout.form}`}
         >
-          <div className={`flex flex-col ${size.fields} xl:gap-25`}>
-            <div className={`flex flex-col ${size.fields} xl:w-auto xl:flex-row xl:gap-20`}>
-              <Field size={size} label="Full Name" required className="xl:w-[calc(var(--spacing)*387.071)]">
+          <div className={`flex flex-col ${size.fields} xl:gap-25 ${centered ? 'xl:w-full' : ''}`}>
+            <div className={`flex flex-col ${size.fields} xl:flex-row xl:gap-20 ${layout.row}`}>
+              <Field size={size} label="Full Name" required className={nameWidth}>
                 <input required name="name" autoComplete="name" placeholder="Enter Full Name" className={`${input} ${box}`} />
               </Field>
-              <Field size={size} label="Email ID" required className="xl:w-[calc(var(--spacing)*356.91)]">
+              <Field size={size} label="Email ID" required className={emailWidth}>
                 <input required type="email" name="email" autoComplete="email" placeholder="Enter Email ID" className={`${input} ${box}`} />
               </Field>
             </div>
-            <div className={`flex flex-col ${size.fields} xl:w-auto xl:flex-row xl:gap-20`}>
-              <Field size={size} label="Company Name" required className="xl:w-[calc(var(--spacing)*387.071)]">
+            <div className={`flex flex-col ${size.fields} xl:flex-row xl:gap-20 ${layout.row}`}>
+              <Field size={size} label="Company Name" required className={nameWidth}>
                 <input required name="company" autoComplete="organization" placeholder="Enter Company Name" className={`${input} ${box}`} />
               </Field>
-              <Field size={size} label="Application Type" className="xl:w-[calc(var(--spacing)*356.91)]">
+              <Field size={size} label="Application Type" className={emailWidth}>
                 <span className="relative block">
                   <select
                     name="application"
@@ -122,7 +140,7 @@ export default function SpecForm({ applications, title = specForm.title, text = 
               </Field>
             </div>
           </div>
-          <Field size={size} label="Any Message" className="xl:w-[calc(var(--spacing)*764.088)]">
+          <Field size={size} label="Any Message" className={layout.message}>
             <textarea
               name="message"
               placeholder="Write your message here..."

@@ -2,8 +2,8 @@
 export default function TechAbout({ data }) {
   return (
     <section className="mx-auto flex w-full max-w-1920 flex-col gap-48 px-16 py-56 xl:flex-row xl:items-center xl:justify-between xl:gap-0 xl:px-100 xl:py-100">
-      <div className="flex flex-col gap-32 capitalize xl:w-1026">
-        <h2 className="text-32 leading-40 tracking-display xl:w-800 xl:text-64 xl:leading-68">{data.title}</h2>
+      <div className="flex flex-col gap-32 xl:w-1026">
+        <h2 className="text-32 leading-40 tracking-display capitalize xl:w-800 xl:text-64 xl:leading-68">{data.title}</h2>
         <div className="flex flex-col gap-18 text-14 leading-18 text-grey xl:gap-32 xl:text-24 xl:leading-32">
           {data.paragraphs.map((p) => (
             <p key={p}>{p}</p>
