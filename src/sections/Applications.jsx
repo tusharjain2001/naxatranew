@@ -64,8 +64,10 @@ export default function Applications() {
         <p className="w-334 text-14 leading-16 font-light text-grey-dark xl:w-full xl:text-32 xl:leading-normal xl:font-normal xl:tracking-display xl:text-grey">
           Designed to serve all industries.
         </p>
-        <p className="w-248 text-12 leading-24 tracking-display uppercase xl:hidden">
-          Find us and our manufacturing unit in <span className="text-primary">Ahmedabad, India</span>
+        <p className="text-12 leading-24 tracking-display uppercase xl:hidden">
+          Find us and our manufacturing unit in
+          <br />
+          <span className="text-primary">Ahmedabad, India</span>
         </p>
       </div>
       <div className="flex flex-wrap justify-center gap-12 px-16 text-[length:calc(var(--spacing)*0.4106)] xl:flex-nowrap xl:px-0 xl:text-[length:var(--spacing)]">

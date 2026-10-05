@@ -6,13 +6,13 @@ export const aboutHero = {
   // One flattened desktop picture: the sky photo, the blue wash and the founders.
   image: a('hero.webp'),
   // The mobile artboard has its own portrait crop and a cut-out of the founders.
-  mobileBackground: a('m-hero-bg.png'),
-  mobileTeam: a('m-hero-team.png'),
+  // Phone artboard (15421:65690): its own crop of the team photo, wash and cut-out, flattened like desktop.
+  mobileImage: a('m-hero.webp'),
 }
 
 // Icons are layered exactly as in Figma: `box` places the icon inside its 80px tile,
 // each layer is a vector positioned by its inset within that box.
-// Mobile lists the cards in `mobileOrder` and gives every other one a grey `mobileTint`.
+// Mobile lists the cards in `mobileOrder`.
 export const values = {
   eyebrow: 'why naxatra labs exists',
   title: 'Our commitment to innovation, precision, and sustainability drives every decision we make',
@@ -21,7 +21,6 @@ export const values = {
       title: 'Relentless innovation',
       text: 'We pioneer cutting-edge electric motor technology.',
       mobileOrder: 'order-1',
-      mobileTint: true,
       icon: { src: a('icon-bulb-b.svg') },
     },
     {
@@ -50,7 +49,6 @@ export const values = {
       title: 'Simplicity in excellence',
       text: 'Simplifying complexity. Scaling performance.',
       mobileOrder: 'order-3',
-      mobileTint: true,
       icon: {
         box: 'inset-y-1/4 inset-x-[33.33%]',
         layers: [{ src: a('icon-quality-b.svg'), inset: '-3.75% -5.62% -3.75% -5.63%' }],
@@ -80,6 +78,8 @@ export const recognition = {
   title: 'Taking Indian Engineering to the World',
   subtitle: 'Global recognition for technology built with purpose.',
   statement: 'From India to the World, we’re taking homegrown motor innovation into international markets.',
+  // The phone artboard (15421:65945) words the statement differently.
+  mobileStatement: 'We’ve built Naxatra from India into a globally recognised technology company, taking homegrown motor innovation beyond borders and into international markets.',
   stat: { value: '10', unit: '%', label: 'Higher Average Efficiency' },
   // Grid order, left to right and top to bottom. `statement` spans two columns, `stat` is a tile.
   // Photos are the client's colour originals, framed to their tiles; the page shows them greyscale

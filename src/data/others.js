@@ -1,3 +1,5 @@
+import { clientTestimonials } from './home'
+
 const a = (file) => `/assets/others/${file}`
 
 // "Other applications" page (Figma node 15421:59799), reached from the Industry menu's OTHERS tile.
@@ -77,35 +79,6 @@ export default {
   testimonials: {
     title: 'What our clients say about us?',
     subtitle: 'What our partners say about working with us.',
-    items: [
-      {
-        id: 'xmatic',
-        header: a('testimonial-1.webp'),
-        quote: "At Xmatic Innovations, we rely on Naxatra Labs' PMSM motors for our unmanned ground vehicles. Their performance and quality are consistently reliable, and their team has been supportive throughout the process. We highly recommend Naxatra Labs.",
-        name: 'Mithun S K',
-        role: 'Managing Director & CEO, Xmatic Innovations Pvt. Ltd.',
-      },
-      {
-        id: 'cleanland',
-        header: a('testimonial-2.webp'),
-        quote: 'It has been a great experience working with Naxatra Labs. The team has been professional, supportive, and responsive to our requirements throughout the project. We truly appreciate their cooperation and look forward to working together on future projects.',
-        name: 'Aditya Patel',
-        role: 'R&D Lead, Cleanland - Sweeping Machine Manufacturer',
-      },
-      {
-        id: 'harvtech',
-        header: a('testimonial-3.webp'),
-        quote: 'This is a dummy testimonial sentence. Designed to tackle Indian conditions, diverse terrains, and tough environmental conditions, our motors deliver unmatched durability and performance wherever the journey takes you.',
-        name: 'Mohamed Imran',
-        role: 'Co-Founder & COO at Harvtech',
-      },
-      {
-        id: 'greenway',
-        header: a('testimonial-4.webp'),
-        quote: 'This is a dummy testimonial sentence. Designed to tackle Indian conditions, diverse terrains, and tough environmental conditions, our motors deliver unmatched durability and performance wherever the journey takes you.',
-        name: 'Harsh Raval',
-        role: 'Founder & COO, Greenway Mobility',
-      },
-    ],
+    items: clientTestimonials,
   },
 }

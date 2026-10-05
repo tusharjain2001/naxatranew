@@ -229,3 +229,9 @@
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
+
+/* Blogs page: the "Other blogs" list scrolls in place past its fourth post, on a thin blue scrollbar. */
+.blog-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) transparent;
+}

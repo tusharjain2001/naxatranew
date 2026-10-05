@@ -11,8 +11,9 @@ export default function Commitment() {
             {commitment.title.replace(' Drives Every Decision We Make', '')}
             <br className="hidden xl:block" /> Drives Every Decision We Make
           </h2>
-          <p className="w-334 text-14 leading-16 font-light text-grey-dark xl:flex xl:h-87 xl:w-800 xl:items-center xl:text-24 xl:leading-32 xl:font-normal xl:text-grey">
-            {commitment.body}
+          <p className="w-334 text-14 leading-16 font-light text-grey-dark xl:flex xl:h-87 xl:w-800 xl:items-center xl:text-24 xl:leading-32 xl:font-normal xl:text-grey xl:capitalize">
+            <span className="xl:hidden">{commitment.mobileBody}</span>
+            <span className="hidden xl:inline">{commitment.body}</span>
           </p>
           <p className="text-12 leading-24 tracking-display uppercase xl:flex xl:h-75 xl:items-center xl:text-24 xl:leading-normal xl:tracking-normal">
             <span>

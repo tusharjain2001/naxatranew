@@ -42,7 +42,7 @@ export default function Deployment() {
         <h2 className="w-337 text-32 leading-[calc(var(--spacing)*33.42)] tracking-display xl:w-1340 xl:text-64 xl:leading-80">
           {deployment.title}
         </h2>
-        <p className="flex h-[calc(var(--spacing)*23.87)] items-center justify-center text-14 leading-[calc(var(--spacing)*18.15)] text-grey xl:h-32 xl:w-800 xl:text-24 xl:leading-32">
+        <p className="flex h-[calc(var(--spacing)*23.87)] items-center justify-center text-14 leading-[calc(var(--spacing)*18.15)] text-grey xl:h-32 xl:normal-case xl:w-800 xl:text-24 xl:leading-32">
           {deployment.subtitle}
         </p>
       </div>

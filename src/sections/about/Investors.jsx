@@ -36,7 +36,7 @@ function PartnerLogo({ partner }) {
 
 export default function Investors() {
   return (
-    <section className="mx-auto flex w-full max-w-1920 flex-col gap-[calc(var(--spacing)*33.076)] px-16 py-100 xl:gap-100 xl:px-100 xl:py-100">
+    <section className="mx-auto flex w-full max-w-1920 flex-col gap-[calc(var(--spacing)*33.076)] px-16 py-56 xl:gap-100 xl:px-100 xl:py-100">
       <h2 className="text-32 leading-37 tracking-display capitalize xl:text-64 xl:leading-80">{investors.title}</h2>
 
       <div className="flex flex-col gap-[calc(var(--spacing)*33.076)] xl:gap-118">

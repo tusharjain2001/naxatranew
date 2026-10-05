@@ -2,7 +2,7 @@ import { goal } from '../../data/about'
 
 export default function Goal() {
   return (
-    <section className="mx-auto w-full max-w-1920 px-16 py-100 xl:h-960 xl:px-100 xl:pt-99 xl:pb-0">
+    <section className="mx-auto w-full max-w-1920 px-16 py-56 xl:h-960 xl:px-100 xl:pt-99 xl:pb-0">
       <div className="relative h-469 overflow-hidden rounded-12 xl:h-769 xl:rounded-10-5">
         {/* Desktop frames the photo 123px above the card and lets the card crop it. Mobile has its own portrait crop. */}
         <div className="absolute inset-0 xl:inset-auto xl:-top-123 xl:left-0 xl:h-1054 xl:w-full">

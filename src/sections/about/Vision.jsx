@@ -2,7 +2,7 @@ import { vision } from '../../data/about'
 
 export default function Vision() {
   return (
-    <section className="w-full py-100 xl:py-[calc(var(--spacing)*96.5)]">
+    <section className="w-full py-56 xl:py-[calc(var(--spacing)*96.5)]">
       <div className="relative h-601 w-full overflow-hidden xl:h-531">
         <picture>
           <source media="(max-width: 1279px)" srcSet={vision.mobileImage} />

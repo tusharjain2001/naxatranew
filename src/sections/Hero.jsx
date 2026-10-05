@@ -48,7 +48,7 @@ export default function Hero() {
       id="home"
       aria-roledescription="carousel"
       aria-label="Highlights"
-      className="relative h-744 overflow-hidden bg-black xl:h-hero"
+      className="relative h-720 overflow-hidden bg-black xl:h-hero"
     >
       <h1 className="sr-only">Naxatra Labs: advanced motors and controllers, all made in India</h1>
       {heroSlides.map((slide, i) => {
@@ -121,19 +121,19 @@ export default function Hero() {
                     : slide.title.join(' ')}
                 </h2>
                 {slide.subtitle && <p className="text-20 leading-28 capitalize">{slide.subtitle.join(' ')}</p>}
-                <Button variant="white" size="heroM" href="#products" tabIndex={isActive ? 0 : -1}>
-                  Explore Now
+                <Button variant="white" size="heroM" href={slide.href ?? '#products'} tabIndex={isActive ? 0 : -1}>
+                  {slide.cta ?? 'Explore Now'}
                 </Button>
               </div>
 
               <Button
                 variant="white"
                 size="hero"
-                href="#products"
+                href={slide.href ?? '#products'}
                 tabIndex={isActive ? 0 : -1}
                 className="absolute top-448 left-103 hidden xl:inline-flex"
               >
-                Explore Now
+                {slide.cta ?? 'Explore Now'}
               </Button>
             </div>
           </div>
@@ -148,7 +148,7 @@ export default function Hero() {
         </div>
 
         {/* Progress bars */}
-        <div className="pointer-events-auto absolute top-548 left-1/2 flex -translate-x-1/2 items-center gap-5 xl:tx-737 xl:gap-8">
+        <div className="pointer-events-auto absolute top-610 left-1/2 flex -translate-x-1/2 items-center gap-5 xl:tx-737 xl:gap-8">
           {heroSlides.map((slide, i) => (
             <button
               key={slide.id}
@@ -168,7 +168,7 @@ export default function Hero() {
           ))}
         </div>
       </div>
-      <ScrollDown />
+      <ScrollDown className="top-626 xl:top-auto xl:bottom-42" />
     </section>
   )
 }

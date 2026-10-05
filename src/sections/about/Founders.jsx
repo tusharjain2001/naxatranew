@@ -3,10 +3,10 @@ import PersonCard from '../../components/ui/PersonCard'
 
 export default function Founders() {
   return (
-    <section className="mx-auto flex w-full max-w-1920 flex-col items-center gap-60 px-16 pt-100 pb-[calc(var(--spacing)*59.64)] xl:justify-center xl:gap-60 xl:px-0 xl:py-100">
+    <section className="mx-auto flex w-full max-w-1920 flex-col items-center gap-60 px-16 pt-56 pb-[calc(var(--spacing)*103.64)] xl:justify-center xl:gap-60 xl:px-0 xl:py-100">
       <div className="flex flex-col items-center gap-10 text-center capitalize xl:gap-16">
         <h2 className="w-237 text-32 leading-36 tracking-display xl:w-auto xl:text-64 xl:leading-80">{founders.title}</h2>
-        <p className="py-[calc(var(--spacing)*2.86)] text-14 leading-[calc(var(--spacing)*18.145)] text-grey xl:py-0 xl:text-32 xl:leading-32">
+        <p className="py-[calc(var(--spacing)*2.86)] text-14 leading-[calc(var(--spacing)*18.145)] text-grey xl:py-0 xl:text-32 xl:leading-32 xl:normal-case">
           {founders.subtitle}
         </p>
       </div>

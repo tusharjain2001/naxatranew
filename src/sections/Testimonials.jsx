@@ -47,6 +47,7 @@ export default function Testimonials({
   subtitle = 'A few words from our clients...',
   items = testimonials,
   arrowsClass,
+  mobileLeading = 'leading-32',
 }) {
   const [trackRef, track] = useScrollTrack()
 
@@ -57,7 +58,7 @@ export default function Testimonials({
         // Sentence case, unlike the other section subtitles.
         subtitle={subtitle}
         subtitleClass="normal-case"
-        mobileLeading="leading-32"
+        mobileLeading={mobileLeading}
         desktopGap="xl:gap-11"
         track={track}
         desktopArrows={desktopArrows}

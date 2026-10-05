@@ -83,14 +83,18 @@ export const heroSlides = [
     id: 'made-in-india',
     image: a('hero-bridge.webp'),
     mobileImage: a('m/hero-bridge.webp'),
-    // The phone artboard breaks this headline after “India.” rather than letting it wrap.
+    // The phone artboard breaks this headline after “India's” rather than letting it wrap.
     mobileLines: true,
-    title: ['Built In India.', 'Driving What’s Next.'],
-    subtitle: ['Designed. Developed. Driven.'],
+    title: ['Powering India’s', 'Electric Motion.'],
+    subtitle: ['Engineered. Tested. Proven.'],
+    // This slide asks for an enquiry; the others point down to the products.
+    cta: 'Enquire Now',
+    href: '/contact',
     subtitleGap: 'gap-48',
     overlay: 'bridge',
-    titleClass: 'h-181',
-    top: 120,
+    titleClass: 'h-176',
+    top: 122,
+    left: 100,
   },
   {
     id: 'mobility',
@@ -131,6 +135,8 @@ export const heroSlides = [
 export const commitment = {
   title: 'Our Commitment To Innovation, Precision, And Sustainability Drives Every Decision We Make',
   body: 'At Naxatra Labs, we engineer motors and controllers around your application, not the other way around. Every product is tailored, tested, and optimized for real-world performance and efficiency.',
+  // The phone artboard (15421:61298) words the paragraph differently.
+  mobileBody: "At Naxatra Labs, we understand that every application has unique requirements. They're engineered to fit your needs. We customize every detail to ensure optimal performance and efficiency.",
   location: 'AHMEDABAD, INDIA',
   image: a('commitment-motor.png'),
   stats: [
@@ -188,29 +194,31 @@ export const manufacturing = {
 
 export const deployment = {
   title: 'Engineered Here, Deployed Everywhere',
-  subtitle: 'High-Performance Electric Motors For Global Applications.',
+  subtitle: 'High-performance electric motor for global applications.',
   tabs: ['Design', 'Performance', 'Technology'],
   images: [
-    { src: a('deploy-drone.png'), alt: 'Agricultural spraying drone over a paddy field' },
     { src: a('deploy-repair.png'), alt: 'Technician servicing an electric motorcycle drivetrain' },
     { src: a('deploy-charging.png'), alt: 'Electric car being charged' },
+    { src: a('deploy-drone.png'), alt: 'Agricultural spraying drone over a paddy field' },
   ],
 }
 
+// Featured motors (Figma 15421:31775 desktop, 15421:61693 phone). `image` places the desktop render in its
+// 416.5x478.6 card, `mobile` in the 370x160 phone card; `descTop`/`descWidth` centre the desktop description.
 export const products = [
   {
     brand: 'Antarix',
     series: 'RF Series',
     // The RF card opens the full product listing; the others open their motor's page.
     href: '/products',
-    mobileSeries: 'RF Series',
-    desc: 'Main description point',
-    descClass: 'left-141 top-121 text-left',
+    desc: 'Radial Flux Motors for Enhanced Efficiency and Power Output in Electric Vehicles.',
+    descTop: 110.12,
+    descWidth: 355.965,
     image: {
       src: a('product-rf.png'),
-      box: { l: -51, t: 58, w: 660.666, h: 589.562 },
-      inner: { w: 576.236, h: 485.439, rotate: -168.62 },
-      crop: { w: 102.94, h: 68.73, l: 0.7, t: 12.77 },
+      box: { l: -29.17, t: 134.8, w: 471.321, h: 327.857 },
+      inner: { w: 430.924, h: 247.727, rotate: -168.62 },
+      crop: { w: 102.94, h: 100.73, l: 0.7, t: 0.34 },
     },
     mobile: {
       src: a('product-rf.png'),
@@ -221,15 +229,15 @@ export const products = [
   },
   {
     brand: 'Antarix',
-    series: 'AF58',
+    series: 'AF Series',
     href: '/products/af58',
-    mobileSeries: 'AF Series',
-    desc: 'Main description point',
-    descClass: 'left-141 top-131 text-center',
+    desc: 'Efficient Axial Flux Motors for Superior Performance',
+    descTop: 113.67,
+    descWidth: 293.896,
     image: {
       src: a('product-af58.png'),
-      box: { l: -60, t: 58, w: 635.949, h: 640.945 },
-      inner: { w: 498.9, h: 404.6, rotate: 47.15 },
+      box: { l: -44.86, t: 66.37, w: 475.579, h: 479.315 },
+      inner: { w: 373.07, h: 302.6, rotate: 47.15 },
       fit: 'object-cover',
     },
     mobile: {
@@ -241,15 +249,16 @@ export const products = [
   },
   {
     brand: 'PT',
-    series: '500',
+    series: 'Series',
+    joiner: ' ',
     href: '/products/pt500',
-    mobileSeries: '500',
-    desc: 'Main description point',
-    descClass: 'left-141 top-121 text-left',
+    desc: 'Power Tool motor designed for industrial tools.',
+    descTop: 111.43,
+    descWidth: 247.53,
     image: {
       src: a('product-pt500.png'),
-      box: { l: -59.3, t: 89, w: 686.76, h: 694.593 },
-      inner: { w: 530.2, h: 448.9, rotate: 48.91 },
+      box: { l: -32.03, t: 93.67, w: 488.95, h: 511.189 },
+      inner: { w: 396.45, h: 335.7, rotate: 60 },
       fit: 'object-fill',
     },
     mobile: {
@@ -259,7 +268,68 @@ export const products = [
       fit: 'object-fill',
     },
   },
+  {
+    brand: 'Drone',
+    series: 'Motor',
+    joiner: ' ',
+    href: '/products/drone',
+    desc: 'High performance motor Built for continuous agri duty.',
+    descTop: 111.25,
+    descWidth: 247,
+    // product-drone.webp is the artboard's crop of the render, so it fills its rotated box.
+    image: {
+      src: a('product-drone.webp'),
+      box: { l: 49.62, t: 153.77, w: 317.908, h: 306.812 },
+      inner: { w: 263.774, h: 248.258, rotate: -14.62 },
+      fit: 'object-fill',
+    },
+    mobile: {
+      src: a('product-drone.webp'),
+      box: { l: 212, t: 20.75, w: 131.523, h: 126.932 },
+      inner: { w: 109.127, h: 102.708, rotate: -14.62 },
+      fit: 'object-fill',
+    },
+  },
 ]
+
+// Client quotes (home slide 15421:31796), shared with the Others page.
+export const clientTestimonials = [
+  {
+    id: 'xmatic',
+    header: a('others/testimonial-1.webp'),
+    quote: "At Xmatic Innovations, we rely on Naxatra Labs' PMSM motors for our unmanned ground vehicles. Their performance and quality are consistently reliable, and their team has been supportive throughout the process. We highly recommend Naxatra Labs.",
+    name: 'Mithun S K',
+    role: 'Managing Director & CEO, Xmatic Innovations Pvt. Ltd.',
+  },
+  {
+    id: 'cleanland',
+    header: a('others/testimonial-2.webp'),
+    quote: 'It has been a great experience working with Naxatra Labs. The team has been professional, supportive, and responsive to our requirements throughout the project. We truly appreciate their cooperation and look forward to working together on future projects.',
+    name: 'Aditya Patel',
+    role: 'R&D Lead, Cleanland - Sweeping Machine Manufacturer',
+  },
+  {
+    id: 'harvtech',
+    header: a('others/testimonial-3.webp'),
+    quote: 'This is a dummy testimonial sentence. Designed to tackle Indian conditions, diverse terrains, and tough environmental conditions, our motors deliver unmatched durability and performance wherever the journey takes you.',
+    name: 'Mohamed Imran',
+    role: 'Co-Founder & COO at Harvtech',
+  },
+  {
+    id: 'greenway',
+    header: a('others/testimonial-4.webp'),
+    quote: 'This is a dummy testimonial sentence. Designed to tackle Indian conditions, diverse terrains, and tough environmental conditions, our motors deliver unmatched durability and performance wherever the journey takes you.',
+    name: 'Harsh Raval',
+    role: 'Founder & COO, Greenway Mobility',
+  },
+]
+
+// The home page's "Don't see your application here?" banner (node 15421:60709).
+export const engineerBanner = {
+  title: ["Don't see your application here?", "We'll engineer it."],
+  cta: 'Talk To Our Engineers',
+  href: '/contact',
+}
 
 const testimonial = {
   quote:
@@ -279,7 +349,7 @@ export const journey = [
   { year: '2020', title: 'Born to Disrupt', text: 'Naxatra Labs takes flight with a mission to revolutionize hybrid drones.', image: a('journey-01.png') },
   { year: '2020', title: 'Electric Dreams Take Shape', text: 'Ventured into Axial Flux Motors for EVs, bringing cutting-edge hub and mid-drive technology to life.', image: a('journey-02.png') },
   { year: '2020', title: 'Gaining Recognition', text: 'Became a Finalist at Evangelise 2021, proving our innovation potential.', image: a('journey-03.png') },
-  { year: '2022', title: 'Engineering the Future', text: 'In-House developed advanced magnet tech, cooling methods and electromagnetic designs for next-gen efficiency.', image: a('journey-04.png') },
+  { year: '2022', title: 'Engineering the Future', text: 'In-House developed advanced magnet tech, cooling methods and electromagnetic designs for next-gen efficiency.', image: a('journey-04b.webp') },
   { year: '2022', title: 'Building Smarter, Faster Motors', text: 'Developed our first Radial Hub Motor, setting the stage for high-performance EVs.', image: a('journey-05.png'), inset: { fade: 'opacity-12', aspect: 'aspect-[222/148]', top: 40, fit: 'object-fill' }, titleLeading: 'leading-40' },
   { year: '2022', title: 'Evangelise 2022', text: 'Finalist at Evangelise 2022 by iCreate. Recognized for groundbreaking innovation in electric mobility.', image: a('journey-06.png'), inset: { fade: 'opacity-12', aspect: 'aspect-[226/160]', top: 35, fit: 'object-cover' }, titleLeading: 'leading-40' },
   { year: '2023', title: 'Pushing Boundaries', text: 'Began Radial Flux Motor development, refining performance and efficiency.', image: a('journey-07.png') },
@@ -293,17 +363,40 @@ export const journey = [
   { year: '2025', title: 'Another Production Facility', text: 'Inaugurated our another state-of-the-art production unit in August 2025, enabling higher production capacity and precision manufacturing for next-generation motors.', image: a('journey-15.png') },
   { year: '2025', title: 'Showcasing Innovation', text: 'Exhibited at EV India Expo 2025, presented our advancements in motor technologies and forging key international collaborations.', image: a('journey-16.png') },
   { year: '2025', title: 'Pre-Series A ($3M)', text: 'Motor & Controllers: Efficient Motors, Better Performance, Greener Future', image: a('journey-17.png'), inset: { fade: 'opacity-5', aspect: 'aspect-[222/148]', top: 40, fit: 'object-cover' } },
+  { year: '2026', title: 'Certified For The Road', text: "Our motors cleared NATRAX certification, proving their performance, safety and reliability to India's automotive testing standards.", image: a('journey-18.webp') },
+  { year: '2026', title: 'Taking Flight', text: "Launched our drone motor range, taking Naxatra's motion technology from the road into the sky.", image: a('journey-19.webp') },
 ]
 
+// The old site's home "Our Blogs" cards (C:\Users\Intel\Desktop\naxatra, BlogsSection.jsx), with its images.
 export const ideas = [
-  { date: 'May 11, 2023', title: 'National Technology Week', image: a('idea-1.png'), mark: a('idea-mark-1.svg'), mobileImageClass: 'object-[3.5%_50%]' },
-  { date: 'May 11, 2023', title: 'National Technology Week', image: a('idea-2.png'), mark: a('idea-mark-2.svg') },
-  { date: 'May 11, 2023', title: 'National Technology Week', image: a('idea-3.png'), mark: a('idea-mark-3.svg') },
-].map((item, id) => ({
-  id,
-  ...item,
-  text: 'Designed to tackle Indian conditions, diverse terrains, and tough environmental conditions, our motors deliver unmatched durability and performance wherever the journey takes you.',
-}))
+  {
+    id: 'national-technology-week',
+    date: 'May 11, 2023',
+    title: 'National Technology Week',
+    text: 'A proud moment as we presented our innovative motor and controller technology to industry leaders and policymakers, reinforcing our commitment...',
+    image: a('idea-ntw.webp'),
+    alt: 'Naxatra Labs stand at National Technology Week',
+    href: 'https://www.linkedin.com/posts/abhilashmaurya_nationaltechnologyday2023-startupindia-sustainibility-share-7064079426128363520-6C7k/?utm_source=share&utm_medium=member_desktop&rcm=ACoAACO14VQB5vnmxkT3Aaf0vGvf3_Thtn5MaXg',
+  },
+  {
+    id: 'efficiency-is-the-new-fuel',
+    date: 'October 13, 2025',
+    title: 'Efficiency is the new fuel: Rethinking motors for a sustainable future',
+    text: 'Motors have become a ubiquitous part of our modern life, silently existing in almost everything that makes motion possible. However, on the flip...',
+    image: a('idea-efficiency.webp'),
+    alt: 'Science Behind Application Specific Motor Design, EVreporter',
+    href: 'https://evreporter.com/efficiency-is-the-new-fuel-rethinking-motors-for-a-sustainable-future/',
+  },
+  {
+    id: 'bharat-mobility-global-expo',
+    date: 'Jan 21, 2025',
+    title: 'Bharat Mobility Global Expo',
+    text: 'A defining moment where we unveiled a groundbreaking mobility solutions, setting new benchmarks in sustainable and high-performance transportation...',
+    image: a('idea-bharat.webp'),
+    alt: 'Naxatra Labs stand at Bharat Mobility Global Expo',
+    href: 'https://www.linkedin.com/posts/abhilashmaurya_naxatralabs-bharatmobilityexpo-autoexpo2025-share-7286605063093972993-E4-B/?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAACO14VQB5vnmxkT3Aaf0vGvf3_Thtn5MaXg',
+  },
+]
 
 export const footer = {
   offices: [
@@ -331,5 +424,5 @@ export const footer = {
     { label: 'Privacy Policy', href: '/privacy-policy' },
     { label: 'Terms of Use', href: '/terms-of-use' },
   ],
-  copyright: '© 2024 Naxatra Labs. All Rights Reserved.',
+  copyright: '© 2026 Naxatra Labs. All Rights Reserved.',
 }

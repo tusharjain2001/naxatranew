@@ -21,13 +21,13 @@ export default function About() {
       <Values />
       <Goal />
       <Founders />
+      <Investors />
       {/* Shared with the home page; only the vertical rhythm differs on this artboard. */}
-      <Journey spacing="py-100 xl:py-100" />
+      <Journey spacing="py-56 xl:py-100" />
       <Recognition />
       <Vision />
-      <Investors />
-      <Ideas spacing="gap-28 py-100 xl:gap-100 xl:pt-96 xl:pb-93" />
-      <Testimonials spacing="gap-60 py-100 xl:gap-80 xl:pt-114 xl:pb-115" />
+      <Ideas spacing="gap-28 py-56 xl:gap-100 xl:pt-96 xl:pb-93" />
+      <Testimonials spacing="gap-60 py-56 xl:gap-80 xl:pt-114 xl:pb-115" subtitle="These Are Our Client Testimonials..." />
     </main>
   )
 }

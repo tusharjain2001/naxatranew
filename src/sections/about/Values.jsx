@@ -3,7 +3,7 @@ import { values } from '../../data/about'
 // 80px icon tile in `em`: 1 design px on desktop, 0.4795 on the mobile artboard (38.36px).
 function ValueIcon({ icon }) {
   return (
-    <span className="relative size-[80em] shrink-0 overflow-hidden rounded-[4em] bg-icon-tile xl:bg-white text-[length:calc(var(--spacing)*0.4795)] xl:text-[length:var(--spacing)]">
+    <span className="relative size-[80em] shrink-0 overflow-hidden rounded-[4em] bg-white text-[length:calc(var(--spacing)*0.4795)] xl:text-[length:var(--spacing)]">
       {icon.src ? (
         <img src={icon.src} alt="" className="absolute inset-0 block size-full" />
       ) : (
@@ -21,24 +21,22 @@ function ValueIcon({ icon }) {
 
 export default function Values() {
   return (
-    <section className="mx-auto flex w-full max-w-1920 flex-col gap-60 px-16 py-100 xl:justify-center xl:gap-100 xl:px-100 xl:py-100">
+    <section className="mx-auto flex w-full max-w-1920 flex-col gap-60 px-16 py-56 xl:justify-center xl:gap-100 xl:px-100 xl:py-100">
       <div className="flex flex-col gap-10 xl:w-1305 xl:gap-25">
         <p className="text-14 leading-28 font-light text-grey-dark uppercase xl:text-20 xl:leading-28">{values.eyebrow}</p>
         <h2 className="text-32 leading-36 tracking-display capitalize xl:text-64 xl:leading-68">{values.title}</h2>
       </div>
 
-      {/* Mobile lists the cards in its own order and stripes every other one; desktop is a 2×2 grid of grey cards. */}
+      {/* Mobile lists the cards in its own order; both are grey cards (desktop a 2×2 grid). */}
       <ul data-reveal="left" className="grid gap-10 xl:grid-cols-2 xl:gap-32">
         {values.items.map((item) => (
           <li
             key={item.title}
-            className={`flex items-center gap-[calc(var(--spacing)*11.508)] p-10 ${item.mobileOrder} ${
-              item.mobileTint ? 'bg-[#f6f7f9]' : ''
-            } xl:order-none xl:gap-24 xl:bg-panel xl:p-32`}
+            className={`flex items-center gap-[calc(var(--spacing)*11.508)] bg-[#f8f8f8] p-10 ${item.mobileOrder} xl:order-none xl:gap-24 xl:bg-panel xl:p-32`}
           >
             <ValueIcon icon={item.icon} />
             <div className="flex min-w-0 flex-1 flex-col gap-[calc(var(--spacing)*4.795)] xl:gap-0">
-              <h3 className="text-[length:calc(var(--spacing)*15.344)] leading-[calc(var(--spacing)*18.221)] uppercase xl:flex xl:capitalize xl:h-44 xl:items-center xl:text-32 xl:leading-[calc(var(--spacing)*26.55)]">
+              <h3 className="text-[length:calc(var(--spacing)*15.344)] leading-[calc(var(--spacing)*18.221)] capitalize xl:flex xl:h-44 xl:items-center xl:text-32 xl:leading-[calc(var(--spacing)*26.55)]">
                 {item.title}
               </h3>
               <p className="text-[length:calc(var(--spacing)*11.508)] leading-[calc(var(--spacing)*16.178)] text-grey xl:flex xl:h-36 xl:items-center xl:text-24 xl:leading-[calc(var(--spacing)*33.74)]">
