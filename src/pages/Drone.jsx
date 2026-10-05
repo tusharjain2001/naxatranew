@@ -10,11 +10,10 @@ import Capabilities from '../sections/drone/Capabilities'
 import DifferentApplication from '../sections/industry/DifferentApplication'
 import Features from '../sections/industry/Features'
 import Process from '../sections/industry/Process'
-import Testimonials from '../sections/Testimonials'
 import SpecForm from '../sections/industry/SpecForm'
 
-// Drone industry page. Sections follow the Figma "drone page" artboard; the last five are shared with
-// the other industry pages.
+// Drone industry page. Sections follow the Figma "drone page (latest)" artboard (node 15420:4563, no
+// testimonials); the last four are shared with the other industry pages.
 export default function Drone() {
   useEffect(() => {
     document.title = drone.title
@@ -34,7 +33,6 @@ export default function Drone() {
       <DifferentApplication image={drone.cta.image} imageClass={drone.cta.imageClass} mobileImage={drone.cta.mobileImage} mobileButton="cta" mobileTop="pt-99" mobileBottom="pb-81" />
       <Features data={drone.features} />
       <Process centered />
-      <Testimonials spacing="gap-60 pt-56 pb-60 xl:gap-93 xl:pt-100 xl:pb-100" desktopArrows arrowsClass="xl:mr-116 xl:self-start" />
       <SpecForm applications={applications} spacing="xl:py-100" />
     </main>
   )

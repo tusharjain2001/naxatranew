@@ -1,8 +1,8 @@
 const a = (file) => `/assets/industry/drone/${file}`
-const pulseClip = (transform) => `https://res.cloudinary.com/dccp724cq/video/upload/${transform}/v1790763913/2D_drone_white_bg_2_yxmc1w`
+const pulseClip = (transform) => `https://res.cloudinary.com/dccp724cq/video/upload/${transform}/v1791202072/2D_drone_white_Bg_lines_fixed_uqfuko`
 
 // Drone industry page (Figma "drone page"). It has its own section set, so it is routed separately from
-// the four template industry pages; the banner, outcomes, timeline, testimonials and form are shared.
+// the four template industry pages; the banner, outcomes, timeline and form are shared.
 export default {
   slug: 'drone',
   name: 'Drone',
@@ -127,11 +127,12 @@ export default {
     reveal: 'left',
     titleCase: true,
     items: [
-      { title: '+5-8% Range', text: 'From Motor Swap Alone', icon: '/assets/industry/2w/feat-range.svg' },
-      { title: '2-3 week', text: 'Leadtime', icon: '/assets/industry/2w/feat-leadtime.svg' },
-      { title: '>40°C ambient', text: 'Sustained Operation', icon: '/assets/industry/2w/feat-ambient.svg' },
-      { title: 'PLI Qualifying', text: 'Motor', icon: '/assets/industry/2w/feat-pli.svg' },
-      { title: 'Easily configurable', text: 'For Different Applications', icon: '/assets/industry/2w/feat-config.svg' },
+      { title: '+10% Flight Time', text: 'Higher efficiency per charge', icon: a('feat-flight.svg') },
+      { title: '48V / 72V / 96V', text: 'With CAN communication', icon: a('feat-bolt.svg') },
+      { title: '>40°C ambient', text: 'Sustained Operation', icon: a('feat-thermo.svg') },
+      { title: 'IP67 Sealed', text: 'Dust, heat and monsoon tested', icon: a('feat-motor.svg') },
+      // Figma leaves this tile empty; the phone artboard uses the grid glyph.
+      { title: 'Adaptive Power', text: 'Auto-adjusts to load and terrain', icon: '/assets/industry/2w/feat-config.svg' },
     ],
   },
 }
