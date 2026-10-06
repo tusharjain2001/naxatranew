@@ -87,6 +87,9 @@ export const heroSlides = [
     mobileLines: true,
     title: ['Powering India’s', 'Electric Motion.'],
     subtitle: ['Engineered. Tested. Proven.'],
+    // This slide asks for an enquiry; the others point down to the products.
+    cta: 'Enquire Now',
+    href: '/contact',
     subtitleGap: 'gap-48',
     overlay: 'bridge',
     titleClass: 'h-176',
