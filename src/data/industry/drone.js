@@ -67,7 +67,7 @@ export default {
     {
       title: ['Drone Motors, Engineered For Every Duty Cycle.'],
       text: 'Tested across dust, heat, and monsoon, with IP67 sealing. Built for continuous duty, so your drone stays airborne when it matters.',
-      button: { label: 'View our motors', href: '/products' },
+      button: { label: 'Know our motor', href: '/products/drone' },
       mobile: { title: 'w-304', titleGap: 'gap-28', buttonGap: 'gap-45', bottom: 'pb-11' },
       image: a('card-motor.webp'),
       mobileImage: a('m/card-motor.webp'),

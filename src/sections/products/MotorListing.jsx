@@ -257,7 +257,7 @@ function FilterDrawer({ open, onClose, ranges, setRanges, checked, toggleApp, cl
                       type="button"
                       onClick={() => setCategory(c.key)}
                       aria-pressed={c.key === category}
-                      className={`flex h-36 w-full cursor-pointer items-center px-4 text-left text-12 ${c.key === category ? 'bg-silver/25' : ''}`}
+                      className={`flex h-36 w-full cursor-pointer items-center px-4 text-left text-13 ${c.key === category ? 'bg-silver/25' : ''}`}
                     >
                       {c.label}
                     </button>
@@ -269,7 +269,7 @@ function FilterDrawer({ open, onClose, ranges, setRanges, checked, toggleApp, cl
                 {cat.options.map((opt) => (
                   <label key={opt} className="flex h-24 cursor-pointer items-center gap-8">
                     <input type="checkbox" checked={checked.has(opt)} onChange={() => toggleApp(opt)} className="size-16 shrink-0 cursor-pointer accent-primary" />
-                    <span className="text-12">{opt}</span>
+                    <span className="text-13">{opt}</span>
                   </label>
                 ))}
               </div>
