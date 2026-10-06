@@ -2,13 +2,13 @@ import useAutoCycle from '../../hooks/useAutoCycle'
 
 // "Why Naxatra?" (node 15421:60088): four reasons beside a workshop photo. Every three seconds the next
 // reason is highlighted and its photo shown (Figma's note asks for it), and hovering or clicking a reason
-// picks it. The phone shows the photo under the highlighted reason.
+// picks it and restarts the wait from there. The phone shows the photo under the highlighted reason.
 export default function WhyUs({ data }) {
-  const { ref, index, select, hover } = useAutoCycle(data.items.length, 3000)
+  const { ref, index, select } = useAutoCycle(data.items.length, 3000)
   const active = data.items[index]
 
   return (
-    <section ref={ref} {...hover} className="mx-auto flex w-full max-w-1920 flex-col gap-24 px-16 py-56 xl:flex-row xl:items-end xl:gap-60 xl:p-100">
+    <section ref={ref} className="mx-auto flex w-full max-w-1920 flex-col gap-24 px-16 py-56 xl:flex-row xl:items-end xl:gap-60 xl:p-100">
       <div className="flex flex-col gap-24 xl:shrink-0 xl:gap-64">
         <h2 className="text-32 leading-[calc(var(--spacing)*35.6)] tracking-display capitalize xl:text-64 xl:leading-68">{data.title}</h2>
         <ul className="flex flex-col gap-[calc(var(--spacing)*14.012)] xl:gap-32">
