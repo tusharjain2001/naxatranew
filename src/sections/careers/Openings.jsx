@@ -93,9 +93,8 @@ function JobCard({ job, onApply }) {
           onClick={() => setOpen((v) => !v)}
           className="size-[calc(var(--spacing)*25.479)] shrink-0 cursor-pointer transition-transform duration-300 hover:scale-110 xl:size-57"
         >
-          {/* Black on the phone artboard, grey (#515151) on desktop. */}
-          <img src="/assets/careers/plus.svg" alt="" className={`size-full transition-transform duration-300 xl:hidden ${open ? 'rotate-45' : ''}`} />
-          <img src="/assets/careers/plus-grey.svg" alt="" className={`hidden size-full transition-transform duration-300 xl:block ${open ? 'rotate-45' : ''}`} />
+          {/* Turned 45° it becomes the open card's close (×) icon. */}
+          <img src="/assets/careers/plus-grey.svg" alt="" className={`size-full transition-transform duration-300 ${open ? 'rotate-45' : ''}`} />
         </button>
       </div>
 
@@ -105,9 +104,14 @@ function JobCard({ job, onApply }) {
           className={`grid transition-[grid-template-rows] duration-300 ease-out ${open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}
         >
           <div className="overflow-hidden">
-            <p className="pb-24 text-14 leading-20 font-light text-grey xl:max-w-1164 xl:pb-40 xl:text-24 xl:leading-36">
-              {job.summary || 'Full job description coming soon.'}
-            </p>
+            <div className="pb-24 text-12 leading-18 font-light text-grey xl:pb-55 xl:text-28 xl:leading-40">
+              <p>
+                <span className="font-normal">Role Summary:</span> {job.summary}
+              </p>
+              <p className="mt-18 xl:mt-40">
+                <span className="font-normal">Compensation:</span> {job.compensation}
+              </p>
+            </div>
           </div>
         </div>
 
@@ -135,16 +139,16 @@ export default function Openings({ onApply }) {
   const jobs = [...openings.jobs].sort(sorters[sort])
 
   return (
-    <section className="mx-auto flex w-full max-w-1920 flex-col gap-60 px-14 py-100 xl:gap-56 xl:px-100 xl:py-100">
+    <section className="mx-auto flex w-full max-w-1920 flex-col gap-60 px-14 py-56 xl:gap-56 xl:px-100 xl:py-100">
       <div className="flex flex-col gap-8 px-2 xl:gap-16 xl:px-0">
-        <h2 className="text-32 leading-[calc(var(--spacing)*35.6)] tracking-display xl:w-1240 xl:text-64 xl:leading-80">{openings.title}</h2>
+        <h2 className="text-32 leading-[calc(var(--spacing)*35.6)] tracking-display capitalize xl:w-982 xl:text-64 xl:leading-80">{openings.title}</h2>
         <p className="text-14 leading-17 font-light text-grey-dark xl:text-32 xl:leading-40 xl:text-grey">{openings.subtitle}</p>
       </div>
 
       <div className="flex flex-col gap-24 xl:gap-43">
         <div className="flex items-center justify-between gap-[calc(var(--spacing)*26.798)] xl:justify-start xl:gap-84">
           <h3 className="text-20 leading-[calc(var(--spacing)*25.522)] tracking-display capitalize xl:w-1448 xl:text-40 xl:leading-80">
-            {openings.jobs.length} open positions
+            {openings.count ?? openings.jobs.length} open positions
           </h3>
           <SortMenu value={sort} onChange={setSort} />
         </div>

@@ -121,19 +121,19 @@ export default function Hero() {
                     : slide.title.join(' ')}
                 </h2>
                 {slide.subtitle && <p className="text-20 leading-28 capitalize">{slide.subtitle.join(' ')}</p>}
-                <Button variant="white" size="heroM" href={slide.href ?? '#products'} tabIndex={isActive ? 0 : -1}>
-                  {slide.cta ?? 'Explore Now'}
+                <Button variant="white" size="heroM" href="#products" tabIndex={isActive ? 0 : -1}>
+                  Explore Now
                 </Button>
               </div>
 
               <Button
                 variant="white"
                 size="hero"
-                href={slide.href ?? '#products'}
+                href="#products"
                 tabIndex={isActive ? 0 : -1}
                 className="absolute top-448 left-103 hidden xl:inline-flex"
               >
-                {slide.cta ?? 'Explore Now'}
+                Explore Now
               </Button>
             </div>
           </div>

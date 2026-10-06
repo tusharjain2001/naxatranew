@@ -7,13 +7,15 @@ export default function CareersHero() {
       title={careersHero.title}
       subtitle={careersHero.subtitle}
       image={careersHero.image}
-      foregroundAlt="The Naxatra Labs team standing together on the factory roof"
+      foregroundAlt=""
+      cta={careersHero.cta}
+      scrollDown={false}
       mobile={{
         image: careersHero.mobileImage,
         height: 'h-718',
-        // The blue wash is already baked into the phone image.
+        // The blueprint has no blue wash.
         wash: 'hidden',
-        text: 'gap-18 pt-100',
+        text: 'gap-24 pt-80',
         title: 'text-40 leading-48',
         subtitle: 'text-20 leading-28',
       }}
