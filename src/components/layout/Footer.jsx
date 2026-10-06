@@ -1,4 +1,7 @@
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { footer } from '../../data/home'
+import { loadRecaptcha, RECAPTCHA_SITE_KEY } from '../../lib/recaptcha'
+import { subscribe } from '../../lib/newsletter'
 import Button from '../ui/Button'
 
 const socials = [
@@ -31,9 +34,72 @@ function Copyright({ className }) {
   )
 }
 
-function Newsletter({ mobile = false }) {
+// The reCAPTCHA checkbox, rendered once its box comes near the screen (the hidden phone/desktop copy never
+// does, so only one widget loads). Figma draws it at 245×61, so Google's 304×78 widget is scaled to 80%.
+function Captcha({ onReady, className }) {
+  const box = useRef(null)
+  useEffect(() => {
+    const el = box.current
+    let cancelled = false
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return
+        io.disconnect()
+        loadRecaptcha()
+          .then((grecaptcha) => {
+            if (cancelled) return
+            const id = grecaptcha.render(el, { sitekey: RECAPTCHA_SITE_KEY, theme: 'dark' })
+            onReady({ token: () => grecaptcha.getResponse(id), reset: () => grecaptcha.reset(id) })
+          })
+          .catch(() => {})
+      },
+      { rootMargin: '300px' },
+    )
+    io.observe(el)
+    return () => {
+      cancelled = true
+      io.disconnect()
+    }
+  }, [onReady])
   return (
-    <form onSubmit={(e) => e.preventDefault()} className={mobile ? 'flex w-294 flex-col items-start gap-20' : 'flex flex-col items-start'}>
+    <div className={`h-62 w-245 ${className}`}>
+      <div ref={box} className="origin-top-left scale-80" />
+    </div>
+  )
+}
+
+const joinLabels = { idle: 'Join', joining: 'Joining...', done: 'Thank You!' }
+
+// Newsletter sign-up (15420:4155): the captcha, then the email box with its Join button, which reads
+// "Joining..." while the request runs (15564:170) and turns pale blue reading "Thank You!" once it
+// succeeds (15564:182).
+function Newsletter({ mobile = false }) {
+  const [status, setStatus] = useState('idle')
+  const [error, setError] = useState('')
+  const captcha = useRef(null)
+  const onCaptchaReady = useCallback((widget) => (captcha.current = widget), [])
+
+  const submit = async (e) => {
+    e.preventDefault()
+    if (status === 'joining') return
+    const form = e.currentTarget
+    const token = captcha.current?.token()
+    if (!token) return setError('Please confirm you’re not a robot.')
+    setError('')
+    setStatus('joining')
+    try {
+      await subscribe(form.email.value.trim(), token)
+      form.reset()
+      setStatus('done')
+    } catch {
+      setStatus('idle')
+      setError('Something went wrong. Please try again.')
+    }
+    captcha.current?.reset()
+  }
+
+  return (
+    <form onSubmit={submit} className={mobile ? 'flex w-294 flex-col items-start gap-20' : 'flex flex-col items-start'}>
       <h2
         className={
           mobile
@@ -56,9 +122,38 @@ function Newsletter({ mobile = false }) {
           </span>
         ))}
       </p>
-      <Button as="button" type="submit" size={mobile ? 'sm' : 'md'} className={mobile ? 'cursor-pointer' : 'mt-44 cursor-pointer'}>
-        Join
-      </Button>
+      <Captcha onReady={onCaptchaReady} className={mobile ? '' : 'mt-24'} />
+      <div
+        className={`flex items-center bg-white transition-shadow focus-within:ring-2 focus-within:ring-primary ${
+          mobile ? 'w-full gap-8 rounded-4 py-4 pr-4 pl-10' : 'mt-15 gap-10 rounded-8 py-8 pr-8 pl-16'
+        }`}
+      >
+        <input
+          type="email"
+          name="email"
+          required
+          autoComplete="email"
+          aria-label="Email address"
+          placeholder="Enter Your Email"
+          onChange={() => status === 'done' && setStatus('idle')}
+          className={`min-w-0 bg-transparent text-black outline-none placeholder:text-grey/50 ${
+            mobile ? 'h-28 flex-1 text-16 placeholder:text-14' : 'h-40 w-320 text-24 tracking-[calc(var(--spacing)*-0.48)]'
+          }`}
+        />
+        <Button
+          as="button"
+          type="submit"
+          variant={status === 'done' ? 'soft' : 'primary'}
+          size={mobile ? 'sm' : 'md'}
+          disabled={status === 'joining'}
+          className="cursor-pointer normal-case! disabled:cursor-wait"
+        >
+          {joinLabels[status]}
+        </Button>
+      </div>
+      <p role="status" className={`text-[#ff8a8a] ${mobile ? '-mt-12 text-12 leading-16' : 'mt-8 text-16 leading-20'} ${error ? '' : 'sr-only'}`}>
+        {error || (status === 'done' ? 'Thank you for joining the newsletter.' : '')}
+      </p>
     </form>
   )
 }
@@ -119,8 +214,8 @@ export default function Footer() {
                 ))}
               </ul>
             </div>
-            <span aria-hidden className="-mt-4.5 h-[calc(var(--spacing)*340.65)] w-[calc(var(--spacing)*1.52)] shrink-0 bg-divider" />
-            <div className="-mt-14.25 ml-[calc(var(--spacing)*62.14)] normal-case">
+            <span aria-hidden className="-mt-[calc(var(--spacing)*29.5)] h-366 w-2 shrink-0 bg-[#5f5f5f]" />
+            <div className="-mt-[calc(var(--spacing)*29.5)] ml-51 normal-case">
               <Newsletter />
             </div>
           </div>

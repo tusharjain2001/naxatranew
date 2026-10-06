@@ -6,11 +6,13 @@ const variants = {
   white: 'bg-white text-black hover:bg-silver',
   // White-outlined button for dark heroes (Products landing + family detail).
   outlineWhite: 'border-white text-white hover:bg-white hover:text-black',
+  // Pale blue with a hairline inside the box (the footer newsletter's "Thank You!" state).
+  soft: 'bg-primary/20 text-primary shadow-[inset_0_0_0_1px_rgba(24,99,218,0.2)]',
 }
 
-const arrows = { primary: 'white', outline: 'black-sm', white: 'black', outlineWhite: 'white' }
+const arrows = { primary: 'white', outline: 'black-sm', white: 'black', outlineWhite: 'white', soft: 'blue' }
 // The large size uses Figma's longer 18px arrow.
-const largeArrows = { primary: 'white-lg', outline: 'black', white: 'black', outlineWhite: 'white' }
+const largeArrows = { primary: 'white-lg', outline: 'black', white: 'black', outlineWhite: 'white', soft: 'blue' }
 
 const outlined = (variant) => variant === 'outline' || variant === 'outlineWhite'
 

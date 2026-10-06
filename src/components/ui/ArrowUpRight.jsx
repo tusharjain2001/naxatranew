@@ -2,6 +2,7 @@ const arrows = {
   black: { src: '/assets/arrow-black.svg', className: 'h-14.75 w-18' },
   'black-sm': { src: '/assets/arrow-black-sm.svg', className: 'h-14.75 w-17' },
   white: { src: '/assets/arrow-white.svg', className: 'h-14.75 w-17' },
+  blue: { src: '/assets/arrow-blue.svg', className: 'h-14.75 w-17' },
   'white-lg': { src: '/assets/arrow-white-lg.svg', className: 'h-14.75 w-18' },
 }
 
