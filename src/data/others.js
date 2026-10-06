@@ -1,5 +1,3 @@
-import { clientTestimonials } from './home'
-
 const a = (file) => `/assets/others/${file}`
 
 // "Other applications" page (Figma node 15421:59799), reached from the Industry menu's OTHERS tile.
@@ -73,12 +71,5 @@ export default {
       { title: 'Speed that comes from experience, not shortcuts.', text: 'Our first motor took four years to build. A new custom application today takes weeks — because the hard problems were already solved once.', image: a('why-3.webp') },
       { title: 'We don’t need existing volume to say yes.', text: 'If the engineering problem is real, we’re interested in solving it - whether that’s one prototype or eventual scale production.', image: a('why-4.webp') },
     ],
-  },
-
-  // `header` is the card's photo and company logo exported as one picture.
-  testimonials: {
-    title: 'What our clients say about us?',
-    subtitle: 'What our partners say about working with us.',
-    items: clientTestimonials,
   },
 }

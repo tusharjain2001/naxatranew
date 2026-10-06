@@ -27,7 +27,7 @@ export default function About() {
       <Recognition />
       <Vision />
       <Ideas spacing="gap-28 py-56 xl:gap-100 xl:pt-96 xl:pb-93" />
-      <Testimonials spacing="gap-60 py-56 xl:gap-80 xl:pt-114 xl:pb-115" subtitle="These Are Our Client Testimonials..." />
+      <Testimonials />
     </main>
   )
 }

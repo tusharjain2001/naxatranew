@@ -1,4 +1,4 @@
-import { testimonials } from '../data/home'
+import { clientTestimonials } from '../data/home'
 import Dots from '../components/ui/Dots'
 import SectionHeader from '../components/ui/SectionHeader'
 import useScrollTrack from '../hooks/useScrollTrack'
@@ -40,14 +40,15 @@ function TestimonialCard({ item }) {
 
 // `subtitle` and `arrowsClass` let a page follow its own artboard (the drone page has its own line and arrow spot);
 // `items` and `title` swap in a page's own client quotes (the Others page).
+// Every page shows the home page's version: the real client quotes under the same heading and spacing.
 export default function Testimonials({
-  spacing = 'gap-60 py-56 xl:gap-48 xl:pt-90 xl:pb-90',
+  spacing = 'gap-60 py-56 xl:gap-48 xl:pt-60 xl:pb-80',
   desktopArrows = false,
-  title = 'What Innovators Say About Us?',
-  subtitle = 'A few words from our clients...',
-  items = testimonials,
+  title = 'A Few Words From Our Clients',
+  subtitle = 'What our partners say about working with us.',
+  items = clientTestimonials,
   arrowsClass,
-  mobileLeading = 'leading-32',
+  mobileLeading = 'leading-20',
 }) {
   const [trackRef, track] = useScrollTrack()
 

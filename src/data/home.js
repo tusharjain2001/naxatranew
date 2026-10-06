@@ -331,16 +331,6 @@ export const engineerBanner = {
   href: '/contact',
 }
 
-const testimonial = {
-  quote:
-    'This is a dummy testimonial sentence. Designed to tackle Indian conditions, diverse terrains, and tough environmental conditions, our motors deliver unmatched durability and performance wherever the journey takes you.',
-  name: 'Name',
-  role: 'Designation',
-  logo: 'LOGO',
-}
-
-export const testimonials = Array.from({ length: 4 }, (_, i) => ({ id: i, ...testimonial }))
-
 /*
  * Timeline entries. `cover` draws a plain square photo; `inset` draws the product-shot treatment
  * (faded square + full-width photo) and `objectPosition` reproduces off-centre crops from Figma.

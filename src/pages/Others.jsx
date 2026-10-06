@@ -8,11 +8,10 @@ import RightFit from '../sections/others/RightFit'
 import WhyUs from '../sections/others/WhyUs'
 import DifferentApplication from '../sections/industry/DifferentApplication'
 import Process from '../sections/industry/Process'
-import Testimonials from '../sections/Testimonials'
 import SpecForm from '../sections/industry/SpecForm'
 
 // "Other applications" page (Figma node 15421:59799), the Industry menu's OTHERS tile. The banner, timeline,
-// testimonials and form are the shared industry sections.
+// and form are the shared industry sections; it has no testimonials.
 export default function Others() {
   useEffect(() => {
     document.title = others.title
@@ -28,12 +27,6 @@ export default function Others() {
       <RightFit data={others.rightFit} />
       <Process centered />
       <WhyUs data={others.whyUs} />
-      <Testimonials
-        title={others.testimonials.title}
-        subtitle={others.testimonials.subtitle}
-        items={others.testimonials.items}
-        spacing="gap-60 py-56 xl:gap-48 xl:pt-60 xl:pb-80"
-      />
       <SpecForm applications={others.whereElse.items.map((item) => item.title)} spacing="xl:py-100" />
     </main>
   )
