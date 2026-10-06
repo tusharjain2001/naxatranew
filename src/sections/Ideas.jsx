@@ -1,4 +1,5 @@
 import { ideas } from '../data/home'
+import ArrowUpRight from '../components/ui/ArrowUpRight'
 import Dots from '../components/ui/Dots'
 import SectionHeader from '../components/ui/SectionHeader'
 import useScrollTrack from '../hooks/useScrollTrack'
@@ -13,12 +14,30 @@ function ReadMore({ href, className = '' }) {
   )
 }
 
+// "View more" (Figma 15576:201) opens the blogs page: beside the subtitle on desktop, under the cards on the phone.
+function ViewMore({ className = '', arrowClass = 'size-11.25' }) {
+  return (
+    <a href="/blogs" className={`group items-center font-medium text-primary uppercase ${className}`}>
+      <span className="underline underline-offset-2">View More</span>
+      <ArrowUpRight tone="blue" className={`transition-transform duration-200 group-hover:translate-x-2 group-hover:-translate-y-2 ${arrowClass}`} />
+    </a>
+  )
+}
+
 export default function Ideas({ spacing = 'gap-28 py-56 xl:gap-64 xl:pt-74 xl:pb-[calc(var(--spacing)*70.5)]' }) {
   const [trackRef, track] = useScrollTrack()
 
   return (
     <section id="ideas" className={`mx-auto flex w-full max-w-1920 flex-col ${spacing}`}>
-      <SectionHeader title="Ideas. Innovation. Impact" subtitle="And many more to come..." subtitleClass="xl:normal-case" mobileLeading="leading-20" track={track} className="xl:px-98" />
+      <SectionHeader
+        title="Ideas. Innovation. Impact"
+        subtitle="And many more to come..."
+        subtitleClass="xl:normal-case"
+        mobileLeading="leading-20"
+        track={track}
+        action={<ViewMore className="hidden h-44 shrink-0 gap-12 px-24 text-20 leading-20 xl:inline-flex" />}
+        className="xl:items-end xl:px-98"
+      />
 
       <div className="flex flex-col items-center gap-28">
         <div
@@ -54,6 +73,7 @@ export default function Ideas({ spacing = 'gap-28 py-56 xl:gap-64 xl:pt-74 xl:pb
           ))}
         </div>
         <Dots count={track.count} active={track.index} onSelect={track.scrollTo} className="xl:hidden" />
+        <ViewMore className="inline-flex gap-8 text-14 leading-20 xl:hidden" arrowClass="size-8 [&>img]:scale-[0.7]" />
       </div>
     </section>
   )

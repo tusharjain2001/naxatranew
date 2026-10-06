@@ -2,6 +2,7 @@ import SliderArrows from './SliderArrows'
 
 // Left-aligned section title used from "The Right Motor" down. Mobile gets arrows beside the title.
 // `arrowsClass` places the desktop arrows (they default to the right edge, centred on the heading).
+// `action` is extra desktop content at the right end of the row (e.g. a "View more" link).
 export default function SectionHeader({
   title,
   mobileTitle,
@@ -13,6 +14,7 @@ export default function SectionHeader({
   track,
   desktopArrows = false,
   arrowsClass = '',
+  action,
   className = '',
 }) {
   return (
@@ -33,6 +35,7 @@ export default function SectionHeader({
           <p className={`text-14 text-grey xl:block xl:text-24 xl:leading-32 ${mobileLeading} ${mobileSubtitle ? 'hidden' : ''} ${subtitleClass}`}>{subtitle}</p>
         )}
       </div>
+      {action}
       {track && (
         <>
           <SliderArrows set="mobile" onPrev={track.prev} onNext={track.next} canPrev={track.canPrev} canNext={track.canNext} className="xl:hidden" />
