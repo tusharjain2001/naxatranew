@@ -1,30 +1,29 @@
 import useAutoCycle from '../../hooks/useAutoCycle'
 
-// Keep in step with the bar's 3000ms animation below.
-const CYCLE_MS = 3000
-
-// The bar under the open item fills across it over CYCLE_MS, then the next item opens. It holds still
-// while the mouse is over the section, and with reduced motion it is the artboard's static 100px stub.
-function Progress({ run, running }) {
+// The bar under the open item fills across it over three seconds, and the next item opens when it ends,
+// so the two can't drift apart. It pauses (and the switch with it) while the section is off screen; with
+// reduced motion it is the artboard's static 100px stub and the list stays put.
+function Progress({ run, running, onEnd }) {
   return (
     <span
       key={run}
       aria-hidden
       className="absolute -bottom-px left-0 h-[calc(var(--spacing)*1.163)] w-[calc(var(--spacing)*58.142)] origin-left bg-black motion-safe:w-full motion-safe:animate-[hero-progress_3000ms_linear_both] xl:h-2 xl:w-100 xl:bg-grey xl:motion-safe:w-full"
       style={{ animationPlayState: running ? 'running' : 'paused' }}
+      onAnimationEnd={onEnd}
     />
   )
 }
 
 // "Where else we can build" (node 15421:59895): a list of applications beside a product panel. The open item
-// shows its description; the list steps to the next item every three seconds, and a click opens one.
+// shows its description; the list steps to the next item as the bar fills, and a click opens one.
 // The phone opens the panel inside the list, under the open item.
 export default function WhereElse({ data }) {
-  const { ref, index, select, running, run, hover } = useAutoCycle(data.items.length, CYCLE_MS)
+  const { ref, index, select, next, running, run } = useAutoCycle(data.items.length, null)
   const active = data.items[index]
 
   return (
-    <section ref={ref} {...hover} className="mx-auto flex w-full max-w-1920 flex-col gap-48 px-16 py-28 xl:flex-row xl:items-end xl:gap-60 xl:px-100 xl:py-100">
+    <section ref={ref} className="mx-auto flex w-full max-w-1920 flex-col gap-48 px-16 py-28 xl:flex-row xl:items-end xl:gap-60 xl:px-100 xl:py-100">
       <div className="flex flex-col gap-48 xl:w-800 xl:shrink-0 xl:gap-32">
         <div className="flex flex-col gap-16 xl:gap-32">
           <h2 className="text-32 leading-40 tracking-display capitalize xl:text-64 xl:leading-68">{data.title}</h2>
@@ -58,7 +57,7 @@ export default function WhereElse({ data }) {
                     <img src={item.image} alt={item.title} className="absolute inset-0 size-full object-contain" />
                   </div>
                 )}
-                {open && <Progress run={run} running={running} />}
+                {open && <Progress run={run} running={running} onEnd={next} />}
               </li>
             )
           })}
