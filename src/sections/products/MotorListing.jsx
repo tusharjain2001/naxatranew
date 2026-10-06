@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { productFamilies, applicationFilters, seriesTabs } from '../../data/products'
 import FamilyCard from './FamilyCard'
 import Button from '../../components/ui/Button'
+import ArrowUpRight from '../../components/ui/ArrowUpRight'
 
 // Map each sub-application (checkbox) back to its category so a checked box filters families by industry.
 const optionCategory = {}
@@ -156,8 +157,9 @@ function SeriesRadios({ value, onChange }) {
 
 function Caret({ open, className = 'size-20' }) {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden className={`shrink-0 transition-transform duration-200 ${open ? 'rotate-180' : ''} ${className}`}>
-      <path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <svg viewBox="0 0 20 20" aria-hidden className={`shrink-0 transition-transform duration-200 ${open ? 'rotate-180' : ''} ${className}`}>
+      {/* Figma's "chevron-down 2" icon. */}
+      <path d="M2.425 6.636l7.525 7.849 8.172-7.849" fill="none" stroke="currentColor" strokeWidth="1.682" />
     </svg>
   )
 }
@@ -167,6 +169,7 @@ const DrawerRule = () => <span aria-hidden className="block h-[0.5px] w-full shr
 // Phone filter drawer (Figma filter frames in 14626-12329): a 340px sheet from the left over a 50% scrim.
 // Key Specifications and Industrial Applications collapse; applications list their categories on the left
 // and the chosen category's checkboxes on the right. Filters apply live, so Apply just closes the sheet.
+// Only the filters scroll; Clear All and Apply stay pinned to the foot of the sheet.
 function FilterDrawer({ open, onClose, ranges, setRanges, checked, toggleApp, clearAll }) {
   const [specsOpen, setSpecsOpen] = useState(false)
   const [appsOpen, setAppsOpen] = useState(false)
@@ -185,6 +188,8 @@ function FilterDrawer({ open, onClose, ranges, setRanges, checked, toggleApp, cl
     }
   }, [open, onClose])
 
+  // The same small arrow as the site's other 12px buttons (the ↗ glyph renders as an emoji on phones).
+  const arrow = 'size-6.5 [&>img]:scale-[0.58]'
   const action = 'flex h-30 w-100 cursor-pointer items-center justify-center gap-[calc(var(--spacing)*6.657)] rounded-[calc(var(--spacing)*2.663)] text-12 leading-16 font-medium uppercase'
 
   return (
@@ -194,11 +199,11 @@ function FilterDrawer({ open, onClose, ranges, setRanges, checked, toggleApp, cl
         role="dialog"
         aria-modal="true"
         aria-label="Filter motors"
-        className={`absolute inset-y-0 left-0 flex w-340 flex-col justify-between gap-24 overflow-y-auto border-r-[0.5px] border-silver bg-white px-12 pt-48 pb-60 transition-transform duration-300 ${
+        className={`absolute inset-y-0 left-0 flex w-340 flex-col border-r-[0.5px] border-silver bg-white transition-transform duration-300 ${
           open ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-        <div className="flex w-full flex-col gap-24">
+        <div className="flex w-full min-h-0 flex-1 flex-col gap-24 overflow-y-auto overscroll-contain px-12 pt-48 pb-24">
           <div className="flex items-center justify-between">
             <span className="text-20">Filter By</span>
             <button type="button" onClick={onClose} aria-label="Close filters" className="grid size-24 cursor-pointer place-items-center">
@@ -226,14 +231,16 @@ function FilterDrawer({ open, onClose, ranges, setRanges, checked, toggleApp, cl
                       value={ranges[spec.key]}
                       onChange={(v) => setRanges((r) => ({ ...r, [spec.key]: v }))}
                       labelClass="flex h-24 items-center text-14"
-                      valueClass="text-14"
+                      valueClass="flex h-24 items-center text-14"
                     />
                   ))}
                 </div>
+                {/* Open, the closing rule sits 16px under the sliders (inside the group); closed, 24px under the row. */}
+                <DrawerRule />
               </>
             )}
           </div>
-          <DrawerRule />
+          {!specsOpen && <DrawerRule />}
 
           <button type="button" onClick={() => setAppsOpen((o) => !o)} aria-expanded={appsOpen} className="flex cursor-pointer items-center justify-between text-left">
             <span className="text-16 leading-24">Industrial Applications</span>
@@ -270,12 +277,12 @@ function FilterDrawer({ open, onClose, ranges, setRanges, checked, toggleApp, cl
           )}
         </div>
 
-        <div className="flex justify-end gap-12">
+        <div className="flex shrink-0 justify-end gap-12 bg-white px-12 pt-16 pb-[max(calc(var(--spacing)*60),env(safe-area-inset-bottom))]">
           <button type="button" onClick={clearAll} className={`${action} border-[0.5px] border-black`}>
-            Clear all <span aria-hidden>↗</span>
+            Clear all <ArrowUpRight tone="black-sm" className={arrow} />
           </button>
           <button type="button" onClick={onClose} className={`${action} bg-black text-white`}>
-            Apply <span aria-hidden>↗</span>
+            Apply <ArrowUpRight tone="white" className={arrow} />
           </button>
         </div>
       </div>
