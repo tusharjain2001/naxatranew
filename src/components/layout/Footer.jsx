@@ -146,7 +146,7 @@ function Newsletter({ mobile = false }) {
           variant={status === 'done' ? 'soft' : 'primary'}
           size={mobile ? 'sm' : 'md'}
           disabled={status === 'joining'}
-          className="cursor-pointer normal-case! disabled:cursor-wait"
+          className="cursor-pointer disabled:cursor-wait"
         >
           {joinLabels[status]}
         </Button>
