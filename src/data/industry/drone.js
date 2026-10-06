@@ -35,6 +35,8 @@ export default {
       mobileTitle: 'Agricultural Applications',
       // A plain row: each card once, moved only by the arrows or a swipe (no auto-scroll, no loop).
       autoScroll: false,
+      // Starts folded; the visitor opens it.
+      startClosed: true,
       cards: [
         { label: 'Hexacopter drone', image: a('hexacopter.webp') },
         { label: 'Quadcopter drone', image: a('quadcopter.webp') },

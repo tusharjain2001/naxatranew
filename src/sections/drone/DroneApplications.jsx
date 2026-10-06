@@ -192,10 +192,10 @@ function Group({ group, open, onToggle, id }) {
   )
 }
 
-// "Industries" accordion, each group an endless row of application cards. Every group starts open and
-// stays open or closed until the visitor toggles it (opening one doesn't close the others).
+// "Industries" accordion, each group an endless row of application cards. Groups start open unless they set
+// `startClosed`, and stay open or closed until the visitor toggles them (opening one doesn't close the others).
 export default function DroneApplications({ groups }) {
-  const [openSet, setOpenSet] = useState(() => new Set(groups.map((_, i) => i)))
+  const [openSet, setOpenSet] = useState(() => new Set(groups.flatMap((group, i) => (group.startClosed ? [] : [i]))))
   const toggle = (i) =>
     setOpenSet((prev) => {
       const next = new Set(prev)
