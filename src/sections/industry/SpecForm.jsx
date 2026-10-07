@@ -53,6 +53,8 @@ export default function SpecForm({ applications, title = specForm.title, text = 
   const [application, setApplication] = useState('')
   const { status, message, sending, formKey, onSubmit } = useFormSubmit('spec-enquiry', { onSuccess: () => setApplication('') })
   const size = sizes.card
+  // The Products listing form (node 15421:66253) spells out "(Required)" before the asterisk.
+  const req = centered ? ' (Required)' : ''
   const box = size.box
   const input = `${size.input} xl:h-[calc(var(--spacing)*59.485)]`
   const half = centered ? 'xl:min-w-0 xl:flex-1' : ''
@@ -110,15 +112,15 @@ export default function SpecForm({ applications, title = specForm.title, text = 
         >
           <div className={`flex flex-col ${size.fields} xl:gap-25 ${centered ? 'xl:w-full' : ''}`}>
             <div className={`flex flex-col ${size.fields} xl:flex-row xl:gap-20 ${layout.row}`}>
-              <Field size={size} label="Full Name" required className={nameWidth}>
+              <Field size={size} label={`Full Name${req}`} required className={nameWidth}>
                 <input required name="name" autoComplete="name" placeholder="Enter Full Name" className={`${input} ${box}`} />
               </Field>
-              <Field size={size} label="Email ID" required className={emailWidth}>
+              <Field size={size} label={`Email ID${req}`} required className={emailWidth}>
                 <input required type="email" name="email" autoComplete="email" placeholder="Enter Email ID" className={`${input} ${box}`} />
               </Field>
             </div>
             <div className={`flex flex-col ${size.fields} xl:flex-row xl:gap-20 ${layout.row}`}>
-              <Field size={size} label="Company Name" required className={nameWidth}>
+              <Field size={size} label={`Company Name${req}`} required className={nameWidth}>
                 <input required name="company" autoComplete="organization" placeholder="Enter Company Name" className={`${input} ${box}`} />
               </Field>
               <Field size={size} label="Application Type" className={emailWidth}>

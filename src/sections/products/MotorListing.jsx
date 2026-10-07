@@ -400,9 +400,11 @@ export default function MotorListing() {
           </div>
 
           {families.length ? (
-            <div className="grid w-full grid-cols-2 gap-x-[calc(var(--spacing)*11.729)] gap-y-[calc(var(--spacing)*11.643)] xl:grid-cols-3 xl:gap-32">
+            <div className="grid w-full grid-cols-2 gap-x-[calc(var(--spacing)*11.729)] gap-y-[calc(var(--spacing)*11.643)] xl:grid-cols-3 xl:gap-27">
+              {/* Figma (node 15651:3370): 415×548 cards 27px apart on desktop, 179×240 on the phone; every card keeps
+                  that height even without a variants line. */}
               {families.map((f) => (
-                <FamilyCard key={f.slug} family={f} className="h-full w-full" listing />
+                <FamilyCard key={f.slug} family={f} className="h-full min-h-240 w-full xl:min-h-548" listing />
               ))}
             </div>
           ) : (

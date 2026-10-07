@@ -7,13 +7,9 @@ import ScrollDown from '../components/ui/ScrollDown'
 const AUTOPLAY_MS = 3000
 
 function Overlay({ type }) {
-  if (type === 'bridge')
-    return (
-      <>
-        <span className="absolute inset-0 hidden bg-[linear-gradient(148.16deg,rgba(13,53,116,0.5)_16.18%,rgba(13,53,116,0)_45.48%)] xl:block" />
-        <span className="absolute inset-0 bg-linear-to-b from-[#2a689e] to-[rgba(24,99,218,0)] to-61% xl:hidden" />
-      </>
-    )
+  // The desktop photo already carries Figma's shading; the phone crop gets a blue wash behind the headline.
+  if (type === 'motion')
+    return <span className="absolute inset-0 bg-linear-to-b from-[#2a689e] to-[rgba(24,99,218,0)] to-61% xl:hidden" />
   if (type === 'vehicles')
     return (
       <span className="absolute inset-0 hidden bg-[linear-gradient(93.75deg,#000_1.42%,rgba(183,183,183,0)_98.58%)] opacity-30 xl:block" />

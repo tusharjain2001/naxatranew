@@ -81,8 +81,8 @@ export const industryMenu = {
 export const heroSlides = [
   {
     id: 'made-in-india',
-    image: a('hero-bridge.webp'),
-    mobileImage: a('m/hero-bridge.webp'),
+    image: a('hero-motion.webp'),
+    mobileImage: a('m/hero-motion.webp'),
     // The phone artboard breaks this headline after “India's” rather than letting it wrap.
     mobileLines: true,
     title: ['Powering India’s', 'Electric Motion.'],
@@ -91,7 +91,7 @@ export const heroSlides = [
     cta: 'Enquire Now',
     href: '/contact',
     subtitleGap: 'gap-48',
-    overlay: 'bridge',
+    overlay: 'motion',
     titleClass: 'h-176',
     top: 122,
     left: 100,

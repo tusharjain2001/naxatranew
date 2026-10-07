@@ -5,6 +5,8 @@ import SliderArrows from '../../components/ui/SliderArrows'
 
 const motorHref = (m) => `${productPath(m.slug)}${m.variant ? `?variant=${m.variant}` : ''}`
 
+// Desktop (node 15421:42558): tiles (+2px of focus room under them), then 64px to "Relevant Motors", 61px to the motor grid (rows 98px tall
+// with the rule 20px under the text, 67px apart).
 export default function FindByApplications() {
   const [active, setActive] = useState(0)
   const app = findByApplications[active]
@@ -37,7 +39,7 @@ export default function FindByApplications() {
         </div>
 
         {/* Thumbnails + relevant motors */}
-        <div className="contents xl:flex xl:min-w-0 xl:flex-1 xl:flex-col xl:gap-40">
+        <div className="contents xl:flex xl:min-w-0 xl:flex-1 xl:flex-col xl:gap-62">
           {/* Tiles show the OTHER applications — the selected one appears only in the big card (per artboard). */}
           <div ref={track} className="no-scrollbar order-1 -mr-16 flex snap-x gap-14 overflow-x-auto pr-16 xl:order-none xl:mr-0 xl:gap-28 xl:pr-0 xl:pb-2">
             {findByApplications.map((a, i) => ({ a, i })).filter(({ i }) => i !== active).map(({ a, i }) => (
@@ -48,18 +50,18 @@ export default function FindByApplications() {
                 className="relative aspect-square w-120 shrink-0 snap-start overflow-hidden rounded-[calc(var(--spacing)*2.4)] border-[0.3px] border-black/25 bg-white transition-colors hover:border-primary/50 xl:w-240 xl:rounded-[4.8px] xl:border"
               >
                 <img src={a.image} alt="" className="absolute top-[15%] left-[15%] h-[50%] w-[70%] object-contain" />
-                <span className="absolute bottom-7 left-[calc(var(--spacing)*9.6)] text-12 leading-10 capitalize text-grey xl:bottom-24 xl:left-19 xl:text-24 xl:leading-normal">{a.name}</span>
+                <span className="absolute bottom-7 left-[calc(var(--spacing)*9.6)] text-12 leading-10 capitalize text-grey xl:bottom-[calc(var(--spacing)*14.4)] xl:left-19 xl:text-24 xl:leading-[calc(var(--spacing)*19.2)]">{a.name}</span>
               </button>
             ))}
           </div>
 
-          <div className="order-3 flex flex-col gap-40 xl:order-none">
-            <h3 className="text-32 leading-[calc(var(--spacing)*52.025)] tracking-display capitalize xl:text-40 xl:leading-normal xl:tracking-normal">Relevant Motors</h3>
-            <div className="grid grid-cols-2 gap-x-[6.26%] gap-y-35 xl:gap-x-24 xl:gap-y-32">
+          <div className="order-3 flex flex-col gap-40 xl:order-none xl:gap-61">
+            <h3 className="text-32 leading-[calc(var(--spacing)*52.025)] tracking-display capitalize xl:text-40 xl:leading-53 xl:tracking-normal">Relevant Motors</h3>
+            <div className="grid grid-cols-2 gap-x-[6.26%] gap-y-35 xl:w-921 xl:max-w-full xl:gap-x-24 xl:gap-y-67">
               {app.motors.map((m, i) => (
-                <a key={`${m.code}-${m.use}-${i}`} href={motorHref(m)} className="group flex flex-col gap-12 border-b-[0.88px] border-black/15 pb-12 xl:gap-20 xl:border-b">
+                <a key={`${m.code}-${m.use}-${i}`} href={motorHref(m)} className="group flex flex-col gap-12 border-b-[0.88px] border-black/15 pb-12 xl:gap-20 xl:border-b xl:pb-20">
                   <span className="flex flex-col">
-                    <span className="text-24 leading-[calc(var(--spacing)*21.183)] text-primary group-hover:underline xl:text-40 xl:leading-tight">{m.code}</span>
+                    <span className="text-24 leading-[calc(var(--spacing)*21.183)] text-primary group-hover:underline xl:text-40 xl:leading-48">{m.code}</span>
                     <span className="text-16 leading-[calc(var(--spacing)*21.183)] capitalize xl:text-24 xl:leading-normal">{m.use}</span>
                   </span>
                 </a>
