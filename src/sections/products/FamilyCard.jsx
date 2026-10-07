@@ -64,7 +64,7 @@ export default function FamilyCard({ family, className = 'w-full', listing = fal
             </div>
             <span className="flex items-center gap-6 bg-[rgba(137,148,166,0.05)] px-6 py-3 xl:gap-8 xl:px-8 xl:py-4">
               <img src={family.cardIcon ?? TORQUE_ICON} alt="" className="size-8 shrink-0 object-contain xl:size-16" />
-              <span className="text-[length:calc(var(--spacing)*8)] leading-11 font-light capitalize xl:text-14 xl:leading-24">{family.cardTagline}</span>
+              <span className="text-[length:calc(var(--spacing)*8)] leading-11 font-light capitalize xl:text-16 xl:leading-24">{family.cardTagline}</span>
             </span>
           </>
         ) : (

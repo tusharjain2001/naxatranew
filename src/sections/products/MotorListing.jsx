@@ -292,7 +292,7 @@ function FilterDrawer({ open, onClose, ranges, setRanges, checked, toggleApp, cl
 
 export default function MotorListing() {
   const [series, setSeries] = useState(null)
-  const [seriesOpen, setSeriesOpen] = useState(true)
+  const [seriesOpen, setSeriesOpen] = useState(false)
   // The phone toolbar starts with the series radios and the filter drawer closed.
   const [mobileSeriesOpen, setMobileSeriesOpen] = useState(false)
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -384,16 +384,17 @@ export default function MotorListing() {
           />
 
           {/* Series dropdown (top-right) with the RF/AF/PT radios on the row below it, per the artboard. */}
-          <div className="hidden w-full flex-col items-end gap-16 xl:flex">
+          <div className="hidden w-full flex-col items-end gap-24 xl:flex">
             <button
               type="button"
               onClick={() => setSeriesOpen((o) => !o)}
               aria-expanded={seriesOpen}
-              className="flex items-center justify-between gap-16 self-end rounded-[4px] border border-black/25 px-16 py-8 text-16 font-light xl:text-20"
+              className="flex h-50 cursor-pointer items-center gap-4 self-end rounded-[4px] border border-black/12 bg-[#fafafa] px-24 text-24 font-light"
             >
-              Series
-              <svg viewBox="0 0 12 8" aria-hidden className={`w-12 transition-transform ${seriesOpen ? 'rotate-180' : ''}`}>
-                <path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              <span className="w-68 text-left">Series</span>
+              {/* Figma's chevron-down, flipped to point up while the radios are showing. */}
+              <svg viewBox="0 0 17.837 17.837" aria-hidden className={`size-[calc(var(--spacing)*17.837)] shrink-0 transition-transform ${seriesOpen ? 'rotate-180' : ''}`}>
+                <path d="M2.164 5.918l6.711 7 7.289-7" fill="none" stroke="currentColor" strokeWidth="1.5" />
               </svg>
             </button>
             {seriesOpen && <SeriesRadios value={series} onChange={setSeries} />}
