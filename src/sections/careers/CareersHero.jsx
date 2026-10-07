@@ -38,7 +38,7 @@ export default function CareersHero() {
           playsInline
           controls
           aria-label="Life at Naxatra Labs"
-          className="aspect-1972/958 w-full rounded-[calc(var(--spacing)*3.733)] border-[0.378px] border-white object-cover xl:w-979 xl:shrink-0 xl:rounded-[calc(var(--spacing)*9.877)] xl:border"
+          className="aspect-1972/958 w-full rounded-[calc(var(--spacing)*3.733)] border-[0.2px] border-grey object-cover xl:w-979 xl:shrink-0 xl:rounded-[calc(var(--spacing)*9.877)] xl:border-[0.5px]"
         />
       </div>
     </section>
