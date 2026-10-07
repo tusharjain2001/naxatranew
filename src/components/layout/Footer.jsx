@@ -91,9 +91,9 @@ function Newsletter({ mobile = false }) {
       await subscribe(form.email.value.trim(), token)
       form.reset()
       setStatus('done')
-    } catch {
+    } catch (err) {
       setStatus('idle')
-      setError('Something went wrong. Please try again.')
+      setError(err.message)
     }
     captcha.current?.reset()
   }

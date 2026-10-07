@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { sharedAssets, specForm } from '../../data/industry/shared'
 import Button from '../../components/ui/Button'
+import FormStatus from '../../components/ui/FormStatus'
+import useFormSubmit from '../../hooks/useFormSubmit'
 
 // Phone (industry and products artboards, node 15333:2607): 14px labels 8px over 40px boxes, the four
 // fields 20px apart, then the message box and the button 16px apart, in a card padded 20/14.
@@ -36,7 +38,8 @@ function Field({ label: text, required, className = '', size, children }) {
   )
 }
 
-// Not connected to a backend yet: submitting validates the required fields and stops there.
+// Sends to the backend's /api/spec-enquiry (with the page it was sent from), which emails the team and a
+// confirmation to the visitor.
 // `title` (two lines) and `text` default to the shared spec-form copy but can be overridden, e.g. the
 // Products pages reuse this as "Need Help Finding The Right Motor?".
 // `wide` widens the copy column so the products/listing "Need Help Finding The Right Motor?" heading
@@ -48,6 +51,7 @@ function Field({ label: text, required, className = '', size, children }) {
 // on one line each, 80px above a 1192px form with two equal columns.
 export default function SpecForm({ applications, title = specForm.title, text = specForm.text, wide = false, flowText = false, centered = false, spacing = 'xl:py-120' }) {
   const [application, setApplication] = useState('')
+  const { status, message, sending, formKey, onSubmit } = useFormSubmit('spec-enquiry', { onSuccess: () => setApplication('') })
   const size = sizes.card
   const box = size.box
   const input = `${size.input} xl:h-[calc(var(--spacing)*59.485)]`
@@ -99,7 +103,9 @@ export default function SpecForm({ applications, title = specForm.title, text = 
         </div>
 
         <form
-          onSubmit={(e) => e.preventDefault()}
+          key={formKey}
+          onSubmit={onSubmit}
+          aria-busy={sending}
           className={`flex w-fit flex-col items-start rounded-4 border-[calc(var(--spacing)*0.891)] border-silver px-14 py-20 ${size.form} xl:gap-25 xl:rounded-8 xl:border-2 xl:p-32 ${layout.form}`}
         >
           <div className={`flex flex-col ${size.fields} xl:gap-25 ${centered ? 'xl:w-full' : ''}`}>
@@ -147,12 +153,14 @@ export default function SpecForm({ applications, title = specForm.title, text = 
               className={`${size.textarea} resize-none xl:h-[calc(var(--spacing)*117.294)] xl:py-[calc(var(--spacing)*14.24)] ${box}`}
             />
           </Field>
-          <Button as="button" type="submit" size={size.button} className="cursor-pointer xl:hidden">
-            {specForm.cta}
+          <input type="hidden" name="page" value={window.location.pathname} />
+          <Button as="button" type="submit" size={size.button} disabled={sending} className="cursor-pointer disabled:cursor-wait xl:hidden">
+            {sending ? 'Sending...' : specForm.cta}
           </Button>
-          <Button as="button" type="submit" className="hidden cursor-pointer xl:inline-flex">
-            {specForm.cta}
+          <Button as="button" type="submit" disabled={sending} className="hidden cursor-pointer disabled:cursor-wait xl:inline-flex">
+            {sending ? 'Sending...' : specForm.cta}
           </Button>
+          <FormStatus status={status} message={message} className={`w-340 ${layout.message}`} />
         </form>
       </div>
     </section>

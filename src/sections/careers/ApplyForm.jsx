@@ -1,6 +1,8 @@
 import { useSyncExternalStore } from 'react'
 import { applyForm, openings } from '../../data/careers'
 import Button from '../../components/ui/Button'
+import FormStatus from '../../components/ui/FormStatus'
+import useFormSubmit from '../../hooks/useFormSubmit'
 import { Field, FileField } from '../../components/ui/FormFields'
 
 // The two artboards word some placeholders differently, which inputs can't switch with CSS.
@@ -20,12 +22,14 @@ const required = (label) => (
   </>
 )
 
-// Not connected to a backend yet: submitting validates the fields and stops there.
+// Sends to the backend's /api/careers as multipart (the resume is attached to the team's email), and the
+// applicant gets a confirmation.
 // Phone (15421:64325): the heading, then one column of fields (Company Name in place of Contact Number)
 // with a "Contact us" button 20px under the last one.
 // Desktop (15421:64139): the heading in a 600px column beside the 1088px form, 98px below the openings.
 export default function ApplyForm({ role, onRoleChange }) {
   const desktop = useDesktop()
+  const { status, message, sending, formKey, onSubmit } = useFormSubmit('careers', { multipart: true, onSuccess: () => onRoleChange('') })
   return (
     <section
       id="apply"
@@ -49,7 +53,7 @@ export default function ApplyForm({ role, onRoleChange }) {
         </p>
       </div>
 
-      <form onSubmit={(e) => e.preventDefault()} className="flex flex-col items-start gap-20 xl:w-1088 xl:shrink-0 xl:gap-48">
+      <form key={formKey} onSubmit={onSubmit} aria-busy={sending} className="flex flex-col items-start gap-20 xl:w-1088 xl:shrink-0 xl:gap-48">
         <div className="flex w-full flex-col gap-20 xl:gap-32">
           <div className="grid gap-20 xl:grid-cols-2 xl:gap-32">
             <Field label={required('Full Name')} name="name" autoComplete="name" placeholder="Enter Full Name" />
@@ -80,12 +84,13 @@ export default function ApplyForm({ role, onRoleChange }) {
           </div>
         </div>
 
-        <Button as="button" type="submit" size="spec" className="cursor-pointer xl:hidden">
-          Contact us
+        <Button as="button" type="submit" size="spec" disabled={sending} className="cursor-pointer disabled:cursor-wait xl:hidden">
+          {sending ? 'Sending...' : 'Contact us'}
         </Button>
-        <Button as="button" type="submit" size="hero" className="hidden cursor-pointer xl:inline-flex xl:rounded-4">
-          Submit Application
+        <Button as="button" type="submit" size="hero" disabled={sending} className="hidden cursor-pointer disabled:cursor-wait xl:inline-flex xl:rounded-4">
+          {sending ? 'Sending...' : 'Submit Application'}
         </Button>
+        <FormStatus status={status} message={message} className="-mt-8 xl:-mt-32" />
       </form>
     </section>
   )

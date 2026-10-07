@@ -1,12 +1,16 @@
 import { useState } from 'react'
 import { enquiry } from '../../data/contact'
 import Button from '../../components/ui/Button'
+import FormStatus from '../../components/ui/FormStatus'
 import { Field, SelectField, TextAreaField } from '../../components/ui/FormFields'
 import TabBar from '../../components/ui/TabBar'
+import useFormSubmit from '../../hooks/useFormSubmit'
 
-// Not connected to a backend yet: submitting validates the fields and stops there.
+// Sends to the backend's /api/contact, which emails the team and a confirmation to the visitor.
 export default function EnquiryForm() {
   const [topic, setTopic] = useState(enquiry.topics[0])
+  const { status, message, sending, formKey, onSubmit } = useFormSubmit('contact')
+  const label = sending ? 'Sending...' : 'Submit Enquiry'
 
   return (
     <section className="mx-auto flex w-full max-w-1920 flex-col gap-60 px-16 py-56 xl:gap-60 xl:px-100 xl:py-100">
@@ -22,7 +26,7 @@ export default function EnquiryForm() {
           <p className="text-14 leading-18 font-light text-grey xl:text-32 xl:leading-40">{enquiry.subtitle}</p>
         </div>
 
-        <form id="enquiry-form" role="tabpanel" aria-label={topic} onSubmit={(e) => e.preventDefault()} className="flex flex-col items-start gap-38 xl:min-w-0 xl:flex-1 xl:gap-40">
+        <form key={formKey} id="enquiry-form" role="tabpanel" aria-label={topic} onSubmit={onSubmit} aria-busy={sending} className="flex flex-col items-start gap-38 xl:min-w-0 xl:flex-1 xl:gap-40">
           <input type="hidden" name="topic" value={topic} />
           <div className="flex w-full flex-col gap-[calc(var(--spacing)*17.599)] xl:gap-24">
             <p className="flex h-20 items-center border-b-[0.5px] border-black/50 text-12 font-light text-grey uppercase xl:block xl:h-auto xl:text-24 xl:leading-40">{enquiry.formLabels[topic]}</p>
@@ -35,12 +39,13 @@ export default function EnquiryForm() {
             </div>
           </div>
 
-          <Button as="button" type="submit" size="form" className="h-32 cursor-pointer max-xl:text-12 xl:hidden">
-            Submit Enquiry
+          <Button as="button" type="submit" size="form" disabled={sending} className="h-32 cursor-pointer disabled:cursor-wait max-xl:text-12 xl:hidden">
+            {label}
           </Button>
-          <Button as="button" type="submit" size="hero" className="hidden cursor-pointer xl:inline-flex">
-            Submit Enquiry
+          <Button as="button" type="submit" size="hero" disabled={sending} className="hidden cursor-pointer disabled:cursor-wait xl:inline-flex">
+            {label}
           </Button>
+          <FormStatus status={status} message={message} className="-mt-22 xl:-mt-24" />
         </form>
       </div>
     </section>
