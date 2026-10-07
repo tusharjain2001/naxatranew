@@ -1,4 +1,3 @@
-import Button from './Button'
 import ScrollDown from './ScrollDown'
 
 // Inner-page hero: a photo, a blue wash, then a cut-out layered above the wash so only the sky is tinted.
@@ -7,7 +6,6 @@ import ScrollDown from './ScrollDown'
 // A page with its own phone artboard passes `mobile` ({ image, height, wash, text, title, subtitle }): the
 // phone then shows that single composed photo, and the class strings replace the phone defaults.
 // `image` replaces the desktop layers (photo, wash, cut-out) with one flattened picture of them.
-// `cta` ({ label, href }) adds a white button under the text; `scrollDown={false}` drops the scroll cue.
 export default function PageHero({
   title,
   subtitle,
@@ -24,8 +22,6 @@ export default function PageHero({
   subtitleClass = 'xl:w-602 xl:shrink-0',
   mobile,
   image,
-  cta,
-  scrollDown = true,
 }) {
   const desktopOnly = mobile ? 'hidden xl:block' : ''
   return (
@@ -62,19 +58,9 @@ export default function PageHero({
             )}
           </h1>
           <p className={`capitalize xl:text-32 xl:leading-42 xl:font-light ${mobile?.subtitle ?? 'text-16 leading-20 font-light'} ${subtitleClass}`}>{subtitle}</p>
-          {cta && (
-            <Button href={cta.href} variant="white" size="heroM" className="self-start xl:hidden">
-              {cta.label}
-            </Button>
-          )}
         </div>
-        {cta && (
-          <Button href={cta.href} variant="white" size="hero" className="absolute top-351 left-103 hidden xl:inline-flex">
-            {cta.label}
-          </Button>
-        )}
       </div>
-      {scrollDown && <ScrollDown />}
+      <ScrollDown />
     </section>
   )
 }
