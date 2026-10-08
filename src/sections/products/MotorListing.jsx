@@ -75,10 +75,9 @@ function SpecRange({ spec, label, value, onChange, labelClass, valueClass }) {
   )
 }
 
-// One collapsible Industrial-Applications category with its sub-application checkboxes (open by default,
-// as on the artboard).
+// One collapsible Industrial-Applications category with its sub-application checkboxes (closed until clicked).
 function AppCategory({ cat, checked, onToggle }) {
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
   return (
     <div className="flex w-full flex-col gap-16">
       <button type="button" onClick={() => setOpen((o) => !o)} className="flex w-full items-center justify-between border-b-[0.3px] border-[#8d8d8d] py-6 text-left" aria-expanded={open}>
