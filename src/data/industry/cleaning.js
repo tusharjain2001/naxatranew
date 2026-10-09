@@ -24,10 +24,11 @@ export default {
     // Cards are 640 tall on the artboard; the 711px exports are clipped the way Figma offsets them (13px up).
     layout: { section: 'xl:h-1140', title: 'xl:top-106 xl:w-740', text: 'xl:top-202 xl:left-1125 xl:w-695', row: 'xl:top-378', card: 'xl:h-640 xl:w-557 xl:object-[50%_18.3%]' },
     // Each card is the artboard's photo, callout and arrow exported as one image; `mobile` is the phone crop.
+    // Listed in phone order; `order` swaps the first two on desktop, where "3 vendors" leads.
     cards: [
-      { src: a('challenge-1.png'), mobile: a('m-challenge-1.png'), quote: 'Our motor overheats on long shifts' },
-      { src: a('challenge-2.png'), mobile: a('m-challenge-2.png'), quote: 'We have 3 vendors - motor, controller, gearbox - no unified accountability' },
-      { src: a('challenge-3.png'), mobile: a('m-challenge-3.png'), quote: 'We use higher power, unaware that lower power can perform just as well.', wide: true },
+      { src: a('challenge-1-v2.png'), mobile: a('m-challenge-1-v2.png'), quote: 'Our motor overheats on long shifts', order: 'xl:order-2' },
+      { src: a('challenge-2-v2.png'), mobile: a('m-challenge-2-v2.png'), quote: 'We have 3 vendors - motor, controller, gearbox - no unified accountability', order: 'xl:order-1' },
+      { src: a('challenge-3-v2.png'), mobile: a('m-challenge-3-v2.png'), quote: 'We use higher power, unaware that lower power can perform just as well.', wide: true, order: 'xl:order-3' },
     ],
   },
 

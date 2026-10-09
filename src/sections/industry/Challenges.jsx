@@ -4,7 +4,7 @@ function Cards({ cards, className, cardClass }) {
   return (
     <div className={className}>
       {cards.map((card) => (
-        <picture key={card.src} className={card.wide ? 'col-span-2' : ''}>
+        <picture key={card.src} className={`${card.wide ? 'col-span-2' : ''} ${card.order ?? ''}`}>
           {card.mobile && <source media="(max-width: 1279px)" srcSet={card.mobile} />}
           <img
             src={card.src}

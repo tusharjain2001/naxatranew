@@ -5,14 +5,26 @@ import SliderArrows from '../../components/ui/SliderArrows'
 
 const motorHref = (m) => `${productPath(m.slug)}${m.variant ? `?variant=${m.variant}` : ''}`
 
-// Desktop (node 15421:42558): tiles (+2px of focus room under them), then 64px to "Relevant Motors", 61px to the motor grid (rows 98px tall
-// with the rule 20px under the text, 67px apart).
+// Desktop (node 15421:42558): tiles (+2px of focus room under them), then 64px to "Relevant Motors" (indented 18px), 61px to the
+// motor grid (443px and 454px columns; rows 93px tall with the rule 20px under the text, 72px apart).
 export default function FindByApplications() {
   const [active, setActive] = useState(0)
   const app = findByApplications[active]
   const track = useRef(null)
-
-  const scroll = (dir) => track.current?.scrollBy({ left: dir * 268, behavior: 'smooth' })
+  // Each arrow click brings the next tile that is cut off (or hidden) fully into view, one tile per click:
+  // Next lines its right edge up with the row's right edge, Previous lines its left edge up with the left edge.
+  const scroll = (dir) => {
+    const el = track.current
+    if (!el) return
+    const box = el.getBoundingClientRect()
+    const tiles = [...el.children].map((t) => t.getBoundingClientRect())
+    // A tile cut off by only a few pixels already reads as whole, so it is skipped.
+    const target =
+      dir > 0 ? tiles.find((t) => t.right > box.right + 8) : tiles.findLast((t) => t.left < box.left - 8)
+    if (!target) return
+    const by = dir > 0 ? target.right - box.right : target.left - box.left
+    el.scrollTo({ left: el.scrollLeft + by, behavior: 'smooth' })
+  }
 
   return (
     <section id="find-by-applications" className="mx-auto flex w-full max-w-1920 scroll-mt-80 flex-col gap-40 bg-white px-16 py-60 xl:gap-60 xl:px-100 xl:pt-103 xl:pb-157">
@@ -22,7 +34,7 @@ export default function FindByApplications() {
         <SliderArrows onPrev={() => scroll(-1)} onNext={() => scroll(1)} className="hidden shrink-0 xl:flex" />
       </div>
 
-      <div className="flex flex-col gap-40 xl:flex-row xl:gap-32">
+      <div className="flex flex-col gap-40 xl:flex-row xl:gap-28">
         {/* Selected application feature card */}
         <div className="relative order-2 h-388 w-full shrink-0 overflow-hidden rounded-[calc(var(--spacing)*4.458)] border-[calc(var(--spacing)*0.557)] border-black/25 xl:order-none xl:size-680 xl:rounded-8 xl:border">
           {/* Images are trimmed to the vehicle, so every application fills the same area at the same scale. */}
@@ -41,13 +53,13 @@ export default function FindByApplications() {
         {/* Thumbnails + relevant motors */}
         <div className="contents xl:flex xl:min-w-0 xl:flex-1 xl:flex-col xl:gap-62">
           {/* Tiles show the OTHER applications — the selected one appears only in the big card (per artboard). */}
-          <div ref={track} className="no-scrollbar order-1 -mr-16 flex snap-x gap-14 overflow-x-auto pr-16 xl:order-none xl:mr-0 xl:gap-28 xl:pr-0 xl:pb-2">
+          <div ref={track} className="no-scrollbar order-1 -mr-16 flex gap-14 overflow-x-auto pr-16 xl:order-none xl:mr-0 xl:gap-28 xl:pr-0 xl:pb-2">
             {findByApplications.map((a, i) => ({ a, i })).filter(({ i }) => i !== active).map(({ a, i }) => (
               <button
                 key={a.key}
                 type="button"
                 onClick={() => setActive(i)}
-                className="relative aspect-square w-120 shrink-0 snap-start overflow-hidden rounded-[calc(var(--spacing)*2.4)] border-[0.3px] border-black/25 bg-white transition-colors hover:border-primary/50 xl:w-240 xl:rounded-[4.8px] xl:border"
+                className="relative aspect-square w-120 shrink-0 overflow-hidden rounded-[calc(var(--spacing)*2.4)] border-[0.3px] border-black/25 bg-white transition-colors hover:border-primary/50 xl:w-240 xl:rounded-[4.8px] xl:border"
               >
                 <img src={a.image} alt="" className="absolute top-[15%] left-[15%] h-[50%] w-[70%] object-contain" />
                 <span className="absolute bottom-7 left-[calc(var(--spacing)*9.6)] text-12 leading-10 capitalize text-grey xl:bottom-[calc(var(--spacing)*14.4)] xl:left-19 xl:text-24 xl:leading-[calc(var(--spacing)*19.2)]">{a.name}</span>
@@ -55,14 +67,14 @@ export default function FindByApplications() {
             ))}
           </div>
 
-          <div className="order-3 flex flex-col gap-40 xl:order-none xl:gap-61">
+          <div className="order-3 flex flex-col gap-40 xl:order-none xl:gap-61 xl:pl-18">
             <h3 className="text-32 leading-[calc(var(--spacing)*52.025)] tracking-display capitalize xl:text-40 xl:leading-53 xl:tracking-normal">Relevant Motors</h3>
-            <div className="grid grid-cols-2 gap-x-[6.26%] gap-y-35 xl:w-921 xl:max-w-full xl:gap-x-24 xl:gap-y-67">
+            <div className="grid grid-cols-2 gap-x-[6.26%] gap-y-35 xl:w-921 xl:max-w-full xl:grid-cols-[calc(var(--spacing)*443)_calc(var(--spacing)*454)] xl:gap-x-24 xl:gap-y-72">
               {app.motors.map((m, i) => (
                 <a key={`${m.code}-${m.use}-${i}`} href={motorHref(m)} className="group flex flex-col gap-12 border-b-[0.88px] border-black/15 pb-12 xl:gap-20 xl:border-b xl:pb-20">
                   <span className="flex flex-col">
-                    <span className="text-24 leading-[calc(var(--spacing)*21.183)] text-primary group-hover:underline xl:text-40 xl:leading-48">{m.code}</span>
-                    <span className="text-16 leading-[calc(var(--spacing)*21.183)] capitalize xl:text-24 xl:leading-normal">{m.use}</span>
+                    <span className="text-24 leading-[calc(var(--spacing)*21.183)] text-primary group-hover:underline xl:text-40 xl:leading-36">{m.code}</span>
+                    <span className="text-16 leading-[calc(var(--spacing)*21.183)] capitalize xl:text-24 xl:leading-36">{m.use}</span>
                   </span>
                 </a>
               ))}
