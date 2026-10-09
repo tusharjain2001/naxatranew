@@ -52,8 +52,9 @@ export default function FindByApplications() {
 
         {/* Thumbnails + relevant motors */}
         <div className="contents xl:flex xl:min-w-0 xl:flex-1 xl:flex-col xl:gap-62">
-          {/* Tiles show the OTHER applications — the selected one appears only in the big card (per artboard). */}
-          <div ref={track} className="no-scrollbar order-1 -mr-16 flex gap-14 overflow-x-auto pr-16 xl:order-none xl:mr-0 xl:gap-28 xl:pr-0 xl:pb-2">
+          {/* Tiles show the OTHER applications — the selected one appears only in the big card (per artboard). The row
+              runs on to the screen edge, past the right margin, as on the artboard. */}
+          <div ref={track} className="no-scrollbar order-1 -mr-16 flex gap-14 overflow-x-auto pr-16 xl:order-none xl:-mr-100 xl:gap-28 xl:pr-0 xl:pb-2">
             {findByApplications.map((a, i) => ({ a, i })).filter(({ i }) => i !== active).map(({ a, i }) => (
               <button
                 key={a.key}
