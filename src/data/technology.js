@@ -35,7 +35,9 @@ export const whyNaxatra = {
 export const techBanner = {
   title: 'Engineering the Next Generation of Motion.',
   text: 'Driven by innovation. Designed for performance. Built for what’s next.',
-  image: a('banner.webp'),
+  image: a('banner-v2.webp'),
+  // The phone card is its own composition: the photo laid over the middle of a sky background.
+  mobileImage: a('m-banner.webp'),
   alt: 'Electric utility vehicle and a delivery drone on a road at dusk',
 }
 

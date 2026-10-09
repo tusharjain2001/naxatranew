@@ -76,9 +76,7 @@ export default {
     section: 'xl:pb-107',
     title: 'Our key advantages for EV 2W, 3W and L5 OEMs',
     subtitle: 'Higher-Efficiency RF-series motor with matched controller',
-    image: a('advantages.png'),
-    imageBg: 'bg-black/7',
-    imageFit: 'object-cover object-bottom',
+    image: a('advantages-v2.webp'),
     imageAlt: 'X-ray view of an electric auto-rickshaw showing its motor, controller and axle',
     stats: [
       { value: 'H Class', label: 'Insulation', width: 'xl:w-337' },
