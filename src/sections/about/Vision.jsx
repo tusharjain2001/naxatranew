@@ -14,11 +14,11 @@ export default function Vision() {
           />
         </picture>
         <div className="relative mx-auto h-full max-w-1920">
-          <div className="absolute top-[calc(var(--spacing)*96.5)] left-40 flex w-320 flex-col gap-10 text-white xl:top-106 xl:left-100 xl:w-1506 xl:flex-row xl:items-start xl:gap-0 xl:p-0">
+          <div className="absolute top-[calc(var(--spacing)*96.5)] left-40 flex w-320 flex-col gap-10 text-white xl:top-106 xl:left-100 xl:w-1506 xl:flex-row xl:items-start xl:justify-between xl:gap-0 xl:p-0">
             <h2 className="text-32 leading-[calc(var(--spacing)*35.6)] tracking-display capitalize xl:w-572 xl:shrink-0 xl:text-64 xl:leading-80">
               {vision.title}
             </h2>
-            <p className="text-14 leading-18 xl:min-w-0 xl:flex-1 xl:text-justify xl:text-24 xl:leading-[calc(var(--spacing)*33.74)]">
+            <p className="text-14 leading-18 xl:w-792 xl:shrink-0 xl:text-24 xl:leading-32">
               {vision.text}
             </p>
           </div>

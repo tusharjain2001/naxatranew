@@ -110,7 +110,7 @@ export const quality = {
   items: [
     { title: 'ISO 9001:2015', text: 'Certified quality management system covering design, production, QC, and customer support.', logo: a('cert-iso.webp'), logoClass: 'xl:size-90' },
     // The NATRAX mark sits on white, so it is multiplied onto the grey card.
-    { title: 'naxatrax certification', text: 'NATRAX is one of the state-of-the-art automotive testing and certification centre under NATRiP, a flagship project.', logo: a('cert-natrax.webp'), logoClass: 'mix-blend-multiply xl:h-44 xl:w-105' },
+    { title: 'natrax certification', text: 'NATRAX is one of the state-of-the-art automotive testing and certification centre under NATRiP, a flagship project.', logo: a('cert-natrax.webp'), logoClass: 'mix-blend-multiply xl:h-44 xl:w-105' },
     { title: 'IATF 16949 in progress', text: 'Automotive-grade QMS initiated for Tier-1 and OEM supplier readiness.', logo: a('cert-iatf.webp'), logoClass: 'xl:size-89' },
     { title: 'IP67 · H-class insulation', text: 'Full submersion rated. H-class insulation validated for sustained high-temperature operation.', logo: a('cert-ip67.webp'), logoClass: 'xl:h-99 xl:w-94' },
     { title: '3-year motor warranty', text: 'On every unit supplied, covering manufacturing and material defects not just paper coverage.', logo: a('cert-warranty.webp'), logoClass: 'xl:h-105 xl:w-104' },

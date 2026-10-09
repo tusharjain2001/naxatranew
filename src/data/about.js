@@ -102,7 +102,7 @@ export const recognition = {
 
 export const vision = {
   title: 'A vision for tomorrow',
-  text: 'Founded in 2021 by Abhilash Maurya, Arnav Biswas, and Piyush Verma, Naxatra Labs develops advanced axial and radial flux motors for electric mobility. From Ahmedabad, we build lightweight, power-dense solutions for vehicles and industries.',
+  text: 'Founded in 2021 by Abhilash Maurya, Arnav Biswas, and Piyush Verma, Naxatra Labs develops advanced axial and radial flux motors for mobility, agriculture, aerospace and industrial applications. From Ahmedabad, we build lightweight, power-dense solutions for vehicles and industries.',
   image: a('vision.png'),
   mobileImage: a('m-vision.png'),
 }
