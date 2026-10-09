@@ -90,7 +90,7 @@ export default function Hero() {
                   ))}
                 </h2>
                 {slide.subtitle && (
-                  <p className="text-32 leading-44 tracking-display">
+                  <p className={`text-32 leading-44 tracking-display capitalize ${slide.subtitleClass ?? ''}`}>
                     {slide.subtitle.map((line) => (
                       <span key={line} className="block">
                         {line}

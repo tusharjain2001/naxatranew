@@ -85,14 +85,17 @@ export const heroSlides = [
     mobileImage: a('m/hero-motion.webp'),
     // The phone artboard breaks this headline after “India's” rather than letting it wrap.
     mobileLines: true,
-    title: ['Powering India’s', 'Electric Motion.'],
-    subtitle: ['Engineered. Tested. Proven.'],
+    title: ['Engineered in India.', 'Powering Electric Motion Worldwide.'],
+    // One sentence, wrapped by its 1046px box onto two lines.
+    subtitle: ['Motors and controllers for the next generation of mobility and machines. Tested. Proven.'],
+    subtitleClass: 'w-1046',
     // This slide asks for an enquiry; the others point down to the products.
     cta: 'Enquire Now',
     href: '/contact',
-    subtitleGap: 'gap-48',
+    subtitleGap: 'gap-24',
     overlay: 'motion',
-    titleClass: 'h-176',
+    // Figma sets this slide's copy in title case.
+    titleClass: 'h-176 capitalize',
     top: 122,
     left: 100,
   },
@@ -100,7 +103,10 @@ export const heroSlides = [
     id: 'mobility',
     image: a('hero-vehicles.webp'),
     mobileImage: a('m/hero-vehicles.webp'),
-    title: ['Engineering Electric Mobility,', 'End To End.'],
+    title: ['Building Motors for EV.', 'End To End.'],
+    // The phone artboard keeps the break after "EV." and sets the headline in a 269px box (three lines).
+    mobileLines: true,
+    mobileTitleClass: 'w-269',
     overlay: 'vehicles',
     top: 120,
   },
@@ -275,7 +281,7 @@ export const products = [
     href: '/products/drone',
     desc: 'High performance motor Built for continuous defence and agri duty.',
     descTop: 111.25,
-    descWidth: 356,
+    descWidth: 296,
     // product-drone.webp is the artboard's crop of the render, so it fills its rotated box.
     image: {
       src: a('product-drone.webp'),
@@ -347,7 +353,7 @@ export const journey = [
   { year: '2023', title: 'Fueling the Vision', text: 'Secured Pre-Seed Funding to accelerate innovation.', image: a('journey-09.png'), inset: { fade: 'opacity-5', aspect: 'aspect-[222/148]', top: 40, fit: 'object-cover' } },
   { year: '2023', title: 'Powering Progress', text: 'Deployed motors in the agricultural industry, making farming more sustainable.', image: a('journey-10.png'), objectPosition: '71% 50%' },
   { year: '2024', title: 'Taking Flight', text: 'Expanded into aviation motors, bringing electric power to the skies.', image: a('journey-11.png') },
-  { year: '2024', title: 'Scaling for Impact', text: 'Announced our Seed Round to drive the next wave of breakthroughs.', image: a('journey-12.png') },
+  { year: '2024', title: 'Scaling for Impact', text: 'Announced our Seed Round to drive the next wave of breakthroughs.', image: a('journey-12.webp') },
   { year: '2025', title: 'Supercharging Growth', text: 'Expanding production capacity to 100K motors per year to meet global demand.', image: a('journey-13.png') },
   { year: '2025', title: 'Leading the Charge', text: 'Showcasing at Bharat Mobility Expo, cementing our role as an industry pioneer.', image: a('journey-14.png'), objectPosition: '11.8% 50%' },
   { year: '2025', title: 'Another Production Facility', text: 'Inaugurated our another state-of-the-art production unit in August 2025, enabling higher production capacity and precision manufacturing for next-generation motors.', image: a('journey-15.png') },
