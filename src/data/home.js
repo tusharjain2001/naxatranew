@@ -273,9 +273,9 @@ export const products = [
     series: 'Motor',
     joiner: ' ',
     href: '/products/drone',
-    desc: 'High performance motor Built for continuous agri duty.',
+    desc: 'High performance motor Built for continuous defence and agri duty.',
     descTop: 111.25,
-    descWidth: 247,
+    descWidth: 356,
     // product-drone.webp is the artboard's crop of the render, so it fills its rotated box.
     image: {
       src: a('product-drone.webp'),
