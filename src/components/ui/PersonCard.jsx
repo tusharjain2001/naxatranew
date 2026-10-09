@@ -11,9 +11,10 @@ const variants = {
     role: 'text-[length:calc(var(--spacing)*10.89)] leading-[calc(var(--spacing)*10.89)] xl:text-20 xl:leading-[calc(var(--spacing)*19.806)]',
   },
   investor: {
-    card: 'gap-[calc(var(--spacing)*12.679)] xl:gap-23',
-    photo: 'aspect-[322.4/385.453] rounded-[calc(var(--spacing)*2.518)] xl:rounded-4-6',
-    badge: 'bottom-9 left-[calc(var(--spacing)*22.72)] h-[calc(var(--spacing)*21.024)] w-[calc(var(--spacing)*21.608)] xl:bottom-[calc(var(--spacing)*16.32)] xl:left-15 xl:h-[calc(var(--spacing)*38.137)] xl:w-[calc(var(--spacing)*39.197)]',
+    // Desktop photos are 320x400 in a 472.5px-tall card, so the caption runs past the card as on the artboard.
+    card: 'gap-[calc(var(--spacing)*12.679)] xl:h-[calc(var(--spacing)*472.538)] xl:gap-23',
+    photo: 'aspect-[322.4/385.453] rounded-[calc(var(--spacing)*2.518)] xl:aspect-auto xl:h-400 xl:w-320 xl:shrink-0 xl:rounded-4-6',
+    badge: 'bottom-9 left-[calc(var(--spacing)*22.72)] h-[calc(var(--spacing)*21.024)] w-[calc(var(--spacing)*21.608)] xl:bottom-[calc(var(--spacing)*30.863)] xl:left-15 xl:h-[calc(var(--spacing)*38.137)] xl:w-[calc(var(--spacing)*39.197)]',
     icon: '/assets/about/linkedin-lg.svg',
     text: 'gap-[calc(var(--spacing)*4.41)] xl:gap-8',
     name: 'text-[length:calc(var(--spacing)*13.23)] leading-[calc(var(--spacing)*15.435)] xl:text-24 xl:leading-28',
