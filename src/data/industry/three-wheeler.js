@@ -42,7 +42,7 @@ export default {
     cards: [
       { src: a('challenge-1.png'), quote: 'Our motor overheats on long shifts' },
       { src: a('challenge-2.png'), quote: 'We need more efficiency range without adding battery' },
-      { src: a('challenge-3.png'), quote: 'We need to hit PLI localization thresholds' },
+      { src: a('challenge-3-v2.png'), quote: 'We need to hit subsidy localization thresholds' },
       { src: a('challenge-4.png'), quote: 'Waiting on overseas shipments was slowing down our entire production.' },
     ],
   },

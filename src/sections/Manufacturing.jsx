@@ -1,10 +1,33 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { manufacturing } from '../data/home'
 import Button from '../components/ui/Button'
 
+// The company film plays in Figma's video frame, with no controls. It loads only once the section is near the screen
+// (desktop or phone file), then plays muted on a loop while in view (browsers only autoplay silent video) and pauses
+// when scrolled away. It stays on the poster for reduced motion.
 export default function Manufacturing() {
-  const [playing, setPlaying] = useState(false)
-  const hasVideo = Boolean(manufacturing.videoSrc)
+  const ref = useRef(null)
+  const [src, setSrc] = useState(null)
+  const [desktop] = useState(() => window.matchMedia('(min-width: 1280px)').matches)
+  const [still] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+
+  useEffect(() => {
+    const video = ref.current
+    if (!video) return
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setSrc(desktop ? manufacturing.video : manufacturing.mobileVideo)
+          if (!still) video.play().catch(() => {})
+        } else if (!video.paused) {
+          video.pause()
+        }
+      },
+      { rootMargin: '300px 0px' },
+    )
+    io.observe(video)
+    return () => io.disconnect()
+  }, [desktop, still])
 
   return (
     <section className="mx-auto flex w-full max-w-1920 flex-col items-center gap-48 py-56 xl:gap-40 xl:px-100 xl:pt-71 xl:pb-71">
@@ -21,37 +44,18 @@ export default function Manufacturing() {
       </div>
 
       <div className="w-full px-16 xl:w-[calc(var(--spacing)*1296.83)] xl:px-0">
-        <div className="relative aspect-[370/179.79] w-full overflow-hidden rounded-3 bg-black xl:aspect-[1296.83/630] xl:rounded-16">
-          {playing ? (
-            <video src={manufacturing.videoSrc} poster={manufacturing.image} controls autoPlay className="size-full object-cover" />
-          ) : (
-            <>
-              <img
-                src={manufacturing.image}
-                alt="Technician measuring a motor stator lamination with a digital caliper"
-                loading="lazy"
-                className="absolute inset-0 size-full object-cover"
-              />
-              <span className="absolute inset-0 bg-linear-to-l from-[rgba(0,0,0,0.8)] via-[rgba(0,0,0,0.4)] to-[rgba(0,0,0,0.8)]" />
-              {hasVideo ? (
-                <button
-                  type="button"
-                  aria-label="Play factory video"
-                  onClick={() => setPlaying(true)}
-                  className="absolute top-1/2 left-1/2 size-22 -translate-1/2 cursor-pointer transition-transform duration-300 hover:scale-110 xl:size-[calc(var(--spacing)*77.38)]"
-                >
-                  <img src="/assets/play.svg" alt="" className="size-full" />
-                </button>
-              ) : (
-                <img
-                  src="/assets/play.svg"
-                  alt=""
-                  className="absolute top-1/2 left-1/2 size-22 -translate-1/2 xl:size-[calc(var(--spacing)*77.38)]"
-                />
-              )}
-            </>
-          )}
-        </div>
+        <video
+          ref={ref}
+          src={src ?? undefined}
+          poster={desktop ? manufacturing.poster : manufacturing.mobilePoster}
+          autoPlay={!still}
+          muted
+          loop
+          playsInline
+          preload="none"
+          aria-label="Naxatra Labs company film"
+          className="block aspect-[370/179.79] w-full rounded-3 bg-black object-cover xl:aspect-[1296.83/630] xl:rounded-16"
+        />
       </div>
     </section>
   )
