@@ -23,7 +23,7 @@ function VariantRow({ variant, selected, onSelect, wide }) {
     <button type="button" onClick={onSelect} aria-pressed={selected} className="flex w-full items-center gap-12 text-left">
       <span className={`relative grid h-160 flex-1 place-items-center overflow-hidden bg-[#f9f9f9] p-12 ${wide ? 'xl:h-240 xl:rounded-4' : 'xl:h-192 xl:w-307 xl:flex-none'} ${selected ? 'border border-black' : ''}`}>
         {selected && <span className={`pointer-events-none absolute inset-0 border-2 border-white ${wide ? 'xl:rounded-[3px]' : ''}`} />}
-        <img src={variant.thumb ?? variant.hero} alt="" className={`absolute inset-0 size-full object-contain p-12 ${wide ? 'xl:p-48' : ''}`} />
+        <img src={variant.thumb ?? variant.hero} alt={`${variant.code} motor`} className={`absolute inset-0 size-full object-contain p-12 ${wide ? 'xl:p-48' : ''}`} />
         {selected && (
           <svg viewBox="0 0 24 24" aria-hidden className="absolute top-9 right-8 size-32 text-black">
             <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1.5" />
@@ -46,7 +46,7 @@ function MobileVariantCard({ variant, selected, onSelect }) {
       <span className={`relative grid h-106 place-items-center overflow-hidden rounded-[2px] bg-[#f9f9f9] ${selected ? 'border border-black' : ''}`}>
         {selected && <span className="pointer-events-none absolute inset-0 border-2 border-white" />}
         {/* `mthumb` is the card image cut from the phone artboard (background included); else the render. */}
-        <img src={variant.mthumb ?? variant.hero} alt="" className={`absolute inset-0 size-full ${variant.mthumb ? 'object-cover' : 'object-contain p-8'}`} />
+        <img src={variant.mthumb ?? variant.hero} alt={`${variant.code} motor`} className={`absolute inset-0 size-full ${variant.mthumb ? 'object-cover' : 'object-contain p-8'}`} />
         {selected && (
           <svg viewBox="0 0 24 24" aria-hidden className="absolute top-4 right-4 size-18 text-black">
             <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1.5" />
@@ -133,7 +133,7 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
                   aria-label={`Show view ${i + 1}`}
                   className={`grid h-67 w-90 cursor-pointer place-items-center border bg-[#f1f1f1] ${isPicked(i) ? 'border-black' : 'border-transparent'}`}
                 >
-                  <img src={src} alt="" className={variant.mvim ? 'size-full object-contain' : 'max-h-[91%] max-w-[84%] object-contain'} />
+                  <img src={src} alt={`${family.name}, view ${i + 1}`} className={variant.mvim ? 'size-full object-contain' : 'max-h-[91%] max-w-[84%] object-contain'} />
                 </button>
               ))}
               <span className="grid h-67 w-90 place-items-center bg-[#f1f1f1]">
@@ -163,7 +163,7 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
                   aria-label={`Show view ${i + 1}`}
                   className={`grid h-[calc(var(--spacing)*53.609)] cursor-pointer place-items-center overflow-hidden border bg-[#f1f1f1] ${isPicked(i) ? 'border-black' : 'border-transparent'}`}
                 >
-                  <img src={src} alt="" className={`size-full object-contain ${variant.mvim ? '' : 'scale-125'}`} />
+                  <img src={src} alt={`${family.name}, view ${i + 1}`} className={`size-full object-contain ${variant.mvim ? '' : 'scale-125'}`} />
                 </button>
               ))}
               <span className="grid h-[calc(var(--spacing)*31.562)] place-items-center bg-[#f1f1f1]">
@@ -184,7 +184,7 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
                 <button type="button" aria-pressed="true" className="flex items-center gap-8 text-left">
                   <span className="relative grid h-106 flex-1 place-items-center overflow-hidden rounded-[calc(var(--spacing)*2.173)] border-[0.5px] border-black bg-[#f9f9f9] p-[calc(var(--spacing)*6.519)]">
                     <span className="pointer-events-none absolute inset-0 rounded-[2px] border border-white" />
-                    <img src={variant.thumb ?? variant.hero} alt="" className="h-[74%] w-[74%] object-contain" />
+                    <img src={variant.thumb ?? variant.hero} alt={`${variant.code} motor`} className="h-[74%] w-[74%] object-contain" />
                     <svg viewBox="0 0 24 24" aria-hidden className="absolute top-[calc(var(--spacing)*4.89)] right-[calc(var(--spacing)*4.25)] size-[calc(var(--spacing)*17.384)] text-black">
                       <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1.5" />
                       <path d="M8 12l3 3 5-5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
@@ -213,7 +213,7 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
                   aria-label={`Show view ${i + 1}`}
                   className={`grid h-72 cursor-pointer place-items-center border bg-[#f1f1f1] ${isPicked(i) ? 'border-black' : 'border-transparent'}`}
                 >
-                  <img src={src} alt="" className="max-h-[80%] max-w-[80%] object-contain" />
+                  <img src={src} alt={`${family.name}, view ${i + 1}`} className="max-h-[80%] max-w-[80%] object-contain" />
                 </button>
               ))}
               <span className="grid h-56 place-items-center bg-[#f1f1f1]">
@@ -285,7 +285,7 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
               aria-label={`Show view ${i + 1}`}
               className={`grid cursor-pointer place-items-center border bg-[#f1f1f1] ${isPicked(i) ? 'border-black' : 'border-transparent'} ${tileSize}`}
             >
-              <img src={src} alt="" className={variant.vim ? 'size-full object-contain' : 'max-h-[86%] max-w-[86%] object-contain'} />
+              <img src={src} alt={`${family.name}, view ${i + 1}`} className={variant.vim ? 'size-full object-contain' : 'max-h-[86%] max-w-[86%] object-contain'} />
             </button>
           ))}
           <span className={`relative grid place-items-center bg-[#f1f1f1] ${tileSize}`}>

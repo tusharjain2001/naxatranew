@@ -3,7 +3,7 @@ import { products } from '../data/home'
 const rem = (n) => `${n / 16}rem`
 
 // Motor renders sit in a rotated box, exactly as placed on the artboards.
-function Motor({ image, anchor = 'left', frameWidth }) {
+function Motor({ image, alt, anchor = 'left', frameWidth }) {
   const { box, inner, crop } = image
   const horizontal = anchor === 'left' ? { left: rem(box.l) } : { right: rem(frameWidth - box.l - box.w) }
   return (
@@ -17,7 +17,7 @@ function Motor({ image, anchor = 'left', frameWidth }) {
       >
         <img
           src={image.src}
-          alt=""
+          alt={alt}
           loading="lazy"
           className={crop ? 'absolute' : `absolute inset-0 size-full ${image.fit}`}
           style={crop ? { width: `${crop.w}%`, height: `${crop.h}%`, left: `${crop.l}%`, top: `${crop.t}%` } : undefined}
@@ -26,6 +26,9 @@ function Motor({ image, anchor = 'left', frameWidth }) {
     </div>
   )
 }
+
+// "Antarix RF Series motor", "PT Series motor", "Drone motor".
+const motorAlt = (p) => (p.series === 'Motor' ? `${p.brand} motor` : `${p.brand} ${p.series} motor`)
 
 function Name({ product }) {
   return (
@@ -76,7 +79,7 @@ export default function Products() {
             >
               {product.desc}
             </p>
-            <Motor image={product.image} />
+            <Motor image={product.image} alt={motorAlt(product)} />
           </a>
         ))}
       </div>
@@ -87,7 +90,7 @@ export default function Products() {
           <a key={product.href} href={product.href} className="group relative h-160 w-full">
             <img src="/assets/m/product-bg2.png" alt="" loading="lazy" className="absolute inset-0 size-full rounded-4-4 object-cover opacity-40" />
             <img src="/assets/product-bg.png" alt="" loading="lazy" className="absolute inset-0 size-full rounded-4-4 object-cover opacity-45" />
-            <Motor image={product.mobile} anchor="right" frameWidth={370} />
+            <Motor image={product.mobile} alt={motorAlt(product)} anchor="right" frameWidth={370} />
             <div className="absolute top-1/2 left-29 flex w-151 -translate-y-1/2 flex-col">
               <h3 className="flex h-21 items-center text-14 leading-16 whitespace-nowrap uppercase">
                 <span>

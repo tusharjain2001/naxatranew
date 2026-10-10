@@ -148,7 +148,7 @@ export default function Openings({ onApply }) {
       <div className="flex flex-col gap-24 xl:gap-43">
         <div className="flex items-center justify-between gap-[calc(var(--spacing)*26.798)] xl:justify-start xl:gap-84">
           <h3 className="text-20 leading-[calc(var(--spacing)*25.522)] tracking-display capitalize xl:w-1448 xl:text-40 xl:leading-80">
-            {openings.count ?? openings.jobs.length} open positions
+            {openings.jobs.length} open positions
           </h3>
           <SortMenu value={sort} onChange={setSort} />
         </div>

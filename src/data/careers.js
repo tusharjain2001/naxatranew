@@ -15,8 +15,6 @@ export const careersHero = {
 export const openings = {
   title: 'Be part of a team pushing the boundaries of motor technology.',
   subtitle: 'We’re actively hiring.',
-  // Figma's heading reads 10 open positions while listing these five.
-  count: 10,
   // `summary` and `compensation` show when a card is expanded; `jd` links the job description file once there is one.
   jobs: [
     {
@@ -24,7 +22,8 @@ export const openings = {
       location: 'Ahmedabad (Onsite)',
       type: 'Full Time',
       experience: '5 YOE',
-      summary: '',
+      summary:
+        'Responsible for designing and developing engineering components and systems, preparing technical drawings and CAD models, and supporting prototyping, testing, and design validation in coordination with engineering teams.',
       compensation: 'Upto 12 LPA',
       jd: '',
     },
@@ -63,7 +62,8 @@ export const openings = {
       location: 'Ahmedabad (Onsite)',
       type: 'Full Time',
       experience: '5+ YOE',
-      summary: '',
+      summary:
+        "Responsible for driving sales growth, identifying new business opportunities, managing client relationships, preparing proposals, negotiating commercial terms, and expanding the company's customer base across relevant industries.",
       compensation: 'Upto 20 LPA',
       jd: '',
     },

@@ -44,7 +44,7 @@ function ApplicationCard({ item }) {
       >
         <img
           src={photo.src}
-          alt=""
+          alt={photo.alt}
           loading="lazy"
           className="absolute transition-transform duration-500 group-hover:scale-[1.04]"
           style={{ width: `${photo.crop.w}%`, height: `${photo.crop.h}%`, left: `${photo.crop.l}%`, top: `${photo.crop.t}%` }}

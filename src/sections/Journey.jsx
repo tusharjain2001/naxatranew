@@ -20,7 +20,7 @@ function Photo({ item }) {
         <span className="absolute inset-0 bg-black/20" />
         <img
           src={item.image}
-          alt=""
+          alt={item.title}
           loading="lazy"
           className={`absolute left-0 w-full ${aspect} ${fit}`}
           style={{ top: `${top}em` }}
@@ -32,7 +32,7 @@ function Photo({ item }) {
     <div className="relative aspect-square w-full overflow-hidden rounded-[8em]">
       <img
         src={item.image}
-        alt=""
+        alt={item.title}
         loading="lazy"
         className="absolute inset-0 size-full object-cover"
         style={item.objectPosition ? { objectPosition: item.objectPosition } : undefined}

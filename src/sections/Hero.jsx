@@ -63,7 +63,7 @@ export default function Hero() {
               {slide.mobileImage && <source media="(max-width: 1279px)" srcSet={slide.mobileImage} />}
               <img
                 src={slide.image}
-                alt=""
+                alt={slide.alt}
                 fetchPriority={i === 0 ? 'high' : 'auto'}
                 decoding={i === 0 ? 'sync' : 'async'}
                 className={`absolute inset-0 size-full object-cover transition-transform duration-[7000ms] ease-out ${

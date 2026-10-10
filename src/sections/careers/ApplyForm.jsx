@@ -80,7 +80,7 @@ export default function ApplyForm({ role, onRoleChange }) {
           </div>
           <div className="flex flex-col gap-20 xl:flex-row xl:gap-32">
             <FileField id="resume" name="resume" label="Attach Resume" accept=".pdf,.doc,.docx" className="xl:shrink-0" />
-            <Field label="Linkedin Link" name="linkedin" type="url" placeholder="Enter Linked In link" className="xl:flex-1" />
+            <Field label="Linkedin Profile URL" name="linkedin" type="url" placeholder="Enter Linked In link" className="xl:flex-1" />
           </div>
         </div>
 

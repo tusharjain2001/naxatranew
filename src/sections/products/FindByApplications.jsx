@@ -62,7 +62,7 @@ export default function FindByApplications() {
                 onClick={() => setActive(i)}
                 className="relative aspect-square w-120 shrink-0 overflow-hidden rounded-[calc(var(--spacing)*2.4)] border-[0.3px] border-black/25 bg-white transition-colors hover:border-primary/50 xl:w-240 xl:rounded-[4.8px] xl:border"
               >
-                <img src={a.image} alt="" className="absolute top-[15%] left-[15%] h-[50%] w-[70%] object-contain" />
+                <img src={a.image} alt={a.name} className="absolute top-[15%] left-[15%] h-[50%] w-[70%] object-contain" />
                 <span className="absolute bottom-7 left-[calc(var(--spacing)*9.6)] text-12 leading-10 capitalize text-grey xl:bottom-[calc(var(--spacing)*14.4)] xl:left-19 xl:text-24 xl:leading-[calc(var(--spacing)*19.2)]">{a.name}</span>
               </button>
             ))}

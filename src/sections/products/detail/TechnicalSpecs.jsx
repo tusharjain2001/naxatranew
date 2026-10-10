@@ -60,7 +60,7 @@ export default function TechnicalSpecs({ variant, sketch, mobile = {} }) {
               {variant.applications.map((app, i) => (
                 <div key={app.label + i} className="flex w-full flex-col items-center gap-[calc(var(--spacing)*1.688)] xl:min-h-228 xl:w-182 xl:shrink-0 xl:gap-3">
                   <span className="relative grid h-110 w-full place-items-center bg-[#f9f9f9] p-10 xl:h-182 xl:p-16">
-                    <img src={app.image} alt="" className="max-h-full max-w-full object-contain max-xl:absolute max-xl:top-[10%] max-xl:left-[10%] max-xl:size-[80%]" />
+                    <img src={app.image} alt={app.label} className="max-h-full max-w-full object-contain max-xl:absolute max-xl:top-[10%] max-xl:left-[10%] max-xl:size-[80%]" />
                   </span>
                   <span className="text-12 leading-14 max-xl:text-center xl:text-22 xl:leading-[43px]">{app.label}</span>
                 </div>

@@ -28,7 +28,7 @@ export default function WhyUs({ data }) {
                   <span className="text-16 leading-20 capitalize xl:text-32 xl:leading-38">{item.title}</span>
                   <span className="text-12 leading-16 text-grey xl:text-24 xl:leading-[calc(var(--spacing)*33.74)]">{item.text}</span>
                 </button>
-                {open && <img src={item.image} alt="" className="h-320 w-full rounded-8 bg-[#c6c6c6] object-cover xl:hidden" />}
+                {open && <img src={item.image} alt={item.title} className="h-320 w-full rounded-8 bg-[#c6c6c6] object-cover xl:hidden" />}
               </li>
             )
           })}
@@ -39,7 +39,7 @@ export default function WhyUs({ data }) {
           <img
             key={item.title}
             src={item.image}
-            alt=""
+            alt={item.title}
             aria-hidden={item !== active}
             loading="lazy"
             className={`absolute inset-0 size-full object-cover transition-opacity duration-500 ${item === active ? 'opacity-100' : 'opacity-0'}`}

@@ -7,11 +7,11 @@ export default function Prototype({ data }) {
     <section className="flex w-full flex-col items-center gap-60 py-56 xl:h-880 xl:gap-60 xl:pt-100 xl:pb-0">
       <h2 className="text-center text-24 leading-38 xl:text-56 xl:leading-[calc(var(--spacing)*75.976)]">{data.title}</h2>
       <ul className="grid grid-cols-2 gap-[32em] text-[length:calc(var(--spacing)*0.43794)] xl:flex xl:text-[length:var(--spacing)]">
-        {data.stages.map((stage) => (
+        {data.stages.map((stage, i) => (
           <li key={stage.image} className={`relative h-[522em] w-[411em] rounded-[9em] ${stage.tone}`}>
             <img
               src={stage.image}
-              alt=""
+              alt={`Drone motor prototype, stage ${i + 1}`}
               loading="lazy"
               className="absolute max-w-none"
               style={{ left: em(stage.box.l), top: em(stage.box.t), width: em(stage.box.w), height: em(stage.box.h) }}

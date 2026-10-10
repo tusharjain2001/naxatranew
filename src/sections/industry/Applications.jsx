@@ -19,7 +19,7 @@ function Tile({ item, selected, onSelect, id, panelId }) {
     >
       <img
         src={item.tile}
-        alt=""
+        alt={item.label}
         className="pointer-events-none absolute -top-8 left-[2.5%] w-[95%] transition-transform duration-300 group-hover:scale-[1.03] xl:top-0 xl:left-0 xl:w-full"
       />
       {selected && (

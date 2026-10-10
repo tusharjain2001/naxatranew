@@ -12,7 +12,7 @@ const COPIES = 3 // the row is repeated so the loop never shows a gap, however f
 function Card({ card, hidden }) {
   return (
     <li aria-hidden={hidden || undefined} className="relative h-[596em] w-[440em] shrink-0 overflow-hidden rounded-[10.059em] bg-tile">
-      <img src={card.image} alt="" loading="lazy" className="absolute inset-0 size-full object-cover" />
+      <img src={card.image} alt={card.label} loading="lazy" className="absolute inset-0 size-full object-cover" />
       <div className="absolute inset-x-0 bottom-0 flex items-center justify-center bg-linear-to-t from-black from-[19.466%] to-transparent px-3 py-[7.2px] xl:px-10 xl:py-24">
         <span className="bg-linear-to-b from-white from-[32.692%] to-[#e7f0ff] bg-clip-text text-center text-10 leading-12 text-transparent uppercase xl:text-24 xl:leading-64 xl:whitespace-nowrap">
           {card.label}

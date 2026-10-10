@@ -12,7 +12,7 @@ function TestimonialCard({ item }) {
     >
       {/* A real client's card carries their photo and company logo as one `header` picture. */}
       {item.header ? (
-        <img src={item.header} alt="" loading="lazy" className="h-auto w-[391em]" />
+        <img src={item.header} alt={`${item.name} with their company logo`} loading="lazy" className="h-auto w-[391em]" />
       ) : (
         <div className="flex w-full items-center justify-between">
           <img src="/assets/avatar.svg" alt="" className="size-[80em]" />

@@ -204,7 +204,7 @@ export default function Footer() {
             </nav>
             <div className="w-417 leading-48">
               <h3 className="font-bold">Let’s Connect</h3>
-              <ul className="font-light">
+              <ul className="font-light normal-case">
                 {footer.contact.map((item) => (
                   <li key={item.label}>
                     <a href={item.href} className="transition-colors hover:text-white">
@@ -265,7 +265,7 @@ export default function Footer() {
           </nav>
           <div className="leading-20 whitespace-nowrap">
             <h3 className="text-12 font-bold">Let’s Connect</h3>
-            <ul className="text-10 font-light">
+            <ul className="text-10 font-light normal-case">
               {footer.contact.map((item) => (
                 <li key={item.label}>
                   <a href={item.href}>{item.label}</a>

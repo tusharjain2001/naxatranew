@@ -41,7 +41,7 @@ export default function PageHero({
               className={`absolute inset-0 ${washStyle ? '' : 'bg-linear-to-b from-[#2a689e] to-[rgba(24,99,218,0)] to-[82.724%]'} ${mobile?.wash ?? ''} ${wash}`}
               style={washStyle}
             />
-            <img src={foreground} alt={mobile ? '' : foregroundAlt} className={`absolute object-cover ${desktopOnly} ${foregroundFrame}`} />
+            <img src={foreground} alt={foregroundAlt} className={`absolute object-cover ${desktopOnly} ${foregroundFrame}`} />
           </>
         )}
 

@@ -81,6 +81,7 @@ export const industryMenu = {
 export const heroSlides = [
   {
     id: 'made-in-india',
+    alt: 'Electric tractor, auto-rickshaw, scooter, car, truck, bus and excavator lined up on a highway at sunset',
     image: a('hero-motion.webp'),
     mobileImage: a('m/hero-motion.webp'),
     // The phone artboard breaks this headline after “India's” rather than letting it wrap.
@@ -101,6 +102,7 @@ export const heroSlides = [
   },
   {
     id: 'mobility',
+    alt: 'Electric scooter, auto-rickshaw and motorcycle parked by a city waterfront',
     image: a('hero-vehicles.webp'),
     mobileImage: a('m/hero-vehicles.webp'),
     title: ['Building Motors for EV.', 'End To End.'],
@@ -112,6 +114,7 @@ export const heroSlides = [
   },
   {
     id: 'cleaning',
+    alt: 'Close-up of a street sweeper brushing the road',
     image: a('hero-sweeper.webp'),
     mobileImage: a('m/hero-sweeper.webp'),
     title: ['Powerful Motors For', 'Spotless Results.'],
@@ -121,6 +124,7 @@ export const heroSlides = [
   },
   {
     id: 'agriculture',
+    alt: 'Agricultural robot and drone tending crops in a field',
     image: a('hero-agri.webp'),
     // Phone crops are composed from the 402px artboards, each framed on its subject.
     mobileImage: a('m/hero-agri.webp'),
@@ -129,6 +133,7 @@ export const heroSlides = [
   },
   {
     id: 'drone',
+    alt: 'Drone flying over a field at dusk',
     image: a('hero-drone.webp'),
     // The phone crop is already mirrored.
     mobileImage: a('m/hero-drone.webp'),
@@ -162,31 +167,31 @@ export const applications = [
   {
     label: '2 Wheelers',
     font: 'font-inter',
-    photo: { src: a('app-2wheeler.png'), l: 38.9, t: 33.42, w: 276.478, h: 250.377, crop: { w: 101.29, h: 148.67, l: -1.22, t: -19.07 } },
+    photo: { alt: 'Electric scooter', src: a('app-2wheeler.png'), l: 38.9, t: 33.42, w: 276.478, h: 250.377, crop: { w: 101.29, h: 148.67, l: -1.22, t: -19.07 } },
     shadow: { src: a('shadow-sm.svg'), l: 60.17, t: 262.53, w: 213.642, inset: '-111.11% -4.52%' },
   },
   {
     label: '3 Wheelers & L5',
     font: 'font-inter',
-    photo: { src: a('app-3wheeler.png'), l: 7.61, t: -7.18, w: 308.379, h: 274.545, crop: { w: 100, h: 149.88, l: 0, t: -7.82 } },
+    photo: { alt: 'Electric auto-rickshaw', src: a('app-3wheeler.png'), l: 7.61, t: -7.18, w: 308.379, h: 274.545, crop: { w: 100, h: 149.88, l: 0, t: -7.82 } },
     shadow: { src: a('shadow-lg.svg'), l: 42.41, t: 262.53, w: 238.777, inset: '-111.11% -4.05%' },
   },
   {
     label: 'Cleaning',
     font: 'font-inter',
-    photo: { src: a('app-cleaning.png'), l: 46.91, t: 34.39, w: 260.993, h: 247.494, crop: { w: 102.87, h: 143.84, l: 0.12, t: -14.42 }, flip: true },
+    photo: { alt: 'Ride-on road sweeper', src: a('app-cleaning.png'), l: 46.91, t: 34.39, w: 260.993, h: 247.494, crop: { w: 102.87, h: 143.84, l: 0.12, t: -14.42 }, flip: true },
     shadow: { src: a('shadow-lg.svg'), l: 46.89, t: 257.7, w: 238.777, inset: '-111.11% -4.05%' },
   },
   {
     label: 'Agriculture',
     font: 'font-geist',
-    photo: { src: a('app-agriculture.png'), l: 18.69, t: 26, w: 281.537, h: 265.631, crop: { w: 103.39, h: 146.11, l: -3.57, t: -15.43 } },
+    photo: { alt: 'Electric tractor', src: a('app-agriculture.png'), l: 18.69, t: 26, w: 281.537, h: 265.631, crop: { w: 103.39, h: 146.11, l: -3.57, t: -15.43 } },
     shadow: { src: a('shadow-lg.svg'), l: 46.53, t: 253.83, w: 238.777, inset: '-111.11% -4.05%' },
   },
   {
     label: 'Drone',
     font: 'font-geist',
-    photo: { src: a('app-drone.png'), l: 1.26, t: 16.02, w: 330.187, h: 315.006, crop: { w: 104.02, h: 145.38, l: -1.72, t: -24.2 } },
+    photo: { alt: 'Drone', src: a('app-drone.png'), l: 1.26, t: 16.02, w: 330.187, h: 315.006, crop: { w: 104.02, h: 145.38, l: -1.72, t: -24.2 } },
   },
 ]
 
@@ -320,20 +325,6 @@ export const clientTestimonials = [
     name: 'Aditya Patel',
     role: 'R&D Lead, Cleanland - Sweeping Machine Manufacturer',
   },
-  {
-    id: 'harvtech',
-    header: a('others/testimonial-3.webp'),
-    quote: 'This is a dummy testimonial sentence. Designed to tackle Indian conditions, diverse terrains, and tough environmental conditions, our motors deliver unmatched durability and performance wherever the journey takes you.',
-    name: 'Mohamed Imran',
-    role: 'Co-Founder & COO at Harvtech',
-  },
-  {
-    id: 'greenway',
-    header: a('others/testimonial-4.webp'),
-    quote: 'This is a dummy testimonial sentence. Designed to tackle Indian conditions, diverse terrains, and tough environmental conditions, our motors deliver unmatched durability and performance wherever the journey takes you.',
-    name: 'Harsh Raval',
-    role: 'Founder & COO, Greenway Mobility',
-  },
 ]
 
 // The home page's "Don't see your application here?" banner (node 15421:60709).
@@ -415,12 +406,12 @@ export const footer = {
   ],
   contact: [
     { label: '+91 9266030266', href: 'tel:+919266030266' },
-    { label: 'Enquiry@Naxatralabs.Com', href: 'mailto:enquiry@naxatralabs.com' },
-    { label: 'Careers@Naxatralabs.Com', href: 'mailto:careers@naxatralabs.com' },
+    { label: 'enquiry@naxatralabs.com', href: 'mailto:enquiry@naxatralabs.com' },
+    { label: 'careers@naxatralabs.com', href: 'mailto:careers@naxatralabs.com' },
   ],
   newsletter: {
     title: 'Join The Newsletter',
-    text: ['Get articles on the innovative projects', 'Lockheed Martin scientists and engineers', 'are working on right now.'],
+    text: ['Updates on Naxatra’s motors, launches and', 'field deployments.'],
   },
   legal: [
     { label: 'Privacy Policy', href: '/privacy-policy' },
