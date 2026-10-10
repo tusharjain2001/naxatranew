@@ -4,12 +4,13 @@ import { loadRecaptcha, RECAPTCHA_SITE_KEY } from '../../lib/recaptcha'
 import { subscribe } from '../../lib/newsletter'
 import Button from '../ui/Button'
 
+// Profile links carried over from the previous site; it had no YouTube channel, so that icon is not a link yet.
 const socials = [
-  { label: 'Facebook', icon: '/assets/social/facebook.svg' },
-  { label: 'X', icon: '/assets/social/x.svg' },
+  { label: 'Facebook', icon: '/assets/social/facebook.svg', href: 'https://www.facebook.com/share/1K1QdBdCVZ/?mibextid=wwXIfr' },
+  { label: 'X', icon: '/assets/social/x.svg', href: 'https://x.com/naxatralabs?s=21' },
   { label: 'YouTube', icon: '/assets/social/youtube.svg' },
-  { label: 'LinkedIn', icon: '/assets/social/linkedin.svg' },
-  { label: 'Instagram', icon: '/assets/social/instagram.svg' },
+  { label: 'LinkedIn', icon: '/assets/social/linkedin.svg', href: 'https://www.linkedin.com/company/naxatra-labs/' },
+  { label: 'Instagram', icon: '/assets/social/instagram.svg', href: 'https://www.instagram.com/naxatralabs/' },
 ]
 
 // 24px icons 40px apart on desktop; the phone artboard uses 12px icons on a 41.6px pitch in a 23px row.
@@ -18,7 +19,13 @@ function SocialIcons({ className, iconClass }) {
     <ul className={`flex items-center ${className}`}>
       {socials.map((item) => (
         <li key={item.label}>
-          <img src={item.icon} alt={item.label} className={`block ${iconClass}`} />
+          {item.href ? (
+            <a href={item.href} target="_blank" rel="noopener noreferrer" aria-label={`Naxatra Labs on ${item.label}`} className="block transition-opacity hover:opacity-70">
+              <img src={item.icon} alt="" className={`block ${iconClass}`} />
+            </a>
+          ) : (
+            <img src={item.icon} alt={item.label} className={`block ${iconClass}`} />
+          )}
         </li>
       ))}
     </ul>
