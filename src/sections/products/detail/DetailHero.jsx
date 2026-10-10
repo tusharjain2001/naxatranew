@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Button from '../../../components/ui/Button'
 
-// Breadcrumb -> title -> subtitle ("- <variant> Variant") -> VIEW SPECIFICATIONS -> 3 spec boxes,
+// Breadcrumb -> title -> subtitle ("<variant> Variant") -> VIEW SPECIFICATIONS -> 3 spec boxes,
 // hero render + thumbnail gallery + View In Motion, and the Choose-The-Variant panel. Selecting a
 // variant swaps the subtitle, spec boxes and hero render in place (the parent swaps the rest).
 // The mobile (< xl) and desktop (xl) layouts are built separately — the 402 mobile artboard stacks
@@ -92,8 +92,8 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
   const isPicked = (i) => picked.i === i
   const pick = (src, i) => setShot({ variant: variant.id, src: i === 0 ? null : src, i })
   const mainSrc = picked.src ?? variant.hero
-  // Families without a tagline (Drone Motor) show no subtitle line.
-  const subtitle = family.tagline && `${family.tagline} - ${!multi && variant.displayName ? variant.displayName : `${variant.label ?? variant.code} Variant`}`
+  // The subtitle names the variant on show; the Drone Motor (no series) has no subtitle line.
+  const subtitle = family.series && (!multi && variant.displayName ? variant.displayName : `${variant.label ?? variant.code} Variant`)
   return (
     <section className="relative w-full overflow-hidden bg-[#fafafa]">
       {/* ---------- MOBILE (< xl) ---------- */}
