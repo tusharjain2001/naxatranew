@@ -52,6 +52,9 @@ const gallery = [RF + 'hero.png', RF + 'hero.png'] // mobile fallback gallery (m
 const STD_VIM = [RF + 'vim-1.png', RF + 'vim-2.png'] // thumb1 = hero orientation, thumb2 = distinct (rotate -37.37 + overlay)
 const STD_THUMB = RF + 'thumb.png' // variant-panel thumbnail, baked at scaleY(-1) rotate(180)
 
+// Client spec sheets received so far (10 Oct); every other variant still downloads the placeholder.
+const DATASHEETS = new Set(['RF 15/42', 'RF 15/60', 'RF 22/42', 'RF 22/60', 'RF 22/86', 'RF 33/60', 'RF 33/86', 'RF 55/86'])
+
 // Build one variant. `voltage/power/torque` are the 3 hero spec boxes; the rest fill the technical table
 // and the VIEW SPECIFICATIONS modal.
 function mkVariant(code, o) {
@@ -87,7 +90,7 @@ function mkVariant(code, o) {
       { label: 'Efficiency', value: o.efficiency },
       { label: 'Mass', value: o.mass },
     ]).map((row, i) => ({ ...row, mobileLabel: o.mobileTableLabels?.[i] })), // phone artboard can relabel a row
-    datasheet: '/assets/products/datasheet-placeholder.pdf',
+    datasheet: DATASHEETS.has(code) ? `/assets/products/datasheets/Antarix-${code.replace(/\s+/g, '').replace('/', '-')}-Datasheet.pdf` : '/assets/products/datasheet-placeholder.pdf',
     datasheetNote: `Get more detailed specification in our ${o.displayName ?? code} specsheet.`,
     applications: o.applications ?? APPS,
     // VIEW SPECIFICATIONS modal — detailed spec sheet.
