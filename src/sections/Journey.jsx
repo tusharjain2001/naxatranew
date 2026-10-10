@@ -12,31 +12,9 @@ const STEP_MS = 2000 // autoplay: highlight the next milestone every 2 s
 const GLIDE_MS = 600
 
 function Photo({ item }) {
-  if (item.inset) {
-    const { fade, aspect, top, fit } = item.inset
-    return (
-      <div className="relative aspect-square w-full overflow-hidden rounded-[8em]">
-        <img src={item.image} alt="" loading="lazy" className={`absolute inset-0 size-full object-cover ${fade}`} />
-        <span className="absolute inset-0 bg-black/20" />
-        <img
-          src={item.image}
-          alt={item.title}
-          loading="lazy"
-          className={`absolute left-0 w-full ${aspect} ${fit}`}
-          style={{ top: `${top}em` }}
-        />
-      </div>
-    )
-  }
   return (
     <div className="relative aspect-square w-full overflow-hidden rounded-[8em]">
-      <img
-        src={item.image}
-        alt={item.title}
-        loading="lazy"
-        className="absolute inset-0 size-full object-cover"
-        style={item.objectPosition ? { objectPosition: item.objectPosition } : undefined}
-      />
+      <img src={item.image} alt={item.title} loading="lazy" className="absolute inset-0 size-full object-cover" />
     </div>
   )
 }

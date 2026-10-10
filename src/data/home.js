@@ -335,29 +335,29 @@ export const engineerBanner = {
 }
 
 /*
- * Timeline entries. `cover` draws a plain square photo; `inset` draws the product-shot treatment
- * (faded square + full-width photo) and `objectPosition` reproduces off-centre crops from Figma.
+ * Timeline entries. Each photo is Figma's finished square (journey so far, 15426:642), crops and
+ * faded backdrops already baked in.
  */
 export const journey = [
-  { year: '2020', title: 'Born to Disrupt', text: 'Naxatra Labs takes flight with a mission to revolutionize hybrid drones.', image: a('journey-01.png') },
-  { year: '2020', title: 'Electric Dreams Take Shape', text: 'Ventured into Axial Flux Motors for EVs, bringing cutting-edge hub and mid-drive technology to life.', image: a('journey-02.png') },
-  { year: '2020', title: 'Gaining Recognition', text: 'Became a Finalist at Evangelise 2021, proving our innovation potential.', image: a('journey-03.png') },
-  { year: '2022', title: 'Engineering the Future', text: 'In-House developed advanced magnet tech, cooling methods and electromagnetic designs for next-gen efficiency.', image: a('journey-04b.webp') },
-  { year: '2022', title: 'Building Smarter, Faster Motors', text: 'Developed our first Radial Hub Motor, setting the stage for high-performance EVs.', image: a('journey-05.png'), inset: { fade: 'opacity-12', aspect: 'aspect-[222/148]', top: 40, fit: 'object-fill' }, titleLeading: 'leading-40' },
-  { year: '2022', title: 'Evangelise 2022', text: 'Finalist at Evangelise 2022 by iCreate. Recognized for groundbreaking innovation in electric mobility.', image: a('journey-06.png'), inset: { fade: 'opacity-12', aspect: 'aspect-[226/160]', top: 35, fit: 'object-cover' }, titleLeading: 'leading-40' },
-  { year: '2023', title: 'Pushing Boundaries', text: 'Began Radial Flux Motor development, refining performance and efficiency.', image: a('journey-07.png') },
-  { year: '2023', title: 'From Idea to Industry', text: 'Established our first factory, turning prototypes into real-world solutions.', image: a('journey-08.png') },
-  { year: '2023', title: 'Fueling the Vision', text: 'Secured Pre-Seed Funding to accelerate innovation.', image: a('journey-09.png'), inset: { fade: 'opacity-5', aspect: 'aspect-[222/148]', top: 40, fit: 'object-cover' } },
-  { year: '2023', title: 'Powering Progress', text: 'Deployed motors in the agricultural industry, making farming more sustainable.', image: a('journey-10.png'), objectPosition: '71% 50%' },
-  { year: '2024', title: 'Taking Flight', text: 'Expanded into aviation motors, bringing electric power to the skies.', image: a('journey-11.png') },
-  { year: '2024', title: 'Scaling for Impact', text: 'Announced our Seed Round to drive the next wave of breakthroughs.', image: a('journey-12.webp') },
-  { year: '2025', title: 'Supercharging Growth', text: 'Expanding production capacity to 100K motors per year to meet global demand.', image: a('journey-13.png') },
-  { year: '2025', title: 'Leading the Charge', text: 'Showcasing at Bharat Mobility Expo, cementing our role as an industry pioneer.', image: a('journey-14.png'), objectPosition: '11.8% 50%' },
-  { year: '2025', title: 'Another Production Facility', text: 'Inaugurated our another state-of-the-art production unit in August 2025, enabling higher production capacity and precision manufacturing for next-generation motors.', image: a('journey-15.png') },
-  { year: '2025', title: 'Showcasing Innovation', text: 'Exhibited at EV India Expo 2025, presented our advancements in motor technologies and forging key international collaborations.', image: a('journey-16.png') },
-  { year: '2025', title: 'Pre-Series A ($3M)', text: 'Motor & Controllers: Efficient Motors, Better Performance, Greener Future', image: a('journey-17.png'), inset: { fade: 'opacity-5', aspect: 'aspect-[222/148]', top: 40, fit: 'object-cover' } },
-  { year: '2026', title: 'Certified For The Road', text: "Our motors cleared NATRAX certification, proving their performance, safety and reliability to India's automotive testing standards.", image: a('journey-18.webp') },
-  { year: '2026', title: 'Taking Flight', text: "Launched our drone motor range, taking Naxatra's motion technology from the road into the sky.", image: a('journey-19.webp') },
+  { year: '2020', title: 'Born to Disrupt', text: 'Naxatra Labs takes flight with a mission to revolutionize hybrid drones.', image: a('journey-01-v2.webp') },
+  { year: '2020', title: 'Electric Dreams Take Shape', text: 'Ventured into Axial Flux Motors for EVs, bringing cutting-edge hub and mid-drive technology to life.', image: a('journey-02-v2.webp') },
+  { year: '2020', title: 'Gaining Recognition', text: 'Became a Finalist at Evangelise 2021, proving our innovation potential.', image: a('journey-03-v2.webp') },
+  { year: '2022', title: 'Engineering the Future', text: 'In-House developed advanced magnet tech, cooling methods and electromagnetic designs for next-gen efficiency.', image: a('journey-04-v2.webp') },
+  { year: '2022', title: 'Building Smarter, Faster Motors', text: 'Developed our first Radial Hub Motor, setting the stage for high-performance EVs.', image: a('journey-05-v2.webp'), titleLeading: 'leading-40' },
+  { year: '2022', title: 'Evangelise 2022', text: 'Finalist at Evangelise 2022 by iCreate. Recognized for groundbreaking innovation in electric mobility.', image: a('journey-06-v2.webp'), titleLeading: 'leading-40' },
+  { year: '2023', title: 'Pushing Boundaries', text: 'Began Radial Flux Motor development, refining performance and efficiency.', image: a('journey-07-v2.webp') },
+  { year: '2023', title: 'From Idea to Industry', text: 'Established our first factory, turning prototypes into real-world solutions.', image: a('journey-08-v2.webp') },
+  { year: '2023', title: 'Fueling the Vision', text: 'Secured Pre-Seed Funding to accelerate innovation.', image: a('journey-09-v2.webp') },
+  { year: '2023', title: 'Powering Progress', text: 'Deployed motors in the agricultural industry, making farming more sustainable.', image: a('journey-10-v2.webp') },
+  { year: '2024', title: 'Taking Flight', text: 'Expanded into aviation motors, bringing electric power to the skies.', image: a('journey-11-v2.webp') },
+  { year: '2024', title: 'Scaling for Impact', text: 'Announced our Seed Round to drive the next wave of breakthroughs.', image: a('journey-12-v2.webp') },
+  { year: '2025', title: 'Supercharging Growth', text: 'Expanding production capacity to 100K motors per year to meet global demand.', image: a('journey-13-v2.webp') },
+  { year: '2025', title: 'Leading the Charge', text: 'Showcasing at Bharat Mobility Expo, cementing our role as an industry pioneer.', image: a('journey-14-v2.webp') },
+  { year: '2025', title: 'Another Production Facility', text: 'Inaugurated our another state-of-the-art production unit in August 2025, enabling higher production capacity and precision manufacturing for next-generation motors.', image: a('journey-15-v2.webp') },
+  { year: '2025', title: 'Showcasing Innovation', text: 'Exhibited at EV India Expo 2025, presented our advancements in motor technologies and forging key international collaborations.', image: a('journey-16-v2.webp') },
+  { year: '2025', title: 'Pre-Series A ($3M)', text: 'Motor & Controllers: Efficient Motors, Better Performance, Greener Future', image: a('journey-17-v2.webp') },
+  { year: '2026', title: 'Certified For The Road', text: "Our motors cleared NATRAX certification, proving their performance, safety and reliability to India's automotive testing standards.", image: a('journey-18-v2.webp') },
+  { year: '2026', title: 'Taking Flight', text: "Launched our drone motor range, taking Naxatra's motion technology from the road into the sky.", image: a('journey-19-v2.webp') },
 ]
 
 // The old site's home "Our Blogs" cards (C:\Users\Intel\Desktop\naxatra, BlogsSection.jsx), with its images.
