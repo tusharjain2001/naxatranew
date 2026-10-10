@@ -29,7 +29,7 @@ function IndustryChips({ keys }) {
 // `listing` is the listing artboard's card (node 15651:3372): the variants line under the name, then the key spec
 // ("Torque upto 6.5 Nm", "IP67 Sealing") in a grey pill with its icon, instead of the tagline.
 export default function FamilyCard({ family, className = 'w-full', listing = false }) {
-  const line = family.tagline ?? family.cardTagline
+  const line = family.cardTagline
   return (
     <a href={productPath(family.slug)} className={`group flex flex-col overflow-hidden border-[calc(var(--spacing)*0.367)] border-black/10 xl:border-[0.85px] bg-black/[0.02] ${className}`}>
       {/* Render plate. The Figma card render is a large square centred on the plate that overflows it
