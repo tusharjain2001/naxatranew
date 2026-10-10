@@ -438,6 +438,7 @@ export const footer = {
     { label: 'Blogs And Insights', href: '/blogs' },
     { label: 'Career', href: '/careers' },
     { label: 'Contact Us', href: '/contact' },
+    { label: 'Media Kit', href: '/media-kit' },
   ],
   contact: [
     { label: '+91 9266030266', href: 'tel:+919266030266' },
