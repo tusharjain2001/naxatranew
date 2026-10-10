@@ -9,11 +9,12 @@ import Blogs from './pages/Blogs'
 import Industry from './pages/Industry'
 import Products from './pages/Products'
 import ProductDetail from './pages/ProductDetail'
+import MediaKit from './pages/MediaKit'
 import { industryPages, industryPath } from './data/industry'
 import { productFamilies, productPath } from './data/products'
 import { currentPath } from './lib/currentPath'
 
-const pages = { '/': Home, '/about': About, '/careers': Careers, '/contact': Contact, '/blogs': Blogs, '/products': Products }
+const pages = { '/': Home, '/about': About, '/careers': Careers, '/contact': Contact, '/blogs': Blogs, '/products': Products, '/media-kit': MediaKit }
 const industryBySlug = Object.fromEntries(industryPages.map((page) => [industryPath(page.slug), page]))
 const productBySlug = Object.fromEntries(productFamilies.map((family) => [productPath(family.slug), family]))
 
