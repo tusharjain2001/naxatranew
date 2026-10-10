@@ -309,21 +309,56 @@ export const products = [
   },
 ]
 
-// Client quotes (home slide 15421:31796), shared with the Others page.
+// Client quotes (home slide 15421:31796, cards 5 and 6 from 15840:161 / 15840:172). `header` is the card's top
+// row (photo + company logo) cut from Figma at one size, so every quote starts at the same height.
 export const clientTestimonials = [
   {
     id: 'xmatic',
-    header: a('others/testimonial-1.webp'),
-    quote: "At Xmatic Innovations, we rely on Naxatra Labs' PMSM motors for our unmanned ground vehicles. Their performance and quality are consistently reliable, and their team has been supportive throughout the process. We highly recommend Naxatra Labs.",
+    header: a('others/testimonial-1-v2.webp'),
+    headerAlt: 'Mithun S K with the Xmatic logo',
+    quote: 'Naxatra Labs has been a reliable partner for our AGV motor requirements. The team stayed responsive and professional throughout, and the motor has performed well in our application. We look forward to continuing this partnership.',
     name: 'Mithun S K',
-    role: 'Managing Director & CEO, Xmatic Innovations Pvt. Ltd.',
+    role: 'Founder & CEO : AGV',
   },
   {
     id: 'cleanland',
-    header: a('others/testimonial-2.webp'),
+    header: a('others/testimonial-2-v2.webp'),
+    headerAlt: 'Aditya Patel with the Cleanland logo',
     quote: 'It has been a great experience working with Naxatra Labs. The team has been professional, supportive, and responsive to our requirements throughout the project. We truly appreciate their cooperation and look forward to working together on future projects.',
     name: 'Aditya Patel',
-    role: 'R&D Lead, Cleanland - Sweeping Machine Manufacturer',
+    role: 'R&D Lead : Ride-on Sweeper',
+  },
+  {
+    id: 'harvtech',
+    header: a('others/testimonial-3-v2.webp'),
+    headerAlt: 'Mohamed Imran with the Harvtech logo',
+    quote: "Working with Naxatra Labs on our power weeder motor has been a smooth experience. The team understood our requirements well and remained responsive throughout. We're happy with the outcome and the collaboration.",
+    name: 'Mohamed Imran',
+    role: 'Co-Founder & COO : Power Weeder',
+  },
+  {
+    id: 'greenway',
+    header: a('others/testimonial-4-v2.webp'),
+    headerAlt: 'Harsh Raval with the Greenway Mobility logo',
+    quote: "Naxatra Labs has been a dependable partner for our 3-wheeler motor requirements. The team has stayed responsive and professional throughout, and we're pleased with the collaboration.",
+    name: 'Harsh Raval',
+    role: 'Founder & COO : 3-Wheeler',
+  },
+  {
+    id: 'marine',
+    header: a('others/testimonial-5-v2.webp'),
+    headerAlt: '', // placeholder avatar only
+    quote: "Naxatra Labs supported us well on our boat motor requirement. The team was professional and responsive throughout the project, and we're pleased with how the collaboration has gone.",
+    name: 'Sahil Mujawar',
+    role: 'Co-Founder : Marine',
+  },
+  {
+    id: 'hindustan-power',
+    header: a('others/testimonial-6-v2.webp'),
+    headerAlt: 'Hindustan Power logo',
+    quote: 'Our experience working with Naxatra Labs on the 2-wheeler motor has been positive. The team has been professional and responsive, and we look forward to working together on future projects.',
+    name: 'Ajay Chappola',
+    role: 'MD : 2-Wheeler',
   },
 ]
 
