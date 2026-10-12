@@ -32,7 +32,12 @@ export default function TechnicalSpecs({ variant, sketch, mobile = {} }) {
                   )}
                 </span>
                 <span className="h-px w-full bg-black/25" />
-                <span className="text-16 max-xl:leading-[calc(var(--spacing)*23.9)] xl:text-36">{row.value}</span>
+                {/* Per-voltage pairs ("4000 / 5000 RPM") are too wide for the phone's 16px; they drop to 12px on one line. */}
+                <span
+                  className={`max-xl:leading-[calc(var(--spacing)*23.9)] xl:text-36 ${String(row.value).length > 12 ? 'text-12 whitespace-nowrap' : 'text-16'}`}
+                >
+                  {row.value}
+                </span>
               </div>
             ))}
           </div>
