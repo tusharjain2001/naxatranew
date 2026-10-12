@@ -42,22 +42,25 @@ export default function SpecModal({ open, onClose, family, variant }) {
               {variant.spec.map((row) => (
                 <div key={row.label} className="flex items-center justify-between gap-12 border-b border-black/10 py-10">
                   <dt className="text-14 font-light text-grey xl:text-16">{row.label}</dt>
-                  <dd className="text-14 text-black xl:text-16">{row.value}</dd>
+                  <dd className="text-right text-14 text-black xl:text-16">{row.value}</dd>
                 </div>
               ))}
             </dl>
           </div>
 
-          <div>
-            <h3 className="mb-12 text-18 tracking-display xl:text-24">Applications</h3>
-            <div className="flex flex-wrap gap-8">
-              {variant.applications.map((a, i) => (
-                <span key={a.label + i} className="border border-black/10 bg-black/5 px-12 py-6 text-14 capitalize xl:text-16">
-                  {a.label}
-                </span>
-              ))}
+          {/* The AKSH 3115 drone motor lists no applications. */}
+          {variant.applications.length > 0 && (
+            <div>
+              <h3 className="mb-12 text-18 tracking-display xl:text-24">Applications</h3>
+              <div className="flex flex-wrap gap-8">
+                {variant.applications.map((a, i) => (
+                  <span key={a.label + i} className="border border-black/10 bg-black/5 px-12 py-6 text-14 capitalize xl:text-16">
+                    {a.label}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           <div>
             <h3 className="mb-12 text-18 tracking-display xl:text-24">Salient Features</h3>

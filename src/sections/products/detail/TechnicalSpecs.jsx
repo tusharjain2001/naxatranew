@@ -1,5 +1,8 @@
 import Button from '../../../components/ui/Button'
 
+// Phone table boxes can span half (3 of 6) or a third (2 of 6) of the row (AKSH 3115: two, two, then three across).
+const SPAN = { 2: 'col-span-2', 3: 'col-span-3' }
+
 // Technical Sketch (line drawings) + the spec table, the datasheet CTA, then the "<variant> Motor
 // Applications" carousel. All of it swaps when the parent changes the selected variant.
 export default function TechnicalSpecs({ variant, sketch, mobile = {} }) {
@@ -18,9 +21,9 @@ export default function TechnicalSpecs({ variant, sketch, mobile = {} }) {
           </div>
 
           {/* mobile: 3-col × 2-row grid (per the mobile artboard); desktop: full-height stacked column */}
-          <div className="grid grid-cols-3 gap-x-[calc(var(--spacing)*7.956)] gap-y-8 xl:flex xl:flex-1 xl:flex-col xl:gap-15">
+          <div className={`grid ${variant.table[0].mobileSpan ? 'grid-cols-6' : 'grid-cols-3'} gap-x-[calc(var(--spacing)*7.956)] gap-y-8 xl:flex xl:flex-1 xl:flex-col xl:gap-15`}>
             {variant.table.map((row) => (
-              <div key={row.label} className="flex h-[calc(var(--spacing)*54.363)] flex-col justify-center gap-[calc(var(--spacing)*2.652)] border-[0.5px] border-black/25 bg-white px-[calc(var(--spacing)*10.607)] pt-[calc(var(--spacing)*5.304)] xl:h-auto xl:flex-1 xl:gap-4 xl:px-20 xl:pt-10 xl:pb-3">
+              <div key={row.label} className={`${SPAN[row.mobileSpan] ?? ''} flex h-[calc(var(--spacing)*54.363)] flex-col justify-center gap-[calc(var(--spacing)*2.652)] border-[0.5px] border-black/25 bg-white px-[calc(var(--spacing)*10.607)] pt-[calc(var(--spacing)*5.304)] xl:h-auto xl:flex-1 xl:gap-4 xl:px-20 xl:pt-10 xl:pb-3`}>
                 <span className="text-[length:calc(var(--spacing)*10.41)] font-light capitalize max-xl:leading-[calc(var(--spacing)*10.607)] xl:text-20">
                   {row.mobileLabel ? (
                     <>
@@ -32,9 +35,9 @@ export default function TechnicalSpecs({ variant, sketch, mobile = {} }) {
                   )}
                 </span>
                 <span className="h-px w-full bg-black/25" />
-                {/* Per-voltage pairs ("4000 / 5000 RPM") are too wide for the phone's 16px; they drop to 12px on one line. */}
+                {/* Per-voltage pairs ("4000 / 5000 RPM") are too wide for a third-width phone box at 16px; they drop to 12px on one line. */}
                 <span
-                  className={`max-xl:leading-[calc(var(--spacing)*23.9)] xl:text-36 ${String(row.value).length > 12 ? 'text-12 whitespace-nowrap' : 'text-16'}`}
+                  className={`max-xl:leading-[calc(var(--spacing)*23.9)] xl:text-36 ${String(row.value).length > 12 && (row.mobileSpan ?? 2) === 2 ? 'text-12 whitespace-nowrap' : 'text-16'}`}
                 >
                   {row.value}
                 </span>
@@ -50,7 +53,7 @@ export default function TechnicalSpecs({ variant, sketch, mobile = {} }) {
             Download data-sheet
           </Button>
           <Button as="a" href={variant.datasheet} download variant="primary" size="hero" className="hidden xl:inline-flex">
-            Download data-sheet
+            {variant.datasheetCta ?? 'Download data-sheet'}
           </Button>
         </div>
 

@@ -82,6 +82,7 @@ function mkVariant(code, o) {
     code,
     label: code.replace(/\s+/g, ''), // "RF 15/42" -> "RF15/42" (subtitle form)
     displayName: o.displayName ?? null, // single-variant families show this instead of "<code> Variant"
+    subtitle: o.subtitle ?? null, // hero line under the title, when the artboard words it differently (AF 58)
     note: PEAK_TORQUE[code] ? `Peak Torque - ${PEAK_TORQUE[code]}` : null, // variant-panel line under the code
     hero: o.hero,
     // Per-variant hero art (RF 33): render box on desktop / phone, gallery tiles (desktop `vim`, phone
@@ -108,9 +109,10 @@ function mkVariant(code, o) {
       { label: 'Peak Speed', value: o.peakSpeed },
       { label: 'Efficiency', value: o.efficiency },
       { label: 'Mass', value: o.mass },
-    ]).map((row, i) => ({ ...row, value: shortDual(row.value), mobileLabel: o.mobileTableLabels?.[i] })), // phone artboard can relabel a row
+    ]).map((row, i) => ({ ...row, value: shortDual(row.value), mobileLabel: o.mobileTableLabels?.[i], mobileSpan: o.mobileTableSpans?.[i] })), // phone artboard can relabel a row
     datasheet: DATASHEETS.has(code) ? `/assets/products/datasheets/Antarix-${code.replace(/\s+/g, '').replace('/', '-')}-Datasheet.pdf` : '/assets/products/datasheet-placeholder.pdf',
     datasheetNote: `Get more detailed specification in our ${o.displayName ?? code} specsheet.`,
+    datasheetCta: o.datasheetCta ?? null, // desktop button label when the artboard words it differently
     applications: o.applications ?? APPS,
     // VIEW SPECIFICATIONS modal — detailed spec sheet.
     spec: o.spec ?? [
@@ -128,7 +130,7 @@ function mkVariant(code, o) {
       { label: 'Communication mode', value: o.comm ?? 'CAN / one-line' },
       { label: 'Sensor Type', value: o.sensor ?? 'Hall Sensor / Magnetic Encoder' },
       { label: 'Mass', value: o.mass },
-    ],
+    ].filter((row) => !o.hideSpec?.includes(row.label)), // a motor can drop rows its sheet doesn't list (PT 500)
     features: o.features ?? [
       'Advanced cooling channels for better thermal performance',
       'Compact, integrated packaging',
@@ -192,9 +194,9 @@ export const detailBySlug = {
   // technical table shows Rated Torque (25 Nm). Single-variant, so no Choose-Variant panel.
   af58: mkDetail('af58', 'Product/ AF Series/ AF 58', [
     mkVariant('AF 58/40', {
-      displayName: 'AF 58', hero: AF + 'hero.png', vim: [AF + 'g-1.png', AF + 'g-2b.png'], mvim: [AF + 'mg-1.png', AF + 'mg-2b.png'], vimFull: [null, AF + 'back.png'], motorType: 'Axial Flux PMSM',
+      displayName: 'AF 58', subtitle: 'A motor with Peak Torque of 60 Nm', hero: AF + 'hero.png', vim: [AF + 'g-1.png', AF + 'g-2b.png'], mvim: [AF + 'mg-1.png', AF + 'mg-2b.png'], vimFull: [null, AF + 'back.png'], motorType: 'Axial Flux PMSM',
       voltage: '72 V', power: '5.8 kW', torque: '25 Nm', boxTorque: '60 Nm', peakPower: '10.5 kW', peakTorque: '60 Nm',
-      peakSpeed: '4400 RPM', efficiency: '94%', cooling: 'Forced Air cooled', mass: '11 Kg',
+      peakSpeed: '4400 RPM', efficiency: '94%', cooling: 'Forced Air cooled', insulation: '20 Ohm', mass: '11 Kg',
       applications: [
         { label: 'High Performance 2W', image: AFA('highperf-2w.png') },
         { label: 'Performance 3W', image: AFA('performance-3w.png') },
@@ -209,9 +211,10 @@ export const detailBySlug = {
   // designed; Tushar to confirm the real efficiency % and mass. Single-variant, so no Choose-Variant panel.
   pt500: mkDetail('pt500', 'Product/ PT Series/ PT 500', [
     mkVariant('PT 500/00', {
-      displayName: 'PT-500', hero: PT + 'hero.png', vim: [PT + 'g-1.png', PT + 'g-2b.png'], mvim: [PT + 'mg-1.png', PT + 'mg-2b.png'], vimFull: [null, PT + 'back.png'], motorType: 'Power Tool BLDC',
+      displayName: 'PT-500', subtitle: 'A motor for industrial applications', hero: PT + 'hero.png', vim: [PT + 'g-1.png', PT + 'g-2b.png'], mvim: [PT + 'mg-1.png', PT + 'mg-2b.png'], vimFull: [null, PT + 'back.png'], motorType: 'Power Tool BLDC',
       voltage: '18 V', power: '0.05 kW', torque: '0.32 Nm', peakPower: '0.5 kW', peakTorque: '0.5 Nm',
-      peakSpeed: '17500 RPM', efficiency: '0.5 kW', mass: '0.5 Nm',
+      peakSpeed: '17500 RPM', efficiency: '0.5 kW', cooling: 'Forced Air Cooled', insulation: 'F Class', mass: '0.5 Nm',
+      hideSpec: ['Peak Efficiency', 'IP rating', 'Communication mode', 'Mass'],
       // The phone artboard (14394-3492) labels the last two rows correctly for their units.
       mobileTableLabels: { 4: 'Peak Power', 5: 'Peak Torque' },
       applications: [
@@ -230,43 +233,53 @@ export const detailBySlug = {
   }),
 }
 
-// Drone Motor (Figma node 15434:1204): one variant, no applications section, its own spec rows (rated
-// figures aren't given, so the boxes and table show the peak ones). The hero, back view and gallery tiles
-// are exported from the artboard on its #fafafa / #f1f1f1 backdrops.
-detailBySlug.drone = mkDetail('drone', 'Product/ Drone Motor', [
-  mkVariant('Drone Motor/00', {
-    displayName: 'Drone Motor',
+// AKSH 3115 drone motor (Figma board 15434:1204): one variant, no applications section, its own spec rows
+// (KV / thrust / RPM figures instead of rated power and torque). The hero, side view and gallery tiles
+// are exported from the artboard on its #fafafa / #f1f1f1 backdrops; the side view is cut out for the main spot.
+detailBySlug.drone = mkDetail('drone', 'Product/ AKSH 3115', [
+  mkVariant('AKSH 3115/00', {
+    displayName: 'AKSH 3115',
+    subtitle: 'A high performance drone motor',
     hero: DR + 'hero.webp',
-    vim: [DR + 'vim-1.webp', DR + 'vim-2.webp'],
-    mvim: [DR + 'vim-1.webp', DR + 'vim-2.webp'],
-    vimFull: [null, DR + 'back.webp'],
+    vim: [DR + 'vim-1.webp', DR + 'vim-2-v2.webp'],
+    mvim: [DR + 'vim-1.webp', DR + 'vim-2-v2.webp'],
+    vimFull: [null, DR + 'back-v2.webp'],
+    // NOTE (flagged): the artboard's hero KV Rating box reads "24 V" (the old voltage); it shows the
+    // table's 900 KV here.
     specBoxes: [
-      { label: 'Voltage', value: '24 V' },
-      { label: 'Peak Power', value: '1.894 kW' },
-      { label: 'Peak Torque', value: '0.82 Nm' },
+      { label: 'KV Rating', value: '900 KV' },
+      { label: 'Voltage 4S-13S', value: '4S - 12S' },
+      { label: 'Max Thrust', value: '3650g@6S' },
     ],
     table: [
-      { label: 'Voltage', value: '24 V' },
-      { label: 'Peak Power', value: '1.894 kW' },
-      { label: 'Peak Torque', value: '0.82 Nm' },
-      { label: 'Peak Speed', value: '15190 RPM' },
-      { label: 'Peak Efficiency', value: '7.4 g/W' },
-      { label: 'Mass', value: '113.1 g' },
+      { label: 'KV Rating', value: '900 KV' },
+      { label: 'Voltage 4S-13S', value: '4S - 12S' },
+      { label: 'Max Thrust (propeller size)', value: '3650g @ 6S' },
+      { label: 'Max RPM', value: '16337 RPM @6S' },
+      { label: 'Max Power', value: '1498W' },
+      { label: 'Peak Efficiency', value: '5.72 g/W' },
+      { label: 'Weight', value: '113 g' },
     ],
+    // Phone artboard (15434:1649): shorter labels, boxes laid out two, two, then three across.
+    mobileTableLabels: ['KV Rating', 'Voltage', 'Max Thrust', 'Max RPM', 'Max Power', 'Peak Efficiency', 'Mass'],
+    mobileTableSpans: [3, 3, 3, 3, 2, 2, 2],
+    datasheetCta: 'Request data-sheet',
+    // The client's spec list pinned beside the artboard.
     spec: [
-      { label: 'Rated Voltage', value: '24 V' },
-      { label: 'Peak Power', value: '1.894 kW' },
-      { label: 'Peak Torque', value: '0.82 Nm' },
-      { label: 'Max Speed', value: '15190 RPM' },
-      { label: 'Peak Efficiency', value: '7.4 g/W' },
-      { label: 'IP rating', value: 'IP67' },
-      { label: 'Mass', value: '113.1 g' },
+      { label: 'KV rating', value: '900 KV' },
+      { label: 'Voltage', value: '4S - 12S' },
+      { label: 'Recommended propellers', value: '9"–10" (tested: HQ 9×4.5×3, Gemfan 1050×3)' },
+      { label: 'Max thrust', value: '3,650 g @ 6S' },
+      { label: 'Max RPM', value: '16,337 RPM @ 6S' },
+      { label: 'Max power', value: '1,498 W' },
+      { label: 'Peak efficiency', value: '5.72 g/W' },
+      { label: 'Weight', value: '113 g' },
     ],
     applications: [],
   }),
 ], {
-  gallery: [DR + 'vim-1.webp', DR + 'vim-2.webp'],
-  sketch: [DR + 'sketch.webp'],
+  gallery: [DR + 'vim-1.webp', DR + 'vim-2-v2.webp'],
+  sketch: [DR + 'sketch-v2.webp'],
   heroClass: 'xl:top-179 xl:left-710 xl:h-701 xl:w-738',
   // Phone artboard (15434:1649): render 46px into its box, gallery 100px under it, shorter sketch, no apps.
   mobile: { hero: 'top-46 left-43 h-278 w-293', galleryGap: 'mt-100', heroPad: 'pb-25', sketch: 'h-172', techPad: 'pb-60' },

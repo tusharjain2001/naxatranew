@@ -48,7 +48,7 @@ export const productFamilies = [
   { slug: 'rf66', name: 'Antarix RF 66', series: 'RF', brand: 'Antarix', variantsLine: 'Variants - RF 66/70, RF 66/90', cardTagline: 'Torque upto 14 Nm', card: { image: L('card-rf66-v3.webp'), fill: true }, industries: ['2-wheeler', 'agriculture', '3-wheeler'], spec: { voltage: 72, power: 7, torque: 16 } },
   { slug: 'af58', name: 'Antarix AF 58', cardName: 'Antarix AF58', series: 'AF', brand: 'Antarix', cardTagline: 'Torque upto 25 Nm', card: { image: L('card-af58-v2.png'), scale: 91 }, industries: ['2-wheeler', '3-wheeler'], spec: { voltage: 72, power: 5.8, torque: 60 } },
   { slug: 'pt500', name: 'PT - 500', cardName: 'PT 500', series: 'PT', brand: 'PT', cardTagline: 'Torque upto 3.2 Nm', card: { image: L('card-pt500-v2.png'), scale: 131 }, industries: ['industrial-tools', 'electric-drill'], spec: { voltage: 18, power: 0.05, torque: 0.5 } },
-  { slug: 'drone', name: 'Drone Motor', cardName: 'AKSH 3115', series: null, brand: 'Drone', cardTagline: 'High Performance', cardIcon: L('spec-performance.svg'), card: { image: L('card-drone.png'), scale: 46 }, industries: ['drone'], spec: { voltage: 24, power: 1.894, torque: 0.82 } },
+  { slug: 'drone', name: 'AKSH 3115', series: null, brand: 'Drone', cardTagline: 'High Performance', cardIcon: L('spec-performance.svg'), card: { image: L('card-drone.png'), scale: 46 }, industries: ['drone'], spec: { voltage: 24, power: 1.894, torque: 0.82 } },
 ]
 
 export const productBySlug = Object.fromEntries(productFamilies.map((f) => [f.slug, f]))

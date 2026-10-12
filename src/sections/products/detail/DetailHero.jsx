@@ -92,8 +92,8 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
   const isPicked = (i) => picked.i === i
   const pick = (src, i) => setShot({ variant: variant.id, src: i === 0 ? null : src, i })
   const mainSrc = picked.src ?? variant.hero
-  // The subtitle names the variant on show; the Drone Motor (no series) has no subtitle line.
-  const subtitle = family.series && (!multi && variant.displayName ? variant.displayName : `${variant.label ?? variant.code} Variant`)
+  // The subtitle names the variant on show, unless the artboard gives the motor its own line.
+  const subtitle = variant.subtitle ?? (family.series && (!multi && variant.displayName ? variant.displayName : `${variant.label ?? variant.code} Variant`))
   return (
     <section className="relative w-full overflow-hidden bg-[#fafafa]">
       {/* ---------- MOBILE (< xl) ---------- */}
