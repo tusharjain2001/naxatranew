@@ -16,7 +16,7 @@ function Tile({ tile }) {
   if (tile.type === 'stat') {
     const { value, unit, label } = recognition.stat
     return (
-      <div className={`flex items-center justify-center bg-[#f2f2f2] max-xl:order-last ${tileRadius}`}>
+      <div className={`flex items-center justify-center bg-[#f2f2f2] max-xl:order-last ${tile.mobileOnly ? 'xl:hidden' : ''} ${tileRadius}`}>
         <div className="flex h-[calc(var(--spacing)*45.561)] w-[calc(var(--spacing)*140.589)] flex-col items-center justify-between text-center capitalize xl:h-140 xl:w-432">
           <p className="flex h-[calc(var(--spacing)*31.893)] items-center xl:h-98">
             <span className="text-[length:calc(var(--spacing)*32.544)] leading-[calc(var(--spacing)*11.657)] xl:text-100 xl:leading-[calc(var(--spacing)*35.818)]">
@@ -35,13 +35,16 @@ function Tile({ tile }) {
   }
 
   return (
-    <div className={`group relative overflow-hidden ${tile.mobileLast ? 'max-xl:order-last' : ''} ${tileRadius}`}>
-      {/* Black and white at rest; hovering a photo brings back its colour. */}
+    <div
+      className={`group relative overflow-hidden ${tile.mobileLast ? 'max-xl:order-last' : ''} ${tile.desktopOnly ? 'max-xl:hidden' : ''} ${tileRadius}`}
+    >
+      {/* Figma's black-and-white photo at rest; hovering fades in the colour one. */}
+      <img src={tile.src} alt="Naxatra Labs at an industry event" loading="lazy" className="absolute inset-0 size-full object-cover" />
       <img
-        src={tile.src}
-        alt="Naxatra Labs at an industry event"
+        src={tile.colour}
+        alt=""
         loading="lazy"
-        className={`absolute inset-0 size-full object-cover grayscale transition-[filter] duration-500 ease-out group-hover:grayscale-0 ${tile.fit ?? ''}`}
+        className="absolute inset-0 size-full object-cover opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100"
       />
     </div>
   )

@@ -77,7 +77,7 @@ export default {
         text: 'Built for versatile farm work- RF 15/42 steering motor and controller, hydraulic power for implement control, and RF 22/48 traction with axle, engineered for reliable performance across varied field tasks.',
         supplies: ['Steering - RF 15/42', 'Hydraulic', 'Traction - RF 22/48 + Axle'],
       },
-      { label: 'Agri Sprayer', mobileLabel: 'Agri sprayer', tile: a('tile-5.png'), panel: a('panel-sprayer.png'), parts: ['Spraying Motor & Controller'], text: 'Precision aerial application. A dedicated spraying motor and controller engineered for accurate, efficient crop coverage from the air.', supplies: ['Spraying'] },
+      { label: 'Agri Sprayer', mobileLabel: 'Agri sprayer', tile: a('tile-5.png'), panel: a('panel-sprayer-v2.webp'), parts: ['Drone Motor & Controller'], text: 'Precision aerial application. A dedicated spraying motor and controller engineered for accurate, efficient crop coverage from the air.', supplies: ['Drone Propulsion'] },
     ],
   },
 

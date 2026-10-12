@@ -353,7 +353,7 @@ export const clientTestimonials = [
   },
   {
     id: 'hindustan-power',
-    header: a('others/testimonial-6-v2.webp'),
+    header: a('others/testimonial-6-v3.webp'),
     headerAlt: 'Hindustan Power logo',
     quote: 'Our experience working with Naxatra Labs on the 2-wheeler motor has been positive. The team has been professional and responsive, and we look forward to working together on future projects.',
     name: 'Ajay Chappola',

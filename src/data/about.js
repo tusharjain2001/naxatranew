@@ -74,6 +74,11 @@ export const founders = {
   ],
 }
 
+const photo = (n) => {
+  const id = String(n).padStart(2, '0')
+  return { src: a(`recognition-${id}-bw.webp`), colour: a(`recognition-${id}-c.webp`) }
+}
+
 export const recognition = {
   title: 'Taking Indian Engineering to the World',
   subtitle: 'Global recognition for technology built with purpose.',
@@ -82,21 +87,18 @@ export const recognition = {
   mobileStatement: 'We’ve built Naxatra from India into a globally recognised technology company, taking homegrown motor innovation beyond borders and into international markets.',
   stat: { value: '10', unit: '%', label: 'Higher Average Efficiency' },
   // Grid order, left to right and top to bottom. `statement` spans two columns, `stat` is a tile.
-  // Photos are the client's colour originals, framed to their tiles; the page shows them greyscale
-  // and brings the colour back on hover.
-  // Mobile moves the stat tile after gallery-8, so it and the final photo go last there.
+  // Each photo comes from Figma twice: black and white as the page shows it (15421:40498) and in colour for
+  // hover (15421:40759). Desktop has ten photos and no stat tile; the phone artboard (15421:65945) keeps
+  // nine photos plus the stat tile, so photo 8 is desktop-only and the stat phone-only. On the phone the stat
+  // and the final photo move to the last row.
   tiles: [
-    { src: a('gallery-1-c.webp') },
-    { src: a('gallery-2-c.webp') },
-    { src: a('gallery-3-c.webp') },
-    { src: a('gallery-4-c.webp') },
+    ...[1, 2, 3, 4].map(photo),
     { type: 'statement' },
-    { src: a('gallery-5-c.webp') },
-    { src: a('gallery-6-c.webp') },
-    { src: a('gallery-7-c.webp') },
-    { type: 'stat' },
-    { src: a('gallery-8-c.webp') },
-    { src: a('gallery-9-c.webp'), mobileLast: true },
+    ...[5, 6, 7].map(photo),
+    { type: 'stat', mobileOnly: true },
+    { ...photo(8), desktopOnly: true },
+    photo(9),
+    { ...photo(10), mobileLast: true },
   ],
 }
 
