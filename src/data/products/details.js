@@ -21,9 +21,21 @@ const RF55 = '/assets/products/rf55/'
 const RF66 = '/assets/products/rf66/'
 const DR = '/assets/products/drone/'
 
-// The RF-family variant notes, verbatim from the artboards.
-const SAME_DIE = 'This motor variant has the same die with two distinct voltage options.'
-const DISTINCT_HOUSING = 'This motor variant has a distinct housing with two distinct voltage options.'
+// The line under each code in the Choose-The-Variant panel (Figma 15421:53401 and its sibling pages):
+// the variant's peak torque.
+const PEAK_TORQUE = {
+  'RF 15/42': '36.40 Nm',
+  'RF 15/60': '54.5 Nm',
+  'RF 22/42': '36.5 Nm',
+  'RF 22/60': '54.5 Nm',
+  'RF 22/86': '69 Nm',
+  'RF 33/60': '54.5 Nm',
+  'RF 33/86': '69 Nm',
+  'RF 33/90': '75 Nm',
+  'RF 55/86': '69 Nm',
+  'RF 66/70': '75 Nm',
+  'RF 66/90': '85 Nm',
+}
 
 // Shared application tiles (only RF15's tile renders were provided; reused across families).
 const APPS = [
@@ -63,7 +75,7 @@ function mkVariant(code, o) {
     code,
     label: code.replace(/\s+/g, ''), // "RF 15/42" -> "RF15/42" (subtitle form)
     displayName: o.displayName ?? null, // single-variant families show this instead of "<code> Variant"
-    note: o.note ?? 'This motor variant shares the same die, offered in distinct voltage options.',
+    note: PEAK_TORQUE[code] ? `Peak Torque - ${PEAK_TORQUE[code]}` : null, // variant-panel line under the code
     hero: o.hero,
     // Per-variant hero art (RF 33): render box on desktop / phone, gallery tiles (desktop `vim`, phone
     // `mvim`, cut from the Figma frames on transparent backgrounds) and the phone variant-card image.
@@ -130,8 +142,8 @@ export const detailBySlug = {
   // RF 15 (Figma board 14394-2054): /42 and /60. Figma shows them identical except efficiency
   // (/42 >94%, /60 >92%) — flagged for Tushar as likely placeholder duplication.
   rf15: mkDetail('rf15', 'Product/ RF Series/ RF 15', [
-    mkVariant('RF 15/42', { hero: RF + 'hero.png', thumb: STD_THUMB, note: SAME_DIE, voltage: '48 V / 72 V', power: '1.5 kW', torque: '6.5 Nm', peakPower: '3 kW', peakTorque: '18 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '6.5 Kg' }),
-    mkVariant('RF 15/60', { hero: RF + 'hero.png', thumb: STD_THUMB, note: SAME_DIE, voltage: '48 V / 72 V', power: '1.5 kW', torque: '6.5 Nm', peakSpeed: '5000 RPM', efficiency: '>92%', mass: '6.5 Kg' }),
+    mkVariant('RF 15/42', { hero: RF + 'hero.png', thumb: STD_THUMB, voltage: '48 V / 72 V', power: '1.5 kW', torque: '6.5 Nm', peakPower: '3 kW', peakTorque: '31.5 Nm (48V) / 36.4 Nm (72V)', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '6.5 Kg', cooling: 'Naturally Cooled', sensor: 'ENC (hall signals)' }),
+    mkVariant('RF 15/60', { hero: RF + 'hero.png', thumb: STD_THUMB, voltage: '48 V / 72 V', power: '1.5 kW', torque: '6.5 Nm', peakTorque: '48 Nm (48V) / 54.5 Nm (72V)', peakSpeed: '5000 RPM', efficiency: '>92%', mass: '6.5 Kg', cooling: 'Naturally Cooled', sensor: 'ENC (hall signals)' }),
   // Hero render sized and placed to the RF 15/42 artboard (node 14626-22478).
   ], {
     // Second gallery view is the client's high-res back render (Figma 14832:1424 / 14832:1426), on desktop and phone.
@@ -144,30 +156,30 @@ export const detailBySlug = {
   // /86 uses its OWN distinct-housing render (Figma node 14342:11384, exported with the studio-backdrop
   // layer excluded → clean cut-out); /42 & /60 share the standard render. Own technical sketch used.
   rf22: mkDetail('rf22', 'Product/ RF Series/ RF 22', [
-    mkVariant('RF 22/42', { hero: RF22 + 'hero.png', heroClass: 'xl:left-[calc(var(--spacing)*308.7)] xl:top-[calc(var(--spacing)*168.7)] xl:w-[calc(var(--spacing)*618)] xl:h-[calc(var(--spacing)*601.4)]', mobileHeroClass: 'left-[calc(var(--spacing)*65.9)] top-[calc(var(--spacing)*139)] w-[calc(var(--spacing)*368.6)] h-[calc(var(--spacing)*358.6)]', vim: [RF22 + 'g42-1.png', RF22 + 'g42-2b.png'], mvim: [RF22 + 'mg42-1.png', RF22 + 'mg42-2b.png'], mthumb: RF22 + 'mthumb-42.jpg', vimFull: [null, RF + 'back.png'], thumb: STD_THUMB, note: SAME_DIE, voltage: '48 V / 72 V', power: '2.2 kW', torque: '9.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '6.5 Kg' }),
-    mkVariant('RF 22/60', { hero: RF22 + 'hero.png', heroClass: 'xl:left-[calc(var(--spacing)*308.7)] xl:top-[calc(var(--spacing)*168.7)] xl:w-[calc(var(--spacing)*618)] xl:h-[calc(var(--spacing)*601.4)]', mobileHeroClass: 'left-[calc(var(--spacing)*65.9)] top-[calc(var(--spacing)*139)] w-[calc(var(--spacing)*368.6)] h-[calc(var(--spacing)*358.6)]', vim: [RF22 + 'g60-1.png', RF22 + 'g60-2b.png'], mvim: [RF22 + 'mg60-1.png', RF22 + 'mg60-2b.png'], mthumb: RF22 + 'mthumb-60.jpg', vimFull: [null, RF + 'back.png'], thumb: STD_THUMB, note: SAME_DIE, voltage: '48 V / 72 V', power: '2.2 kW', torque: '9.5 Nm', peakSpeed: '5000 RPM', efficiency: '>92%', mass: '6.5 Kg' }),
-    mkVariant('RF 22/86', { hero: RF22 + 'hero-86.png', heroClass: 'xl:left-[calc(var(--spacing)*222.5)] xl:top-[calc(var(--spacing)*40.5)] xl:w-[calc(var(--spacing)*850)] xl:h-[calc(var(--spacing)*840)]', mobileHeroClass: 'left-[calc(var(--spacing)*28.7)] top-[calc(var(--spacing)*93.4)] w-[calc(var(--spacing)*446.3)] h-[calc(var(--spacing)*441)]', vim: [RF22 + 'g86-1.png', RF22 + 'g86-2b.png'], mvim: [RF22 + 'mg86-1.png', RF22 + 'mg86-2b.png'], mthumb: RF22 + 'mthumb-86.jpg', vimFull: [null, RF22 + 'back-86.png'], thumb: RF22 + 'thumb-86.png', note: DISTINCT_HOUSING, voltage: '48 V / 72 V', power: '2.2 kW', torque: '9.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '6.5 Kg' }),
+    mkVariant('RF 22/42', { hero: RF22 + 'hero.png', heroClass: 'xl:left-[calc(var(--spacing)*308.7)] xl:top-[calc(var(--spacing)*168.7)] xl:w-[calc(var(--spacing)*618)] xl:h-[calc(var(--spacing)*601.4)]', mobileHeroClass: 'left-[calc(var(--spacing)*65.9)] top-[calc(var(--spacing)*139)] w-[calc(var(--spacing)*368.6)] h-[calc(var(--spacing)*358.6)]', vim: [RF22 + 'g42-1.png', RF22 + 'g42-2b.png'], mvim: [RF22 + 'mg42-1.png', RF22 + 'mg42-2b.png'], mthumb: RF22 + 'mthumb-42.jpg', vimFull: [null, RF + 'back.png'], thumb: STD_THUMB, voltage: '48 V / 72 V', power: '2.2 kW', torque: '9.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '6.5 Kg' }),
+    mkVariant('RF 22/60', { hero: RF22 + 'hero.png', heroClass: 'xl:left-[calc(var(--spacing)*308.7)] xl:top-[calc(var(--spacing)*168.7)] xl:w-[calc(var(--spacing)*618)] xl:h-[calc(var(--spacing)*601.4)]', mobileHeroClass: 'left-[calc(var(--spacing)*65.9)] top-[calc(var(--spacing)*139)] w-[calc(var(--spacing)*368.6)] h-[calc(var(--spacing)*358.6)]', vim: [RF22 + 'g60-1.png', RF22 + 'g60-2b.png'], mvim: [RF22 + 'mg60-1.png', RF22 + 'mg60-2b.png'], mthumb: RF22 + 'mthumb-60.jpg', vimFull: [null, RF + 'back.png'], thumb: STD_THUMB, voltage: '48 V / 72 V', power: '2.2 kW', torque: '9.5 Nm', peakSpeed: '5000 RPM', efficiency: '>92%', mass: '6.5 Kg' }),
+    mkVariant('RF 22/86', { hero: RF22 + 'hero-86.png', heroClass: 'xl:left-[calc(var(--spacing)*222.5)] xl:top-[calc(var(--spacing)*40.5)] xl:w-[calc(var(--spacing)*850)] xl:h-[calc(var(--spacing)*840)]', mobileHeroClass: 'left-[calc(var(--spacing)*28.7)] top-[calc(var(--spacing)*93.4)] w-[calc(var(--spacing)*446.3)] h-[calc(var(--spacing)*441)]', vim: [RF22 + 'g86-1.png', RF22 + 'g86-2b.png'], mvim: [RF22 + 'mg86-1.png', RF22 + 'mg86-2b.png'], mthumb: RF22 + 'mthumb-86.jpg', vimFull: [null, RF22 + 'back-86.png'], thumb: RF22 + 'thumb-86.png', voltage: '48 V / 72 V', power: '2.2 kW', torque: '9.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '6.5 Kg' }),
   ], { vim: STD_VIM, gallery: [RF22 + 'hero.png', RF22 + 'hero.png'], sketch: [RF22 + 'sketch-1.png', RF22 + 'sketch-2.png'] }),
   // RF 33 (Figma board 14378-3788): /60, /86, /90. Figma gives each variant its OWN render: /60 the
   // standard finned motor, /86 the finned-housing render (same "Final 1 2" art as RF 22/86), /90 the
   // squat cylinder (same "014455d6" art as RF 66). /60 & /86 share specs; /90 differs (6500 RPM, 13.6 Kg).
   rf33: mkDetail('rf33', 'Product/ RF Series/ RF 33', [
-    mkVariant('RF 33/60', { hero: RF33 + 'hero.png', heroClass: 'xl:left-[calc(var(--spacing)*308.7)] xl:top-[calc(var(--spacing)*168.7)] xl:w-[calc(var(--spacing)*618)] xl:h-[calc(var(--spacing)*601.4)]', mobileHeroClass: 'left-[calc(var(--spacing)*65.9)] top-[calc(var(--spacing)*139)] w-[calc(var(--spacing)*368.6)] h-[calc(var(--spacing)*358.6)]', vim: [RF33 + 'g60-1.png', RF33 + 'g60-2b.png'], mvim: [RF33 + 'mg60-1.png', RF33 + 'mg60-2b.png'], mthumb: RF33 + 'mthumb-60.jpg', vimFull: [null, RF + 'back.png'], thumb: STD_THUMB, note: SAME_DIE, voltage: '48 V / 72 V', power: '3.3 kW', torque: '10.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '7.7 Kg' }),
-    mkVariant('RF 33/86', { hero: RF33 + 'hero-86.png', heroClass: 'xl:left-[calc(var(--spacing)*257.5)] xl:top-[calc(var(--spacing)*51.5)] xl:w-[calc(var(--spacing)*843)] xl:h-[calc(var(--spacing)*829)]', mobileHeroClass: 'left-[calc(var(--spacing)*34.7)] top-[calc(var(--spacing)*118.3)] w-[calc(var(--spacing)*410.5)] h-[calc(var(--spacing)*403.7)]', vim: [RF33 + 'g86-1.png', RF33 + 'g86-2b.png'], mvim: [RF33 + 'mg86-1.png', RF33 + 'mg86-2b.png'], mthumb: RF33 + 'mthumb-86.jpg', vimFull: [null, RF33 + 'back-86.png'], thumb: RF33 + 'thumb-86.png', note: DISTINCT_HOUSING, voltage: '48 V / 72 V', power: '3.3 kW', torque: '10.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '7.7 Kg' }),
-    mkVariant('RF 33/90', { hero: RF33 + 'hero-90.png', heroClass: 'xl:left-[calc(var(--spacing)*349.7)] xl:top-[calc(var(--spacing)*154)] xl:w-[calc(var(--spacing)*620.6)] xl:h-[calc(var(--spacing)*635.1)]', mobileHeroClass: 'left-[calc(var(--spacing)*65.4)] top-[calc(var(--spacing)*151.1)] w-[calc(var(--spacing)*318.9)] h-[calc(var(--spacing)*326.4)]', vim: [RF33 + 'g90-1.png', RF33 + 'g90-2b.png'], mvim: [RF33 + 'mg90-1.png', RF33 + 'mg90-2b.png'], mthumb: RF33 + 'mthumb-90.jpg', vimFull: [null, RF33 + 'back-90.png'], thumb: RF33 + 'thumb-90.png', note: DISTINCT_HOUSING, voltage: '48 V / 72 V', power: '3.3 kW', torque: '10.5 Nm', peakSpeed: '6500 RPM', efficiency: '>94%', mass: '13.6 Kg' }),
+    mkVariant('RF 33/60', { hero: RF33 + 'hero.png', heroClass: 'xl:left-[calc(var(--spacing)*308.7)] xl:top-[calc(var(--spacing)*168.7)] xl:w-[calc(var(--spacing)*618)] xl:h-[calc(var(--spacing)*601.4)]', mobileHeroClass: 'left-[calc(var(--spacing)*65.9)] top-[calc(var(--spacing)*139)] w-[calc(var(--spacing)*368.6)] h-[calc(var(--spacing)*358.6)]', vim: [RF33 + 'g60-1.png', RF33 + 'g60-2b.png'], mvim: [RF33 + 'mg60-1.png', RF33 + 'mg60-2b.png'], mthumb: RF33 + 'mthumb-60.jpg', vimFull: [null, RF + 'back.png'], thumb: STD_THUMB, voltage: '48 V / 72 V', power: '3.3 kW', torque: '10.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '7.7 Kg' }),
+    mkVariant('RF 33/86', { hero: RF33 + 'hero-86.png', heroClass: 'xl:left-[calc(var(--spacing)*257.5)] xl:top-[calc(var(--spacing)*51.5)] xl:w-[calc(var(--spacing)*843)] xl:h-[calc(var(--spacing)*829)]', mobileHeroClass: 'left-[calc(var(--spacing)*34.7)] top-[calc(var(--spacing)*118.3)] w-[calc(var(--spacing)*410.5)] h-[calc(var(--spacing)*403.7)]', vim: [RF33 + 'g86-1.png', RF33 + 'g86-2b.png'], mvim: [RF33 + 'mg86-1.png', RF33 + 'mg86-2b.png'], mthumb: RF33 + 'mthumb-86.jpg', vimFull: [null, RF33 + 'back-86.png'], thumb: RF33 + 'thumb-86.png', voltage: '48 V / 72 V', power: '3.3 kW', torque: '10.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '7.7 Kg' }),
+    mkVariant('RF 33/90', { hero: RF33 + 'hero-90.png', heroClass: 'xl:left-[calc(var(--spacing)*349.7)] xl:top-[calc(var(--spacing)*154)] xl:w-[calc(var(--spacing)*620.6)] xl:h-[calc(var(--spacing)*635.1)]', mobileHeroClass: 'left-[calc(var(--spacing)*65.4)] top-[calc(var(--spacing)*151.1)] w-[calc(var(--spacing)*318.9)] h-[calc(var(--spacing)*326.4)]', vim: [RF33 + 'g90-1.png', RF33 + 'g90-2b.png'], mvim: [RF33 + 'mg90-1.png', RF33 + 'mg90-2b.png'], mthumb: RF33 + 'mthumb-90.jpg', vimFull: [null, RF33 + 'back-90.png'], thumb: RF33 + 'thumb-90.png', voltage: '48 V / 72 V', power: '3.3 kW', torque: '10.5 Nm', peakSpeed: '6500 RPM', efficiency: '>94%', mass: '13.6 Kg' }),
   ], { vim: STD_VIM, gallery: [RF33 + 'hero.png', RF33 + 'hero.png'], sketch: [RF33 + 'sketch-1.png', RF33 + 'sketch-2.png'] }),
   // RF 55 (Figma board 14389-4682): single variant /86 — but the artboard KEEPS the Choose-The-Variant
   // panel (one row) and bottom-left gallery, unlike AF 58 / PT-500. showPanel forces that RF-series layout.
   // Hero reuses clean RF15 render; own sketch.
   rf55: mkDetail('rf55', 'Product/ RF Series/ RF 55', [
-    mkVariant('RF 55/86', { hero: RF55 + 'hero-t.png', thumb: RF55 + 'thumb.png', vim: [RF55 + 'g-1.png', RF55 + 'g-2b.png'], mvim: [RF55 + 'mg-1.png', RF55 + 'mg-2b.png'], vimFull: [null, RF55 + 'back.png'], note: DISTINCT_HOUSING, applications: APPS6_RF55, voltage: '48 V / 72 V', power: '5.5 kW', torque: '10.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '10.5 Kg' }),
+    mkVariant('RF 55/86', { hero: RF55 + 'hero-t.png', thumb: RF55 + 'thumb.png', vim: [RF55 + 'g-1.png', RF55 + 'g-2b.png'], mvim: [RF55 + 'mg-1.png', RF55 + 'mg-2b.png'], vimFull: [null, RF55 + 'back.png'], applications: APPS6_RF55, voltage: '48 V / 72 V', power: '5.5 kW', torque: '10.5 Nm', peakSpeed: '5000 RPM', efficiency: '>94%', mass: '10.5 Kg' }),
   ], { showPanel: true, vim: [RF55 + 'vim-1.png', RF55 + 'vim-2.png'], gallery: [RF55 + 'hero-t.png', RF55 + 'hero-t.png'], sketch: [RF55 + 'sketch.png'], heroClass: 'xl:top-98 xl:left-260 xl:h-770 xl:w-778' }),
   // RF 66 (Figma board 14393-7232): /70 and /90 — distinct real specs. RF 66 has its OWN render (the
   // squat finned cylinder, Figma "014455d6" node 14393:6358, exported transparent) shared by both
   // variants. Apps are the six-item RF 55/66 list. /90 uses its own sketch node (14393:6490).
   rf66: mkDetail('rf66', 'Product/ RF Series/ RF 66', [
-    mkVariant('RF 66/70', { hero: RF66 + 'hero.png', thumb: RF66 + 'thumb.png', note: SAME_DIE, applications: APPS6, voltage: '48 V / 72 V', power: '12.5 kW', torque: '14 Nm', peakSpeed: '6500 RPM', efficiency: '>92%', mass: '13.6 Kg' }),
-    mkVariant('RF 66/90', { hero: RF66 + 'hero.png', thumb: RF66 + 'thumb.png', sketch: [RF66 + 'sketch-90.png'], note: SAME_DIE, applications: APPS6, voltage: '48 V / 72 V', power: '14 kW', torque: '16 Nm', peakSpeed: '6500 RPM', efficiency: '>93%', mass: '14.5 Kg' }),
+    mkVariant('RF 66/70', { hero: RF66 + 'hero.png', thumb: RF66 + 'thumb.png', applications: APPS6, voltage: '48 V / 72 V', power: '12.5 kW', torque: '14 Nm', peakSpeed: '6500 RPM', efficiency: '>92%', mass: '13.6 Kg' }),
+    mkVariant('RF 66/90', { hero: RF66 + 'hero.png', thumb: RF66 + 'thumb.png', sketch: [RF66 + 'sketch-90.png'], applications: APPS6, voltage: '48 V / 72 V', power: '14 kW', torque: '16 Nm', peakSpeed: '6500 RPM', efficiency: '>93%', mass: '14.5 Kg' }),
   ], { vim: [RF66 + 'vim-1.png', RF66 + 'vim-2.png'], gallery: [RF66 + 'hero.png', RF66 + 'hero.png'], sketch: [RF66 + 'sketch.png'], heroClass: 'xl:top-205 xl:left-302 xl:h-579 xl:w-564' }),
   // Antarix AF 58 axial-flux motor (Figma node 14394-2056). Hero Torque box shows PEAK (60 Nm); the
   // technical table shows Rated Torque (25 Nm). Single-variant, so no Choose-Variant panel.

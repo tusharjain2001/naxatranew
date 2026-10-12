@@ -16,8 +16,8 @@ function SpecBox({ label, value }) {
   )
 }
 
-// Desktop variant row: thumbnail (left) + code/note (right), stacked vertically in the panel.
-// `wide` is the two-row panel of the RF 15/42 artboard: 240px-tall thumbnails that fill the row beside a 280px note.
+// Desktop variant row: thumbnail (left) + code and peak-torque line (right), stacked vertically in the panel.
+// `wide` is the two-row panel of the RF 15/42 artboard: 240px-tall thumbnails that fill the row beside a 280px column.
 function VariantRow({ variant, selected, onSelect, wide }) {
   return (
     <button type="button" onClick={onSelect} aria-pressed={selected} className="flex w-full items-center gap-12 text-left">
@@ -32,14 +32,14 @@ function VariantRow({ variant, selected, onSelect, wide }) {
         )}
       </span>
       <span className="flex w-160 shrink-0 flex-col gap-4 xl:w-280">
-        <span className="text-20 xl:text-28">{variant.code}</span>
-        <span className="text-14 font-light leading-tight xl:text-20">{variant.note}</span>
+        <span className="text-20 xl:text-28 xl:leading-32">{variant.code}</span>
+        {variant.note && <span className="text-14 font-light leading-tight xl:text-20 xl:leading-24">{variant.note}</span>}
       </span>
     </button>
   )
 }
 
-// Mobile variant card: thumbnail on top, code/note below, laid out as a horizontal row of equal columns.
+// Mobile variant card: thumbnail on top, code and peak-torque line below, laid out as a horizontal row of equal columns.
 function MobileVariantCard({ variant, selected, onSelect }) {
   return (
     <button type="button" onClick={onSelect} aria-pressed={selected} className="flex flex-1 flex-col gap-8 text-left">
@@ -56,7 +56,7 @@ function MobileVariantCard({ variant, selected, onSelect }) {
       </span>
       <span className="flex flex-col gap-2">
         <span className="text-15">{variant.code}</span>
-        <span className="text-10 font-light leading-tight">{variant.note}</span>
+        {variant.note && <span className="text-10 font-light leading-tight">{variant.note}</span>}
       </span>
     </button>
   )
