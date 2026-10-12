@@ -2,13 +2,19 @@ import { useState } from 'react'
 import { careersHero } from '../../data/careers'
 import Button from '../../components/ui/Button'
 
+// Vimeo player options: no title, byline, avatar or badge over the film, no tracking cookies (`dnt`); it plays
+// muted on a loop (browsers only autoplay silent video) and visitors turn the sound on from its controls.
+const vimeoSrc = (id, autoplay) =>
+  `https://player.vimeo.com/video/${id}?title=0&byline=0&portrait=0&badge=0&autopause=0&dnt=1&muted=1&loop=1&autoplay=${autoplay ? 1 : 0}`
+
 // Black hero: headline, line and Apply Now on the left, the hiring film on the right (stacked under the
-// text on phones). The film plays muted on a loop (browsers only autoplay silent video); its own controls
-// show on hover or tap, so visitors can turn the sound on. It stays on the poster for reduced motion.
+// text on phones). The film is the client's Vimeo embed in a 16:9 frame (Figma's frame is wider, but a
+// cropped player would hide its controls); the poster sits behind it while it loads. It doesn't autoplay
+// for reduced motion.
 export default function CareersHero() {
-  // Pick the desktop or phone file once, so a phone never downloads the full-size film.
   const [desktop] = useState(() => window.matchMedia('(min-width: 1280px)').matches)
   const [still] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+  const { vimeo } = careersHero
 
   return (
     <section className="relative h-718 w-full overflow-hidden bg-black xl:h-hero">
@@ -29,17 +35,19 @@ export default function CareersHero() {
             {careersHero.cta.label}
           </Button>
         </div>
-        <video
-          src={desktop ? careersHero.video : careersHero.mobileVideo}
-          poster={desktop ? careersHero.poster : careersHero.mobilePoster}
-          autoPlay={!still}
-          muted
-          loop
-          playsInline
-          controls
-          aria-label="Life at Naxatra Labs"
-          className="aspect-1972/958 w-full rounded-[calc(var(--spacing)*3.733)] border-[0.2px] border-grey object-cover xl:w-979 xl:shrink-0 xl:rounded-[calc(var(--spacing)*9.877)] xl:border-[0.5px]"
-        />
+        <div
+          className="relative aspect-video w-full overflow-hidden rounded-[calc(var(--spacing)*3.733)] border-[0.2px] border-grey bg-black bg-cover bg-center xl:w-979 xl:shrink-0 xl:rounded-[calc(var(--spacing)*9.877)] xl:border-[0.5px]"
+          style={{ backgroundImage: `url(${desktop ? careersHero.poster : careersHero.mobilePoster})` }}
+        >
+          <iframe
+            src={vimeoSrc(vimeo.id, !still)}
+            title={vimeo.title}
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+            className="absolute inset-0 size-full border-0"
+          />
+        </div>
       </div>
     </section>
   )
