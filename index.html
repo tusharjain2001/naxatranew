@@ -16,7 +16,7 @@
       // blank block while the script downloads. [desktop photo, phone photo] for each page.
       (function () {
         var heroes = {
-          '': ['/assets/hero-motion.webp', '/assets/m/hero-motion.webp'],
+          '': ['/assets/hero-city.webp', '/assets/m/hero-city.webp'],
           '/industry/2-wheeler': ['/assets/industry/2w/hero-desktop.webp', '/assets/industry/2w/hero.png'],
           '/industry/3-wheeler': ['/assets/industry/3w/hero-desktop.webp', '/assets/industry/3w/m-hero.jpg'],
           '/industry/cleaning': ['/assets/industry/cleaning/hero-desktop.webp', '/assets/industry/cleaning/hero.png'],
@@ -25,6 +25,7 @@
           '/about': ['/assets/about/hero.webp', '/assets/about/m-hero.webp'],
           '/careers': ['/assets/careers/video-poster.webp', '/assets/careers/m/video-poster.webp'],
           '/contact': ['/assets/contact/hero.webp', '/assets/contact/m/hero.jpg'],
+          '/media-kit': ['/assets/media-kit/hero-glass.webp', '/assets/media-kit/m-hero-glass.webp'],
         };
         var hero = heroes[location.pathname.replace(/\/+$/, '')];
         if (!hero) return;

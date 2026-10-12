@@ -1,220 +1,44 @@
-// Ported from the old site (components/sections/media-kit/MediaKitHeroSection.jsx).
-// Adapted to new-site conventions: assets served from /public, no char-reveal animation.
-const downloadKit = '/assets/media-kit/download-kit.svg'
-const mediaKitHeroGrid = '/assets/media-kit/meiakitgrid.png'
-const mediaKitHeroEllipse = '/assets/media-kit/mediakitellipse.png'
-const mediaKitHeroImage = '/assets/media-kit/mdiakitimage.png'
+import { mediaKitHero, mediaKitPdf } from '../../data/mediaKit'
+import Button from '../../components/ui/Button'
 
+// Black hero: title, line and Download Kit on the left, the glass render bleeding off the right edge
+// (Figma 15886:9492). Phone (15886:9387): the copy at the top, the render along the foot.
 export default function MediaKitHero() {
   return (
-    <>
-      <section
-        className="relative w-full bg-black overflow-hidden md:hidden"
-        style={{ height: '268px' }}
-      >
+    <section className="relative h-717 w-full overflow-hidden bg-black xl:h-hero">
+      <div className="relative mx-auto h-full max-w-1920">
         <img
-          src={mediaKitHeroGrid}
+          src={mediaKitHero.mobileImage}
           alt=""
-          className="absolute inset-0 w-full h-full object-cover opacity-40 pointer-events-none"
+          fetchPriority="high"
+          className="absolute bottom-0 left-0 h-[calc(var(--spacing)*470.5)] w-full object-cover object-top xl:hidden"
         />
-
         <img
-          src={mediaKitHeroImage}
+          src={mediaKitHero.image}
           alt=""
-          className="absolute pointer-events-none object-contain"
-          style={{
-            width: '188px',
-            height: 'auto',
-            left: '50%',
-            top: '48px',
-            transform: 'translateX(-50%)',
-          }}
+          fetchPriority="high"
+          className="absolute top-0 left-786 hidden h-full w-1134 object-cover object-left-top xl:block"
         />
 
-        <img
-          src={mediaKitHeroEllipse}
-          alt=""
-          className="absolute pointer-events-none object-contain"
-          style={{
-            width: '320px',
-            height: 'auto',
-            left: '50%',
-            top: '14px',
-            transform: 'translateX(-50%)',
-            opacity: 0.58,
-          }}
-        />
-
-        <h1
-          className="absolute text-center"
-          style={{
-            left: '50%',
-            transform: 'translateX(-50%)',
-            top: '83px',
-            width: 'min(330px, 86vw)',
-            fontSize: '26px',
-            lineHeight: '26px',
-            fontWeight: 400,
-            color: '#fff',
-          }}
-        >
-          <span className="block whitespace-nowrap">
-            <span style={{ color: '#4dd6c4' }}>Naxatra </span>
-            <span>Media</span>
-          </span>
-          <span className="block whitespace-nowrap">Kit 2026</span>
-        </h1>
-
-        <a
-          href="#download"
-          aria-label="Download Kit"
-          className="absolute"
-          style={{
-            left: '50%',
-            transform: 'translateX(-50%)',
-            top: '155px',
-            display: 'inline-flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            textDecoration: 'none',
-          }}
-        >
-          <img
-            src={downloadKit}
-            alt="Download Kit"
-            className="block object-contain"
-            style={{ width: '111px', height: '24px' }}
-          />
-          <span
-            aria-hidden="true"
-            className="absolute pointer-events-none"
-            style={{
-              right: 0,
-              bottom: 0,
-              width: '8px',
-              height: '8px',
-              background: '#000000',
-              clipPath: 'polygon(100% 0, 100% 100%, 0 100%)',
-            }}
-          />
-        </a>
-      </section>
-
-      <section
-        className="relative hidden w-full bg-black overflow-hidden md:block"
-        style={{ minHeight: 'clamp(420px, 44vw, 860px)' }}
-      >
-        {/* Glow */}
-        <div
-          className="absolute pointer-events-none rounded-full"
-          style={{
-            width: 'clamp(260px, 30vw, 580px)',
-            height: 'clamp(260px, 30vw, 580px)',
-            top: '8%',
-            right: '9%',
-            background: 'radial-gradient(circle, rgba(77,214,196,0.08) 0%, transparent 72%)',
-          }}
-        />
-
-        {/* Content */}
-        <div
-          className="relative mx-auto flex flex-wrap items-center justify-between lg:flex-nowrap"
-          style={{
-            maxWidth: '1920px',
-            minHeight: 'inherit',
-            padding: 'clamp(56px, 6vw, 116px) clamp(24px, 7.8vw, 150px)',
-            gap: 'clamp(32px, 3vw, 56px)',
-          }}
-        >
-          <div
-            className="flex flex-col items-start"
-            style={{
-              maxWidth: 'clamp(280px, 30vw, 575px)',
-              gap: 'clamp(20px, 2vw, 38px)',
-              paddingTop: 'clamp(12px, 2vw, 36px)',
-            }}
-          >
-            <h1
-              style={{ fontSize: 'clamp(34px, 4.8vw, 92px)', lineHeight: '0.98', fontWeight: 400, margin: 0 }}
-            >
-              <span style={{ color: '#4dd6c4', whiteSpace: 'nowrap' }}>Naxatra </span>
-              <span className="text-white" style={{ whiteSpace: 'nowrap' }}>Media</span>
-              <br />
-              <span className="text-white">Kit 2026</span>
+        <div className="relative flex flex-col items-start gap-24 px-20 pt-60 text-white xl:absolute xl:top-[calc(50%-var(--spacing)*45.5)] xl:left-0 xl:w-full xl:-translate-y-1/2 xl:gap-48 xl:px-100 xl:pt-0">
+          <div className="flex flex-col gap-24 xl:gap-25">
+            <h1 className="text-40 leading-40 capitalize xl:text-88 xl:leading-96">
+              {mediaKitHero.title.map((line) => (
+                <span key={line} className="block">
+                  {line}
+                </span>
+              ))}
             </h1>
-
-            <a
-              href="#download"
-              aria-label="Download Kit"
-              className="relative block"
-              style={{ width: 'fit-content' }}
-            >
-              <img
-                src={downloadKit}
-                alt="Download Kit"
-                className="block h-auto object-contain"
-                style={{
-                  width: 'clamp(120px, 10.5vw, 202px)',
-                  clipPath: 'polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%)',
-                }}
-              />
-              <span
-                aria-hidden="true"
-                className="absolute pointer-events-none"
-                style={{
-                  right: 0,
-                  bottom: 0,
-                  width: '16px',
-                  height: '16px',
-                  background: '#000000',
-                  clipPath: 'polygon(100% 0, 100% 100%, 0 100%)',
-                }}
-              />
-            </a>
+            <p className="w-285 text-20 leading-24 font-light xl:w-619 xl:text-32 xl:leading-32 xl:font-normal">{mediaKitHero.subtitle}</p>
           </div>
-
-          {/* Right: layered hero visual */}
-          <div
-            className="relative flex-shrink-0"
-            style={{
-              width: 'clamp(360px, 42vw, 808px)',
-              aspectRatio: '808 / 520',
-              marginLeft: 'auto',
-              marginRight: 'clamp(-6px, 1.5vw, 20px)',
-            }}
-          >
-            <img
-              src={mediaKitHeroGrid}
-              alt=""
-              className="absolute inset-0 w-full h-full object-fill pointer-events-none"
-              style={{ opacity: 0.7 }}
-            />
-            <img
-              src={mediaKitHeroEllipse}
-              alt=""
-              className="absolute z-10 h-auto object-contain pointer-events-none"
-              style={{
-                width: 'clamp(215px, 24vw, 470px)',
-                top: '48%',
-                left: '54%',
-                transform: 'translate(-50%, -50%)',
-                opacity: 0.55,
-              }}
-            />
-            <img
-              src={mediaKitHeroImage}
-              alt="Naxatra Labs media kit preview"
-              className="absolute z-20 h-auto object-contain"
-              style={{
-                width: 'clamp(220px, 27vw, 500px)',
-                top: '49%',
-                left: '54%',
-                transform: 'translate(-50%, -50%)',
-              }}
-            />
-          </div>
+          <Button href={mediaKitPdf.href} download={mediaKitPdf.filename} variant="white" size="spec" className="xl:hidden">
+            {mediaKitHero.cta}
+          </Button>
+          <Button href={mediaKitPdf.href} download={mediaKitPdf.filename} variant="white" size="hero" className="hidden h-60 xl:inline-flex">
+            {mediaKitHero.cta}
+          </Button>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   )
 }

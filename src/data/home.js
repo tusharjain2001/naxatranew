@@ -81,9 +81,9 @@ export const industryMenu = {
 export const heroSlides = [
   {
     id: 'made-in-india',
-    alt: 'Electric tractor, auto-rickshaw, scooter, car, truck, bus and excavator lined up on a highway at sunset',
-    image: a('hero-motion.webp'),
-    mobileImage: a('m/hero-motion.webp'),
+    alt: 'Futuristic city skyline with green parks and an elevated train line under a clear blue sky',
+    image: a('hero-city.webp'),
+    mobileImage: a('m/hero-city.webp'),
     // The phone artboard breaks this headline after “India's” rather than letting it wrap.
     mobileLines: true,
     title: ['Engineered in India.', 'Powering Electric Motion Worldwide.'],
@@ -94,7 +94,6 @@ export const heroSlides = [
     cta: 'Enquire Now',
     href: '/contact',
     subtitleGap: 'gap-24',
-    overlay: 'motion',
     // Figma sets this slide's copy in title case.
     titleClass: 'h-176 capitalize',
     top: 122,
@@ -125,9 +124,9 @@ export const heroSlides = [
   {
     id: 'agriculture',
     alt: 'Agricultural robot and drone tending crops in a field',
-    image: a('hero-agri.webp'),
+    image: a('hero-agri-v2.webp'),
     // Phone crops are composed from the 402px artboards, each framed on its subject.
-    mobileImage: a('m/hero-agri.webp'),
+    mobileImage: a('m/hero-agri-v2.webp'),
     title: ['Powering Agriculture’s Next', 'Generation'],
     top: 120,
   },
