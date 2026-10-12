@@ -194,18 +194,11 @@ export const applications = [
   },
 ]
 
-const CLOUDINARY = 'https://res.cloudinary.com/dccp724cq/video/upload'
-const FILM = 'v1791549544/NX_Corporate_Video_small_size_3_lqgi33'
-
 export const manufacturing = {
   title: 'Inside Our Manufacturing',
   cta: 'Know about us',
-  // The company film in Figma's video frame. Cloudinary compresses it (`q_auto`) and scales it down for phones;
-  // the poster is a still from the film, shown until it starts.
-  video: `${CLOUDINARY}/q_auto,w_1600/${FILM}.mp4`,
-  mobileVideo: `${CLOUDINARY}/q_auto,w_720/${FILM}.mp4`,
-  poster: `${CLOUDINARY}/so_2,q_auto,w_1600/${FILM}.jpg`,
-  mobilePoster: `${CLOUDINARY}/so_2,q_auto,w_800/${FILM}.jpg`,
+  // The company film in Figma's video frame — the client's Vimeo embed.
+  vimeo: { id: '1234999879', title: 'Brand Video' },
 }
 
 export const deployment = {

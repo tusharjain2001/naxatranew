@@ -1,33 +1,16 @@
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { manufacturing } from '../data/home'
 import Button from '../components/ui/Button'
 
-// The company film plays in Figma's video frame, with no controls. It loads only once the section is near the screen
-// (desktop or phone file), then plays muted on a loop while in view (browsers only autoplay silent video) and pauses
-// when scrolled away. It stays on the poster for reduced motion.
-export default function Manufacturing() {
-  const ref = useRef(null)
-  const [src, setSrc] = useState(null)
-  const [desktop] = useState(() => window.matchMedia('(min-width: 1280px)').matches)
-  const [still] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+// Vimeo player options: no title, byline, avatar or badge over the film, no tracking cookies (`dnt`); it plays
+// muted on a loop (browsers only autoplay silent video). It doesn't autoplay for reduced motion.
+const vimeoSrc = (id, autoplay) =>
+  `https://player.vimeo.com/video/${id}?title=0&byline=0&portrait=0&badge=0&autopause=0&dnt=1&muted=1&loop=1&autoplay=${autoplay ? 1 : 0}`
 
-  useEffect(() => {
-    const video = ref.current
-    if (!video) return
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setSrc(desktop ? manufacturing.video : manufacturing.mobileVideo)
-          if (!still) video.play().catch(() => {})
-        } else if (!video.paused) {
-          video.pause()
-        }
-      },
-      { rootMargin: '300px 0px' },
-    )
-    io.observe(video)
-    return () => io.disconnect()
-  }, [desktop, still])
+// The company film plays in Figma's video frame — the client's Vimeo embed. It doesn't autoplay for reduced motion.
+export default function Manufacturing() {
+  const [still] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+  const { vimeo } = manufacturing
 
   return (
     <section className="mx-auto flex w-full max-w-1920 flex-col items-center gap-48 py-56 xl:gap-40 xl:px-100 xl:pt-71 xl:pb-71">
@@ -44,18 +27,16 @@ export default function Manufacturing() {
       </div>
 
       <div className="w-full px-16 xl:w-[calc(var(--spacing)*1296.83)] xl:px-0">
-        <video
-          ref={ref}
-          src={src ?? undefined}
-          poster={desktop ? manufacturing.poster : manufacturing.mobilePoster}
-          autoPlay={!still}
-          muted
-          loop
-          playsInline
-          preload="none"
-          aria-label="Naxatra Labs company film"
-          className="block aspect-[370/179.79] w-full rounded-3 bg-black object-cover xl:aspect-[1296.83/630] xl:rounded-16"
-        />
+        <div className="relative aspect-[370/179.79] w-full overflow-hidden rounded-3 bg-black xl:aspect-[1296.83/630] xl:rounded-16">
+          <iframe
+            src={vimeoSrc(vimeo.id, !still)}
+            title={vimeo.title}
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+            className="absolute inset-0 size-full border-0"
+          />
+        </div>
       </div>
     </section>
   )
