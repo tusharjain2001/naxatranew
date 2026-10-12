@@ -4,9 +4,9 @@ export const careersHero = {
   title: ['Build What Moves', 'the World Forward'],
   subtitle: 'Join a team turning bold ideas into smarter motor technology.',
   cta: { label: 'Apply now', href: '#apply' },
-  // The hiring film beside the headline, on the client's Vimeo (embed sent by the client); the posters show
-  // behind the player until it loads.
-  vimeo: { id: '1234968555', title: 'Updated Hiring Focused Narrative Video V6' },
+  // The hiring film beside the headline (client's Cloudinary MP4); the posters show behind it until it loads.
+  video: 'https://res.cloudinary.com/dccp724cq/video/upload/q_auto/v1781799033/Updated_Hiring_Focused_Narrative_Video_V6_bbbnd6.mp4',
+  videoTitle: 'Updated Hiring Focused Narrative Video V6',
   poster: a('video-poster.webp'),
   mobilePoster: a('m/video-poster.webp'),
 }

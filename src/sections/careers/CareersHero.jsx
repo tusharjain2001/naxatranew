@@ -2,19 +2,14 @@ import { useState } from 'react'
 import { careersHero } from '../../data/careers'
 import Button from '../../components/ui/Button'
 
-// Vimeo player options: no title, byline, avatar or badge over the film, no tracking cookies (`dnt`); it plays
-// muted on a loop (browsers only autoplay silent video) and visitors turn the sound on from its controls.
-const vimeoSrc = (id, autoplay) =>
-  `https://player.vimeo.com/video/${id}?title=0&byline=0&portrait=0&badge=0&autopause=0&dnt=1&muted=1&loop=1&autoplay=${autoplay ? 1 : 0}`
-
 // Black hero: headline, line and Apply Now on the left, the hiring film on the right (stacked under the
-// text on phones). The film is the client's Vimeo embed in a 16:9 frame (Figma's frame is wider, but a
-// cropped player would hide its controls); the poster sits behind it while it loads. It doesn't autoplay
-// for reduced motion.
+// text on phones). The film is the client's Cloudinary MP4 in a 16:9 frame; the poster sits behind it while
+// it loads. It plays muted on a loop (browsers only autoplay silent video) with controls so visitors can
+// unmute; it doesn't autoplay for reduced motion.
 export default function CareersHero() {
   const [desktop] = useState(() => window.matchMedia('(min-width: 1280px)').matches)
   const [still] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches)
-  const { vimeo } = careersHero
+  const { video, videoTitle } = careersHero
 
   return (
     <section className="relative h-718 w-full overflow-hidden bg-black xl:h-hero">
@@ -39,13 +34,17 @@ export default function CareersHero() {
           className="relative aspect-video w-full overflow-hidden rounded-[calc(var(--spacing)*3.733)] border-[0.2px] border-grey bg-black bg-cover bg-center xl:w-979 xl:shrink-0 xl:rounded-[calc(var(--spacing)*9.877)] xl:border-[0.5px]"
           style={{ backgroundImage: `url(${desktop ? careersHero.poster : careersHero.mobilePoster})` }}
         >
-          <iframe
-            src={vimeoSrc(vimeo.id, !still)}
-            title={vimeo.title}
-            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-            className="absolute inset-0 size-full border-0"
+          <video
+            src={video}
+            poster={desktop ? careersHero.poster : careersHero.mobilePoster}
+            autoPlay={!still}
+            muted
+            loop
+            playsInline
+            controls
+            preload="metadata"
+            aria-label={videoTitle}
+            className="absolute inset-0 size-full border-0 object-cover"
           />
         </div>
       </div>
