@@ -64,9 +64,6 @@ const gallery = [RF + 'hero.png', RF + 'hero.png'] // mobile fallback gallery (m
 const STD_VIM = [RF + 'vim-1.png', RF + 'vim-2.png'] // thumb1 = hero orientation, thumb2 = distinct (rotate -37.37 + overlay)
 const STD_THUMB = RF + 'thumb.png' // variant-panel thumbnail, baked at scaleY(-1) rotate(180)
 
-// Client spec sheets received so far (10 Oct); every other variant still downloads the placeholder.
-const DATASHEETS = new Set(['RF 15/42', 'RF 15/60', 'RF 22/42', 'RF 22/60', 'RF 22/86', 'RF 33/60', 'RF 33/86', 'RF 55/86'])
-
 // Per-voltage figures ("4000 RPM (48V) / 5000 RPM (72V)") are spelled out in the spec pop-up; the small boxes of the
 // technical table show them as "4000 / 5000 RPM", in the same 48 V / 72 V order as the Voltage box.
 const shortDual = (value) => {
@@ -110,9 +107,7 @@ function mkVariant(code, o) {
       { label: 'Efficiency', value: o.efficiency },
       { label: 'Mass', value: o.mass },
     ]).map((row, i) => ({ ...row, value: shortDual(row.value), mobileLabel: o.mobileTableLabels?.[i], mobileSpan: o.mobileTableSpans?.[i] })), // phone artboard can relabel a row
-    datasheet: DATASHEETS.has(code) ? `/assets/products/datasheets/Antarix-${code.replace(/\s+/g, '').replace('/', '-')}-Datasheet.pdf` : '/assets/products/datasheet-placeholder.pdf',
     datasheetNote: `Get more detailed specification in our ${o.displayName ?? code} specsheet.`,
-    datasheetCta: o.datasheetCta ?? null, // desktop button label when the artboard words it differently
     applications: o.applications ?? APPS,
     // VIEW SPECIFICATIONS modal — detailed spec sheet.
     spec: o.spec ?? [
@@ -263,7 +258,6 @@ detailBySlug.drone = mkDetail('drone', 'Product/ AKSH 3115', [
     // Phone artboard (15434:1649): shorter labels, boxes laid out two, two, then three across.
     mobileTableLabels: ['KV Rating', 'Voltage', 'Max Thrust', 'Max RPM', 'Max Power', 'Peak Efficiency', 'Mass'],
     mobileTableSpans: [3, 3, 3, 3, 2, 2, 2],
-    datasheetCta: 'Request data-sheet',
     // The client's spec list pinned beside the artboard.
     spec: [
       { label: 'KV rating', value: '900 KV' },

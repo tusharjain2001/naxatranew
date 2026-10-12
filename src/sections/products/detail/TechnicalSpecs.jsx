@@ -3,9 +3,9 @@ import Button from '../../../components/ui/Button'
 // Phone table boxes can span half (3 of 6) or a third (2 of 6) of the row (AKSH 3115: two, two, then three across).
 const SPAN = { 2: 'col-span-2', 3: 'col-span-3' }
 
-// Technical Sketch (line drawings) + the spec table, the datasheet CTA, then the "<variant> Motor
+// Technical Sketch (line drawings) + the spec table, the data-sheet CTA (opens the request form), then the "<variant> Motor
 // Applications" carousel. All of it swaps when the parent changes the selected variant.
-export default function TechnicalSpecs({ variant, sketch, mobile = {} }) {
+export default function TechnicalSpecs({ variant, sketch, mobile = {}, onRequestDatasheet }) {
   return (
     <section className="w-full bg-[#fafafa]">
       <div className={`mx-auto flex max-w-1920 flex-col gap-32 px-16 pt-60 xl:gap-46 xl:px-100 xl:py-100 ${mobile.techPad ?? 'pb-33'}`}>
@@ -49,11 +49,11 @@ export default function TechnicalSpecs({ variant, sketch, mobile = {} }) {
         {/* Datasheet */}
         <div className="mx-auto flex max-w-676 flex-col items-center gap-16 text-center xl:gap-24">
           <p className="max-xl:w-294 max-xl:leading-28 text-20 xl:whitespace-nowrap xl:text-32">{variant.datasheetNote}</p>
-          <Button as="a" href={variant.datasheet} download variant="primary" size="spec" className="xl:hidden">
-            Download data-sheet
+          <Button as="button" type="button" onClick={onRequestDatasheet} variant="primary" size="spec" className="cursor-pointer xl:hidden">
+            Request data-sheet
           </Button>
-          <Button as="a" href={variant.datasheet} download variant="primary" size="hero" className="hidden xl:inline-flex">
-            {variant.datasheetCta ?? 'Download data-sheet'}
+          <Button as="button" type="button" onClick={onRequestDatasheet} variant="primary" size="hero" className="hidden cursor-pointer xl:inline-flex">
+            Request data-sheet
           </Button>
         </div>
 
