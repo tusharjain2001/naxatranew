@@ -165,30 +165,35 @@ export const commitment = {
 export const applications = [
   {
     label: '2 Wheelers',
+    href: '/industry/2-wheeler',
     font: 'font-inter',
     photo: { alt: 'Electric scooter', src: a('app-2wheeler.png'), l: 38.9, t: 33.42, w: 276.478, h: 250.377, crop: { w: 101.29, h: 148.67, l: -1.22, t: -19.07 } },
     shadow: { src: a('shadow-sm.svg'), l: 60.17, t: 262.53, w: 213.642, inset: '-111.11% -4.52%' },
   },
   {
     label: '3 Wheelers & L5',
+    href: '/industry/3-wheeler',
     font: 'font-inter',
     photo: { alt: 'Electric auto-rickshaw', src: a('app-3wheeler.png'), l: 7.61, t: -7.18, w: 308.379, h: 274.545, crop: { w: 100, h: 149.88, l: 0, t: -7.82 } },
     shadow: { src: a('shadow-lg.svg'), l: 42.41, t: 262.53, w: 238.777, inset: '-111.11% -4.05%' },
   },
   {
     label: 'Cleaning',
+    href: '/industry/cleaning',
     font: 'font-inter',
     photo: { alt: 'Ride-on road sweeper', src: a('app-cleaning.png'), l: 46.91, t: 34.39, w: 260.993, h: 247.494, crop: { w: 102.87, h: 143.84, l: 0.12, t: -14.42 }, flip: true },
     shadow: { src: a('shadow-lg.svg'), l: 46.89, t: 257.7, w: 238.777, inset: '-111.11% -4.05%' },
   },
   {
     label: 'Agriculture',
+    href: '/industry/agriculture',
     font: 'font-geist',
     photo: { alt: 'Electric tractor', src: a('app-agriculture.png'), l: 18.69, t: 26, w: 281.537, h: 265.631, crop: { w: 103.39, h: 146.11, l: -3.57, t: -15.43 } },
     shadow: { src: a('shadow-lg.svg'), l: 46.53, t: 253.83, w: 238.777, inset: '-111.11% -4.05%' },
   },
   {
     label: 'Drone',
+    href: '/industry/drone',
     font: 'font-geist',
     photo: { alt: 'Drone', src: a('app-drone.png'), l: 1.26, t: 16.02, w: 330.187, h: 315.006, crop: { w: 104.02, h: 145.38, l: -1.72, t: -24.2 } },
   },

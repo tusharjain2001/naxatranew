@@ -14,7 +14,7 @@ function ApplicationCard({ item }) {
   const { photo, shadow } = item
   return (
     <a
-      href="#industry"
+      href={item.href}
       className="group relative block h-[378.914em] w-[334.257em] shrink-0 rounded-[9.473em] bg-white transition-transform duration-300 hover:-translate-y-[6em]"
     >
       <span className="absolute inset-0 rounded-[9.473em] border-[2.271em] border-tile-border transition-colors duration-300 group-hover:border-muted" />
