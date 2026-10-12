@@ -26,7 +26,7 @@ export const industries = {
 // The "Industrial Applications" filter: each category is collapsible with sub-application checkboxes.
 // Checking any sub-application filters the grid to families that serve that category.
 export const applicationFilters = [
-  { key: 'cleaning', label: 'Cleaning', options: ['Ride-on Sweeper', 'Ride-on Floor Scrubber', 'Leaf Picker', 'Walk-behind/Compact Scrubber', 'Truck Mounted Sweeper'] },
+  { key: 'cleaning', label: 'Cleaning', options: ['Ride-on Sweeper', 'Ride-on Floor Scrubber', 'Litter Picker', 'Walk-behind/Compact Scrubber', 'Truck Mounted Sweeper'] },
   { key: 'agriculture', label: 'Agriculture', options: ['Power Weeder', 'Power Tiller', 'Agri Bot', 'Compact Tractor', 'Agri Sprayer'] },
   { key: '2-wheeler', label: '2 Wheelers', options: ['2W Scooter', '2W Bikes', 'Moped'] },
   { key: '3-wheeler', label: '3 Wheelers', options: ['E-Rickshaw', 'Loader Passenger', 'Loader Cargo', 'Tricycle'] },
@@ -38,16 +38,17 @@ export const seriesTabs = ['RF', 'AF', 'PT']
 
 // Grid order on the /products listing, top to bottom, left to right. `cardTagline` is the line under the name
 // on the listing cards (Figma 15421:42143). On the listing card (node 15651:3372) `variantsLine` sits under the name and `cardTagline`
-// is the grey spec pill, with `cardIcon` (default: the torque gauge). PT 500's Electric Drill chip is display-only (it is not a filter category).
+// is the grey spec pill, with `cardIcon` (default: the torque gauge). `card.fill` marks a render that is Figma's whole white
+// panel (motor already placed), shown filling the panel instead of scaled by `card.scale`. PT 500's Electric Drill chip is display-only (it is not a filter category).
 export const productFamilies = [
   { slug: 'rf15', name: 'Antarix RF 15', series: 'RF', brand: 'Antarix', variantsLine: 'Variants - RF 15/42, RF 15/60', cardTagline: 'Torque upto 6.5 Nm', card: { image: L('card-standard-v2.png'), scale: 76 }, industries: ['cleaning', 'agriculture', '2-wheeler'], spec: { voltage: 72, power: 1.5, torque: 6.5 } },
   { slug: 'rf22', name: 'Antarix RF 22', series: 'RF', brand: 'Antarix', variantsLine: 'Variants - RF 22/42, RF 22/60, RF 22/86', cardTagline: 'Torque upto 9.5 Nm', card: { image: L('card-standard-v2.png'), scale: 76 }, industries: ['2-wheeler', 'agriculture', '3-wheeler'], spec: { voltage: 72, power: 2.2, torque: 9.5 } },
   { slug: 'rf33', name: 'Antarix RF 33', series: 'RF', brand: 'Antarix', variantsLine: 'Variants - RF 33/60, RF 33/86, RF 33/90', cardTagline: 'Torque upto 10.5 Nm', card: { image: L('card-529.png'), scale: 78 }, industries: ['cleaning', 'agriculture', '2-wheeler'], spec: { voltage: 72, power: 3.3, torque: 10.5 } },
-  { slug: 'rf55', name: 'Antarix RF 55', series: 'RF', brand: 'Antarix', variantsLine: 'Variant - RF 55/86', cardTagline: 'Torque upto 17.5 Nm', card: { image: L('card-529.png'), scale: 78 }, industries: ['2-wheeler', 'agriculture', '3-wheeler'], spec: { voltage: 72, power: 5.5, torque: 10.5 } },
-  { slug: 'rf66', name: 'Antarix RF 66', series: 'RF', brand: 'Antarix', variantsLine: 'Variants - RF 66/70, RF 66/90', cardTagline: 'Torque upto 14 Nm', card: { image: L('card-rf66-v2.png'), scale: 109 }, industries: ['2-wheeler', 'agriculture', '3-wheeler'], spec: { voltage: 72, power: 14, torque: 16 } },
+  { slug: 'rf55', name: 'Antarix RF 55', series: 'RF', brand: 'Antarix', variantsLine: 'Variant - RF 55/86', cardTagline: 'Torque upto 17.5 Nm', card: { image: L('card-rf55.webp'), fill: true }, industries: ['2-wheeler', 'agriculture', '3-wheeler'], spec: { voltage: 72, power: 5.5, torque: 10.5 } },
+  { slug: 'rf66', name: 'Antarix RF 66', series: 'RF', brand: 'Antarix', variantsLine: 'Variants - RF 66/70, RF 66/90', cardTagline: 'Torque upto 14 Nm', card: { image: L('card-rf66-v3.webp'), fill: true }, industries: ['2-wheeler', 'agriculture', '3-wheeler'], spec: { voltage: 72, power: 14, torque: 16 } },
   { slug: 'af58', name: 'Antarix AF 58', cardName: 'Antarix AF58', series: 'AF', brand: 'Antarix', cardTagline: 'Torque upto 25 Nm', card: { image: L('card-af58-v2.png'), scale: 91 }, industries: ['2-wheeler', '3-wheeler'], spec: { voltage: 72, power: 5.8, torque: 60 } },
   { slug: 'pt500', name: 'PT - 500', cardName: 'PT 500', series: 'PT', brand: 'PT', cardTagline: 'Torque upto 3.2 Nm', card: { image: L('card-pt500-v2.png'), scale: 131 }, industries: ['industrial-tools', 'electric-drill'], spec: { voltage: 18, power: 0.05, torque: 0.5 } },
-  { slug: 'drone', name: 'Drone Motor', series: null, brand: 'Drone', cardTagline: 'IP67 Sealing', cardIcon: L('spec-sealing.svg'), card: { image: L('card-drone.png'), scale: 46 }, industries: ['drone'], spec: { voltage: 24, power: 1.894, torque: 0.82 } },
+  { slug: 'drone', name: 'Drone Motor', cardName: 'AKSH 3115', series: null, brand: 'Drone', cardTagline: 'High Performance', cardIcon: L('spec-performance.svg'), card: { image: L('card-drone.png'), scale: 46 }, industries: ['drone'], spec: { voltage: 24, power: 1.894, torque: 0.82 } },
 ]
 
 export const productBySlug = Object.fromEntries(productFamilies.map((f) => [f.slug, f]))

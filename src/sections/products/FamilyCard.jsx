@@ -34,14 +34,23 @@ export default function FamilyCard({ family, className = 'w-full', listing = fal
     <a href={productPath(family.slug)} className={`group flex flex-col overflow-hidden border-[calc(var(--spacing)*0.367)] border-black/10 xl:border-[0.85px] bg-black/[0.02] ${className}`}>
       {/* Render plate. The Figma card render is a large square centred on the plate that overflows it
           (clipped by the card); its width per family is card.scale (% of the plate width). */}
-      <span className="relative mx-[6.35%] mt-[6.35%] block aspect-[360/197] bg-white xl:mx-[6.5%] xl:mt-[6.5%]">
-        <img
-          src={family.card.image}
-          alt={family.name}
-          loading="lazy"
-          style={{ width: `${family.card.scale ?? 90}%` }}
-          className="absolute left-1/2 top-1/2 max-w-none -translate-x-1/2 -translate-y-1/2 object-contain transition-transform duration-500 group-hover:scale-105"
-        />
+      <span className={`relative mx-[6.35%] mt-[6.35%] block aspect-[360/197] bg-white xl:mx-[6.5%] xl:mt-[6.5%] ${family.card.fill ? 'overflow-hidden' : ''}`}>
+        {family.card.fill ? (
+          <img
+            src={family.card.image}
+            alt={family.name}
+            loading="lazy"
+            className="absolute inset-0 size-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        ) : (
+          <img
+            src={family.card.image}
+            alt={family.name}
+            loading="lazy"
+            style={{ width: `${family.card.scale ?? 90}%` }}
+            className="absolute left-1/2 top-1/2 max-w-none -translate-x-1/2 -translate-y-1/2 object-contain transition-transform duration-500 group-hover:scale-105"
+          />
+        )}
       </span>
       {/* Content — Figma card content (node 14314:20585) is 253px tall with gap-27 between blocks
           and ~34px line-height on the name/tagline/label, giving the ~500px card. */}

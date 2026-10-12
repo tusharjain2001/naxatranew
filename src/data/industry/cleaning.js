@@ -57,8 +57,8 @@ export default {
         supplies: ['Steering', 'Traction', 'Hydraulic', 'Sweeper'],
       },
       {
-        label: 'Leaf picker',
-        mobileLabel: 'Leaf Picker',
+        label: 'Litter picker',
+        mobileLabel: 'Litter Picker',
         tile: a('tile-3.png'),
         panel: a('panel-leaf.png'),
         parts: ['Vacuum Motor & Controller', 'Traction Motor, Controller & Axle'],
