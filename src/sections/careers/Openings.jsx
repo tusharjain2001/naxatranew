@@ -73,7 +73,7 @@ function JobCard({ job, onApply }) {
   const [open, setOpen] = useState(false)
   const panelId = `job-${job.title.replace(/\W+/g, '-').toLowerCase()}`
   const jdProps = job.jd
-    ? { href: job.jd, download: true }
+    ? { href: job.jd, target: '_blank', rel: 'noopener noreferrer' }
     : { href: '#apply', 'aria-disabled': true, title: 'Job description coming soon', onClick: (e) => e.preventDefault() }
 
   return (

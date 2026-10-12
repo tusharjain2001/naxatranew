@@ -12,10 +12,14 @@ export const careersHero = {
   mobilePoster: a('m/video-poster.webp'),
 }
 
+// Job description PDFs from the client (public/assets/careers/jd/).
+const JD = (role) => `/assets/careers/jd/Naxatra-Labs-${role}-JD.pdf`
+
 export const openings = {
   title: 'Be part of a team pushing the boundaries of motor technology.',
   subtitle: 'We’re actively hiring.',
-  // `summary` and `compensation` show when a card is expanded; `jd` links the job description file once there is one.
+  // `summary` and `compensation` show when a card is expanded; `jd` is the job description PDF (opens in a new
+  // tab), left empty while a role has none.
   jobs: [
     {
       title: 'Design Engineer',
@@ -25,7 +29,7 @@ export const openings = {
       summary:
         'Responsible for designing and developing engineering components and systems, preparing technical drawings and CAD models, and supporting prototyping, testing, and design validation in coordination with engineering teams.',
       compensation: 'Upto 12 LPA',
-      jd: '',
+      jd: JD('Design-and-Development-Engineer'),
     },
     {
       title: 'Supply Chain Manager',
@@ -35,7 +39,7 @@ export const openings = {
       summary:
         'Responsible for managing end-to-end supply chain activities, including sourcing, inventory management, material planning, and coordination with relevant internal and external stakeholders. The role will ensure smooth material flow and support efficient supply chain operations across the organization.',
       compensation: 'Upto 22 LPA',
-      jd: '',
+      jd: JD('Supply-Chain-Manager'),
     },
     {
       title: 'Testing Engineer',
@@ -45,7 +49,7 @@ export const openings = {
       summary:
         'Responsible for managing and executing testing activities for the RF Series, including homologation and laboratory testing. The role will involve coordinating test activities, supporting quality control, managing test data and documentation, and overseeing laboratory operations and requirements.',
       compensation: 'Upto 10 LPA',
-      jd: '',
+      jd: JD('Testing-and-Validation-Engineer'),
     },
     {
       title: 'Service Engineer',
@@ -65,7 +69,7 @@ export const openings = {
       summary:
         "Responsible for driving sales growth, identifying new business opportunities, managing client relationships, preparing proposals, negotiating commercial terms, and expanding the company's customer base across relevant industries.",
       compensation: 'Upto 20 LPA',
-      jd: '',
+      jd: JD('Senior-Sales-Manager'),
     },
   ],
   sortOptions: [
