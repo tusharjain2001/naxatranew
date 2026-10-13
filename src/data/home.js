@@ -426,7 +426,7 @@ export const ideas = [
 export const footer = {
   offices: [
     { title: 'Corporate Office', lines: ['Sector 44, Gurugram,', 'Haryana 122003'] },
-    { title: 'Manufacturing Facility', lines: ['Paldi-Kankaj, Dakroi Ahmedabad,', 'Gujarat 382425'] },
+    { title: 'Manufacturing Facility', lines: ['Paldi-Kankaj, Daskroi Ahmedabad,', 'Gujarat 382425'] },
   ],
   quickLinks: [
     { label: 'Home', href: '/' },

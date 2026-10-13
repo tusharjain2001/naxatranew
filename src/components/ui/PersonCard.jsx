@@ -27,7 +27,7 @@ export default function PersonCard({ person, variant = 'investor' }) {
   // With a `linkedin` profile the photo (and its badge) opens it in a new tab.
   const Photo = person.linkedin ? 'a' : 'div'
   const link = person.linkedin
-    ? { href: person.linkedin, target: '_blank', rel: 'noopener noreferrer', 'aria-label': `${person.name} on LinkedIn`, className: 'block transition-opacity hover:opacity-90' }
+    ? { href: person.linkedin, target: '_blank', rel: 'noopener noreferrer', 'aria-label': `${person.name} on LinkedIn`, className: 'block' }
     : {}
   return (
     <figure className={`flex flex-col ${v.card}`}>
