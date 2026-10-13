@@ -6,11 +6,13 @@ import { Field, SelectField, TextAreaField } from '../../components/ui/FormField
 import TabBar from '../../components/ui/TabBar'
 import useFormSubmit from '../../hooks/useFormSubmit'
 
-// Sends to the backend's /api/contact, which emails the team and a confirmation to the visitor.
+// Sends to the backend's /api/contact, which emails the team and a confirmation to the visitor. The four tabs share
+// one layout; the company field, dropdown and message box change per tab (see enquiry.forms).
 export default function EnquiryForm() {
   const [topic, setTopic] = useState(enquiry.topics[0])
   const { status, message, sending, formKey, onSubmit } = useFormSubmit('contact')
   const label = sending ? 'Sending...' : 'Submit Enquiry'
+  const form = enquiry.forms[topic]
 
   return (
     <section className="mx-auto flex w-full max-w-1920 flex-col gap-60 px-16 py-56 xl:gap-60 xl:px-100 xl:py-100">
@@ -33,9 +35,10 @@ export default function EnquiryForm() {
             <div className="grid w-full gap-20 xl:grid-cols-2 xl:gap-x-40 xl:gap-y-32">
               <Field label="Full Name" name="name" autoComplete="name" placeholder="Enter Full Name" tone="contact" />
               <Field label="Email ID" name="email" type="email" autoComplete="email" placeholder="Enter Email ID" tone="contact" />
-              <Field label="Company Name" name="company" autoComplete="organization" placeholder="Enter Company Name" tone="contact" />
-              <SelectField label="Application Type" name="application" placeholder="Choose your application type" options={enquiry.applications} tone="contact" />
-              <TextAreaField label="Any Message" name="message" placeholder="Write your message here..." className="xl:col-span-2" tone="contact" />
+              <Field label={form.company.label} required={Boolean(form.company.required)} name="company" autoComplete="organization" placeholder="Enter Company Name" tone="contact" />
+              {/* Keyed by tab: each tab has its own list, so the choice starts empty again on a switch. */}
+              <SelectField key={topic} label={form.type.label} name="application" placeholder="Choose your application type" options={form.type.options} tone="contact" />
+              <TextAreaField label={form.message.label} name="message" placeholder={form.message.placeholder} className="xl:col-span-2" tone="contact" />
             </div>
           </div>
 
