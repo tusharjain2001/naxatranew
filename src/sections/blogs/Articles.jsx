@@ -65,13 +65,18 @@ function SidePost({ post }) {
   )
 }
 
-// Latest sorts by date; Events and Blogs filter by category; All keeps the old site's order.
+// Latest sorts by date; Events and Blogs filter by category; All puts the pinned posts first, then the rest in order
+// (the old site's All tab).
 function postsFor(tab) {
   const { posts } = articles
   if (tab === 'Latest') return [...posts].sort((a, b) => b.date.localeCompare(a.date))
   if (tab === 'Events') return posts.filter((post) => post.category === 'event')
   if (tab === 'Blogs') return posts.filter((post) => post.category === 'blog')
-  return posts
+  const rank = (post) => {
+    const i = articles.pinned.indexOf(post.id)
+    return i === -1 ? articles.pinned.length : i
+  }
+  return [...posts].sort((a, b) => rank(a) - rank(b))
 }
 
 export default function Articles() {

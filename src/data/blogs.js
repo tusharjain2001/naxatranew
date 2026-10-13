@@ -11,11 +11,13 @@ export const blogsHero = {
 }
 
 // Every article from the old site's blogs page (C:\Users\Intel\Desktop\naxatra, BlogsAllArticlesSection.jsx),
-// in its order: the pinned posts first, then events and blogs. `category` drives the Events and Blogs tabs and
-// `href` opens the post (LinkedIn, Medium, EVreporter or Zerodha) in a new tab; a post without one isn't a link.
+// in its list order (the old Featured post, Fund raise, first): events, then blogs. The Events and Blogs tabs keep
+// this order; All lifts the `pinned` posts to the top, as the old site did. `category` drives the Events and Blogs
+// tabs and `href` opens the post (LinkedIn, Medium, EVreporter or Zerodha) in a new tab; a post without one isn't a link.
 export const articles = {
   title: 'All Articles',
   tabs: ['All', 'Latest', 'Events', 'Blogs'],
+  pinned: ['fund-raise', 'national-technology-week', 'introducing-naxatra-labs'],
   posts: [
     {
       id: 'fund-raise',
@@ -36,16 +38,6 @@ export const articles = {
       image: a('post-ntw.webp'),
       alt: 'National Technology Week',
       href: 'https://www.linkedin.com/posts/abhilashmaurya_nationaltechnologyday2023-startupindia-sustainibility-share-7064079426128363520-6C7k/?utm_source=share&utm_medium=member_desktop&rcm=ACoAACO14VQB5vnmxkT3Aaf0vGvf3_Thtn5MaXg',
-    },
-    {
-      id: 'introducing-naxatra-labs',
-      title: 'Introducing Naxatra Labs',
-      date: '2025-01-21',
-      category: 'blog',
-      excerpt: 'When we as a fund look at climate tech investments, we’ve primarily invested in solutions around water, integrated farming, alternative green energy...',
-      image: a('post-introducing-naxatra.webp'),
-      alt: 'Introducing Naxatra Labs',
-      href: 'https://zerodha.com/z-connect/rainmatter/introducing-naxatra-labs',
     },
     {
       id: 'ev-india-expo-2025',
@@ -85,6 +77,16 @@ export const articles = {
       image: a('post-efficiency-new-fuel.webp'),
       alt: 'Efficiency is the new fuel',
       href: 'https://evreporter.com/efficiency-is-the-new-fuel-rethinking-motors-for-a-sustainable-future/',
+    },
+    {
+      id: 'introducing-naxatra-labs',
+      title: 'Introducing Naxatra Labs',
+      date: '2025-01-21',
+      category: 'blog',
+      excerpt: 'When we as a fund look at climate tech investments, we’ve primarily invested in solutions around water, integrated farming, alternative green energy...',
+      image: a('post-introducing-naxatra.webp'),
+      alt: 'Introducing Naxatra Labs',
+      href: 'https://zerodha.com/z-connect/rainmatter/introducing-naxatra-labs',
     },
     {
       id: 'axial-flux-motors',
