@@ -212,11 +212,14 @@ export default function Navbar() {
                   className="flex w-160 cursor-pointer items-center justify-center gap-8 px-10 py-12 text-16 leading-16 font-light tracking-nav text-black uppercase transition-colors hover:text-primary"
                 >
                   {link.label}
-                  <img
-                    src="/assets/chevron.svg"
-                    alt=""
-                    className={`h-9 w-5 transition-transform duration-200 ${menuOpen ? '-rotate-90' : 'rotate-90'}`}
-                  />
+                  {/* Figma sizes the turned chevron as a 9x5 box, which sets its gap from the label. */}
+                  <span className="flex h-5 w-9 items-center justify-center">
+                    <img
+                      src="/assets/chevron.svg"
+                      alt=""
+                      className={`h-9 w-5 shrink-0 transition-transform duration-200 ${menuOpen ? '-rotate-90' : 'rotate-90'}`}
+                    />
+                  </span>
                 </button>
                 <div
                   className={`absolute top-full -left-440 z-10 w-880 pt-25 transition-all duration-200 ${
@@ -232,7 +235,7 @@ export default function Navbar() {
                 href={link.href}
                 aria-current={link.href === currentPath() ? 'page' : undefined}
                 className={`flex items-center justify-center py-12 text-16 leading-16 font-light tracking-nav text-black uppercase transition-colors hover:text-primary ${
-                  link.wide ? 'w-160 px-10' : 'px-32'
+                  link.wide ? 'w-160 px-10' : (link.pad ?? 'px-32')
                 }`}
               >
                 {link.label}

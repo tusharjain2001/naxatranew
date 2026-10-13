@@ -1,13 +1,14 @@
 const a = (file) => `/assets/${file}`
 
-// `wide` items sit in the artboard's fixed 160px slots; the rest are padded 32px each side.
+// `wide` items sit in the artboard's fixed 160px slots; the rest are padded 32px each side, except Careers, which
+// keeps 48px before the Contact Us button (Figma nav 15421:32140).
 export const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'Products', href: '/products', wide: true },
   { label: 'Industry', href: '/#industry', hasMenu: true },
   { label: 'Technology', href: '/technology', wide: true },
   { label: 'About', href: '/about' },
-  { label: 'Careers', href: '/careers', wide: true },
+  { label: 'Careers', href: '/careers', pad: 'pl-32 pr-48' },
 ]
 
 // Menu order follows the Figma dropdown (node 15440:4948): 2 wheeler, 3 wheeler / Cleaning, Agriculture /
