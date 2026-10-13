@@ -4,11 +4,11 @@ import { loadRecaptcha, RECAPTCHA_SITE_KEY } from '../../lib/recaptcha'
 import { subscribe } from '../../lib/newsletter'
 import Button from '../ui/Button'
 
-// Profile links carried over from the previous site; it had no YouTube channel, so that icon is not a link yet.
+// Naxatra Labs' social profiles.
 const socials = [
   { label: 'Facebook', icon: '/assets/social/facebook.svg', href: 'https://www.facebook.com/share/1K1QdBdCVZ/?mibextid=wwXIfr' },
   { label: 'X', icon: '/assets/social/x.svg', href: 'https://x.com/naxatralabs?s=21' },
-  { label: 'YouTube', icon: '/assets/social/youtube.svg' },
+  { label: 'YouTube', icon: '/assets/social/youtube.svg', href: 'https://www.youtube.com/@naxatralabs7165' },
   { label: 'LinkedIn', icon: '/assets/social/linkedin.svg', href: 'https://www.linkedin.com/company/naxatra-labs/' },
   { label: 'Instagram', icon: '/assets/social/instagram.svg', href: 'https://www.instagram.com/naxatralabs/' },
 ]

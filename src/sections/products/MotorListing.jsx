@@ -139,14 +139,14 @@ function FilterPanel({ ranges, setRanges, checked, toggleApp, clearAll }) {
 function SeriesRadios({ value, onChange }) {
   return (
     <div className="flex flex-wrap items-center justify-end gap-16 xl:justify-start xl:gap-32">
-      {seriesTabs.map((s) => {
-        const on = value === s
+      {seriesTabs.map(({ key, label }) => {
+        const on = value === key
         return (
-          <button key={s} type="button" onClick={() => onChange(on ? null : s)} className="flex items-center gap-8 xl:gap-12" aria-pressed={on}>
+          <button key={key} type="button" onClick={() => onChange(on ? null : key)} className="flex items-center gap-8 xl:gap-12" aria-pressed={on}>
             <span className={`grid size-16 place-items-center rounded-full border transition-colors xl:size-24 xl:border-2 ${on ? 'border-primary' : 'border-[#adadad]'}`}>
               {on && <span className="size-8 rounded-full bg-primary xl:size-12" />}
             </span>
-            <span className="text-16 font-light xl:text-24">{s} Series</span>
+            <span className="text-16 font-light xl:text-24">{label}</span>
           </button>
         )
       })}
@@ -317,7 +317,7 @@ export default function MotorListing() {
     const inRange = (val, [min, max]) => val >= min && val <= max
     const checkedCats = new Set([...checked].map((opt) => optionCategory[opt]))
     return productFamilies.filter((f) => {
-      if (series && f.series !== series) return false
+      if (series && (f.series ?? f.brand) !== series) return false
       if (!inRange(f.spec.voltage, ranges.voltage) || !inRange(f.spec.power, ranges.power) || !inRange(f.spec.torque, ranges.torque)) return false
       if (checkedCats.size && ![...checkedCats].some((c) => f.industries.includes(c))) return false
       return true

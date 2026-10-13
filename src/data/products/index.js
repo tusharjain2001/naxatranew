@@ -34,7 +34,13 @@ export const applicationFilters = [
   { key: 'drone', label: 'Drone', options: ['Drone'] },
 ]
 
-export const seriesTabs = ['RF', 'AF', 'PT']
+// Series radios on the Products page. The drone motor has no series, so its radio matches on its brand.
+export const seriesTabs = [
+  { key: 'RF', label: 'RF Series' },
+  { key: 'AF', label: 'AF Series' },
+  { key: 'PT', label: 'PT Series' },
+  { key: 'Drone', label: 'Drone Motor' },
+]
 
 // Grid order on the /products listing, top to bottom, left to right. `cardTagline` is the line under the name
 // on the listing cards (Figma 15421:42143). On the listing card (node 15651:3372) `variantsLine` sits under the name and `cardTagline`
