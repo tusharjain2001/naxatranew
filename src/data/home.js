@@ -424,9 +424,10 @@ export const ideas = [
 ]
 
 export const footer = {
+  // `map` opens the office on Google Maps (the address lines link to it).
   offices: [
-    { title: 'Corporate Office', lines: ['Sector 44, Gurugram,', 'Haryana 122003'] },
-    { title: 'Manufacturing Facility', lines: ['Paldi-Kankaj, Daskroi Ahmedabad,', 'Gujarat 382425'] },
+    { title: 'Corporate Office', lines: ['Sector 44, Gurugram,', 'Haryana 122003'], map: 'https://maps.app.goo.gl/k2imwMjYmoamnHiHA' },
+    { title: 'Manufacturing Facility', lines: ['Paldi-Kankaj, Daskroi Ahmedabad,', 'Gujarat 382425'], map: 'https://maps.app.goo.gl/MgVJqu1oMod2cNPt8' },
   ],
   quickLinks: [
     { label: 'Home', href: '/' },

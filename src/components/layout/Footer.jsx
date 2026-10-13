@@ -32,6 +32,19 @@ function SocialIcons({ className, iconClass }) {
   )
 }
 
+// The office's address lines, linked to its Google Maps location (underlined on hover).
+function OfficeMapLink({ office }) {
+  return (
+    <a href={office.map} target="_blank" rel="noopener noreferrer" className="block font-light hover:underline">
+      {office.lines.map((line) => (
+        <span key={line} className="block">
+          {line}
+        </span>
+      ))}
+    </a>
+  )
+}
+
 function Copyright({ className }) {
   return (
     <p className={`font-light text-grey capitalize ${className}`}>
@@ -189,11 +202,7 @@ export default function Footer() {
               {footer.offices.map((office, i) => (
                 <address key={office.title} className={`leading-32 not-italic ${i === 0 ? 'mt-7 w-351' : 'mt-40 w-308'}`}>
                   <span className="block font-bold">{office.title}</span>
-                  {office.lines.map((line) => (
-                    <span key={line} className="block font-light">
-                      {line}
-                    </span>
-                  ))}
+                  <OfficeMapLink office={office} />
                 </address>
               ))}
             </div>
@@ -252,11 +261,7 @@ export default function Footer() {
             {footer.offices.map((office) => (
               <address key={office.title} className="w-110 text-10 leading-14 not-italic">
                 <span className="block font-bold">{office.title}</span>
-                {office.lines.map((line) => (
-                  <span key={line} className="block font-light">
-                    {line}
-                  </span>
-                ))}
+                <OfficeMapLink office={office} />
               </address>
             ))}
           </div>
