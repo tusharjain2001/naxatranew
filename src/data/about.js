@@ -67,10 +67,11 @@ export const goal = {
 export const founders = {
   title: 'Built by people who build.',
   subtitle: 'Meet the minds behind Naxatra',
+  // LinkedIn profiles from the previous site (AboutTeamSection.jsx).
   people: [
-    { name: 'Abhilash Maurya', role: 'Co-founder & CEO', image: a('founder-abhilash.png'), fit: 'object-fill' },
-    { name: 'Piyush Verma', role: 'Co-founder & CTO', image: a('founder-piyush.png'), fit: 'object-cover' },
-    { name: 'Arnav Biswas', role: 'Co-founder & COO', image: a('founder-arnav.png'), fit: 'object-cover object-top' },
+    { name: 'Abhilash Maurya', role: 'Co-founder & CEO', image: a('founder-abhilash.png'), fit: 'object-fill', linkedin: 'https://www.linkedin.com/in/abhilashmaurya/' },
+    { name: 'Piyush Verma', role: 'Co-founder & CTO', image: a('founder-piyush.png'), fit: 'object-cover', linkedin: 'https://www.linkedin.com/in/piyushverma2920/' },
+    { name: 'Arnav Biswas', role: 'Co-founder & COO', image: a('founder-arnav.png'), fit: 'object-cover object-top', linkedin: 'https://www.linkedin.com/in/arnav-biswas-26a4801b7/' },
   ],
 }
 

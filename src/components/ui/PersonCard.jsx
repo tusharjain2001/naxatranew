@@ -24,9 +24,14 @@ const variants = {
 
 export default function PersonCard({ person, variant = 'investor' }) {
   const v = variants[variant]
+  // With a `linkedin` profile the photo (and its badge) opens it in a new tab.
+  const Photo = person.linkedin ? 'a' : 'div'
+  const link = person.linkedin
+    ? { href: person.linkedin, target: '_blank', rel: 'noopener noreferrer', 'aria-label': `${person.name} on LinkedIn`, className: 'block transition-opacity hover:opacity-90' }
+    : {}
   return (
     <figure className={`flex flex-col ${v.card}`}>
-      <div className={`relative w-full overflow-hidden bg-silver/40 ${v.photo}`}>
+      <Photo {...link} className={`relative w-full overflow-hidden bg-silver/40 ${v.photo} ${link.className ?? ''}`}>
         <img
           src={person.image}
           alt={`Portrait of ${person.name}`}
@@ -36,7 +41,7 @@ export default function PersonCard({ person, variant = 'investor' }) {
         <span aria-hidden className={`absolute ${v.badge}`}>
           <img src={v.icon} alt="" className="absolute top-[-40.28%] left-[-39.19%] h-[180.56%] w-[178.38%]" />
         </span>
-      </div>
+      </Photo>
       <figcaption className={`flex flex-col tracking-display text-grey-dark ${v.text}`}>
         <span className={`font-medium uppercase ${v.name}`}>{person.name}</span>
         <span className={`font-light ${v.role}`}>{person.role}</span>
