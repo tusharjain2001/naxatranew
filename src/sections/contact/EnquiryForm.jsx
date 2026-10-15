@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { enquiry } from '../../data/contact'
 import Button from '../../components/ui/Button'
 import FormStatus from '../../components/ui/FormStatus'
-import { Field, SelectField, TextAreaField } from '../../components/ui/FormFields'
+import { CaptchaField, Field, SelectField, TextAreaField } from '../../components/ui/FormFields'
 import TabBar from '../../components/ui/TabBar'
 import useFormSubmit from '../../hooks/useFormSubmit'
 
@@ -10,7 +10,7 @@ import useFormSubmit from '../../hooks/useFormSubmit'
 // one layout; the company field, dropdown and message box change per tab (see enquiry.forms).
 export default function EnquiryForm() {
   const [topic, setTopic] = useState(enquiry.topics[0])
-  const { status, message, sending, formKey, onSubmit } = useFormSubmit('contact')
+  const { status, message, sending, formKey, captcha, onSubmit } = useFormSubmit('contact')
   const label = sending ? 'Sending...' : 'Submit Enquiry'
   const form = enquiry.forms[topic]
 
@@ -39,6 +39,7 @@ export default function EnquiryForm() {
               {/* Keyed by tab: each tab has its own list, so the choice starts empty again on a switch. */}
               <SelectField key={topic} label={form.type.label} name="application" placeholder="Choose your application type" options={form.type.options} tone="contact" />
               <TextAreaField label={form.message.label} name="message" placeholder={form.message.placeholder} className="xl:col-span-2" tone="contact" />
+              <CaptchaField captcha={captcha} id="enquiry-captcha" tone="contact" />
             </div>
           </div>
 

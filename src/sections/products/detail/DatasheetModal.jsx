@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import Button from '../../../components/ui/Button'
+import Captcha from '../../../components/ui/Captcha'
 import FormStatus from '../../../components/ui/FormStatus'
 import useFormSubmit from '../../../hooks/useFormSubmit'
 
@@ -23,7 +24,7 @@ function Field({ label: text, className = '', ...input }) {
 }
 
 export default function DatasheetModal({ onClose, family, variant }) {
-  const { status, message, sending, formKey, onSubmit } = useFormSubmit('datasheet')
+  const { status, message, sending, formKey, captcha, onSubmit } = useFormSubmit('datasheet')
   // Single-variant motors go by their own name (AF 58, PT-500, AKSH 3115); the rest by variant code.
   const motor = variant.displayName ?? variant.code
 
@@ -65,6 +66,7 @@ export default function DatasheetModal({ onClose, family, variant }) {
           </div>
           <Field label="Company Name" name="company" autoComplete="organization" placeholder="Company name" />
           <Field label="Email" name="email" type="email" autoComplete="email" placeholder="you@example.com" />
+          <Captcha captcha={captcha} id="datasheet-captcha" labelClass={label} inputClass={box} height="h-48 xl:h-56" />
           <input type="hidden" name="motor" value={motor} />
           <input type="hidden" name="page" value={window.location.pathname} />
           <div className="flex flex-col items-start gap-12 pt-4">

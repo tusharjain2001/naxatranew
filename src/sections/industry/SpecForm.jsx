@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { sharedAssets, specForm } from '../../data/industry/shared'
 import Button from '../../components/ui/Button'
+import Captcha from '../../components/ui/Captcha'
 import FormStatus from '../../components/ui/FormStatus'
 import useFormSubmit from '../../hooks/useFormSubmit'
 
@@ -51,7 +52,7 @@ function Field({ label: text, required, className = '', size, children }) {
 // on one line each, 80px above a 1192px form with two equal columns.
 export default function SpecForm({ applications, title = specForm.title, text = specForm.text, wide = false, flowText = false, centered = false, spacing = 'xl:py-120' }) {
   const [application, setApplication] = useState('')
-  const { status, message, sending, formKey, onSubmit } = useFormSubmit('spec-enquiry', { onSuccess: () => setApplication('') })
+  const { status, message, sending, formKey, captcha, onSubmit } = useFormSubmit('spec-enquiry', { onSuccess: () => setApplication('') })
   const size = sizes.card
   // The Products listing form (node 15421:66253) spells out "(Required)" before the asterisk.
   const req = centered ? ' (Required)' : ''
@@ -155,6 +156,14 @@ export default function SpecForm({ applications, title = specForm.title, text = 
               className={`${size.textarea} resize-none xl:h-[calc(var(--spacing)*117.294)] xl:py-[calc(var(--spacing)*14.24)] ${box}`}
             />
           </Field>
+          <Captcha
+            captcha={captcha}
+            id={`spec-captcha${centered ? '-c' : ''}`}
+            labelClass={size.label}
+            inputClass={`${input} ${box}`}
+            height={input}
+            className={`w-340 xl:gap-[calc(var(--spacing)*3.351)] ${layout.message}`}
+          />
           <input type="hidden" name="page" value={window.location.pathname} />
           <Button as="button" type="submit" size={size.button} disabled={sending} className="cursor-pointer disabled:cursor-wait xl:hidden">
             {sending ? 'Sending...' : specForm.cta}

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Captcha from './Captcha'
 
 // Form controls shared by the Careers and Contact forms, sized to the Figma input boxes
 // (40px phone / 60px desktop). Typed text stays 16px on phones so iOS doesn't zoom in on focus;
@@ -50,6 +51,11 @@ export function Field({ label, required = true, markClass, className = '', input
       )}
     </Labelled>
   )
+}
+
+// The captcha row, sized and labelled like these fields.
+export function CaptchaField({ tone, ...props }) {
+  return <Captcha labelClass={`whitespace-nowrap ${tones[tone ?? 'default'].label}`} inputClass={`${fieldHeight} ${box}`} height={fieldHeight} {...props} />
 }
 
 export function SelectField({ label, name, placeholder, options, className = '', tone }) {

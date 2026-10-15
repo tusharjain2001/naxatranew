@@ -3,7 +3,7 @@ import { applyForm, openings } from '../../data/careers'
 import Button from '../../components/ui/Button'
 import FormStatus from '../../components/ui/FormStatus'
 import useFormSubmit from '../../hooks/useFormSubmit'
-import { Field, FileField } from '../../components/ui/FormFields'
+import { CaptchaField, Field, FileField } from '../../components/ui/FormFields'
 
 // The two artboards word some placeholders differently, which inputs can't switch with CSS.
 const desktopQuery = '(min-width: 1280px)'
@@ -29,7 +29,7 @@ const required = (label) => (
 // Desktop (15421:64139): the heading in a 600px column beside the 1088px form, 98px below the openings.
 export default function ApplyForm({ role, onRoleChange }) {
   const desktop = useDesktop()
-  const { status, message, sending, formKey, onSubmit } = useFormSubmit('careers', { multipart: true, onSuccess: () => onRoleChange('') })
+  const { status, message, sending, formKey, captcha, onSubmit } = useFormSubmit('careers', { multipart: true, onSuccess: () => onRoleChange('') })
   return (
     <section
       id="apply"
@@ -82,6 +82,7 @@ export default function ApplyForm({ role, onRoleChange }) {
             <FileField id="resume" name="resume" label="Attach Resume" accept=".pdf,.doc,.docx" className="xl:shrink-0" />
             <Field label="Linkedin Profile URL" name="linkedin" type="url" placeholder="Enter Linked In link" className="xl:flex-1" />
           </div>
+          <CaptchaField captcha={captcha} id="apply-captcha" className="xl:w-528" />
         </div>
 
         <Button as="button" type="submit" size="spec" disabled={sending} className="cursor-pointer disabled:cursor-wait xl:hidden">
