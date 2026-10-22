@@ -1,6 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { footer } from '../../data/home'
-import { loadRecaptcha, RECAPTCHA_SITE_KEY } from '../../lib/recaptcha'
 import { subscribe } from '../../lib/newsletter'
 import Button from '../ui/Button'
 
@@ -54,68 +53,28 @@ function Copyright({ className }) {
   )
 }
 
-// The reCAPTCHA checkbox, rendered once its box comes near the screen (the hidden phone/desktop copy never
-// does, so only one widget loads). Figma draws it at 245×61, so Google's 304×78 widget is scaled to 80%.
-function Captcha({ onReady, className }) {
-  const box = useRef(null)
-  useEffect(() => {
-    const el = box.current
-    let cancelled = false
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return
-        io.disconnect()
-        loadRecaptcha()
-          .then((grecaptcha) => {
-            if (cancelled) return
-            const id = grecaptcha.render(el, { sitekey: RECAPTCHA_SITE_KEY, theme: 'dark' })
-            onReady({ token: () => grecaptcha.getResponse(id), reset: () => grecaptcha.reset(id) })
-          })
-          .catch(() => {})
-      },
-      { rootMargin: '300px' },
-    )
-    io.observe(el)
-    return () => {
-      cancelled = true
-      io.disconnect()
-    }
-  }, [onReady])
-  return (
-    <div className={`h-62 w-245 ${className}`}>
-      <div ref={box} className="origin-top-left scale-80" />
-    </div>
-  )
-}
-
 const joinLabels = { idle: 'Join', joining: 'Joining...', done: 'Thank You!' }
 
-// Newsletter sign-up (15420:4155): the captcha, then the email box with its Join button, which reads
-// "Joining..." while the request runs (15564:170) and turns pale blue reading "Thank You!" once it
-// succeeds (15564:182).
+// Newsletter sign-up (15420:4155): the email box with its Join button, which reads "Joining..." while the
+// request runs (15564:170) and turns pale blue reading "Thank You!" once it succeeds (15564:182).
 function Newsletter({ mobile = false }) {
   const [status, setStatus] = useState('idle')
   const [error, setError] = useState('')
-  const captcha = useRef(null)
-  const onCaptchaReady = useCallback((widget) => (captcha.current = widget), [])
 
   const submit = async (e) => {
     e.preventDefault()
     if (status === 'joining') return
     const form = e.currentTarget
-    const token = captcha.current?.token()
-    if (!token) return setError('Please confirm you’re not a robot.')
     setError('')
     setStatus('joining')
     try {
-      await subscribe(form.email.value.trim(), token)
+      await subscribe(form.email.value.trim())
       form.reset()
       setStatus('done')
     } catch (err) {
       setStatus('idle')
       setError(err.message)
     }
-    captcha.current?.reset()
   }
 
   return (
@@ -142,10 +101,9 @@ function Newsletter({ mobile = false }) {
           </span>
         ))}
       </p>
-      <Captcha onReady={onCaptchaReady} className={mobile ? '' : 'mt-24'} />
       <div
         className={`flex items-center bg-white transition-shadow focus-within:ring-2 focus-within:ring-primary ${
-          mobile ? 'w-full gap-8 rounded-4 py-4 pr-4 pl-10' : 'mt-15 gap-10 rounded-8 py-8 pr-8 pl-16'
+          mobile ? 'w-full gap-8 rounded-4 py-4 pr-4 pl-10' : 'mt-24 gap-10 rounded-8 py-8 pr-8 pl-16'
         }`}
       >
         <input
