@@ -38,9 +38,11 @@ export default function PersonCard({ person, variant = 'investor' }) {
           loading="lazy"
           className={`absolute inset-0 size-full ${person.fit ?? 'object-cover'}`}
         />
-        <span aria-hidden className={`absolute ${v.badge}`}>
-          <img src={v.icon} alt="" className="absolute top-[-40.28%] left-[-39.19%] h-[180.56%] w-[178.38%]" />
-        </span>
+        {person.linkedin && (
+          <span aria-hidden className={`absolute ${v.badge}`}>
+            <img src={v.icon} alt="" className="absolute top-[-40.28%] left-[-39.19%] h-[180.56%] w-[178.38%]" />
+          </span>
+        )}
       </Photo>
       <figcaption className={`flex flex-col tracking-display text-grey-dark ${v.text}`}>
         <span className={`font-medium uppercase ${v.name}`}>{person.name}</span>

@@ -130,13 +130,14 @@ export const investors = {
       mobile: { dx: 15.35, w: 68.564, h: 48.915, crop: { w: 194.83, h: 165.72, l: -45.45, t: -33.4 } },
     },
   ],
-  // LinkedIn profiles from the previous site (AboutInvestorsSection.jsx).
+  // LinkedIn profiles from the previous site (AboutInvestorsSection.jsx). The client asked for no LinkedIn badge
+  // on the top row, so those five carry no profile.
   people: [
-    { name: 'Mohit Tandon', role: 'Founder Delhivery', image: a('investor-mohit.png'), linkedin: 'https://www.linkedin.com/in/mohit-tandon-03b9046/' },
-    { name: 'Himanshu Aggarwal', role: 'Founder Aspiring Minds', image: a('investor-himanshu.png'), linkedin: 'https://www.linkedin.com/in/himanshuaggarwal/' },
-    { name: 'Vijay Shekhar Sharma', role: 'Founder Paytm', image: a('investor-vijay.png'), linkedin: 'https://www.linkedin.com/in/vijayshekhar/' },
-    { name: 'Aloke Bajpai', role: 'Co-founder Ixigo', image: a('investor-aloke.png'), linkedin: 'https://www.linkedin.com/in/alokebajpai/' },
-    { name: 'Rajnish Kumar', role: 'Co-founder Ixigo', image: a('investor-rajnish.png'), linkedin: 'https://www.linkedin.com/in/rajnishkumar/' },
+    { name: 'Mohit Tandon', role: 'Founder Delhivery', image: a('investor-mohit.png') },
+    { name: 'Himanshu Aggarwal', role: 'Founder Aspiring Minds', image: a('investor-himanshu.png') },
+    { name: 'Vijay Shekhar Sharma', role: 'Founder Paytm', image: a('investor-vijay.png') },
+    { name: 'Aloke Bajpai', role: 'Co-founder Ixigo', image: a('investor-aloke.png') },
+    { name: 'Rajnish Kumar', role: 'Co-founder Ixigo', image: a('investor-rajnish.png') },
     { name: 'Narayan', role: 'Ather', image: a('investor-narayan-v2.png'), linkedin: 'https://www.linkedin.com/in/narayan-g-v-7ba86543/' },
     { name: 'Sunil Kalra', role: 'Angel Investor', image: a('investor-sunil-v2.png'), linkedin: 'https://www.linkedin.com/in/sunilkalranewdelhi/' },
     { name: 'Anupam Jalote', role: 'GMDC Official - Strategic Partner', image: a('investor-anupam.png'), linkedin: 'https://www.linkedin.com/in/anupamjalote/' },

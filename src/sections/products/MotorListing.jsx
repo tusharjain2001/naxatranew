@@ -290,8 +290,9 @@ function FilterDrawer({ open, onClose, ranges, setRanges, checked, toggleApp, cl
 }
 
 export default function MotorListing() {
-  const [series, setSeries] = useState(null)
-  const [seriesOpen, setSeriesOpen] = useState(false)
+  // The listing opens on the RF Series, with the desktop radios shown so the active filter is visible.
+  const [series, setSeries] = useState('RF')
+  const [seriesOpen, setSeriesOpen] = useState(true)
   // The phone toolbar starts with the series radios and the filter drawer closed.
   const [mobileSeriesOpen, setMobileSeriesOpen] = useState(false)
   const [drawerOpen, setDrawerOpen] = useState(false)

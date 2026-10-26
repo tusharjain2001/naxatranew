@@ -55,10 +55,10 @@ export default {
     // …and lists the long supply lines one per row, without dividers.
     mobileStackedSupplies: true,
     items: [
-      { label: 'E-rickshaw', tile: a('tile-1.png'), panel: a('panel-erickshaw.png'), parts: ['Traction Motor, Controller & Axle'], text: 'Built for high-density urban transit, a traction motor, controller, and axle engineered for frequent stop-start driving, passenger comfort, and long daily duty cycles.', supplies: ['Traction - Motor, Controller & Axle (30/32inch)'] },
+      { label: 'L5 Passenger', tile: a('tile-1.png'), panel: a('panel-erickshaw.png'), parts: ['Traction Motor, Controller & Axle'], text: 'Built for high-density urban transit, a traction motor, controller, and axle engineered for frequent stop-start driving, passenger comfort, and long daily duty cycles.', supplies: ['Traction - Motor, Controller & Axle (30/32inch)'] },
       {
-        label: 'Loader Passenger',
-        mobileLabel: 'Loader passenger',
+        label: '3W Passenger',
+        mobileLabel: '3W passenger',
         tile: a('tile-2.png'),
         panel: a('panel-passenger.png'),
         mobilePanel: a('m/panel-passenger.jpg'),

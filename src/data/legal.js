@@ -71,7 +71,7 @@ const terms = {
     },
     {
       title: 'About Us',
-      text: 'Naxatra Labs Pvt. Ltd. is an electric motor and controller manufacturing company incorporated under the laws of India. Our registered corporate office is located at Sector 44, Gurugram, Haryana 122003, India. Our technology development, research and development, and manufacturing operations are based in Paldi-Kankaj, Daskroi, Ahmedabad, Gujarat 382425, India.',
+      text: 'Naxatra Labs Pvt. Ltd. is an electric motor and controller manufacturing company incorporated under the laws of India. Our technology development, research and development, and manufacturing operations are based in Ahmedabad, Gujarat, India. Registered corporate office is located at Sector 44, Gurugram, Haryana 122003, India.',
     },
     {
       title: 'Use of Website',
