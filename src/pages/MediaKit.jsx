@@ -1,11 +1,9 @@
-import { useEffect } from 'react'
 import MediaKitHero from '../sections/media-kit/MediaKitHero'
 import MediaKitDownload from '../sections/media-kit/MediaKitDownload'
+import { usePageTitle } from '../lib/pageTitle'
 
 export default function MediaKit() {
-  useEffect(() => {
-    document.title = 'Media Kit | Naxatra Labs'
-  }, [])
+  usePageTitle('Media Kit | Naxatra Labs')
 
   return (
     <main className="flex flex-col">

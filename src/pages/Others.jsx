@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import others from '../data/others'
 import OthersHero from '../sections/others/OthersHero'
 import Emerging from '../sections/others/Emerging'
@@ -9,13 +8,12 @@ import WhyUs from '../sections/others/WhyUs'
 import DifferentApplication from '../sections/industry/DifferentApplication'
 import Process from '../sections/industry/Process'
 import SpecForm from '../sections/industry/SpecForm'
+import { usePageTitle } from '../lib/pageTitle'
 
 // "Other applications" page (Figma node 15421:59799), the Industry menu's OTHERS tile. The banner, timeline,
 // and form are the shared industry sections; it has no testimonials.
 export default function Others() {
-  useEffect(() => {
-    document.title = others.title
-  }, [])
+  usePageTitle(others.title)
 
   return (
     <main className="flex flex-col">

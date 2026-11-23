@@ -35,7 +35,8 @@ function collect() {
   sections.forEach((section, index) => {
     // The page hero: only its copy block rises in (the home carousel animates itself).
     if (index === 0) {
-      const title = section.id === 'home' ? null : [...section.querySelectorAll('h1')].find((h) => h.offsetParent !== null)
+      // A page whose phone and desktop layouts both carry the title marks one copy as a heading by role instead of <h1>.
+      const title = section.id === 'home' ? null : [...section.querySelectorAll('h1, [aria-level="1"]')].find((h) => h.offsetParent !== null)
       const block = title?.parentElement && getComputedStyle(title.parentElement).display !== 'contents' ? title.parentElement : title
       if (block) groups.push([block])
       return

@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import AboutHero from '../sections/about/AboutHero'
 import Values from '../sections/about/Values'
 import Goal from '../sections/about/Goal'
@@ -9,11 +8,10 @@ import Investors from '../sections/about/Investors'
 import Journey from '../sections/Journey'
 import Ideas from '../sections/Ideas'
 import Testimonials from '../sections/Testimonials'
+import { usePageTitle } from '../lib/pageTitle'
 
 export default function About() {
-  useEffect(() => {
-    document.title = 'About Us | Naxatra Labs'
-  }, [])
+  usePageTitle('About Us | Naxatra Labs')
 
   return (
     <main className="flex flex-col">

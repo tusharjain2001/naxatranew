@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import drone from '../data/industry/drone'
 import DroneHero from '../sections/drone/DroneHero'
 import DroneApplications from '../sections/drone/DroneApplications'
@@ -11,13 +10,12 @@ import DifferentApplication from '../sections/industry/DifferentApplication'
 import Features from '../sections/industry/Features'
 import Process from '../sections/industry/Process'
 import SpecForm from '../sections/industry/SpecForm'
+import { usePageTitle } from '../lib/pageTitle'
 
 // Drone industry page. Sections follow the Figma "drone page (latest)" artboard (node 15420:4563, no
 // testimonials); the last four are shared with the other industry pages.
 export default function Drone() {
-  useEffect(() => {
-    document.title = drone.title
-  }, [])
+  usePageTitle(drone.title)
 
   const applications = drone.applications.flatMap((group) => group.cards.map((card) => card.label))
 

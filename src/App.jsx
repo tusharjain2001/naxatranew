@@ -2,28 +2,12 @@ import { useEffect } from 'react'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import Home from './pages/Home'
-import About from './pages/About'
-import Careers from './pages/Careers'
-import Contact from './pages/Contact'
-import Blogs from './pages/Blogs'
 import Industry from './pages/Industry'
-import Products from './pages/Products'
 import ProductDetail from './pages/ProductDetail'
 import Legal from './pages/Legal'
-import Drone from './pages/Drone'
-import Technology from './pages/Technology'
-import Others from './pages/Others'
-import MediaKit from './pages/MediaKit'
-import { industryPages, industryPath } from './data/industry'
-import { productFamilies, productPath } from './data/products'
-import { legalPages } from './data/legal'
+import { pages, industryBySlug, legalByPath, productBySlug } from './routes'
 import { currentPath } from './lib/currentPath'
 import { startReveal } from './lib/reveal'
-
-const pages = { '/': Home, '/about': About, '/careers': Careers, '/contact': Contact, '/blogs': Blogs, '/products': Products, '/industry/drone': Drone, '/industry/others': Others, '/technology': Technology, '/media-kit': MediaKit }
-const industryBySlug = Object.fromEntries(industryPages.map((page) => [industryPath(page.slug), page]))
-const legalByPath = Object.fromEntries(legalPages.map((page) => [page.path, page]))
-const productBySlug = Object.fromEntries(productFamilies.map((family) => [productPath(family.slug), family]))
 
 export default function App() {
   const path = currentPath()

@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { quality, techAbout, techBanner, techHero, techLayers, whyNaxatra } from '../data/technology'
 import TechHero from '../sections/technology/TechHero'
 import TechAbout from '../sections/technology/TechAbout'
@@ -6,12 +5,11 @@ import WhyNaxatra from '../sections/technology/WhyNaxatra'
 import TechBanner from '../sections/technology/TechBanner'
 import TechLayers from '../sections/technology/TechLayers'
 import Quality from '../sections/technology/Quality'
+import { usePageTitle } from '../lib/pageTitle'
 
 // Technology page (Figma "technology page"), sections in artboard order.
 export default function Technology() {
-  useEffect(() => {
-    document.title = 'Technology | Naxatra Labs'
-  }, [])
+  usePageTitle('Technology | Naxatra Labs')
 
   return (
     <main className="flex flex-col">

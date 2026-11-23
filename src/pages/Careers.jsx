@@ -1,15 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import CareersHero from '../sections/careers/CareersHero'
 import Openings from '../sections/careers/Openings'
 import ApplyForm from '../sections/careers/ApplyForm'
+import { usePageTitle } from '../lib/pageTitle'
 
 export default function Careers() {
   // "Apply now" on a job card fills the role field of the form below.
   const [role, setRole] = useState('')
 
-  useEffect(() => {
-    document.title = 'Careers | Naxatra Labs'
-  }, [])
+  usePageTitle('Careers | Naxatra Labs')
 
   return (
     <main className="flex flex-col">

@@ -1,11 +1,9 @@
-import { useEffect } from 'react'
+import { usePageTitle } from '../lib/pageTitle'
 
 // Privacy Policy and Terms of Use: a 400px black title band, then numbered sections.
 // Figma only has the 1920 artboard; mobile keeps the same order at the site's phone type sizes.
 export default function Legal({ page }) {
-  useEffect(() => {
-    document.title = `${page.title} | Naxatra Labs`
-  }, [page])
+  usePageTitle(`${page.title} | Naxatra Labs`)
 
   return (
     <main className="flex flex-col">

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { productDetail } from '../data/products/details'
 import DetailHero from '../sections/products/detail/DetailHero'
 import TechnicalSpecs from '../sections/products/detail/TechnicalSpecs'
@@ -6,6 +6,7 @@ import BrowseOtherMotors from '../sections/products/detail/BrowseOtherMotors'
 import SpecModal from '../sections/products/detail/SpecModal'
 import DatasheetModal from '../sections/products/detail/DatasheetModal'
 import SpecForm from '../sections/industry/SpecForm'
+import { usePageTitle } from '../lib/pageTitle'
 
 const motorApplications = ['Cleaning', 'Agriculture', '2 Wheeler', '3 Wheeler', 'Industrial Tools']
 
@@ -24,9 +25,7 @@ export default function ProductDetail({ family }) {
   // Stable, so the modal's Escape listener isn't re-attached on every render.
   const closeDatasheet = useCallback(() => setDatasheetOpen(false), [])
 
-  useEffect(() => {
-    document.title = `${family.name} | Naxatra Labs`
-  }, [family])
+  usePageTitle(`${family.name} | Naxatra Labs`)
 
   return (
     <main className="flex flex-col">

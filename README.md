@@ -5,9 +5,22 @@ React 19 + Vite + Tailwind CSS v4 build of the Naxatra Labs 2026 Figma file. Pag
 ```bash
 npm install
 npm run dev      # local dev server
-npm run build    # production build in dist/
+npm run build    # production build in dist/, with every page pre-rendered (see "Search engines" below)
 npm run lint
 ```
+
+Build for the live site with the form backend's address set, or the forms post to `/api` on the site itself: `VITE_API_URL=https://api.naxatralabs.com npm run build`.
+
+## Search engines
+
+`npm run build` runs `scripts/prerender.mjs` after the normal build. For every address in `src/routes.js` it writes an HTML file (`dist/index.html` for the home page, `dist/_pages/...` for the rest) holding the page's text, title, meta description, canonical link, Open Graph tags and schema.org data (`src/lib/structuredData.js`). Crawlers and link previews read that file without running JavaScript. In the browser the copy stays hidden and `src/main.jsx` drops it before the app renders, so visitors see exactly what they saw before.
+
+It also writes `robots.txt`, `sitemap.xml`, `404.html` and `.htaccess`. The `.htaccess` (Apache/LiteSpeed, as on Hostinger) serves each page's file, redirects `www.` to the bare domain and answers unknown addresses with status 404. Upload the whole of `dist/`, including the dot-files.
+
+- **Page titles:** each page sets its own with `usePageTitle` (`src/lib/pageTitle.js`), which the build reads too.
+- **Meta descriptions:** add them per address in `descriptions` in `src/data/seo.js`; pages without one use the description in `index.html`.
+- **Search Console / Bing:** paste the verification codes into `verification` in `src/data/seo.js`.
+- **New pages:** add them to `src/routes.js`, or they are not pre-rendered and the server answers 404.
 
 ## How the layout maps to Figma
 
@@ -41,7 +54,7 @@ public/assets/            images and SVGs exported from Figma (m/ mobile-only, a
 
 ## Open items
 
-- **Hosting:** `/about`, `/careers`, `/contact`, `/blogs`, `/industry/*`, `/privacy-policy` and `/terms-of-use` are served by the same `index.html`. `vite dev` and `vite preview` handle that already; on the live host, rewrite unknown paths to `/index.html` (Netlify: `public/_redirects`, copied into `dist/` on build; Vercel: `vercel.json`).
+- **Hosting:** the live site is on Hostinger, served by the `.htaccess` the build writes. `vercel.json` and `public/_redirects` still send every address to `index.html` (now the pre-rendered home page), so before moving to Vercel or Netlify, replace them with rewrites to the `_pages/` files.
 - **About, Careers, Contact and Blogs on mobile:** Figma only has desktop artboards for these pages, so their mobile layouts follow the home page's mobile patterns.
 - **Careers content:** job summaries (shown when a card is expanded) and job description files are empty in `src/data/careers.js`; experience reads `x years` as in Figma. The position count comes from the number of jobs listed.
 - **Blog posts:** posts live in `articles.posts` in `src/data/blogs.js`; there are no article pages yet, so posts are not links. The featured fundraise image is a single export of the Figma poster.

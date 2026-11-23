@@ -256,7 +256,8 @@ export default function DetailHero({ family, detail, variant, onSelectVariant, o
             </a>
             <span>{detail.breadcrumb.slice(detail.breadcrumb.indexOf('/'))}</span>
           </nav>
-          <h1 className="text-40 leading-none xl:text-80 xl:leading-88">{family.name}</h1>
+          {/* The phone layout above carries the page's one <h1>; this desktop copy is a heading only for screen readers. */}
+          <div role="heading" aria-level="1" className="text-40 leading-none xl:text-80 xl:leading-88">{family.name}</div>
           {subtitle && <p key={variant.id + '-sub'} className="animate-[fade-in_0.3s_ease-out] text-18 font-light xl:text-32">{subtitle}</p>}
           <div className="py-8 xl:py-40">
             <Button as="button" type="button" onClick={onOpenSpec} variant="outline" size="hero" className="hidden cursor-pointer xl:inline-flex">

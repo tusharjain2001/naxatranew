@@ -149,7 +149,7 @@ export const commitment = {
   // The phone artboard (15421:61298) words the paragraph differently.
   mobileBody: "At Naxatra Labs, we understand that every application has unique requirements. They're engineered to fit your needs. We customize every detail to ensure optimal performance and efficiency.",
   location: 'AHMEDABAD, INDIA',
-  image: a('commitment-motor.png'),
+  image: a('commitment-motor.webp'),
   stats: [
     { value: '10%', label: 'Higher Average Efficiency' },
     { value: '8%', label: 'Increased Operating Range' },
@@ -168,35 +168,35 @@ export const applications = [
     label: '2 Wheelers',
     href: '/industry/2-wheeler',
     font: 'font-inter',
-    photo: { alt: 'Electric scooter', src: a('app-2wheeler.png'), l: 38.9, t: 33.42, w: 276.478, h: 250.377, crop: { w: 101.29, h: 148.67, l: -1.22, t: -19.07 } },
+    photo: { alt: 'Electric scooter', src: a('app-2wheeler.webp'), l: 38.9, t: 33.42, w: 276.478, h: 250.377, crop: { w: 101.29, h: 148.67, l: -1.22, t: -19.07 } },
     shadow: { src: a('shadow-sm.svg'), l: 60.17, t: 262.53, w: 213.642, inset: '-111.11% -4.52%' },
   },
   {
     label: '3 Wheelers & L5',
     href: '/industry/3-wheeler',
     font: 'font-inter',
-    photo: { alt: 'Electric auto-rickshaw', src: a('app-3wheeler.png'), l: 7.61, t: -7.18, w: 308.379, h: 274.545, crop: { w: 100, h: 149.88, l: 0, t: -7.82 } },
+    photo: { alt: 'Electric auto-rickshaw', src: a('app-3wheeler.webp'), l: 7.61, t: -7.18, w: 308.379, h: 274.545, crop: { w: 100, h: 149.88, l: 0, t: -7.82 } },
     shadow: { src: a('shadow-lg.svg'), l: 42.41, t: 262.53, w: 238.777, inset: '-111.11% -4.05%' },
   },
   {
     label: 'Cleaning',
     href: '/industry/cleaning',
     font: 'font-inter',
-    photo: { alt: 'Ride-on road sweeper', src: a('app-cleaning.png'), l: 46.91, t: 34.39, w: 260.993, h: 247.494, crop: { w: 102.87, h: 143.84, l: 0.12, t: -14.42 }, flip: true },
+    photo: { alt: 'Ride-on road sweeper', src: a('app-cleaning.webp'), l: 46.91, t: 34.39, w: 260.993, h: 247.494, crop: { w: 102.87, h: 143.84, l: 0.12, t: -14.42 }, flip: true },
     shadow: { src: a('shadow-lg.svg'), l: 46.89, t: 257.7, w: 238.777, inset: '-111.11% -4.05%' },
   },
   {
     label: 'Agriculture',
     href: '/industry/agriculture',
     font: 'font-geist',
-    photo: { alt: 'Electric tractor', src: a('app-agriculture.png'), l: 18.69, t: 26, w: 281.537, h: 265.631, crop: { w: 103.39, h: 146.11, l: -3.57, t: -15.43 } },
+    photo: { alt: 'Electric tractor', src: a('app-agriculture.webp'), l: 18.69, t: 26, w: 281.537, h: 265.631, crop: { w: 103.39, h: 146.11, l: -3.57, t: -15.43 } },
     shadow: { src: a('shadow-lg.svg'), l: 46.53, t: 253.83, w: 238.777, inset: '-111.11% -4.05%' },
   },
   {
     label: 'Drone',
     href: '/industry/drone',
     font: 'font-geist',
-    photo: { alt: 'Drone', src: a('app-drone.png'), l: 1.26, t: 16.02, w: 330.187, h: 315.006, crop: { w: 104.02, h: 145.38, l: -1.72, t: -24.2 } },
+    photo: { alt: 'Drone', src: a('app-drone.webp'), l: 1.26, t: 16.02, w: 330.187, h: 315.006, crop: { w: 104.02, h: 145.38, l: -1.72, t: -24.2 } },
   },
 ]
 
@@ -212,9 +212,9 @@ export const deployment = {
   subtitle: 'High-performance electric motor for global applications.',
   tabs: ['Design', 'Performance', 'Technology'],
   images: [
-    { src: a('deploy-repair.png'), alt: 'Technician servicing an electric motorcycle drivetrain' },
-    { src: a('deploy-charging.png'), alt: 'Electric car being charged' },
-    { src: a('deploy-drone.png'), alt: 'Agricultural spraying drone over a paddy field' },
+    { src: a('deploy-repair.webp'), alt: 'Technician servicing an electric motorcycle drivetrain' },
+    { src: a('deploy-charging.webp'), alt: 'Electric car being charged' },
+    { src: a('deploy-drone.webp'), alt: 'Agricultural spraying drone over a paddy field' },
   ],
 }
 
@@ -425,10 +425,29 @@ export const ideas = [
 ]
 
 export const footer = {
-  // `map` opens the office on Google Maps (the address lines link to it).
+  // `map` opens the office on Google Maps (the address lines link to it). `postal` is the same address split
+  // into fields for search engines (structured data); keep it in step with `lines`.
   offices: [
-    { title: 'Corporate Office', lines: ['Sector 44, Gurugram,', 'Haryana 122003'], map: 'https://maps.app.goo.gl/k2imwMjYmoamnHiHA' },
-    { title: 'Manufacturing Facility', lines: ['Paldi-Kankaj, Daskroi Ahmedabad,', 'Gujarat 382425'], map: 'https://maps.app.goo.gl/MgVJqu1oMod2cNPt8' },
+    {
+      title: 'Corporate Office',
+      lines: ['Sector 44, Gurugram,', 'Haryana 122003'],
+      map: 'https://maps.app.goo.gl/k2imwMjYmoamnHiHA',
+      postal: { streetAddress: 'Sector 44', addressLocality: 'Gurugram', addressRegion: 'Haryana', postalCode: '122003' },
+    },
+    {
+      title: 'Manufacturing Facility',
+      lines: ['Paldi-Kankaj, Daskroi Ahmedabad,', 'Gujarat 382425'],
+      map: 'https://maps.app.goo.gl/MgVJqu1oMod2cNPt8',
+      postal: { streetAddress: 'Paldi-Kankaj, Daskroi', addressLocality: 'Ahmedabad', addressRegion: 'Gujarat', postalCode: '382425' },
+    },
+  ],
+  // Naxatra Labs' social profiles.
+  socials: [
+    { label: 'Facebook', icon: '/assets/social/facebook.svg', href: 'https://www.facebook.com/share/1K1QdBdCVZ/?mibextid=wwXIfr' },
+    { label: 'X', icon: '/assets/social/x.svg', href: 'https://x.com/naxatralabs?s=21' },
+    { label: 'YouTube', icon: '/assets/social/youtube.svg', href: 'https://www.youtube.com/@naxatralabs7165' },
+    { label: 'LinkedIn', icon: '/assets/social/linkedin.svg', href: 'https://www.linkedin.com/company/naxatra-labs/' },
+    { label: 'Instagram', icon: '/assets/social/instagram.svg', href: 'https://www.instagram.com/naxatralabs/' },
   ],
   quickLinks: [
     { label: 'Home', href: '/' },

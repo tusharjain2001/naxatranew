@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import IndustryHero from '../sections/industry/IndustryHero'
 import Challenges from '../sections/industry/Challenges'
 import Applications from '../sections/industry/Applications'
@@ -8,6 +7,7 @@ import Features from '../sections/industry/Features'
 import Process from '../sections/industry/Process'
 import SpecForm from '../sections/industry/SpecForm'
 import Testimonials from '../sections/Testimonials'
+import { usePageTitle } from '../lib/pageTitle'
 
 // One template for the four industry pages; each page's data lists its sections in artboard order.
 const sections = {
@@ -31,9 +31,7 @@ const sections = {
 }
 
 export default function Industry({ page }) {
-  useEffect(() => {
-    document.title = page.title
-  }, [page])
+  usePageTitle(page.title)
 
   return (
     <main className="flex flex-col">
