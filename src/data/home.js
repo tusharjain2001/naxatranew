@@ -203,8 +203,8 @@ export const applications = [
 export const manufacturing = {
   title: 'Inside Our Manufacturing',
   cta: 'Know about us',
-  // The company film in Figma's video frame — the client's Vimeo embed.
-  vimeo: { id: '1234999879', title: 'Brand Video' },
+  // The company film in Figma's video frame — the client's Vimeo embed ("NX Corporate Video Updated", Nov 2026).
+  vimeo: { id: '1250513373', title: 'Naxatra Labs corporate video' },
 }
 
 export const deployment = {
