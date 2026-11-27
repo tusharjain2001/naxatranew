@@ -100,16 +100,24 @@ export const heroSlides = [
     top: 122,
     left: 100,
   },
+  // Slide order after the first is the client's (Nov 2026): drone, agriculture, cleaning, then EV.
   {
-    id: 'mobility',
-    alt: 'Electric scooter, auto-rickshaw and motorcycle parked by a city waterfront',
-    image: a('hero-vehicles.webp'),
-    mobileImage: a('m/hero-vehicles.webp'),
-    title: ['Building Motors for EV.', 'End To End.'],
-    // The phone artboard keeps the break after "EV." and sets the headline in a 269px box (three lines).
-    mobileLines: true,
-    mobileTitleClass: 'w-269',
-    overlay: 'vehicles',
+    id: 'drone',
+    alt: 'Drone flying over a field at dusk',
+    image: a('hero-drone.webp'),
+    // The phone crop is already mirrored.
+    mobileImage: a('m/hero-drone.webp'),
+    imageClass: 'xl:-scale-x-100 xl:object-top',
+    title: ['Precision Motors,', 'Engineered To Fly.'],
+    top: 120,
+  },
+  {
+    id: 'agriculture',
+    alt: 'Agricultural robot and drone tending crops in a field',
+    image: a('hero-agri-v2.webp'),
+    // Phone crops are composed from the 402px artboards, each framed on its subject.
+    mobileImage: a('m/hero-agri-v2.webp'),
+    title: ['Powering Agriculture’s Next', 'Generation'],
     top: 120,
   },
   {
@@ -123,22 +131,15 @@ export const heroSlides = [
     top: 120,
   },
   {
-    id: 'agriculture',
-    alt: 'Agricultural robot and drone tending crops in a field',
-    image: a('hero-agri-v2.webp'),
-    // Phone crops are composed from the 402px artboards, each framed on its subject.
-    mobileImage: a('m/hero-agri-v2.webp'),
-    title: ['Powering Agriculture’s Next', 'Generation'],
-    top: 120,
-  },
-  {
-    id: 'drone',
-    alt: 'Drone flying over a field at dusk',
-    image: a('hero-drone.webp'),
-    // The phone crop is already mirrored.
-    mobileImage: a('m/hero-drone.webp'),
-    imageClass: 'xl:-scale-x-100 xl:object-top',
-    title: ['Precision Motors,', 'Engineered To Fly.'],
+    id: 'mobility',
+    alt: 'Electric scooter, auto-rickshaw and motorcycle parked by a city waterfront',
+    image: a('hero-vehicles.webp'),
+    mobileImage: a('m/hero-vehicles.webp'),
+    title: ['Building Motors for EV.', 'End To End.'],
+    // The phone artboard keeps the break after "EV." and sets the headline in a 269px box (three lines).
+    mobileLines: true,
+    mobileTitleClass: 'w-269',
+    overlay: 'vehicles',
     top: 120,
   },
 ]
